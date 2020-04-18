@@ -26,6 +26,9 @@ public class Data {
     //recovered data url
     private static String recovered_Data_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv";
 
+    //death data url
+    private static String death_Data_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
+
     //location stats
     private List<LocationStats> stats = new ArrayList<>();
 
@@ -40,13 +43,20 @@ public class Data {
         return rStats;
     }
 
+    //for death stats
+    private List<LocationStats> dStats = new ArrayList<>();
+    public List<LocationStats> getdStats(){
+        return dStats;
+    }
+
     //after get data then execute
     @PostConstruct
     //start a cron job to run this method every second
-    @Scheduled(cron = "* * 1 * * *")
+    @Scheduled(cron = "* * * * * *")
     public void fetchData() throws IOException, InterruptedException {
         List<LocationStats> newStats = new ArrayList<>();
         List<LocationStats> newRStats = new ArrayList<>();
+        List<LocationStats> newDStats = new ArrayList<>();
         //create a client called httpclient to access HTTP
         HttpClient client = HttpClient.newHttpClient();
         //build pattern for HTTP
@@ -62,15 +72,25 @@ public class Data {
         StringReader csvBodyReader = new StringReader(httpResponse.body());
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReader);
 
+        //for recovered stats
         HttpClient recoveredClient = HttpClient.newHttpClient();
         HttpRequest recoveredRequest = HttpRequest.newBuilder()
                 .uri(URI.create(recovered_Data_URL))
                 .build();
         HttpResponse<String> recoveredHttpResponse = recoveredClient.send(recoveredRequest, HttpResponse.BodyHandlers.ofString());
         System.out.println(recoveredHttpResponse.body());
-
         StringReader csvBodyReaderR = new StringReader(recoveredHttpResponse.body());
         Iterable<CSVRecord> recordsRs = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReaderR);
+
+        //for death stats
+        HttpClient deathClient = HttpClient.newHttpClient();
+        HttpRequest deathRequest = HttpRequest.newBuilder()
+                .uri(URI.create(death_Data_URL))
+                .build();
+        HttpResponse<String> deathHttpResponse = deathClient.send(deathRequest, HttpResponse.BodyHandlers.ofString());
+        System.out.println(deathHttpResponse.body());
+        StringReader csvBodyReaderD = new StringReader(deathHttpResponse.body());
+        Iterable<CSVRecord> recordsDs = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReaderD);
 
         //get data from Data table.
         for (CSVRecord record : records) {
@@ -98,5 +118,16 @@ public class Data {
             newRStats.add(recoveredStats);
         }
         this.rStats = newRStats;
+
+        for (CSVRecord recordd : recordsDs){
+            LocationStats deathStats = new LocationStats();
+            int lastestDeathCases = Integer.parseInt(recordd.get(recordd.size() - 1));
+            deathStats.setLastestDeathCases(lastestDeathCases);
+            int diffFromPrevDeath = Integer.parseInt((recordd.get(recordd.size() - 2)));
+            deathStats.setDiffFromPrevDeath(lastestDeathCases - diffFromPrevDeath);
+            System.out.println(deathStats);
+            newDStats.add(deathStats);
+        }
+        this.dStats = newDStats;
     }
 }
