@@ -39,7 +39,6 @@ public class HomeController {
         model.addAttribute("totalReportedCases", totalReportedCases);
         model.addAttribute("totalNewCases", totalNewCases);
 
-
         return "index";
     }
 }
