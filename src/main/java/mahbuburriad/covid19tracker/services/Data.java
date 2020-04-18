@@ -51,6 +51,7 @@ public class Data {
         StringReader csvBodyReader = new StringReader(httpResponse.body());
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReader);
 
+        //get data from Data table.
         for (CSVRecord record : records) {
             LocationStats locationStats = new LocationStats();
             locationStats.setState(record.get("Province/State"));
