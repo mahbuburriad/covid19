@@ -55,6 +55,8 @@ public class Data {
             LocationStats locationStats = new LocationStats();
             locationStats.setState(record.get("Province/State"));
             locationStats.setCountry(record.get("Country/Region"));
+            locationStats.setLat(record.get("Lat"));
+            locationStats.setLon(record.get("Long"));
             int latestCases = Integer.parseInt(record.get(record.size() - 1));
             int prevCases = Integer.parseInt(record.get(record.size() - 2));
             locationStats.setLatestTotalCases(latestCases);

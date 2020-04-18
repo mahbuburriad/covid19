@@ -3,6 +3,8 @@ package mahbuburriad.covid19tracker.models;
 public class LocationStats {
     private String state;
     private String country;
+    private String lat;
+    private String lon;
     private int latestTotalCases;
     private int diffFromPrevDay;
 
@@ -12,6 +14,22 @@ public class LocationStats {
 
     public void setDiffFromPrevDay(int diffFromPrevDay) {
         this.diffFromPrevDay = diffFromPrevDay;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
     }
 
     public String getState() {
@@ -43,7 +61,10 @@ public class LocationStats {
         return "LocationStats{" +
                 "state='" + state + '\'' +
                 ", country='" + country + '\'' +
+                ", lat='" + lat + '\'' +
+                ", lon='" + lon + '\'' +
                 ", latestTotalCases=" + latestTotalCases +
+                ", diffFromPrevDay=" + diffFromPrevDay +
                 '}';
     }
 }
