@@ -6,7 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94820857-fcdd-4582-b538-39cf59125bf4" name="Default Changelist" comment="" />
+    <list default="true" id="94820857-fcdd-4582-b538-39cf59125bf4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,11 +45,16 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/mahbuburriad/covid19tracker" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mahbu\Desktop\covid19-tracker\src\main\resources\templates" />
+    </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Covid19TrackerApplication">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/covid19-tracker/templates/index.html" useBuiltInWebServerPort="true">
@@ -82,6 +92,8 @@
       <workItem from="1587229352005" duration="141000" />
       <workItem from="1587229505333" duration="628000" />
       <workItem from="1587230143659" duration="523000" />
+      <workItem from="1587242692773" duration="1630000" />
+      <workItem from="1587244346750" duration="1093000" />
     </task>
     <servers />
   </component>
@@ -106,46 +118,46 @@
     </state>
     <state x="761" y="332" key="FileChooserDialogImpl/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226139047" />
     <state x="2681" y="328" key="FileChooserDialogImpl/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587221726467" />
-    <state width="1877" height="253" key="GridCell.Tab.0.bottom" timestamp="1587230666542">
+    <state width="1877" height="253" key="GridCell.Tab.0.bottom" timestamp="1587245441788">
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
     <state width="1877" height="253" key="GridCell.Tab.0.bottom/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
-    <state width="1877" height="253" key="GridCell.Tab.0.bottom/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230666542" />
-    <state width="1877" height="253" key="GridCell.Tab.0.center" timestamp="1587230666542">
+    <state width="1877" height="253" key="GridCell.Tab.0.bottom/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587245441788" />
+    <state width="1877" height="253" key="GridCell.Tab.0.center" timestamp="1587245441785">
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
     <state width="1877" height="253" key="GridCell.Tab.0.center/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
-    <state width="1877" height="253" key="GridCell.Tab.0.center/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230666542" />
-    <state width="1877" height="253" key="GridCell.Tab.0.left" timestamp="1587230666542">
+    <state width="1877" height="253" key="GridCell.Tab.0.center/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587245441785" />
+    <state width="1877" height="253" key="GridCell.Tab.0.left" timestamp="1587245441784">
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
     <state width="1877" height="253" key="GridCell.Tab.0.left/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519739" />
-    <state width="1877" height="253" key="GridCell.Tab.0.left/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230666542" />
-    <state width="1877" height="253" key="GridCell.Tab.0.right" timestamp="1587230666542">
+    <state width="1877" height="253" key="GridCell.Tab.0.left/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587245441784" />
+    <state width="1877" height="253" key="GridCell.Tab.0.right" timestamp="1587245441787">
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
     <state width="1877" height="253" key="GridCell.Tab.0.right/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
-    <state width="1877" height="253" key="GridCell.Tab.0.right/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230666542" />
-    <state width="1877" height="253" key="GridCell.Tab.1.bottom" timestamp="1587230666542">
+    <state width="1877" height="253" key="GridCell.Tab.0.right/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587245441787" />
+    <state width="1877" height="253" key="GridCell.Tab.1.bottom" timestamp="1587245441789">
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
     <state width="1877" height="253" key="GridCell.Tab.1.bottom/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
-    <state width="1877" height="253" key="GridCell.Tab.1.bottom/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230666542" />
-    <state width="1877" height="253" key="GridCell.Tab.1.center" timestamp="1587230666542">
+    <state width="1877" height="253" key="GridCell.Tab.1.bottom/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587245441789" />
+    <state width="1877" height="253" key="GridCell.Tab.1.center" timestamp="1587245441789">
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
     <state width="1877" height="253" key="GridCell.Tab.1.center/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
-    <state width="1877" height="253" key="GridCell.Tab.1.center/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230666542" />
-    <state width="1877" height="253" key="GridCell.Tab.1.left" timestamp="1587230666542">
+    <state width="1877" height="253" key="GridCell.Tab.1.center/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587245441789" />
+    <state width="1877" height="253" key="GridCell.Tab.1.left" timestamp="1587245441789">
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
     <state width="1877" height="253" key="GridCell.Tab.1.left/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
-    <state width="1877" height="253" key="GridCell.Tab.1.left/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230666542" />
-    <state width="1877" height="253" key="GridCell.Tab.1.right" timestamp="1587230666542">
+    <state width="1877" height="253" key="GridCell.Tab.1.left/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587245441789" />
+    <state width="1877" height="253" key="GridCell.Tab.1.right" timestamp="1587245441789">
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
     <state width="1877" height="253" key="GridCell.Tab.1.right/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
-    <state width="1877" height="253" key="GridCell.Tab.1.right/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230666542" />
+    <state width="1877" height="253" key="GridCell.Tab.1.right/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587245441789" />
     <state x="625" y="224" key="NewModule_or_Project.wizard" timestamp="1587226142073">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
