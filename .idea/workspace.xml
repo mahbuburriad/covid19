@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="covid19-tracker:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="94820857-fcdd-4582-b538-39cf59125bf4" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1agBfrdeZKeWHKDzs8PshCzssbE" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/mahbuburriad/covid19tracker" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.Covid19TrackerApplication">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/covid19-tracker/templates/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="Covid19TrackerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="covid19-tracker" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="mahbuburriad.covid19tracker.Covid19TrackerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="94820857-fcdd-4582-b538-39cf59125bf4" name="Default Changelist" comment="" />
+      <created>1587147462112</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587147462112</updated>
+      <workItem from="1587147467839" duration="1976000" />
+      <workItem from="1587149455999" duration="2491000" />
+      <workItem from="1587151971343" duration="835000" />
+      <workItem from="1587152925820" duration="9826000" />
+      <workItem from="1587210110770" duration="12412000" />
+      <workItem from="1587227885574" duration="1427000" />
+      <workItem from="1587229352005" duration="141000" />
+      <workItem from="1587229505333" duration="628000" />
+      <workItem from="1587230143659" duration="340000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2360" y="90" key="#Project_Structure" timestamp="1587221694884">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state x="2360" y="90" key="#Project_Structure/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587221694884" />
+    <state x="2685" y="200" key="#com.intellij.ide.util.MemberChooser" timestamp="1587215749745">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state x="2685" y="200" key="#com.intellij.ide.util.MemberChooser/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587215749745" />
+    <state x="2610" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587191780669">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state x="2610" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587191780669" />
+    <state x="761" y="332" key="FileChooserDialogImpl" timestamp="1587226139047">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="761" y="332" key="FileChooserDialogImpl/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226139047" />
+    <state x="2681" y="328" key="FileChooserDialogImpl/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587221726467" />
+    <state width="1877" height="253" key="GridCell.Tab.0.bottom" timestamp="1587230469496">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.0.bottom/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
+    <state width="1877" height="253" key="GridCell.Tab.0.bottom/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230469496" />
+    <state width="1877" height="253" key="GridCell.Tab.0.center" timestamp="1587230469496">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.0.center/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
+    <state width="1877" height="253" key="GridCell.Tab.0.center/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230469496" />
+    <state width="1877" height="253" key="GridCell.Tab.0.left" timestamp="1587230469496">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.0.left/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519739" />
+    <state width="1877" height="253" key="GridCell.Tab.0.left/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230469496" />
+    <state width="1877" height="253" key="GridCell.Tab.0.right" timestamp="1587230469496">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.0.right/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
+    <state width="1877" height="253" key="GridCell.Tab.0.right/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230469496" />
+    <state width="1877" height="253" key="GridCell.Tab.1.bottom" timestamp="1587230469497">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.1.bottom/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
+    <state width="1877" height="253" key="GridCell.Tab.1.bottom/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230469497" />
+    <state width="1877" height="253" key="GridCell.Tab.1.center" timestamp="1587230469496">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.1.center/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
+    <state width="1877" height="253" key="GridCell.Tab.1.center/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230469496" />
+    <state width="1877" height="253" key="GridCell.Tab.1.left" timestamp="1587230469496">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.1.left/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
+    <state width="1877" height="253" key="GridCell.Tab.1.left/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230469496" />
+    <state width="1877" height="253" key="GridCell.Tab.1.right" timestamp="1587230469496">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="253" key="GridCell.Tab.1.right/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226519740" />
+    <state width="1877" height="253" key="GridCell.Tab.1.right/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587230469496" />
+    <state x="625" y="224" key="NewModule_or_Project.wizard" timestamp="1587226142073">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="625" y="224" key="NewModule_or_Project.wizard/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587226142073" />
+    <state x="2381" y="161" key="SettingsEditor" timestamp="1587221728812">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state x="2381" y="161" key="SettingsEditor/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587221728812" />
+    <state x="2696" y="294" key="chooseDestDirectoryDialog" timestamp="1587150921897">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state x="2696" y="294" key="chooseDestDirectoryDialog/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587150921897" />
+    <state x="2543" y="221" width="672" height="678" key="search.everywhere.popup" timestamp="1587191110681">
+      <screen x="1920" y="-4" width="1920" height="1040" />
+    </state>
+    <state x="2543" y="221" width="672" height="678" key="search.everywhere.popup/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587191110681" />
+  </component>
+</project>
