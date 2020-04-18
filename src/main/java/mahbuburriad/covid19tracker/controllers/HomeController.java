@@ -17,12 +17,19 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model){
+        List<LocationStats> rStats = data.getrStats();
+        int totalRecoveredStats = rStats.stream().mapToInt(rStat-> rStat.getLatestRecoveredCases()).sum();
+        model.addAttribute("locationStats", rStats);
+        model.addAttribute("totalRecoveredStats", totalRecoveredStats);
+
         List<LocationStats> stats = data.getStats();
         int totalReportedCases = stats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
         int totalNewCases = stats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum();
         model.addAttribute("locationStats", stats);
         model.addAttribute("totalReportedCases", totalReportedCases);
         model.addAttribute("totalNewCases", totalNewCases);
+
+
         return "index";
     }
 }
