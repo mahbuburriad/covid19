@@ -7,8 +7,12 @@ public class LocationStats {
     private String lon;
     private int latestTotalCases;
     private int diffFromPrevDay;
+    //for recovered stats
     private int latestRecoveredCases;
     private int diffFromPrevRecovered;
+    //for death stats
+    private int lastestDeathCases;
+    private int diffFromPrevDeath;
 
     public int getDiffFromPrevDay() {
         return diffFromPrevDay;
@@ -74,6 +78,22 @@ public class LocationStats {
         this.diffFromPrevRecovered = diffFromPrevRecovered;
     }
 
+    public int getLastestDeathCases() {
+        return lastestDeathCases;
+    }
+
+    public void setLastestDeathCases(int lastestDeathCases) {
+        this.lastestDeathCases = lastestDeathCases;
+    }
+
+    public int getDiffFromPrevDeath() {
+        return diffFromPrevDeath;
+    }
+
+    public void setDiffFromPrevDeath(int diffFromPrevDeath) {
+        this.diffFromPrevDeath = diffFromPrevDeath;
+    }
+
     @Override
     public String toString() {
         return "LocationStats{" +
@@ -85,6 +105,8 @@ public class LocationStats {
                 ", diffFromPrevDay=" + diffFromPrevDay +
                 ", latestRecoveredCases=" + latestRecoveredCases +
                 ", diffFromPrevRecovered=" + diffFromPrevRecovered +
+                ", lastestDeathCases=" + lastestDeathCases +
+                ", diffFromPrevDeath=" + diffFromPrevDeath +
                 '}';
     }
 }
