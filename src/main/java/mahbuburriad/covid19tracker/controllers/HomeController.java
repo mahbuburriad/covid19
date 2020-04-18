@@ -19,8 +19,11 @@ public class HomeController {
     public String home(Model model){
         List<LocationStats> rStats = data.getrStats();
         int totalRecoveredStats = rStats.stream().mapToInt(rStat-> rStat.getLatestRecoveredCases()).sum();
+        int prevRecoveredStas = rStats.stream().mapToInt(rStat -> rStat.getDiffFromPrevRecovered()).sum();
         model.addAttribute("locationStats", rStats);
         model.addAttribute("totalRecoveredStats", totalRecoveredStats);
+        model.addAttribute("prevRecoveredStas", prevRecoveredStas);
+
 
         List<LocationStats> stats = data.getStats();
         int totalReportedCases = stats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
