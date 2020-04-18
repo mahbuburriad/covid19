@@ -25,36 +25,80 @@
         //         } );
         // } );
 
-        $(document).ready( function () {
+        $(document).ready(function () {
             $('#example').DataTable();
-        } );
+        });
     </script>
+
+    <style>
+        .box {
+            height: 100px;
+            width: 200px;
+        }
+    </style>
 
 </head>
 
 <body>
 <div class="container">
-    <center><h1>COVID19 Tracker Application</h1>
-        <p>This is the only confirmed cases</p></center>
+    <center><h1>COVID19 Tracker Application</h1></center>
 
 
-    <div class="jumbotron" style="background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 43%, rgba(0,212,255,1) 100%); color: white">
-        <center>
-            <p class="lead">Total Cases Reported Today</p>
-            <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+    <div class="jumbotron"
+         style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 43%, rgba(0,212,255,1) 100%); color: white">
+        <!--        <center>-->
+        <!--            <p class="lead">Total Cases Reported Today</p>-->
+        <!--            <h1 class="display-4" th:text="${totalReportedCases}"></h1>-->
 
-            <hr class="my-4">
-            <p>
-                <span>New Cases Reported since Yesterday</span>
-                <span th:text="${totalNewCases}"></span>
-            </p>
-            <p><span>Total Recovered</span><span th:text="${totalRecoveredStats}"></span></p>
-            <p><span>Total Recovered From prev</span><span th:text="${prevRecoveredStas}"></span></p>
+        <!--            <hr class="my-4">-->
+        <!--            <p>-->
+        <!--                <span>New Cases Reported since Yesterday</span>-->
+        <!--                <span th:text="${totalNewCases}"></span>-->
+        <!--            </p>-->
+        <!--            <p><span>Total Recovered</span><span th:text="${totalRecoveredStats}"></span></p>-->
+        <!--            <p><span>Total Recovered From prev</span><span th:text="${prevRecoveredStas}"></span></p>-->
 
-            <p><span>Total Recovered</span><span th:text="${totalDeathStats}"></span></p>
-            <p><span>Total Recovered From prev</span><span th:text="${prevDeathStats}"></span></p>
-        </center>
+        <!--            <p><span>Total Recovered</span><span th:text="${totalDeathStats}"></span></p>-->
+        <!--            <p><span>Total Recovered From prev</span><span th:text="${prevDeathStats}"></span></p>-->
+        <!--        </center>-->
+        <iframe scrolling="no" frameborder="no" clocktype="html5"
+                style="overflow:hidden;border:0;margin:0;padding:0;width:235px;height:45px;"
+                src="https://www.clocklink.com/html5embed.php?clock=sdt&timezone=Bangladesh_Dhaka&color=blue&size=235&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=blue"></iframe>
+        <div class="row" style="color: black">
+            <div class="col-md">
+                <div class="card" style="border-radius: 20px">
+                    <div class="card-body">
+                        <p>Total Confirmed</p>
+                        <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+                        <hr class="my-4">
+                        <p>New Cases since Yesterday</p>
+                        <h2 class="display-4" th:text="${totalNewCases}"></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card" style="border-radius: 20px">
+                    <div class="card-body">
+                        <p>Total Recovered</p>
+                        <h1 class="display-4" th:text="${totalRecoveredStats}"></h1>
+                        <hr class="my-4">
+                        <p>New Recovered Cases since Yesterday</p>
+                        <h2 class="display-4" th:text="${prevRecoveredStas}"></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card" style="border-radius: 20px">
+                    <div class="card-body">
+                        <p>Total Death</p>
+                        <h1 class="display-4" th:text="${totalDeathStats}"></h1>
+                        <hr class="my-4">
+                        <p>New Death Cases since Yesterday</p>
+                        <h2 class="display-4" th:text="${prevDeathStats}"></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -65,7 +109,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 43%, rgba(
             <th>Country</th>
             <th>Latitude</th>
             <th>Longitude</th>
-            <th>Total Cases Reported</th>
+            <th>Total Confirmed Cases</th>
             <th>Changes Since Last Day</th>
         </tr>
         </thead>
