@@ -29,7 +29,7 @@ public class Data {
     //death data url
     private static String death_Data_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
 
-    //location stats
+    //Confirmed stats
     private List<LocationStats> stats = new ArrayList<>();
 
     public List<LocationStats> getStats() {
@@ -54,9 +54,13 @@ public class Data {
     //start a cron job to run this method every second
     @Scheduled(cron = "* * * * * *")
     public void fetchData() throws IOException, InterruptedException {
+        //array list for comfirmed stats
         List<LocationStats> newStats = new ArrayList<>();
+        //array list for Recovered Stats
         List<LocationStats> newRStats = new ArrayList<>();
+        //array list for death stats
         List<LocationStats> newDStats = new ArrayList<>();
+
         //create a client called httpclient to access HTTP
         HttpClient client = HttpClient.newHttpClient();
         //build pattern for HTTP
@@ -77,8 +81,12 @@ public class Data {
         HttpRequest recoveredRequest = HttpRequest.newBuilder()
                 .uri(URI.create(recovered_Data_URL))
                 .build();
+        //http response when get request data and build to ofstring method and send a request to client
         HttpResponse<String> recoveredHttpResponse = recoveredClient.send(recoveredRequest, HttpResponse.BodyHandlers.ofString());
+        //print data to console
         System.out.println(recoveredHttpResponse.body());
+
+        //format the CSV data from raw CSV
         StringReader csvBodyReaderR = new StringReader(recoveredHttpResponse.body());
         Iterable<CSVRecord> recordsRs = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReaderR);
 
@@ -87,47 +95,53 @@ public class Data {
         HttpRequest deathRequest = HttpRequest.newBuilder()
                 .uri(URI.create(death_Data_URL))
                 .build();
+        //http response when get request data and build to ofstring method and send a request to client
         HttpResponse<String> deathHttpResponse = deathClient.send(deathRequest, HttpResponse.BodyHandlers.ofString());
+        //print data to console
         System.out.println(deathHttpResponse.body());
+
+        //format the CSV data from raw CSV
         StringReader csvBodyReaderD = new StringReader(deathHttpResponse.body());
         Iterable<CSVRecord> recordsDs = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReaderD);
 
-        //get data from Data table.
+        //get data from Data table for confirmed section
         for (CSVRecord record : records) {
             LocationStats locationStats = new LocationStats();
             locationStats.setState(record.get("Province/State"));
             locationStats.setCountry(record.get("Country/Region"));
             locationStats.setLat(record.get("Lat"));
             locationStats.setLon(record.get("Long"));
-            int latestCases = Integer.parseInt(record.get(record.size() - 1));
-            int prevCases = Integer.parseInt(record.get(record.size() - 2));
+            int latestCases = Integer.parseInt(record.get(record.size() - 1)); //call last column
+            int prevCases = Integer.parseInt(record.get(record.size() - 2)); //call second last column
             locationStats.setLatestTotalCases(latestCases);
             locationStats.setDiffFromPrevDay(latestCases-prevCases);
-            System.out.println(locationStats);
+            System.out.println(locationStats); //print all value to console
             newStats.add(locationStats);
         }
-        this.stats = newStats;
+        this.stats = newStats; //initialize the stats
 
+        //fetch data for recovered section from data table
         for (CSVRecord recordr : recordsRs){
             LocationStats recoveredStats = new LocationStats();
-            int lastedRecoveredCases = Integer.parseInt(recordr.get(recordr.size() - 1));
+            int lastedRecoveredCases = Integer.parseInt(recordr.get(recordr.size() - 1));  //call last column
             recoveredStats.setLatestRecoveredCases(lastedRecoveredCases);
-            int diffFromPrevRecovered = Integer.parseInt(recordr.get(recordr.size() - 2));
+            int diffFromPrevRecovered = Integer.parseInt(recordr.get(recordr.size() - 2)); //call second last column
             recoveredStats.setDiffFromPrevRecovered(lastedRecoveredCases-diffFromPrevRecovered);
             System.out.println(recoveredStats);
             newRStats.add(recoveredStats);
         }
-        this.rStats = newRStats;
+        this.rStats = newRStats; //initialize the stats
 
+        //fetch data for death section from data table
         for (CSVRecord recordd : recordsDs){
             LocationStats deathStats = new LocationStats();
-            int lastestDeathCases = Integer.parseInt(recordd.get(recordd.size() - 1));
+            int lastestDeathCases = Integer.parseInt(recordd.get(recordd.size() - 1)); //call last column
             deathStats.setLastestDeathCases(lastestDeathCases);
-            int diffFromPrevDeath = Integer.parseInt((recordd.get(recordd.size() - 2)));
+            int diffFromPrevDeath = Integer.parseInt((recordd.get(recordd.size() - 2))); //call second last column
             deathStats.setDiffFromPrevDeath(lastestDeathCases - diffFromPrevDeath);
             System.out.println(deathStats);
             newDStats.add(deathStats);
         }
-        this.dStats = newDStats;
+        this.dStats = newDStats; //initialize the stats
     }
 }
