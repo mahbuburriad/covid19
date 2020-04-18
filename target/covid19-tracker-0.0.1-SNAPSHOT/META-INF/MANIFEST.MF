@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: mahbu
+Build-Jdk: 14
+Implementation-Title: covid19-tracker
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: mahbuburriad
+Main-Class: ${start-class}
+

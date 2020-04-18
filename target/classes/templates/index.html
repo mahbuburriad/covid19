@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>COVID19 Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css">
+    <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+
+</head>
+
+<body>
+<div class="container">
+    <center><h1>COVID19 Tracker Application</h1></center>
+
+
+    <div class="jumbotron"
+         style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 43%, rgba(0,212,255,1) 100%); color: white">
+
+        <iframe scrolling="no" frameborder="no" clocktype="html5"
+                style="overflow:hidden;border:0;margin:0;padding:0;width:235px;height:45px;"
+                src="https://www.clocklink.com/html5embed.php?clock=sdt&timezone=Bangladesh_Dhaka&color=blue&size=235&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=blue"></iframe>
+        <div class="row" style="color: black">
+
+            <!--division for confirmed data-->
+            <div class="col-md">
+                <div class="card" style="border-radius: 20px">
+                    <div class="card-body">
+                        <p>Total Confirmed</p>
+                        <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+                        <hr class="my-4">
+                        <p>New Cases since Yesterday</p>
+                        <h2 class="display-4" th:text="${totalNewCases}"></h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- division for recovered data-->
+            <div class="col-md">
+                <div class="card" style="border-radius: 20px">
+                    <div class="card-body">
+                        <p>Total Recovered</p>
+                        <h1 class="display-4" th:text="${totalRecoveredStats}"></h1>
+                        <hr class="my-4">
+                        <p>New Recovered Cases since Yesterday</p>
+                        <h2 class="display-4" th:text="${prevRecoveredStas}"></h2>
+                    </div>
+                </div>
+            </div>
+
+            <!--            division for Death Data-->
+            <div class="col-md">
+                <div class="card" style="border-radius: 20px">
+                    <div class="card-body">
+                        <p>Total Death</p>
+                        <h1 class="display-4" th:text="${totalDeathStats}"></h1>
+                        <hr class="my-4">
+                        <p>New Death Cases since Yesterday</p>
+                        <h2 class="display-4" th:text="${prevDeathStats}"></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--table for confirmed data-->
+    <table class="table table-striped display" id="example">
+        <thead class="thead-dark">
+        <tr>
+            <th>State</th>
+            <th>Country</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Total Confirmed Cases</th>
+            <th>Changes Since Last Day</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="locationStat : ${locationStats}">
+            <td th:text="${locationStat.state}"></td>
+            <td th:text="${locationStat.country}"></td>
+            <td th:text="${locationStat.lat}"></td>
+            <td th:text="${locationStat.lon}"></td>
+            <td th:text="${locationStat.latestTotalCases}">0</td>
+            <td th:text="${locationStat.diffFromPrevDay}">0</td>
+        </tr>
+        </tbody>
+        <tfoot class="thead-dark">
+        <tr>
+            <th>State</th>
+            <th>Country</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Total Cases Reported</th>
+            <th>Changes Since Last Day</th>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+</body>
+
+
+</html>
