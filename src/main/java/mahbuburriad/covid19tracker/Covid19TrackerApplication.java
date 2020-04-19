@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 //enable the scheduling for cron job
 @EnableScheduling
 public class Covid19TrackerApplication extends SpringBootServletInitializer {
+	//to support spring framework with tomcat
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(Covid19TrackerApplication.class);
