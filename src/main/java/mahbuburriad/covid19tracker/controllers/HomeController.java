@@ -24,7 +24,7 @@ public class HomeController {
         //sum of all previous recovered data
         int prevRecoveredStas = rStats.stream().mapToInt(rStat -> rStat.getDiffFromPrevRecovered()).sum();
         //initialize the recovered stats as locationStats
-        model.addAttribute("locationStats", rStats);
+        model.addAttribute("recovered", rStats);
         //pass totalRecovered states data to totalRecoveredStats
         model.addAttribute("totalRecoveredStats", totalRecoveredStats);
         //pass previous recovered stats data to prevRecoveredStats
@@ -37,7 +37,7 @@ public class HomeController {
         //sum of all previous recovered data
         int prevDeathStats = dStats.stream().mapToInt(dStat -> dStat.getDiffFromPrevDeath()).sum();
         //initialize the recovered stats as locationStats
-        model.addAttribute("locationStats", dStats);
+        model.addAttribute("death", dStats);
         //pass total Death Stats as totalDeathStats
         model.addAttribute("totalDeathStats", totalDeathStats);
         //pass previous death stats as prevDeathStats
