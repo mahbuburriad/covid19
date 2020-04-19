@@ -10,12 +10,52 @@ public class LocationStats {
     private int diffFromPrevDay;
 
     //for recovered stats
+    private String recover_State;
+    private String recover_Country;
     private int latestRecoveredCases;
     private int diffFromPrevRecovered;
 
     //for death stats
+    private String death_State;
+    private String death_Country;
     private int lastestDeathCases;
     private int diffFromPrevDeath;
+
+
+    //get Recover state data
+    public String getRecover_State() {
+        return recover_State;
+    }
+    //set Recover state Data
+    public void setRecover_State(String recover_State) {
+        this.recover_State = recover_State;
+    }
+
+    //get Recover country data
+    public String getRecover_Country() {
+        return recover_Country;
+    }
+    //set Recover country data
+    public void setRecover_Country(String recover_Country) {
+        this.recover_Country = recover_Country;
+    }
+
+    //get death state data
+    public String getDeath_State() {
+        return death_State;
+    }
+    //set death state data
+    public void setDeath_State(String death_State) {
+        this.death_State = death_State;
+    }
+    //get death country data
+    public String getDeath_Country() {
+        return death_Country;
+    }
+    //set death country data
+    public void setDeath_Country(String death_Country) {
+        this.death_Country = death_Country;
+    }
 
     //get the value for confimed different from previous day
     public int getDiffFromPrevDay() {
@@ -99,6 +139,7 @@ public class LocationStats {
     }
 
     //all data to string format from raw data
+
     @Override
     public String toString() {
         return "LocationStats{" +
@@ -108,8 +149,12 @@ public class LocationStats {
                 ", lon='" + lon + '\'' +
                 ", latestTotalCases=" + latestTotalCases +
                 ", diffFromPrevDay=" + diffFromPrevDay +
+                ", recover_State='" + recover_State + '\'' +
+                ", recover_Country='" + recover_Country + '\'' +
                 ", latestRecoveredCases=" + latestRecoveredCases +
                 ", diffFromPrevRecovered=" + diffFromPrevRecovered +
+                ", death_State='" + death_State + '\'' +
+                ", death_Country='" + death_Country + '\'' +
                 ", lastestDeathCases=" + lastestDeathCases +
                 ", diffFromPrevDeath=" + diffFromPrevDeath +
                 '}';

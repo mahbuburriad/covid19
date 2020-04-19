@@ -9,17 +9,21 @@
           href="../../css/gtvg.css" th:href="@{/css/gtvg.css}"/>
 
     <!-- DataTables -->
-    <link href="https://mahbuburriad.com/project/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://mahbuburriad.com/project/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://mahbuburriad.com/project/assets/plugins/datatables/dataTables.bootstrap4.min.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="https://mahbuburriad.com/project/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet"
+          type="text/css"/>
     <!-- Responsive datatable examples -->
-    <link href="https://mahbuburriad.com/project/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://mahbuburriad.com/project/assets/plugins/datatables/responsive.bootstrap4.min.css"
+          rel="stylesheet" type="text/css"/>
     <!-- Multi Item Selection examples -->
-    <link href="https://mahbuburriad.com/project/assets/plugins/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://mahbuburriad.com/project/assets/plugins/datatables/select.bootstrap4.min.css" rel="stylesheet"
+          type="text/css"/>
 
     <!-- App css -->
-    <link href="https://mahbuburriad.com/project/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://mahbuburriad.com/project/assets/css/icons.css" rel="stylesheet" type="text/css" />
-    <link href="https://mahbuburriad.com/project/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://mahbuburriad.com/project/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="https://mahbuburriad.com/project/assets/css/icons.css" rel="stylesheet" type="text/css"/>
+    <link href="https://mahbuburriad.com/project/assets/css/style.css" rel="stylesheet" type="text/css"/>
 
     <script src="https://mahbuburriad.com/project/assets/js/modernizr.min.js"></script>
 
@@ -80,6 +84,9 @@
     </div>
 
     <div class="jumbotron" style="background: aliceblue">
+
+        <h1>Total Confimed Cases</h1>
+
         <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(9,9,121) 43%, rgba(0,212,255,1) 100%); color: white">
             <tr>
@@ -103,8 +110,52 @@
             </tbody>
         </table>
     </div>
+    <div class="jumbotron" style="background: aliceblue">
+        <h1>Total Recovered Cases</h1>
+        <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(9,9,121) 43%, rgba(0,212,255,1) 100%); color: white">
+            <tr>
+                <th>State</th>
+                <th>Country</th>
+                <th>Total Recovered</th>
+                <th>Changes since Last Day</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="recovere : ${recovered}">
+                <td th:text="${recovere.recover_State}"></td>
+                <td th:text="${recovere.recover_Country}"></td>
+                <td th:text="${recovere.latestRecoveredCases}"></td>
+                <td th:text="${recovere.diffFromPrevRecovered}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="jumbotron" style="background: aliceblue">
+        <h1>Total Death Cases</h1>
+        <table id="responsive-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(9,9,121) 43%, rgba(0,212,255,1) 100%); color: white">
+            <tr>
+                <th>State</th>
+                <th>Country</th>
+                <th>Total Death</th>
+                <th>Changes since Last Day</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="deaths : ${death}">
+                <td th:text="${deaths.death_State}"></td>
+                <td th:text="${deaths.death_Country}"></td>
+                <td th:text="${deaths.lastestDeathCases}"></td>
+                <td th:text="${deaths.diffFromPrevDeath}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
     <!--table for confirmed data-->
-<!--    <table class="table table-striped table-bordered" id="example">-->
+    <!--    <table class="table table-striped table-bordered" id="example">-->
 
 </div>
 

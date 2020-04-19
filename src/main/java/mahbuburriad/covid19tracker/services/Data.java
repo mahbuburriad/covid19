@@ -123,6 +123,8 @@ public class Data {
         //fetch data for recovered section from data table
         for (CSVRecord recordr : recordsRs){
             LocationStats recoveredStats = new LocationStats();
+            recoveredStats.setRecover_State(recordr.get("Province/State"));
+            recoveredStats.setRecover_Country(recordr.get("Country/Region"));
             int lastedRecoveredCases = Integer.parseInt(recordr.get(recordr.size() - 1));  //call last column
             recoveredStats.setLatestRecoveredCases(lastedRecoveredCases);
             int diffFromPrevRecovered = Integer.parseInt(recordr.get(recordr.size() - 2)); //call second last column
@@ -135,6 +137,8 @@ public class Data {
         //fetch data for death section from data table
         for (CSVRecord recordd : recordsDs){
             LocationStats deathStats = new LocationStats();
+            deathStats.setDeath_State(recordd.get("Province/State"));
+            deathStats.setDeath_Country(recordd.get("Country/Region"));
             int lastestDeathCases = Integer.parseInt(recordd.get(recordd.size() - 1)); //call last column
             deathStats.setLastestDeathCases(lastestDeathCases);
             int diffFromPrevDeath = Integer.parseInt((recordd.get(recordd.size() - 2))); //call second last column
