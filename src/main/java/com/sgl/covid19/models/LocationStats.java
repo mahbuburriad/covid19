@@ -4,8 +4,8 @@ public class LocationStats {
     //for confirmed stats
     private String state;
     private String country;
-    private String lat;
-    private String lon;
+    private Double latitude;
+    private Double longitude;
     private int latestTotalCases;
     private int diffFromPrevDay;
 
@@ -66,20 +66,20 @@ public class LocationStats {
         this.diffFromPrevDay = diffFromPrevDay;
     }
     //get the latitude
-    public String getLat() {
-        return lat;
+    public Double getLat() {
+        return latitude;
     }
     //set the latitude
-    public void setLat(String lat) {
-        this.lat = lat;
+    public void setLat(Double lat) {
+        this.latitude = lat;
     }
     //get the longitude
-    public String getLon() {
-        return lon;
+    public Double getLon() {
+        return longitude;
     }
     //set the longitude
-    public void setLon(String lon) {
-        this.lon = lon;
+    public void setLon(Double lon) {
+        this.longitude = lon;
     }
     //get the states
     public String getState() {
@@ -140,13 +140,14 @@ public class LocationStats {
 
     //all data to string format from raw data
 
+
     @Override
     public String toString() {
         return "LocationStats{" +
                 "state='" + state + '\'' +
                 ", country='" + country + '\'' +
-                ", lat='" + lat + '\'' +
-                ", lon='" + lon + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 ", latestTotalCases=" + latestTotalCases +
                 ", diffFromPrevDay=" + diffFromPrevDay +
                 ", recover_State='" + recover_State + '\'' +

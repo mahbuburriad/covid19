@@ -109,8 +109,10 @@ public class Data {
             LocationStats locationStats = new LocationStats();
             locationStats.setState(record.get("Province/State"));
             locationStats.setCountry(record.get("Country/Region"));
-            locationStats.setLat(record.get("Lat"));
-            locationStats.setLon(record.get("Long"));
+            //locationStats.setLat(record.get("Lat"));
+            //locationStats.setLon(record.get("Long"));
+            locationStats.setLat(Double.parseDouble(record.get("Lat")));
+            locationStats.setLon(Double.parseDouble(record.get("Long")));
             int latestCases = Integer.parseInt(record.get(record.size() - 1)); //call last column
             int prevCases = Integer.parseInt(record.get(record.size() - 2)); //call second last column
             locationStats.setLatestTotalCases(latestCases);
