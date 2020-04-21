@@ -36,6 +36,8 @@
 <div class="container">
     <center><h1>COVID19 Tracker Application</h1></center>
 
+<!--    <h3 th:text="${array}"></h3>-->
+
     <div class="jumbotron"
          style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 43%, rgba(0,212,255,1) 100%); color: white">
 
@@ -179,7 +181,8 @@
                     .bindPopup(
                         "State: "+ data[i].state+'<br><b>'
                         +"Country: "+data[i].country+'<br><b>'
-                        +"Total Confirmed Cases: " +data[i].latestTotalCases+'</b>'
+                        +"Total Confirmed Cases: " +data[i].latestTotalCases+'<br></b>'
+                        +"Difference From Yesterday: " +data[i].diffFromPrevDay+'</b>'
                     )
                     .openPopup();
             }

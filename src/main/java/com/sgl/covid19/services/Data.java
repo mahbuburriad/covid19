@@ -107,12 +107,12 @@ public class Data {
         //get data from Data table for confirmed section
         for (CSVRecord record : records) {
             LocationStats locationStats = new LocationStats();
-            locationStats.setState(record.get("Province/State"));
-            locationStats.setCountry(record.get("Country/Region"));
-            locationStats.setLat(Double.parseDouble(record.get("Lat")));
-            locationStats.setLon(Double.parseDouble(record.get("Long")));
-            int latestCases = Integer.parseInt(record.get(record.size() - 1)); //call last column
-            int prevCases = Integer.parseInt(record.get(record.size() - 2)); //call second last column
+            locationStats.setState(record.get("Province/State")); //call state column
+            locationStats.setCountry(record.get("Country/Region")); //call country column
+            locationStats.setLat(Double.parseDouble(record.get("Lat"))); //call lat column
+            locationStats.setLon(Double.parseDouble(record.get("Long"))); //call longitude column
+            int latestCases = Integer.parseInt(record.get(record.size() - 1)); //call until last column
+            int prevCases = Integer.parseInt(record.get(record.size() - 2)); //call until second last column
             locationStats.setLatestTotalCases(latestCases);
             locationStats.setDiffFromPrevDay(latestCases-prevCases);
             System.out.println(locationStats); //print all value to console

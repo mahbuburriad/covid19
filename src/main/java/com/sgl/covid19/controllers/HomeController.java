@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Controller
 public class HomeController {
@@ -51,12 +52,21 @@ public class HomeController {
         int totalReportedCases = stats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
         //sum of all previous confirmed data
         int totalNewCases = stats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum();
-        //initialize the confirm stats as locationStats
+
+          /**
+           * find max number
+           */
+
+          //int array = stats.stream().mapToInt(stat -> stat.getLatestTotalCases()).max().orElseThrow(NoSuchElementException::new);
+
+
+          //initialize the confirm stats as locationStats
         model.addAttribute("locationStats", stats);
         //pass total confirmed data as totalReportedCases
         model.addAttribute("totalReportedCases", totalReportedCases);
         //pass previous confirmed case as totalNewCases
         model.addAttribute("totalNewCases", totalNewCases);
+        //model.addAttribute("array", array);
 
         //return value to index.html webPage
         return "index";
