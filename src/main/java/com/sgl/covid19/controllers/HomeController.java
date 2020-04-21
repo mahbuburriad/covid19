@@ -12,13 +12,14 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Controller
+
 public class HomeController {
 
     @Autowired
     Data data;
 
       @GetMapping("/")
-    //@RequestMapping(value = "/")
+
     public String home(Model model){
         //for recovered section
         List<LocationStats> rStats = data.getrStats();
