@@ -36,7 +36,7 @@
 <div class="container">
     <center><h1>COVID19 Tracker Application</h1></center>
 
-    <!--    <h3 th:text="${array}"></h3>-->
+<!--    <h3 th:text="${array}"></h3>-->
 
     <div class="jumbotron"
          style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 43%, rgba(0,212,255,1) 100%); color: white">
@@ -87,7 +87,7 @@
         </div>
     </div>
 
-    <!--    table for confirmed data table-->
+<!--    table for confirmed data table-->
 
     <div class="jumbotron" style="background: aliceblue">
 
@@ -117,7 +117,7 @@
         </table>
     </div>
 
-    <!--    table for death data table-->
+<!--    table for death data table-->
     <div class="jumbotron" style="background: aliceblue">
         <h1>Total Recovered Cases</h1>
         <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -140,7 +140,7 @@
         </table>
     </div>
 
-    <!--    table for death data table-->
+<!--    table for death data table-->
     <div class="jumbotron" style="background: aliceblue">
         <h1>Total Death Cases</h1>
         <table id="responsive-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -163,10 +163,10 @@
         </table>
     </div>
 
-    <!--    <div id = "map" style = "width: 900px; height: 580px"></div>-->
+<!--    <div id = "map" style = "width: 900px; height: 580px"></div>-->
     <div id="mapid" style="width: 100%; height: 750px;"></div>
     <script th:inline="javascript">
-
+        
         var mymap = L.map('mapid').setView([23.685, 90.3563], 4);
 
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -189,7 +189,7 @@
         }
     </script>
 
-</div>
+</div> 
 
 <script src="https://mahbuburriad.com/project/assets/js/jquery.min.js"></script>
 <script src="https://mahbuburriad.com/project/assets/js/popper.min.js"></script>

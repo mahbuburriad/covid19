@@ -21,8 +21,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>14</java.version>
 		<start-class>com.sgl.covid19.Covid19Application</start-class>
-<!--		<tomcat.version>9.0.34</tomcat.version>-->
-		<tomcat.version>7.0.100</tomcat.version>
 	</properties>
 
 	<dependencies>
