@@ -72,4 +72,10 @@ public class HomeController {
         //return value to index.html webPage
         return "index";
     }
+
+    @GetMapping("/bangladesh")
+    public String bangladesh(Model model){
+
+          return "bangladesh";
+    }
 }
