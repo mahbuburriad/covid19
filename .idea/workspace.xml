@@ -6,21 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="07e9ee0d-6f35-4688-81a0-ad00db533b9e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bangladesh_data/bangladesh.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_33.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_33.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_33.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgl/covid19/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgl/covid19/controllers/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgl/covid19/services/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgl/covid19/services/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sgl/covid19/services/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sgl/covid19/services/Data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT/WEB-INF/classes/com/sgl/covid19/controllers/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT/WEB-INF/classes/com/sgl/covid19/controllers/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT/WEB-INF/classes/com/sgl/covid19/services/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT/WEB-INF/classes/com/sgl/covid19/services/Data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT/WEB-INF/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT/WEB-INF/classes/templates/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="07e9ee0d-6f35-4688-81a0-ad00db533b9e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -327,17 +313,6 @@
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
     <state x="2262" y="136" key="new project wizard/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587484547356" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/sgl/covid19/Covid19Application.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/covid19_tracker$Tomcat_7.ic" NAME="Tomcat 7 Coverage Results" MODIFIED="1587736552789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
