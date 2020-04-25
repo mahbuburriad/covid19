@@ -2,24 +2,15 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
+      <artifact name="covid19:war" />
       <artifact name="covid19:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07e9ee0d-6f35-4688-81a0-ad00db533b9e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bangladesh_data/bangladesh.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_9_0_33.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_9_0_33.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_33.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgl/covid19/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgl/covid19/controllers/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sgl/covid19/services/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sgl/covid19/services/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sgl/covid19/services/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sgl/covid19/services/Data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT/WEB-INF/classes/com/sgl/covid19/controllers/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT/WEB-INF/classes/com/sgl/covid19/controllers/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT/WEB-INF/classes/com/sgl/covid19/services/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT/WEB-INF/classes/com/sgl/covid19/services/Data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT/WEB-INF/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT/WEB-INF/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,13 +29,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LogFilters">
-    <option name="FILTER_ERRORS" value="false" />
-    <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
-    <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="1aml5btLClWvfytPKTEBn2TVOy9" />
   <component name="ProjectLevelVcsManager">
@@ -66,8 +50,6 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com/sgl/covid19" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../project" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Spring Boot.Covid19Application">
     <configuration name="Covid19Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -90,87 +72,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 7" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.100" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080" />
-      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
-      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
-      <deployment>
-        <artifact name="covid19:war exploded">
-          <settings>
-            <option name="CONTEXT_PATH" value="/covid19_war_exploded" />
-          </settings>
-        </artifact>
-      </deployment>
-      <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="Unnamed_covid19-tracker" />
-        <option name="DEPLOY_TOMCAT_APPS" value="true" />
-        <option name="HTTP_PORT" value="8080" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="7284" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="covid19:war exploded" />
-        </option>
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.Covid19Application" />
-      <item itemvalue="Spring Boot.Covid19Application" />
-      <item itemvalue="Tomcat Server.Tomcat 7" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Covid19Application" />
@@ -208,14 +109,6 @@
       <workItem from="1587506540104" duration="8000" />
       <workItem from="1587506684698" duration="37000" />
       <workItem from="1587572777261" duration="748000" />
-      <workItem from="1587664895104" duration="3248000" />
-      <workItem from="1587733014739" duration="1157000" />
-      <workItem from="1587734188943" duration="191000" />
-      <workItem from="1587734399493" duration="1022000" />
-      <workItem from="1587735699668" duration="227000" />
-      <workItem from="1587736454888" duration="215000" />
-      <workItem from="1587768988113" duration="447000" />
-      <workItem from="1587769450217" duration="987000" />
     </task>
     <servers />
   </component>
@@ -226,14 +119,6 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2658" y="394" key="#Tomcat_Server" timestamp="1587733270422">
-      <screen x="1920" y="-4" width="1920" height="1040" />
-    </state>
-    <state x="2658" y="394" key="#Tomcat_Server/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587733270422" />
-    <state x="2334" y="171" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587769227034">
-      <screen x="1920" y="-4" width="1920" height="1040" />
-    </state>
-    <state x="2334" y="171" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587769227034" />
     <state x="2648" y="217" key="#com.intellij.ide.util.MemberChooser" timestamp="1587461477252">
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
@@ -243,82 +128,62 @@
     </state>
     <state x="2610" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.-4.1920.1040@1920.-4.1920.1040" timestamp="1587572862742" />
     <state x="2610" y="263" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587443096408" />
-    <state x="2660" y="217" key="FileChooserDialogImpl" timestamp="1587735924960">
+    <state x="2660" y="217" key="FileChooserDialogImpl" timestamp="1587485042602">
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
-    <state x="2660" y="217" key="FileChooserDialogImpl/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587735924960" />
-    <state width="1877" height="290" key="GridCell.Tab.0.bottom" timestamp="1587770048345">
-      <screen x="1920" y="-4" width="1920" height="1040" />
+    <state x="2660" y="217" key="FileChooserDialogImpl/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587485042602" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1587632226166">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-4.1920.1040@1920.-4.1920.1040" timestamp="1587572926695" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587632226166" />
-    <state width="1877" height="290" key="GridCell.Tab.0.bottom/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587770048345" />
-    <state width="1877" height="290" key="GridCell.Tab.0.center" timestamp="1587770048345">
-      <screen x="1920" y="-4" width="1920" height="1040" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587485006616" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1587632226165">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-4.1920.1040@1920.-4.1920.1040" timestamp="1587572926695" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587632226165" />
-    <state width="1877" height="290" key="GridCell.Tab.0.center/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587770048345" />
-    <state width="1877" height="290" key="GridCell.Tab.0.left" timestamp="1587770048345">
-      <screen x="1920" y="-4" width="1920" height="1040" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587485006615" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1587632226165">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-4.1920.1040@1920.-4.1920.1040" timestamp="1587572926695" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587632226165" />
-    <state width="1877" height="290" key="GridCell.Tab.0.left/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587770048345" />
-    <state width="1877" height="290" key="GridCell.Tab.0.right" timestamp="1587770048345">
-      <screen x="1920" y="-4" width="1920" height="1040" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587485006615" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1587632226165">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-4.1920.1040@1920.-4.1920.1040" timestamp="1587572926695" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587632226165" />
-    <state width="1877" height="290" key="GridCell.Tab.0.right/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587770048345" />
-    <state width="1877" height="290" key="GridCell.Tab.1.bottom" timestamp="1587770048345">
-      <screen x="1920" y="-4" width="1920" height="1040" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587485006616" />
+    <state width="1877" height="282" key="GridCell.Tab.1.bottom" timestamp="1587632226168">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.-4.1920.1040@1920.-4.1920.1040" timestamp="1587572926696" />
     <state width="1877" height="282" key="GridCell.Tab.1.bottom/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587632226168" />
-    <state width="1877" height="290" key="GridCell.Tab.1.bottom/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587770048345" />
-    <state width="1877" height="290" key="GridCell.Tab.1.center" timestamp="1587770048345">
-      <screen x="1920" y="-4" width="1920" height="1040" />
+    <state width="1877" height="282" key="GridCell.Tab.1.bottom/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587485006616" />
+    <state width="1877" height="282" key="GridCell.Tab.1.center" timestamp="1587632226167">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.1.center/0.0.1920.1040/1920.-4.1920.1040@1920.-4.1920.1040" timestamp="1587572926696" />
     <state width="1877" height="282" key="GridCell.Tab.1.center/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587632226167" />
-    <state width="1877" height="290" key="GridCell.Tab.1.center/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587770048345" />
-    <state width="1877" height="290" key="GridCell.Tab.1.left" timestamp="1587770048345">
-      <screen x="1920" y="-4" width="1920" height="1040" />
+    <state width="1877" height="282" key="GridCell.Tab.1.center/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587485006616" />
+    <state width="1877" height="282" key="GridCell.Tab.1.left" timestamp="1587632226167">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.1.left/0.0.1920.1040/1920.-4.1920.1040@1920.-4.1920.1040" timestamp="1587572926695" />
     <state width="1877" height="282" key="GridCell.Tab.1.left/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587632226167" />
-    <state width="1877" height="290" key="GridCell.Tab.1.left/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587770048345" />
-    <state width="1877" height="290" key="GridCell.Tab.1.right" timestamp="1587770048345">
-      <screen x="1920" y="-4" width="1920" height="1040" />
+    <state width="1877" height="282" key="GridCell.Tab.1.left/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587485006616" />
+    <state width="1877" height="282" key="GridCell.Tab.1.right" timestamp="1587632226167">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.1.right/0.0.1920.1040/1920.-4.1920.1040@1920.-4.1920.1040" timestamp="1587572926696" />
     <state width="1877" height="282" key="GridCell.Tab.1.right/1920.-4.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587632226167" />
-    <state width="1877" height="290" key="GridCell.Tab.1.right/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587770048345" />
-    <state width="1293" height="282" key="GridCell.Tab.2.bottom" timestamp="1587769436425">
-      <screen x="1920" y="-4" width="1920" height="1040" />
-    </state>
-    <state width="1293" height="282" key="GridCell.Tab.2.bottom/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587769436425" />
-    <state width="1293" height="282" key="GridCell.Tab.2.center" timestamp="1587769436425">
-      <screen x="1920" y="-4" width="1920" height="1040" />
-    </state>
-    <state width="1293" height="282" key="GridCell.Tab.2.center/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587769436425" />
-    <state width="1293" height="282" key="GridCell.Tab.2.left" timestamp="1587769436425">
-      <screen x="1920" y="-4" width="1920" height="1040" />
-    </state>
-    <state width="1293" height="282" key="GridCell.Tab.2.left/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587769436425" />
-    <state width="1293" height="282" key="GridCell.Tab.2.right" timestamp="1587769436425">
-      <screen x="1920" y="-4" width="1920" height="1040" />
-    </state>
-    <state width="1293" height="282" key="GridCell.Tab.2.right/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587769436425" />
+    <state width="1877" height="282" key="GridCell.Tab.1.right/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587485006616" />
     <state x="2545" y="220" key="NewModule_or_Project.wizard" timestamp="1587485057939">
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
     <state x="2545" y="220" key="NewModule_or_Project.wizard/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587485057939" />
-    <state x="2381" y="161" key="SettingsEditor" timestamp="1587733059909">
-      <screen x="1920" y="-4" width="1920" height="1040" />
-    </state>
-    <state x="2381" y="161" key="SettingsEditor/1920.-4.1920.1040/0.0.1920.1040@1920.-4.1920.1040" timestamp="1587733059909" />
     <state x="2696" y="294" key="chooseDestDirectoryDialog" timestamp="1587348966479">
       <screen x="1920" y="-4" width="1920" height="1040" />
     </state>
@@ -338,8 +203,5 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/covid19_tracker$Tomcat_7.ic" NAME="Tomcat 7 Coverage Results" MODIFIED="1587736552789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
