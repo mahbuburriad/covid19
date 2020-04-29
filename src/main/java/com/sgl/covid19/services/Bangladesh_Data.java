@@ -57,10 +57,10 @@ public class Bangladesh_Data {
         for (CSVRecord record : records) {
             BangladeshStats bangladeshStats = new BangladeshStats();
             bangladeshStats.setDate(record.get("Date"));
-            bangladeshStats.setTotal_cases(record.get("আক্রান্ত"));
+            //bangladeshStats.setTotal_cases(record.get("Confirmed"));
             System.out.println(bangladeshStats); //print all value to console
             newStats.add(bangladeshStats);
-            
+
         }
         this.stats = newStats; //initialize the stats
 
