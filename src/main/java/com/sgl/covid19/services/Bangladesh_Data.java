@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 public class Bangladesh_Data {
     //Bangladesh Data
-    private static String bangladesh_Data_URL = "https://raw.githubusercontent.com/mahbuburriad/covid19-tracker/master/bangladesh_data/bangladesh.csv?token=AJWHTIP3FR3EAKTIZIYRTVK6VSYH4";
+    private static String bangladesh_Data_URL = "https://raw.githubusercontent.com/mahbuburriad/covid19-tracker/master/BangladeshData/bangladeshdata.csv?token=AJWHTILEL5RWMJU3VKVGAY26WLI7K";
 
     //for bangladeshi data
     private List<BangladeshStats> stats = new ArrayList<>();
@@ -57,9 +57,10 @@ public class Bangladesh_Data {
         for (CSVRecord record : records) {
             BangladeshStats bangladeshStats = new BangladeshStats();
             bangladeshStats.setDate(record.get("Date"));
-            bangladeshStats.setTotal_cases(Integer.parseInt(record.get("Total Cases")));
+            bangladeshStats.setTotal_cases(record.get("আক্রান্ত"));
             System.out.println(bangladeshStats); //print all value to console
             newStats.add(bangladeshStats);
+            
         }
         this.stats = newStats; //initialize the stats
 

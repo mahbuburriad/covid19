@@ -44,14 +44,14 @@
             <thead style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(9,9,121) 43%, rgba(0,212,255,1) 100%); color: white">
             <tr>
                 <th>State</th>
-                <th>Country</th>
+
 
             </tr>
             </thead>
             <tbody>
             <tr th:each="local : ${bstats}">
                 <td th:text="${local.date}"></td>
-                <td th:text="${local.total_cases}"></td>
+
             </tr>
             </tbody>
         </table>
