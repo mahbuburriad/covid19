@@ -56,7 +56,7 @@ public class Bangladesh_Data {
         //get data from Data table for confirmed section
         for (CSVRecord record : records) {
             BangladeshStats bangladeshStats = new BangladeshStats();
-            bangladeshStats.setDate(record.get("আক্রান্ত "));
+            bangladeshStats.setDate(record.get("তারিখ"));
             //bangladeshStats.setTotal_cases(record.get("Confirmed"));
             System.out.println(bangladeshStats); //print all value to console
             newStats.add(bangladeshStats);
