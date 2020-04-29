@@ -19,14 +19,14 @@ public class HomeController {
 
     @Autowired
     Data data;
-    Bangladesh_Data bangladesh_data;
-
-      @GetMapping("/bangladesh")
-    public String bangladesh(Model model){
-        List<BangladeshStats> bstats = bangladesh_data.getStats();
-        model.addAttribute("locationStats", bstats);
-        return "bangladesh";
-    }
+//    Bangladesh_Data bangladesh_data;
+//
+//      @GetMapping("/bangladesh")
+//    public String bangladesh(Model bmodel){
+//        List<BangladeshStats> bstats = bangladesh_data.getStats();
+//        bmodel.addAttribute("bstats", bstats);
+//        return "bangladesh";
+//    }
 
       @GetMapping("/")
 
@@ -95,12 +95,5 @@ public class HomeController {
         //return value to index.html webPage
         return "index";
     }
-
-    /**
-     * banladeshi get mapped
-     * @param model
-     * @return
-     */
-
 
 }

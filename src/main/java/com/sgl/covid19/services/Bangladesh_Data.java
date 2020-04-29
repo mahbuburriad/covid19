@@ -6,6 +6,7 @@ import com.sgl.covid19.models.BangladeshStats;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class Bangladesh_Data {
     //Bangladesh Data
     private static String bangladesh_Data_URL = "https://raw.githubusercontent.com/mahbuburriad/covid19-tracker/master/bangladesh_data/bangladesh.csv?token=AJWHTIP3FR3EAKTIZIYRTVK6VSYH4";
