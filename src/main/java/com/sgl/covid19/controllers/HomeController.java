@@ -1,6 +1,8 @@
 package com.sgl.covid19.controllers;
 
+import com.sgl.covid19.models.BangladeshStats;
 import com.sgl.covid19.models.LocationStats;
+import com.sgl.covid19.services.Bangladesh_Data;
 import com.sgl.covid19.services.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,11 +19,24 @@ public class HomeController {
 
     @Autowired
     Data data;
+    Bangladesh_Data bangladesh_data;
+
+      @GetMapping("/bangladesh")
+    public String bangladesh(Model model){
+        List<BangladeshStats> bstats = bangladesh_data.getStats();
+        model.addAttribute("locationStats", bstats);
+        return "bangladesh";
+    }
 
       @GetMapping("/")
 
     public String home(Model model){
-        //for recovered section
+
+          /**
+           * This data is for Recovery stats
+           */
+
+          //for recovered section
         List<LocationStats> rStats = data.getrStats();
         //sum of all recovered data
         int totalRecoveredStats = rStats.stream().mapToInt(rStat-> rStat.getLatestRecoveredCases()).sum();
@@ -34,7 +49,11 @@ public class HomeController {
         //pass previous recovered stats data to prevRecoveredStats
         model.addAttribute("prevRecoveredStas", prevRecoveredStas);
 
-        //for death section
+          /**
+           * This data is for death stats
+           */
+
+          //for death section
         List<LocationStats> dStats = data.getdStats();
         //sum of all death data
         int totalDeathStats = dStats.stream().mapToInt(dStat -> dStat.getLastestDeathCases()).sum();
@@ -47,7 +66,11 @@ public class HomeController {
         //pass previous death stats as prevDeathStats
         model.addAttribute("prevDeathStats", prevDeathStats);
 
-        //for confirm section
+          /**
+           * This data is for confirm stats
+           */
+
+          //for confirm section
         List<LocationStats> stats = data.getStats();
         //sum of all confirmed data
         int totalReportedCases = stats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
@@ -72,4 +95,12 @@ public class HomeController {
         //return value to index.html webPage
         return "index";
     }
+
+    /**
+     * banladeshi get mapped
+     * @param model
+     * @return
+     */
+
+
 }
