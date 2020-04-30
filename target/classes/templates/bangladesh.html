@@ -32,25 +32,25 @@
 <body>
 <div class="container">
     <center><h1>COVID19 Tracker Application</h1></center>
-
-
-
-
+    <center><h2>Bangladesh Data</h2></center>
 
     <!--    table for death data table-->
     <div class="jumbotron" style="background: aliceblue">
-        <h1>Total Death Cases</h1>
         <table id="responsive-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(9,9,121) 43%, rgba(0,212,255,1) 100%); color: white">
             <tr>
-                <th>State</th>
-
-
+                <th>তারিখ</th>
+                <th>আক্রান্ত</th>
+                <th>সুস্থ</th>
+                <th>মৃত্যু</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="local : ${bstats}">
                 <td th:text="${local.date}"></td>
+                <td th:text="${local.total_cases}"></td>
+                <td th:text="${local.recovered}"></td>
+                <td th:text="${local.death}"></td>
 
             </tr>
             </tbody>
