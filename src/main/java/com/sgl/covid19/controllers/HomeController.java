@@ -1,20 +1,15 @@
 package com.sgl.covid19.controllers;
 
-import com.sgl.covid19.models.BangladeshStats;
 import com.sgl.covid19.models.LocationStats;
-import com.sgl.covid19.services.Bangladesh_Data;
 import com.sgl.covid19.services.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.List;
-import java.util.NoSuchElementException;
+
 
 @Controller
-
 public class HomeController {
 
     @Autowired
