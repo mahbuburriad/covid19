@@ -29,6 +29,7 @@
 
     <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
     <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="http://www.webglearth.com/v2/api.js"></script>
 
 </head>
 
@@ -163,30 +164,32 @@
         </table>
     </div>
 
-    <!--    <div id = "map" style = "width: 900px; height: 580px"></div>-->
-    <div id="mapid" style="width: 100%; height: 750px;"></div>
+    <div id="earth_div"></div>
     <script th:inline="javascript">
 
-        var mymap = L.map('mapid').setView([23.685, 90.3563], 4);
+            var options = {atmosphere: true, center: [0, 0], zoom: 0};
+            var earth = new WE.map('earth_div', options);
+            WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
+                minZoom: 0,
+                maxZoom: 5,
+                attribution: 'COVID19'
+            }).addTo(earth);
 
-        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'COVID19'
-        }).addTo(mymap);
+            var data = [[${locationStats}]] ;
+             console.log("list: "+ data.length);
+            for(var i=0; i< data.length;i++) {
+                if(data[i].lat !== null && data[i].lon !== "") {
+                    WE.marker([data[i].lat, data[i].lon]).addTo(earth)
+                        .bindPopup(
+                            "State: "+ data[i].state+'<br><b>'
+                            +"Country: "+data[i].country+'<br><b>'
+                            +"Total Confirmed Cases: " +data[i].latestTotalCases+'<br></b>'
+                            +"Difference From Yesterday: " +data[i].diffFromPrevDay+'</b>'
+                        )
 
-        var data = [[${locationStats}]] ;
-        console.log("list: "+ data.length);
-        for(var i=0; i< data.length;i++) {
-            if(data[i].lat !== null && data[i].lon !== "") {
-                L.marker([data[i].lat, data[i].lon]).addTo(mymap)
-                    .bindPopup(
-                        "State: "+ data[i].state+'<br><b>'
-                        +"Country: "+data[i].country+'<br><b>'
-                        +"Total Confirmed Cases: " +data[i].latestTotalCases+'<br></b>'
-                        +"Difference From Yesterday: " +data[i].diffFromPrevDay+'</b>'
-                    )
-                    .openPopup();
+                }
             }
-        }
+
     </script>
 
 </div>

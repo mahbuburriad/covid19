@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" build-on-make="true" name="covid19:war exploded">
+  <artifact type="exploded-war" name="covid19:war exploded">
     <output-path>$PROJECT_DIR$/target/covid19-0.0.1-SNAPSHOT</output-path>
     <properties id="maven-jee-properties">
       <options>

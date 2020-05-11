@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Created-By: IntelliJ IDEA
-Built-By: mahbu
-Build-Jdk: 11.0.7
-Implementation-Title: covid19
-Implementation-Version: 0.0.1-SNAPSHOT
-Implementation-Vendor-Id: com.sgl
-Main-Class: com.sgl.covid19.Covid19Application
-
