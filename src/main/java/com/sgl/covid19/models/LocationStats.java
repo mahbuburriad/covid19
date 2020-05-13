@@ -8,6 +8,7 @@ public class LocationStats {
     private Double longitude;
     private int latestTotalCases;
     private int diffFromPrevDay;
+    private int lastSevenDaysRecord;
 
     //for recovered stats
     private String recover_State;
@@ -138,9 +139,18 @@ public class LocationStats {
         this.diffFromPrevDeath = diffFromPrevDeath;
     }
 
+    //last seven days record getter and setter
+
+    public int getLastSevenDaysRecord() {
+        return lastSevenDaysRecord;
+    }
+
+    public void setLastSevenDaysRecord(int lastSevenDaysRecord) {
+        this.lastSevenDaysRecord = lastSevenDaysRecord;
+    }
+
+
     //all data to string format from raw data
-
-
     @Override
     public String toString() {
         return "LocationStats{" +
@@ -150,6 +160,7 @@ public class LocationStats {
                 ", longitude=" + longitude +
                 ", latestTotalCases=" + latestTotalCases +
                 ", diffFromPrevDay=" + diffFromPrevDay +
+                ", lastSevenDaysRecord=" + lastSevenDaysRecord +
                 ", recover_State='" + recover_State + '\'' +
                 ", recover_Country='" + recover_Country + '\'' +
                 ", latestRecoveredCases=" + latestRecoveredCases +

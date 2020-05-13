@@ -21,8 +21,8 @@
 
     <script src="js/modernizr.min.js"></script>
 
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <link rel="stylesheet" href="map/leaflet.css"/>
+    <script src="map/leaflet.js"></script>
     <script src="http://www.webglearth.com/v2/api.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
@@ -31,62 +31,12 @@
 </head>
 
 <body>
-<div class="container-fluid">
+<div class="container">
 
-        <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic</div>
-
-<!--    <div class="jumbotron"-->
-<!--         style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 43%, rgba(0,212,255,1) 100%); color: white">-->
-
-<!--        <iframe scrolling="no" frameborder="no" clocktype="html5"-->
-<!--                style="overflow:hidden;border:0;margin:0;padding:0;width:235px;height:45px;"-->
-<!--                src="https://www.clocklink.com/html5embed.php?clock=sdt&timezone=Bangladesh_Dhaka&color=blue&size=235&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=blue"></iframe>-->
-<!--        <div class="row" style="color: black">-->
-
-<!--            &lt;!&ndash;division for confirmed data&ndash;&gt;-->
-<!--            <div class="col-md">-->
-<!--                <div class="card" style="border-radius: 20px">-->
-<!--                    <div class="card-body">-->
-<!--                        <p>Total Confirmed</p>-->
-<!--                        <h1 class="display-4" th:text="${totalReportedCases}"></h1>-->
-<!--                        <hr class="my-4">-->
-<!--                        <p>New Cases since Yesterday</p>-->
-<!--                        <h2 class="display-4" th:text="${totalNewCases}"></h2>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; division for recovered data&ndash;&gt;-->
-<!--            <div class="col-md">-->
-<!--                <div class="card" style="border-radius: 20px">-->
-<!--                    <div class="card-body">-->
-<!--                        <p>Total Recovered</p>-->
-<!--                        <h1 class="display-4" th:text="${totalRecoveredStats}"></h1>-->
-<!--                        <hr class="my-4">-->
-<!--                        <p>New Recovered Cases since Yesterday</p>-->
-<!--                        <h2 class="display-4" th:text="${prevRecoveredStas}"></h2>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; division for Death Data&ndash;&gt;-->
-<!--            <div class="col-md">-->
-<!--                <div class="card" style="border-radius: 20px">-->
-<!--                    <div class="card-body">-->
-<!--                        <p>Total Death</p>-->
-<!--                        <h1 class="display-4" th:text="${totalDeathStats}"></h1>-->
-<!--                        <hr class="my-4">-->
-<!--                        <p>New Death Cases since Yesterday</p>-->
-<!--                        <h2 class="display-4" th:text="${prevDeathStats}"></h2>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
-    <center>
+    <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic</div>
+    <center class="content-inner">
         <div style="margin-top:20px; text-align:center; font-size:14px">
-            <a href="/">Global</a> - 
+            <a href="/">Global</a> -
             <a href="/bangladesh">Bangladesh</a>
         </div>
         <div class="maincounter-wrap" style="margin-top:15px">
@@ -108,16 +58,117 @@
             </div>
         </div>
         <div style="margin-top:50px;"></div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <h5 class="card-header title-case">Active cases</h5>
+                    <div class="card-body">
+                        <h5 class="card-title number-table-main" th:text="${activeCases}"></h5>
+                        <p style="color: #222">Currently Infected Patients</p>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="number-table" style="color: #8080FF;"
+                                      th:text="${totalNewCases}"></span><br>
+                                <span style="font-size: 13px;">New Cases Since Yesterday</span>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="number-table" style="color: red;"
+                                      th:text="${lastSevenDaysRecord}"></span><br>
+                                <span style="font-size: 13px;">Last 7 Days Cases</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <h5 class="card-header title-case">Closed cases</h5>
+                    <div class="card-body">
+                        <h5 class="card-title number-table-main" th:text="${closedCases}"></h5>
+                        <p style="color: #222">Cases which had an outcome:</p>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="number-table" style="color: #8ACA2B;"
+                                      th:text="${totalRecoveredStats}"></span>
+                                <span>(</span>
+                                <b>
+                                    <span th:text="${recoveredPercentage}">0</span>
+                                    <span>%</span>
+                                </b>
+                                <span>)</span>
+                                <br>
+                                <span style="font-size: 13px;">Recovered / Discharged</span>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="number-table" th:text="${totalDeathStats}"></span>
+                                <span>(</span>
+                                <b>
+                                    <span th:text="${deathPercentage}">0</span>
+                                    <span>%</span>
+                                </b>
+                                <span>)</span>
+                                <br>
+                                <span style="font-size: 13px;">Deaths</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:50px;"></div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <h5 class="card-header title-case">Recovered Statistics</h5>
+                    <div class="card-body">
+                        <h5 class="card-title number-table-main" th:text="${prevRecoveredStas}"></h5>
+                        <p style="color: #222">New Recovered Cases since Yesterday</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <h5 class="card-header title-case">Death Statistics</h5>
+                    <div class="card-body">
+                        <h5 class="card-title number-table-main" th:text="${prevDeathStats}"></h5>
+                        <p style="color: #222">New Death Cases since Yesterday</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:50px;"></div>
     </center>
+    <div class="row">
+        <div class="col-8">
+            <h3 id="countries">Reported Cases and Deaths by Country, Territory, or Conveyance</h3>
+            <p>The <strong>coronavirus</strong> COVID-19 is affecting
+                <strong>213 countries and territories</strong> around the world and 2 international conveyances. <strong>The day is reset after midnight GMT+0</strong>. The list of countries and territories and their continental regional classification is based on the <a style="color: #23527c; text-decoration: none;" href="https://unstats.un.org/unsd/methodology/m49/">United Nations Geoscheme</a><br>
+                <br>
+                <br>
+            </p>
+        </div>
+
+    </div>
+
 
     <!--    table for confirmed data table-->
 
-    <div class="jumbotron" style="background: aliceblue">
+    <div>
 
         <h1>Total Confirmed Cases</h1>
 
         <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(9,9,121) 43%, rgba(0,212,255,1) 100%); color: white">
+            <thead style="color: #666666">
             <tr>
                 <th>State</th>
                 <th>Country</th>
@@ -139,12 +190,13 @@
             </tbody>
         </table>
     </div>
+    <div style="margin-top:50px;"></div>
 
     <!--    table for death data table-->
-    <div class="jumbotron" style="background: aliceblue">
+    <div>
         <h1>Total Recovered Cases</h1>
         <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(9,9,121) 43%, rgba(0,212,255,1) 100%); color: white">
+            <thead style="color: #666666">
             <tr>
                 <th>State</th>
                 <th>Country</th>
@@ -163,11 +215,12 @@
         </table>
     </div>
 
+    <div style="margin-top:50px;"></div>
     <!--    table for death data table-->
-    <div class="jumbotron" style="background: aliceblue">
+    <div>
         <h1>Total Death Cases</h1>
         <table id="responsive-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(9,9,121) 43%, rgba(0,212,255,1) 100%); color: white">
+            <thead style="color: #666666">
             <tr>
                 <th>State</th>
                 <th>Country</th>
@@ -223,15 +276,15 @@
             attribution: 'COVID19'
         }).addTo(mymap);
 
-        var data = [[${locationStats}]] ;
-        console.log("list: "+ data.length);
-        for(var i=0; i< data.length;i++) {
-            if(data[i].lat !== null && data[i].lon !== "") {
+        var data = [[${locationStats}]];
+        console.log("list: " + data.length);
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].lat !== null && data[i].lon !== "") {
                 L.marker([data[i].lat, data[i].lon]).addTo(mymap)
                     .bindPopup(
-                        "State: "+ data[i].state+'<br><b>'
-                        +"Country: "+data[i].country+'<br><b>'
-                        +"Total Confirmed Cases: " +data[i].latestTotalCases+'</b>'
+                        "State: " + data[i].state + '<br><b>'
+                        + "Country: " + data[i].country + '<br><b>'
+                        + "Total Confirmed Cases: " + data[i].latestTotalCases + '</b>'
                     )
                     .openPopup();
             }

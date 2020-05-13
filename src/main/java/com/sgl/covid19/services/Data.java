@@ -115,6 +115,8 @@ public class Data {
             int prevCases = Integer.parseInt(record.get(record.size() - 2)); //call until second last column
             locationStats.setLatestTotalCases(latestCases);
             locationStats.setDiffFromPrevDay(latestCases-prevCases);
+            int lastSevenDaysRecord = Integer.parseInt(record.get(record.size() - 7));
+            locationStats.setLastSevenDaysRecord(latestCases-lastSevenDaysRecord);
             System.out.println(locationStats); //print all value to console
             newStats.add(locationStats);
         }
