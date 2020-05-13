@@ -35,54 +35,80 @@
 
         <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic</div>
 
-    <div class="jumbotron"
-         style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 43%, rgba(0,212,255,1) 100%); color: white">
+<!--    <div class="jumbotron"-->
+<!--         style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 43%, rgba(0,212,255,1) 100%); color: white">-->
 
-        <iframe scrolling="no" frameborder="no" clocktype="html5"
-                style="overflow:hidden;border:0;margin:0;padding:0;width:235px;height:45px;"
-                src="https://www.clocklink.com/html5embed.php?clock=sdt&timezone=Bangladesh_Dhaka&color=blue&size=235&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=blue"></iframe>
-        <div class="row" style="color: black">
+<!--        <iframe scrolling="no" frameborder="no" clocktype="html5"-->
+<!--                style="overflow:hidden;border:0;margin:0;padding:0;width:235px;height:45px;"-->
+<!--                src="https://www.clocklink.com/html5embed.php?clock=sdt&timezone=Bangladesh_Dhaka&color=blue&size=235&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=blue"></iframe>-->
+<!--        <div class="row" style="color: black">-->
 
-            <!--division for confirmed data-->
-            <div class="col-md">
-                <div class="card" style="border-radius: 20px">
-                    <div class="card-body">
-                        <p>Total Confirmed</p>
-                        <h1 class="display-4" th:text="${totalReportedCases}"></h1>
-                        <hr class="my-4">
-                        <p>New Cases since Yesterday</p>
-                        <h2 class="display-4" th:text="${totalNewCases}"></h2>
-                    </div>
-                </div>
-            </div>
+<!--            &lt;!&ndash;division for confirmed data&ndash;&gt;-->
+<!--            <div class="col-md">-->
+<!--                <div class="card" style="border-radius: 20px">-->
+<!--                    <div class="card-body">-->
+<!--                        <p>Total Confirmed</p>-->
+<!--                        <h1 class="display-4" th:text="${totalReportedCases}"></h1>-->
+<!--                        <hr class="my-4">-->
+<!--                        <p>New Cases since Yesterday</p>-->
+<!--                        <h2 class="display-4" th:text="${totalNewCases}"></h2>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <!-- division for recovered data-->
-            <div class="col-md">
-                <div class="card" style="border-radius: 20px">
-                    <div class="card-body">
-                        <p>Total Recovered</p>
-                        <h1 class="display-4" th:text="${totalRecoveredStats}"></h1>
-                        <hr class="my-4">
-                        <p>New Recovered Cases since Yesterday</p>
-                        <h2 class="display-4" th:text="${prevRecoveredStas}"></h2>
-                    </div>
-                </div>
-            </div>
+<!--            &lt;!&ndash; division for recovered data&ndash;&gt;-->
+<!--            <div class="col-md">-->
+<!--                <div class="card" style="border-radius: 20px">-->
+<!--                    <div class="card-body">-->
+<!--                        <p>Total Recovered</p>-->
+<!--                        <h1 class="display-4" th:text="${totalRecoveredStats}"></h1>-->
+<!--                        <hr class="my-4">-->
+<!--                        <p>New Recovered Cases since Yesterday</p>-->
+<!--                        <h2 class="display-4" th:text="${prevRecoveredStas}"></h2>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <!-- division for Death Data-->
-            <div class="col-md">
-                <div class="card" style="border-radius: 20px">
-                    <div class="card-body">
-                        <p>Total Death</p>
-                        <h1 class="display-4" th:text="${totalDeathStats}"></h1>
-                        <hr class="my-4">
-                        <p>New Death Cases since Yesterday</p>
-                        <h2 class="display-4" th:text="${prevDeathStats}"></h2>
-                    </div>
-                </div>
+<!--            &lt;!&ndash; division for Death Data&ndash;&gt;-->
+<!--            <div class="col-md">-->
+<!--                <div class="card" style="border-radius: 20px">-->
+<!--                    <div class="card-body">-->
+<!--                        <p>Total Death</p>-->
+<!--                        <h1 class="display-4" th:text="${totalDeathStats}"></h1>-->
+<!--                        <hr class="my-4">-->
+<!--                        <p>New Death Cases since Yesterday</p>-->
+<!--                        <h2 class="display-4" th:text="${prevDeathStats}"></h2>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <center>
+        <div style="margin-top:20px; text-align:center; font-size:14px">
+            <a href="/">Global</a> - 
+            <a href="/bangladesh">Bangladesh</a>
+        </div>
+        <div class="maincounter-wrap" style="margin-top:15px">
+            <h1>Coronavirus Cases:</h1>
+            <div class="maincounter-number">
+                <span style="color:#aaa" th:text="${totalReportedCases}"> </span>
             </div>
         </div>
-    </div>
+        <div class="maincounter-wrap" style="margin-top:15px">
+            <h1>Deaths:</h1>
+            <div class="maincounter-number">
+                <span th:text="${totalDeathStats}"></span>
+            </div>
+        </div>
+        <div class="maincounter-wrap" style="margin-top:15px;">
+            <h1>Recovered:</h1>
+            <div class="maincounter-number" style="color:#8ACA2B ">
+                <span th:text="${totalRecoveredStats}"></span>
+            </div>
+        </div>
+        <div style="margin-top:50px;"></div>
+    </center>
 
     <!--    table for confirmed data table-->
 

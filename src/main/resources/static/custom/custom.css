@@ -1,6 +1,6 @@
-body{
+body {
     font-family: 'Noto Sans', sans-serif;
-    color: #363945;
+    background-color: white;
     font-size: 14px;
     line-height: 1.42857143;
 }
@@ -11,9 +11,33 @@ body{
     color: #777;
     font-size: 19px;
     text-transform: uppercase;
-    font-family: roboto condensed,sans-serif;
+    font-family: roboto condensed, sans-serif;
 }
 
-#page-top{
+#page-top {
     padding: 20px;
 }
+
+.maincounter-wrap {
+    margin: auto;
+    margin-top: auto;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.maincounter-number {
+    font-weight: 700;
+    color: #696969;
+    font-size: 54px;
+}
+
+a {
+    color: #699a21;
+    text-decoration: underline;
+}
+a:hover {
+    color: #86c32a;
+    text-decoration: underline;
+}
+
+
