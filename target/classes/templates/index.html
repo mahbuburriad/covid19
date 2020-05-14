@@ -182,10 +182,10 @@
             <tr th:each="locationStat : ${locationStats}">
                 <td th:text="${locationStat.state}"></td>
                 <td th:text="${locationStat.country}"></td>
-                <td th:text="${locationStat.lat}"></td>
-                <td th:text="${locationStat.lon}"></td>
-                <td th:text="${locationStat.latestTotalCases}">0</td>
-                <td th:text="${locationStat.diffFromPrevDay}">0</td>
+                <td style="text-align: right" th:text="${locationStat.lat}"></td>
+                <td style="text-align: right" th:text="${locationStat.lon}"></td>
+                <td style="text-align: right" th:text="${locationStat.latestTotalCases}">0</td>
+                <td style="text-align: right" th:text="${locationStat.diffFromPrevDay}">0</td>
             </tr>
             </tbody>
         </table>
@@ -208,8 +208,8 @@
             <tr th:each="recovere : ${recovered}">
                 <td th:text="${recovere.recover_State}"></td>
                 <td th:text="${recovere.recover_Country}"></td>
-                <td th:text="${recovere.latestRecoveredCases}"></td>
-                <td th:text="${recovere.diffFromPrevRecovered}"></td>
+                <td style="text-align: right" th:text="${recovere.latestRecoveredCases}"></td>
+                <td style="text-align: right" th:text="${recovere.diffFromPrevRecovered}"></td>
             </tr>
             </tbody>
         </table>
@@ -232,8 +232,8 @@
             <tr th:each="deaths : ${death}">
                 <td th:text="${deaths.death_State}"></td>
                 <td th:text="${deaths.death_Country}"></td>
-                <td th:text="${deaths.lastestDeathCases}"></td>
-                <td th:text="${deaths.diffFromPrevDeath}"></td>
+                <td style="text-align: right" th:text="${deaths.lastestDeathCases}"></td>
+                <td style="text-align: right" th:text="${deaths.diffFromPrevDeath}"></td>
             </tr>
             </tbody>
         </table>
