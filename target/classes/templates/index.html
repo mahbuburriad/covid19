@@ -170,20 +170,16 @@
         <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead style="color: #666666">
             <tr>
-                <th>State</th>
                 <th>Country</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
+                <th>State</th>
                 <th>Total Confirmed Cases</th>
                 <th>Changes Since Last Day</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="locationStat : ${locationStats}">
-                <td th:text="${locationStat.state}"></td>
                 <td th:text="${locationStat.country}"></td>
-                <td style="text-align: right" th:text="${locationStat.lat}"></td>
-                <td style="text-align: right" th:text="${locationStat.lon}"></td>
+                <td th:text="${locationStat.state}"></td>
                 <td style="text-align: right" th:text="${locationStat.latestTotalCases}">0</td>
                 <td style="text-align: right" th:text="${locationStat.diffFromPrevDay}">0</td>
             </tr>
@@ -198,16 +194,16 @@
         <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead style="color: #666666">
             <tr>
-                <th>State</th>
                 <th>Country</th>
+                <th>State</th>
                 <th>Total Recovered</th>
                 <th>Changes since Last Day</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="recovere : ${recovered}">
-                <td th:text="${recovere.recover_State}"></td>
                 <td th:text="${recovere.recover_Country}"></td>
+                <td th:text="${recovere.recover_State}"></td>
                 <td style="text-align: right" th:text="${recovere.latestRecoveredCases}"></td>
                 <td style="text-align: right" th:text="${recovere.diffFromPrevRecovered}"></td>
             </tr>
@@ -230,8 +226,8 @@
             </thead>
             <tbody>
             <tr th:each="deaths : ${death}">
-                <td th:text="${deaths.death_State}"></td>
                 <td th:text="${deaths.death_Country}"></td>
+                <td th:text="${deaths.death_State}"></td>
                 <td style="text-align: right" th:text="${deaths.lastestDeathCases}"></td>
                 <td style="text-align: right" th:text="${deaths.diffFromPrevDeath}"></td>
             </tr>
@@ -284,7 +280,8 @@
                     .bindPopup(
                         "State: " + data[i].state + '<br><b>'
                         + "Country: " + data[i].country + '<br><b>'
-                        + "Total Confirmed Cases: " + data[i].latestTotalCases + '</b>'
+                        + "Total Confirmed Cases: " + data[i].latestTotalCases + '<br></b>'
+                        + "Difference From Yesterday: " + data[i].diffFromPrevDay + '</b>'
                     )
                     .openPopup();
             }
