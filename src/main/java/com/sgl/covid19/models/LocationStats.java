@@ -21,10 +21,7 @@ public class LocationStats {
     private String death_Country;
     private int latestDeathCases;
     private int diffFromPrevDeath;
-
-    //bangladeshData
-    private long bangladeshData;
-
+    
 
     //get Recover state data
     public String getRecover_State() {
@@ -152,13 +149,6 @@ public class LocationStats {
         this.lastSevenDaysRecord = lastSevenDaysRecord;
     }
 
-    public long getBangladeshData() {
-        return bangladeshData;
-    }
-
-    public void setBangladeshData(long bangladeshData) {
-        this.bangladeshData = bangladeshData;
-    }
 
     //all data to string format from raw data
 
@@ -180,7 +170,6 @@ public class LocationStats {
                 ", death_Country='" + death_Country + '\'' +
                 ", latestDeathCases=" + latestDeathCases +
                 ", diffFromPrevDeath=" + diffFromPrevDeath +
-                ", bangladeshData=" + bangladeshData +
                 '}';
     }
 }

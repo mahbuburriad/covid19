@@ -56,7 +56,7 @@ public class Data {
     @Scheduled(cron = "* * * * * *")
     public void fetchData() throws IOException, InterruptedException {
 
-        //array list for comfirmed stats
+        //array list for confirmed stats
         List<LocationStats> newStats = new ArrayList<>();
         //array list for Recovered Stats
         List<LocationStats> newRStats = new ArrayList<>();
@@ -83,7 +83,7 @@ public class Data {
         HttpRequest recoveredRequest = HttpRequest.newBuilder()
                 .uri(URI.create(recovered_Data_URL))
                 .build();
-        //http response when get request data and build to ofstring method and send a request to client
+        //http response when get request data and build to ofString method and send a request to client
         HttpResponse<String> recoveredHttpResponse = recoveredClient.send(recoveredRequest, HttpResponse.BodyHandlers.ofString());
         //print data to console
         System.out.println(recoveredHttpResponse.body());

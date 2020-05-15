@@ -112,9 +112,5 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/map")
-    public String map() {
-        return "map";
-    }
 
 }
