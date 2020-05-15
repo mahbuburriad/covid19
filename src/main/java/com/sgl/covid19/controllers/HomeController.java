@@ -45,7 +45,7 @@ public class HomeController {
         //for death section
         List<LocationStats> dStats = data.getdStats();
         //sum of all death data
-        int totalDeathStat = dStats.stream().mapToInt(dStat -> dStat.getLastestDeathCases()).sum();
+        int totalDeathStat = dStats.stream().mapToInt(dStat -> dStat.getLatestDeathCases()).sum();
         String totalDeathStats = NumberFormat.getIntegerInstance().format(totalDeathStat);
         //sum of all previous recovered data
         int prevDeathStat = dStats.stream().mapToInt(dStat -> dStat.getDiffFromPrevDeath()).sum();

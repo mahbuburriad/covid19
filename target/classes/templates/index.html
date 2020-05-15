@@ -228,7 +228,7 @@
             <tr th:each="deaths : ${death}">
                 <td th:text="${deaths.death_Country}"></td>
                 <td th:text="${deaths.death_State}"></td>
-                <td style="text-align: right" th:text="${deaths.lastestDeathCases}"></td>
+                <td style="text-align: right" th:text="${deaths.latestDeathCases}"></td>
                 <td style="text-align: right" th:text="${deaths.diffFromPrevDeath}"></td>
             </tr>
             </tbody>
@@ -336,8 +336,9 @@
         //Buttons examples
         var table = $('#datatable-buttons').DataTable({
             lengthChange: false,
-            buttons: ['copy', 'excel', 'pdf']
+            buttons: ['copy', 'excel', 'pdf'],
         });
+        table.order([2, 'desc']).draw();
 
         // Key Tables
 
@@ -357,11 +358,16 @@
 
         table.buttons().container()
             .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+
+        var table2 = $('#datatable').DataTable();
+        var table3 = $('#responsive-datatable').DataTable();
+
+        table2.order([2, 'desc']).draw();
+        table3.order([2, 'desc']).draw();
     });
 
 </script>
 
 </body>
-
 
 </html>

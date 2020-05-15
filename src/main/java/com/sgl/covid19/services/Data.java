@@ -29,6 +29,7 @@ public class Data {
     //death data url
     private static String death_Data_URL = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv";
 
+
     //Confirmed stats
     private List<LocationStats> stats = new ArrayList<>();
 
@@ -54,6 +55,7 @@ public class Data {
     //start a cron job to run this method every second
     @Scheduled(cron = "* * * * * *")
     public void fetchData() throws IOException, InterruptedException {
+
         //array list for comfirmed stats
         List<LocationStats> newStats = new ArrayList<>();
         //array list for Recovered Stats
@@ -100,6 +102,7 @@ public class Data {
         //print data to console
         System.out.println(deathHttpResponse.body());
 
+
         //format the CSV data from raw CSV
         StringReader csvBodyReaderD = new StringReader(deathHttpResponse.body());
         Iterable<CSVRecord> recordsDs = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvBodyReaderD);
@@ -115,7 +118,7 @@ public class Data {
             int prevCases = Integer.parseInt(record.get(record.size() - 2)); //call until second last column
             locationStats.setLatestTotalCases(latestCases);
             locationStats.setDiffFromPrevDay(latestCases-prevCases);
-            int lastSevenDaysRecord = Integer.parseInt(record.get(record.size() - 7));
+            int lastSevenDaysRecord = Integer.parseInt(record.get(record.size() - 7));  //last 7 days Data
             locationStats.setLastSevenDaysRecord(latestCases-lastSevenDaysRecord);
             System.out.println(locationStats); //print all value to console
             newStats.add(locationStats);
@@ -141,10 +144,10 @@ public class Data {
             LocationStats deathStats = new LocationStats();
             deathStats.setDeath_State(recordd.get("Province/State"));
             deathStats.setDeath_Country(recordd.get("Country/Region"));
-            int lastestDeathCases = Integer.parseInt(recordd.get(recordd.size() - 1)); //call last column
-            deathStats.setLastestDeathCases(lastestDeathCases);
+            int latestDeathCases = Integer.parseInt(recordd.get(recordd.size() - 1)); //call last column
+            deathStats.setLatestDeathCases(latestDeathCases);
             int diffFromPrevDeath = Integer.parseInt((recordd.get(recordd.size() - 2))); //call second last column
-            deathStats.setDiffFromPrevDeath(lastestDeathCases - diffFromPrevDeath);
+            deathStats.setDiffFromPrevDeath(latestDeathCases - diffFromPrevDeath);
             System.out.println(deathStats);
             newDStats.add(deathStats);
         }
