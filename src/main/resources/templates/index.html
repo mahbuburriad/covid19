@@ -180,8 +180,8 @@
             <tr th:each="locationStat : ${locationStats}">
                 <td th:text="${locationStat.country}"></td>
                 <td th:text="${locationStat.state}"></td>
-                <td style="text-align: right" th:text="${locationStat.latestTotalCases}">0</td>
-                <td style="text-align: right" th:text="${locationStat.diffFromPrevDay}">0</td>
+                <td style="text-align: right" th:text="${locationStat.latestTotalCasesString}">0</td>
+                <td style="text-align: right" th:text="${locationStat.diffFromTotalCasesString}">0</td>
             </tr>
             </tbody>
         </table>
@@ -204,8 +204,8 @@
             <tr th:each="recovere : ${recovered}">
                 <td th:text="${recovere.recover_Country}"></td>
                 <td th:text="${recovere.recover_State}"></td>
-                <td style="text-align: right" th:text="${recovere.latestRecoveredCases}"></td>
-                <td style="text-align: right" th:text="${recovere.diffFromPrevRecovered}"></td>
+                <td style="text-align: right" th:text="${recovere.latestRecoveredCasesString}">0</td>
+                <td style="text-align: right" th:text="${recovere.diffFromPrevRecoveredString}">0</td>
             </tr>
             </tbody>
         </table>
@@ -218,8 +218,8 @@
         <table id="responsive-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead style="color: #666666">
             <tr>
-                <th>State</th>
                 <th>Country</th>
+                <th>State</th>
                 <th>Total Death</th>
                 <th>Changes since Last Day</th>
             </tr>
@@ -228,8 +228,8 @@
             <tr th:each="deaths : ${death}">
                 <td th:text="${deaths.death_Country}"></td>
                 <td th:text="${deaths.death_State}"></td>
-                <td style="text-align: right" th:text="${deaths.latestDeathCases}"></td>
-                <td style="text-align: right" th:text="${deaths.diffFromPrevDeath}"></td>
+                <td style="text-align: right" th:text="${deaths.latestDeathCasesString}">0</td>
+                <td style="text-align: right" th:text="${deaths.differentFromPreviousDeathString}">0</td>
             </tr>
             </tbody>
         </table>

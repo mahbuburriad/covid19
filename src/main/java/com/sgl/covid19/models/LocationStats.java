@@ -9,18 +9,27 @@ public class LocationStats {
     private int latestTotalCases;
     private int diffFromPrevDay;
     private int lastSevenDaysRecord;
+    //Convert Data to String for NumberFormat
+    private String latestTotalCasesString;
+    private String diffFromTotalCasesString;
 
     //for recovered stats
     private String recover_State;
     private String recover_Country;
     private int latestRecoveredCases;
     private int diffFromPrevRecovered;
+    //convert to string for numberFormat
+    private String latestRecoveredCasesString;
+    private String diffFromPrevRecoveredString;
 
     //for death stats
     private String death_State;
     private String death_Country;
     private int latestDeathCases;
     private int diffFromPrevDeath;
+    //convert to String
+    private String latestDeathCasesString;
+    private String differentFromPreviousDeathString;
     
 
     //get Recover state data
@@ -149,6 +158,57 @@ public class LocationStats {
         this.lastSevenDaysRecord = lastSevenDaysRecord;
     }
 
+    /**
+     * Number to String
+     */
+
+    public String getLatestDeathCasesString() {
+        return latestDeathCasesString;
+    }
+
+    public void setLatestDeathCasesString(String latestDeathCasesString) {
+        this.latestDeathCasesString = latestDeathCasesString;
+    }
+
+    public String getDifferentFromPreviousDeathString() {
+        return differentFromPreviousDeathString;
+    }
+
+    public void setDifferentFromPreviousDeathString(String differentFromPreviousDeathString) {
+        this.differentFromPreviousDeathString = differentFromPreviousDeathString;
+    }
+
+    public String getLatestTotalCasesString() {
+        return latestTotalCasesString;
+    }
+
+    public void setLatestTotalCasesString(String latestTotalCasesString) {
+        this.latestTotalCasesString = latestTotalCasesString;
+    }
+
+    public String getDiffFromTotalCasesString() {
+        return diffFromTotalCasesString;
+    }
+
+    public void setDiffFromTotalCasesString(String diffFromTotalCasesString) {
+        this.diffFromTotalCasesString = diffFromTotalCasesString;
+    }
+
+    public String getLatestRecoveredCasesString() {
+        return latestRecoveredCasesString;
+    }
+
+    public void setLatestRecoveredCasesString(String latestRecoveredCasesString) {
+        this.latestRecoveredCasesString = latestRecoveredCasesString;
+    }
+
+    public String getDiffFromPrevRecoveredString() {
+        return diffFromPrevRecoveredString;
+    }
+
+    public void setDiffFromPrevRecoveredString(String diffFromPrevRecoveredString) {
+        this.diffFromPrevRecoveredString = diffFromPrevRecoveredString;
+    }
 
     //all data to string format from raw data
 
@@ -162,14 +222,20 @@ public class LocationStats {
                 ", latestTotalCases=" + latestTotalCases +
                 ", diffFromPrevDay=" + diffFromPrevDay +
                 ", lastSevenDaysRecord=" + lastSevenDaysRecord +
+                ", latestTotalCasesString='" + latestTotalCasesString + '\'' +
+                ", diffFromTotalCasesString='" + diffFromTotalCasesString + '\'' +
                 ", recover_State='" + recover_State + '\'' +
                 ", recover_Country='" + recover_Country + '\'' +
                 ", latestRecoveredCases=" + latestRecoveredCases +
                 ", diffFromPrevRecovered=" + diffFromPrevRecovered +
+                ", latestRecoveredCasesString='" + latestRecoveredCasesString + '\'' +
+                ", diffFromPrevRecoveredString='" + diffFromPrevRecoveredString + '\'' +
                 ", death_State='" + death_State + '\'' +
                 ", death_Country='" + death_Country + '\'' +
                 ", latestDeathCases=" + latestDeathCases +
                 ", diffFromPrevDeath=" + diffFromPrevDeath +
+                ", latestDeathCasesString='" + latestDeathCasesString + '\'' +
+                ", differentFromPreviousDeathString='" + differentFromPreviousDeathString + '\'' +
                 '}';
     }
 }

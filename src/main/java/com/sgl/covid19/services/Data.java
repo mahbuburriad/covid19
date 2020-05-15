@@ -13,6 +13,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,6 +121,11 @@ public class Data {
             locationStats.setDiffFromPrevDay(latestCases-prevCases);
             int lastSevenDaysRecord = Integer.parseInt(record.get(record.size() - 7));  //last 7 days Data
             locationStats.setLastSevenDaysRecord(latestCases-lastSevenDaysRecord);
+            //Convert Number Data to String for Format by comma
+            String latestTotalCasesString = NumberFormat.getIntegerInstance().format(latestCases);
+            locationStats.setLatestTotalCasesString(latestTotalCasesString);
+            String diffFromTotalCasesString = NumberFormat.getIntegerInstance().format(prevCases);
+            locationStats.setDiffFromTotalCasesString(diffFromTotalCasesString);
             System.out.println(locationStats); //print all value to console
             newStats.add(locationStats);
         }
@@ -134,6 +140,11 @@ public class Data {
             recoveredStats.setLatestRecoveredCases(lastedRecoveredCases);
             int diffFromPrevRecovered = Integer.parseInt(recordr.get(recordr.size() - 2)); //call second last column
             recoveredStats.setDiffFromPrevRecovered(lastedRecoveredCases-diffFromPrevRecovered);
+            //Convert Number Data to String for Format by comma
+            String lastedRecoveredCasesString = NumberFormat.getIntegerInstance().format(lastedRecoveredCases);
+            recoveredStats.setLatestRecoveredCasesString(lastedRecoveredCasesString);
+            String diffFromPrevRecoveredString = NumberFormat.getIntegerInstance().format(diffFromPrevRecovered);
+            recoveredStats.setDiffFromPrevRecoveredString(diffFromPrevRecoveredString);
             System.out.println(recoveredStats);
             newRStats.add(recoveredStats);
         }
@@ -148,6 +159,11 @@ public class Data {
             deathStats.setLatestDeathCases(latestDeathCases);
             int diffFromPrevDeath = Integer.parseInt((recordd.get(recordd.size() - 2))); //call second last column
             deathStats.setDiffFromPrevDeath(latestDeathCases - diffFromPrevDeath);
+            //convert Number Data to String for Format by comma
+            String latestDeathCasesString = NumberFormat.getIntegerInstance().format(latestDeathCases);
+            deathStats.setLatestDeathCasesString(latestDeathCasesString);
+            String differentFromPreviousData = NumberFormat.getIntegerInstance().format(diffFromPrevDeath);
+            deathStats.setDifferentFromPreviousDeathString(differentFromPreviousData);
             System.out.println(deathStats);
             newDStats.add(deathStats);
         }
