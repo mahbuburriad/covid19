@@ -112,5 +112,9 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/sitemap.xml")
+    public String sitemap(Model models){
+        return "sitemap.xml";
+    }
 
 }
