@@ -164,6 +164,10 @@ public class Data {
             deathStats.setLatestDeathCasesString(latestDeathCasesString);
             String differentFromPreviousData = NumberFormat.getIntegerInstance().format(latestDeathCases - diffFromPrevDeath);
             deathStats.setDifferentFromPreviousDeathString(differentFromPreviousData);
+
+            //group by
+
+
             System.out.println(deathStats);
             newDStats.add(deathStats);
         }

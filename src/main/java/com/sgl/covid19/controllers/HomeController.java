@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.thymeleaf.util.ListUtils;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.text.NumberFormat;
+import java.util.Set;
 
 
 @Controller
@@ -62,12 +65,16 @@ public class HomeController {
          */
         //for confirm section
         List<LocationStats> stats = data.getStats();
+       // stats.addAll(rStats);
         //sum of all confirmed data
         int totalReportedCase = stats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
         String totalReportedCases = NumberFormat.getIntegerInstance().format(totalReportedCase);
         //sum of all previous confirmed data
         int totalNewCase = stats.stream().mapToInt(stat -> stat.getDiffFromPrevDay()).sum();
         String totalNewCases = NumberFormat.getIntegerInstance().format(totalNewCase);
+
+        int totalRecover = stats.stream().mapToInt(Stat -> Stat.getLatestRecoveredCases()).sum();
+        model.addAttribute("totalRecover",totalRecover);
 
         /**
          * find max number
