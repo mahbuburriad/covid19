@@ -124,7 +124,7 @@ public class Data {
             //Convert Number Data to String for Format by comma
             String latestTotalCasesString = NumberFormat.getIntegerInstance().format(latestCases);
             locationStats.setLatestTotalCasesString(latestTotalCasesString);
-            String diffFromTotalCasesString = NumberFormat.getIntegerInstance().format(prevCases);
+            String diffFromTotalCasesString = NumberFormat.getIntegerInstance().format(latestCases-prevCases);
             locationStats.setDiffFromTotalCasesString(diffFromTotalCasesString);
             System.out.println(locationStats); //print all value to console
             newStats.add(locationStats);
@@ -143,7 +143,7 @@ public class Data {
             //Convert Number Data to String for Format by comma
             String lastedRecoveredCasesString = NumberFormat.getIntegerInstance().format(lastedRecoveredCases);
             recoveredStats.setLatestRecoveredCasesString(lastedRecoveredCasesString);
-            String diffFromPrevRecoveredString = NumberFormat.getIntegerInstance().format(diffFromPrevRecovered);
+            String diffFromPrevRecoveredString = NumberFormat.getIntegerInstance().format(lastedRecoveredCases-diffFromPrevRecovered);
             recoveredStats.setDiffFromPrevRecoveredString(diffFromPrevRecoveredString);
             System.out.println(recoveredStats);
             newRStats.add(recoveredStats);
@@ -162,7 +162,7 @@ public class Data {
             //convert Number Data to String for Format by comma
             String latestDeathCasesString = NumberFormat.getIntegerInstance().format(latestDeathCases);
             deathStats.setLatestDeathCasesString(latestDeathCasesString);
-            String differentFromPreviousData = NumberFormat.getIntegerInstance().format(diffFromPrevDeath);
+            String differentFromPreviousData = NumberFormat.getIntegerInstance().format(latestDeathCases - diffFromPrevDeath);
             deathStats.setDifferentFromPreviousDeathString(differentFromPreviousData);
             System.out.println(deathStats);
             newDStats.add(deathStats);

@@ -3,7 +3,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>COVID19 Tracker Application</title>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title>COVID-19 Coronavirus Pandemic | Saltanat Global</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <!-- DataTables -->
@@ -13,6 +14,22 @@
     <link href="plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
     <!-- Multi Item Selection examples -->
     <link href="plugins/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="canonical" href="https://amp.dev/documentation/guides-and-tutorials/start/create/basic_markup/">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "headline": "Open-source framework for publishing content",
+            "datePublished": "2015-10-07T12:02:41Z",
+            "image": [
+                "logo.jpg"
+            ]
+        }
+    </script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
 
     <!-- App css -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -72,10 +89,10 @@
                             <div class="col-md-6">
                                 <span class="number-table" style="color: #8080FF;"
                                       th:text="${totalNewCases}"></span><br>
-                                <span style="font-size: 13px;">New Cases Since Yesterday</span>
+                                <span style="font-size: 13px;">New Confirmed Cases</span>
                             </div>
                             <div class="col-md-6">
-                                <span class="number-table" style="color: red;"
+                                <span class="number-table"
                                       th:text="${lastSevenDaysRecord}"></span><br>
                                 <span style="font-size: 13px;">Last 7 Days Cases</span>
                             </div>
@@ -106,7 +123,7 @@
                                 <span style="font-size: 13px;">Recovered / Discharged</span>
                             </div>
                             <div class="col-md-6">
-                                <span class="number-table" th:text="${totalDeathStats}"></span>
+                                <span class="number-table" style="color: red;" th:text="${totalDeathStats}"></span>
                                 <span>(</span>
                                 <b>
                                     <span th:text="${deathPercentage}">0</span>
@@ -149,9 +166,9 @@
         <div style="margin-top:50px;"></div>
     </center>
     <div class="row">
-        <div class="col-8">
+        <div class="col-md-8 col-sm-12 col-xl-8">
             <h3 id="countries">Reported Cases and Deaths by Country, Territory, or Conveyance</h3>
-            <p>The <strong>coronavirus</strong> COVID-19 is affecting
+            <p>The <strong>Corona virus</strong> COVID-19 is affecting
                 <strong>213 countries and territories</strong> around the world and 2 international conveyances. <strong>The day is reset after midnight GMT+0</strong>. The list of countries and territories and their continental regional classification is based on the <a style="color: #23527c; text-decoration: none;" href="https://unstats.un.org/unsd/methodology/m49/">United Nations Geoscheme</a><br>
                 <br>
                 <br>
@@ -173,7 +190,7 @@
                 <th>Country</th>
                 <th>State</th>
                 <th>Total Confirmed Cases</th>
-                <th>Changes Since Last Day</th>
+                <th>New Confirmed</th>
             </tr>
             </thead>
             <tbody>
@@ -184,6 +201,12 @@
                 <td style="text-align: right" th:text="${locationStat.diffFromTotalCasesString}">0</td>
             </tr>
             </tbody>
+            <tfoot>
+            <th></th>
+            <th style="text-align: right">Total:</th>
+            <th th:text="${totalReportedCases}" style="text-align: right">0</th>
+            <th th:text="${totalNewCases}" style="text-align: right">0</th>
+            </tfoot>
         </table>
     </div>
     <div style="margin-top:50px;"></div>
@@ -197,7 +220,7 @@
                 <th>Country</th>
                 <th>State</th>
                 <th>Total Recovered</th>
-                <th>Changes since Last Day</th>
+                <th>New Recovered</th>
             </tr>
             </thead>
             <tbody>
@@ -208,6 +231,12 @@
                 <td style="text-align: right" th:text="${recovere.diffFromPrevRecoveredString}">0</td>
             </tr>
             </tbody>
+            <tfoot>
+            <th></th>
+            <th style="text-align: right">Total:</th>
+            <th th:text="${totalRecoveredStats}" style="text-align: right">0</th>
+            <th th:text="${prevRecoveredStas}" style="text-align: right">0</th>
+            </tfoot>
         </table>
     </div>
 
@@ -221,7 +250,7 @@
                 <th>Country</th>
                 <th>State</th>
                 <th>Total Death</th>
-                <th>Changes since Last Day</th>
+                <th>New Death</th>
             </tr>
             </thead>
             <tbody>
@@ -229,13 +258,19 @@
                 <td th:text="${deaths.death_Country}"></td>
                 <td th:text="${deaths.death_State}"></td>
                 <td style="text-align: right" th:text="${deaths.latestDeathCasesString}">0</td>
-                <td style="text-align: right" th:text="${deaths.differentFromPreviousDeathString}">0</td>
+                <td style="text-align: right; background: red; color: white;" th:text="${deaths.differentFromPreviousDeathString}">0</td>
             </tr>
             </tbody>
+            <tfoot>
+            <th></th>
+            <th style="text-align: right;">Total:</th>
+            <th th:text="${totalDeathStats}" style="text-align: right">0</th>
+            <th th:text="${prevDeathStats}" style="text-align: right; background: red; color: white;">0</th>
+            </tfoot>
         </table>
     </div>
-
-    <div id="earth_div" class="d-none d-sm-none d-md-block"></div>
+    <div style="margin-top:50px;"></div>
+    <div id="earth_div"></div>
     <script th:inline="javascript">
 
         var options = {atmosphere: true, center: [0, 0], zoom: 0};
@@ -263,30 +298,30 @@
 
     </script>
 
-    <div id="mapid" style="width: 100%; height: 750px;" class="d-none d-sm-block d-md-none"></div>
-    <script th:inline="javascript">
+<!--  <div id="mapid" style="width: 100%; height: 750px;" class="d-none d-sm-block"></div>-->
+<!--    <script th:inline="javascript">-->
 
-        var mymap = L.map('mapid').setView([23.685, 90.3563], 4);
+<!--        var mymap = L.map('mapid').setView([23.685, 90.3563], 4);-->
 
-        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'COVID19'
-        }).addTo(mymap);
+<!--        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {-->
+<!--            attribution: 'COVID19'-->
+<!--        }).addTo(mymap);-->
 
-        var data = [[${locationStats}]];
-        console.log("list: " + data.length);
-        for (var i = 0; i < data.length; i++) {
-            if (data[i].lat !== null && data[i].lon !== "") {
-                L.marker([data[i].lat, data[i].lon]).addTo(mymap)
-                    .bindPopup(
-                        "State: " + data[i].state + '<br><b>'
-                        + "Country: " + data[i].country + '<br><b>'
-                        + "Total Confirmed Cases: " + data[i].latestTotalCases + '<br></b>'
-                        + "Difference From Yesterday: " + data[i].diffFromPrevDay + '</b>'
-                    )
-                    .openPopup();
-            }
-        }
-    </script>
+<!--        var data = [[${locationStats}]];-->
+<!--        console.log("list: " + data.length);-->
+<!--        for (var i = 0; i < data.length; i++) {-->
+<!--            if (data[i].lat !== null && data[i].lon !== "") {-->
+<!--                L.marker([data[i].lat, data[i].lon]).addTo(mymap)-->
+<!--                    .bindPopup(-->
+<!--                        "State: " + data[i].state + '<br><b>'-->
+<!--                        + "Country: " + data[i].country + '<br><b>'-->
+<!--                        + "Total Confirmed Cases: " + data[i].latestTotalCases + '<br></b>'-->
+<!--                        + "Difference From Yesterday: " + data[i].diffFromPrevDay + '</b>'-->
+<!--                    )-->
+<!--                    .openPopup();-->
+<!--            }-->
+<!--        }-->
+<!--    </script>-->
 
 </div>
 
