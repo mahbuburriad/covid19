@@ -12,6 +12,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.text.NumberFormat;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 
 @Controller
@@ -35,6 +36,8 @@ public class HomeController {
         //sum of all previous recovered data
         int prevRecoveredStat = rStats.stream().mapToInt(rStat -> rStat.getDiffFromPrevRecovered()).sum();
         String prevRecoveredStas = NumberFormat.getIntegerInstance().format(prevRecoveredStat);
+
+
         //initialize the recovered stats as locationStats
         model.addAttribute("recovered", rStats);
         //pass totalRecovered states data to totalRecoveredStats
