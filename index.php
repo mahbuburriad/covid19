@@ -140,14 +140,6 @@ include "includes/functions.php";
 
     </center>
 
-    <?php
-    foreach ($data['Bangladesh'] as $key){
-        $bd_last = count($key)-1;
-    }
-
-    echo $data['Bangladesh'][$bd_last]['confirmed'];
-    ?>
-
     <center class="content-inner">
         <!--        <div style="margin-top:20px; text-align:center; font-size:14px">-->
         <!--            <a href="/">Global</a> - -->
@@ -320,6 +312,37 @@ include "includes/functions.php";
             </tfoot>
         </table>
     </div>
+
+
+    <div>
+
+        <h1>Bangladeshi Data</h1>
+
+        <table id="responsive-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead style="color: #666666">
+            <tr>
+                <th>Date</th>
+                <th>Confirmed</th>
+                <th>Deaths</th>
+                <th>Recovered</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($data['Bangladesh'] as $bd) {
+                ?>
+                <tr>
+                    <td><?php echo $bd['date'] ?></td>
+                    <td><?php echo $bd['confirmed'] ?></td>
+                    <td><?php echo $bd['deaths'] ?></td>
+                    <td><?php echo $bd['recovered'] ?></td>
+                </tr>
+
+            <?php } ?>
+            </tbody>
+
+        </table>
+    </div>
 </div>
 
 <script src="assets/js/jquery.min.js"></script>
@@ -395,7 +418,7 @@ include "includes/functions.php";
         var table3 = $('#responsive-datatable').DataTable();
 
         table2.order([2, 'desc']).draw();
-        table3.order([2, 'desc']).draw();
+        table3.order([0, 'desc']).draw();
         table.find("Bangladesh");
 
 
