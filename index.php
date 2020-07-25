@@ -82,7 +82,8 @@ include "includes/functions.php";
             to {
                 visibility: visible
             }
-        }</style>
+        }
+    </style>
     <noscript>
         <style amp-boilerplate>body {
                 -webkit-animation: none;
@@ -248,11 +249,12 @@ include "includes/functions.php";
 
     <!--    table for confirmed data table-->
 
+
     <div>
 
         <h1>Data Table</h1>
 
-        <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <table id="datatable-buttons" class="table table-responsive table-bordered row-border hover order-column" cellspacing="0" width="100%">
             <thead style="color: #666666">
             <tr>
                 <th>Country</th>
@@ -268,26 +270,51 @@ include "includes/functions.php";
             </thead>
             <tbody>
             <?php
+            $i = 0;
             foreach ($data as $key => $value) {
+
                 $newConfirm = $value[$days_count]['confirmed'] - $value[$days_count_prev]['confirmed'];
                 $newDeath = $value[$days_count]['deaths'] - $value[$days_count_prev]['deaths'];
                 $newRecovered = $value[$days_count]['recovered'] - $value[$days_count_prev]['recovered'];
                 $activeCase = $value[$days_count]['confirmed'] - $value[$days_count]['deaths'] - $value[$days_count]['recovered'];
                 ?>
-                <tr>
-                    <th scope="row"><a href="country.php?country=<?php echo $key ?>"><?php echo $key ?></a></th>
+                <?php if ($value[$days_count]['confirmed'] == $value[$days_count]['recovered']) {
+                    echo "<tr style='background: #EAF7D5;'>";
+            } elseif ($activeCase == 0){
+                    echo "<tr style='background: #F0F0F0;'>";
+                }
+            else{
+                    echo "<tr>";
+                }
+                ?>
+                    <th scope="row"><a target="_blank" style="color: #337ab7; /*text-decoration: none;*/" href="country.php?country=<?php echo $key ?>"><?php echo $key ?></a></th>
                     <td style="text-align: right">
                         <?php echo number_format($value[$days_count]['confirmed']); ?>
                     </td>
-                    <td style="text-align: right"><?php
-                        if ($newConfirm != 0) {
-                            echo number_format($newConfirm);
-                        } ?></td>
+
+                    <?php if ($newConfirm != 0) { ?>
+                        <td style="background: #FFEEAA; text-align: right"><?php
+                            if ($newConfirm > 0){
+                                echo "+".number_format($newConfirm);
+                            } else{
+                                echo "-".number_format($newConfirm);
+                            }
+
+                            ?></td>
+                    <?php } else{ echo "
+                    <td style='text-align: right'></td>";
+                    }?>
+
                     <td style="text-align: right"><?php echo number_format($value[$days_count]['deaths']); ?></td>
+                <?php if ($newDeath != 0 && $newConfirm > 0) {
+                        ?>
                     <td style="background: red; color: white; text-align: right"><?php
-                        if ($newDeath != 0) {
-                            echo number_format($newDeath);
-                        } ?></td>
+
+                            echo "+".number_format($newDeath);
+                        ?></td>
+                    <?php } else{ echo "
+                    <td style='text-align: right'></td>";
+                }?>
                     <td style="text-align: right"><?php echo number_format($value[$days_count]['recovered']); ?></td>
                     <td style="text-align: right"><?php
                         if ($newRecovered != 0) {
@@ -296,54 +323,62 @@ include "includes/functions.php";
                     <td style="text-align: right"><?php echo number_format($activeCase); ?></td>
 
                 </tr>
-            <?php } ?>
+            <?php $i++; } ?>
 
             </tr>
             </tbody>
             <tfoot>
-            <th style="text-align: right">Total:</th>
-            <th style="text-align: right"><?php echo number_format($total_confirmed) ?></th>
-            <th style="text-align: right"><?php echo number_format($new_confirmed_cases) ?></th>
-            <th style="text-align: right"><?php echo number_format($total_deaths) ?></th>
-            <th style="text-align: right"><?php echo number_format($new_death_cases) ?></th>
-            <th style="text-align: right"><?php echo number_format($total_recovered) ?></th>
-            <th style="text-align: right"><?php echo number_format($new_recovered_cases) ?></th>
-            <th style="text-align: right"><?php echo number_format($activeCases_report) ?></th>
+            <tr>
+                <th style="text-align: right">Total:</th>
+                <th style="text-align: right"><?php echo number_format($total_confirmed) ?></th>
+                <th style="text-align: right; background: #FFEEAA;"><?php echo "+".number_format($new_confirmed_cases) ?></th>
+                <th style="text-align: right"><?php echo number_format($total_deaths) ?></th>
+                <th style="text-align: right; background: red; color: white;"><?php echo "+".number_format($new_death_cases) ?></th>
+                <th style="text-align: right"><?php echo number_format($total_recovered) ?></th>
+                <th style="text-align: right"><?php echo number_format($new_recovered_cases) ?></th>
+                <th style="text-align: right"><?php echo number_format($activeCases_report) ?></th>
+            </tr>
+
             </tfoot>
         </table>
     </div>
-
-
-    <div>
-
-        <h1>Bangladeshi Data</h1>
-
-        <table id="responsive-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead style="color: #666666">
-            <tr>
-                <th>Date</th>
-                <th>Confirmed</th>
-                <th>Deaths</th>
-                <th>Recovered</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            foreach ($data['Bangladesh'] as $bd) {
-                ?>
-                <tr>
-                    <td><?php echo $bd['date'] ?></td>
-                    <td><?php echo $bd['confirmed'] ?></td>
-                    <td><?php echo $bd['deaths'] ?></td>
-                    <td><?php echo $bd['recovered'] ?></td>
-                </tr>
-
-            <?php } ?>
-            </tbody>
-
-        </table>
+    <div style="font-size:13px; margin-top:10px; padding-bottom:10px">
+        <div style="background-color:#EAF7D5; padding:5px; float:left">Highlighted in green</div>
+        <div style="padding:5px; float:left">
+            = all cases have recovered from the infection
+        </div>
+    </div>
+    <div style="clear:both; font-size:13px; margin-top:25px; padding-bottom:45px">
+        <div style="background-color:#F0F0F0; padding:5px; float:left">Highlighted in grey</div>
+        <div style="padding:5px; float:left">
+            = all cases have had an outcome (there are no active cases)
+        </div>
     </div>
 </div>
+
+<footer>
+<!--    <div class="footerlinks">-->
+<!--        <div style="margin-bottom:20px"><a href="/"><img src="/img/worldometers-logo-footer.png" border="0" class="img-footer"></a></div>-->
+<!--        <a href="/about/">about</a> | <a href="/faq/">faq</a> | <a href="/languages/">languages</a> | <a href="/licensing/">licensing</a> | <a href="/contact/">contact</a>| <a href="/report_us/">report coronavirus cases</a>-->
+<!--    </div>-->
+<!--    <ul class="list-inline text-center socialbuttons">-->
+<!--        <li><a href="/newsletter-subscribe/" data-toggle="tooltip" data-placement="bottom" title="Newsletter"><i class="fa fa-bullhorn fa-round"></i></a></li>-->
+<!--        <li><a href="https://twitter.com/Worldometers"><i class="fa fa-twitter fa-round"></i></a></li>-->
+<!--        <li><a href="https://www.facebook.com/Worldometers.info"><i class="fa fa-facebook fa-round"></i></a></li>-->
+<!--    </ul>-->
+    <center>
+        <div style="color: #ddd;
+
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    font-size: 12px;
+    background-color: #fbfbfb;
+    border-top: 1px solid #e3e7e9;
+">© Copyright Saltanat Global Limited - All rights reserved</div>
+    </center>
+
+</footer>
 
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/popper.min.js"></script>
@@ -355,6 +390,8 @@ include "includes/functions.php";
 <script src="assets/js/jquery.nicescroll.js"></script>
 <script src="assets/js/jquery.slimscroll.js"></script>
 <script src="assets/js/jquery.scrollTo.min.js"></script>
+
+
 
 <!-- Required datatable js -->
 <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -392,8 +429,19 @@ include "includes/functions.php";
         var table = $('#datatable-buttons').DataTable({
             lengthChange: false,
             buttons: ['copy', 'excel', 'pdf'],
+            paging: false,
+            info: false,
         });
         table.order([1, 'desc']).draw();
+        $('#datatable-buttons tbody tr').each(function(i){
+            $(this).prepend("<td>" + (i+1) + "</td>")
+        })
+        $('#datatable-buttons thead tr').each(function(i){
+            $(this).prepend("<th>#</th>")
+        })
+        $('#datatable-buttons tfoot tr').each(function(i){
+            $(this).prepend("<th></th>")
+        })
 
         // Key Tables
 
@@ -422,9 +470,14 @@ include "includes/functions.php";
         table.find("Bangladesh");
 
 
+
+
+
     });
 
 </script>
+
+
 
 </body>
 

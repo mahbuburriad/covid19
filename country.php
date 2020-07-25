@@ -136,40 +136,52 @@ include "includes/functions.php";
     <div>
 
         <h1><?php
-            if (isset($_GET['country'])){
-            $getcountry = $_GET['country'];
-            echo $getcountry;}
+            if (isset($_GET['country'])) {
+                $getcountry = $_GET['country'];
+                echo $getcountry;
+            }
             ?> Data</h1>
+
+        <div>
+            <div class="col-xl-6">
+                <div class="card-box">
+                    <h4 class="header-title m-t-0 m-b-30">Line Chart</h4>
+<!--                    <canvas id="lineChart" height="300"></canvas>-->
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+            </div><!-- end col-->
+        </div>
+
 
         <table id="responsive-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead style="color: #666666">
             <tr>
                 <th>Date</th>
                 <th>Confirmed</th>
+
                 <th>Deaths</th>
                 <th>Recovered</th>
             </tr>
             </thead>
             <tbody>
             <?php
-            if (isset($_GET['country'])){
+            if (isset($_GET['country'])) {
                 $getcountry = $_GET['country'];
+                foreach ($data[$getcountry] as $bd) {
+                    ?>
+                    <tr>
+                        <td><?php echo $bd['date'] ?></td>
+                        <td><?php echo $bd['confirmed'] ?></td>
+                        <td><?php echo $bd['deaths'] ?></td>
+                        <td><?php echo $bd['recovered'] ?></td>
+                    </tr>
 
-                foreach ($data[$getcountry] as $bd){
-
-            ?>
-                <tr>
-                    <td><?php echo $bd['date'] ?></td>
-                    <td><?php echo $bd['confirmed'] ?></td>
-                    <td><?php echo $bd['deaths'] ?></td>
-                    <td><?php echo $bd['recovered'] ?></td>
-                </tr>
-
-            <?php } }?>
+                <?php }
+            } ?>
             </tbody>
 
         </table>
-</div>
+    </div>
 </div>
 
 <script src="assets/js/jquery.min.js"></script>
@@ -182,6 +194,67 @@ include "includes/functions.php";
 <script src="assets/js/jquery.nicescroll.js"></script>
 <script src="assets/js/jquery.slimscroll.js"></script>
 <script src="assets/js/jquery.scrollTo.min.js"></script>
+
+<!-- Chart JS -->
+<script src="assets/plugins/chart.js/Chart.bundle.min.js"></script>
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: [
+                <?php
+                if (isset($_GET['country'])) {
+                $getcountry = $_GET['country'];
+                foreach ($data[$getcountry] as $bd) {
+//                    $date =  date_create($bd['date']);
+//                    $format = date_format($date, "F d, Y");
+//                    echo $format.",";
+                    echo $bd['date'].",";
+                }
+                }
+                ?>
+            ],
+            datasets: [{
+                label: "Covid19 statistics <?php echo $_GET['country'] ?>",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "#10c469",
+                borderColor: "#10c469",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "#10c469",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "#10c469",
+                pointHoverBorderColor: "#eef0f2",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: [
+                    <?php
+                    if (isset($_GET['country'])) {
+                        $getcountry = $_GET['country'];
+                        foreach ($data[$getcountry] as $bd) {
+                            echo $bd['confirmed'].",";
+                        }}
+
+                    ?>
+                ]
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+</script>
 
 <!-- Required datatable js -->
 <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -219,6 +292,7 @@ include "includes/functions.php";
         var table = $('#datatable-buttons').DataTable({
             lengthChange: false,
             buttons: ['copy', 'excel', 'pdf'],
+
         });
         table.order([1, 'desc']).draw();
 

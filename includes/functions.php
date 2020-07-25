@@ -25,18 +25,21 @@ $prev_oneday_cases = 0;
 $seven_days_case = 0;
 $last_seven_days_case_report = 0;
 $last_update = 0;
+$activeCases_report = 0;
 
 // Total Cases Calculation
 foreach($data as $key => $value){
     $total_confirmed = $total_confirmed + $value[$days_count]['confirmed'];
     $prev_oneday_cases = $prev_oneday_cases+$value[$days_count_prev]['confirmed'];
     $new_confirmed_cases = $total_confirmed-$prev_oneday_cases;
+
     $seven_days_case = $seven_days_case+$value[$days_count_seven]['confirmed'];
     $last_seven_days_case_report = $total_confirmed - $seven_days_case;
 
     $total_recovered = $total_recovered + $value[$days_count]['recovered'];
     $new_recovered = $new_recovered + $value[$days_count_prev]['recovered'];
     $new_recovered_cases = $total_recovered - $new_recovered;
+
     $total_deaths = $total_deaths + $value[$days_count]['deaths'];
     $new_death = $new_death + $value[$days_count_prev]['deaths'];
     $new_death_cases = $total_deaths - $new_death;
