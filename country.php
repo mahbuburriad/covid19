@@ -1,5 +1,6 @@
 <?php
 include "includes/functions.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -131,192 +132,14 @@ include "includes/functions.php";
 <body>
 <div class="container">
     <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic</div>
-    <center>
-
-        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Updated : <?php
-            $date = date_create($last_update);
-            echo date_format($date, "F d, Y");
-            ?></div>
-
-    </center>
-
-    <center class="content-inner">
-        <!--        <div style="margin-top:20px; text-align:center; font-size:14px">-->
-        <!--            <a href="/">Global</a> - -->
-        <!--            <a href="/bangladesh">Bangladesh</a>-->
-        <!--        </div>-->
-        <div class="maincounter-wrap" style="margin-top:15px">
-            <h1>Coronavirus Cases:</h1>
-            <div class="maincounter-number">
-                <span style="color:#aaa"><?php echo number_format($total_confirmed); ?></span>
-            </div>
-        </div>
-        <div class="maincounter-wrap" style="margin-top:15px">
-            <h1>Deaths:</h1>
-            <div class="maincounter-number">
-                <?php echo number_format($total_deaths); ?>
-            </div>
-        </div>
-        <div class="maincounter-wrap" style="margin-top:15px;">
-            <h1>Recovered:</h1>
-            <div class="maincounter-number" style="color:#8ACA2B ">
-                <?php echo number_format($total_recovered); ?>
-            </div>
-        </div>
-        <div style="margin-top:50px;"></div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <h5 class="card-header title-case">Active cases</h5>
-                    <div class="card-body">
-                        <h5 class="card-title number-table-main"><?php echo number_format($currently_infected_patient) ?></h5>
-                        <p style="color: #222">Currently Infected Patients</p>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <span class="number-table"
-                                      style="color: #8080FF;"><?php echo number_format($new_confirmed_cases) ?></span><br>
-                                <span style="font-size: 13px;">New Confirmed Cases</span>
-                            </div>
-                            <div class="col-md-6">
-                                <span class="number-table"><?php echo number_format($last_seven_days_case_report) ?></span><br>
-                                <span style="font-size: 13px;">Last 7 Days Cases</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-6">
-                <div class="card">
-                    <h5 class="card-header title-case">Closed cases</h5>
-                    <div class="card-body">
-                        <h5 class="card-title number-table-main"><?php echo number_format($closed_cases) ?></h5>
-                        <p style="color: #222">Cases which had an outcome:</p>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <span class="number-table" style="color: #8ACA2B;"
-                                ><?php echo number_format($total_recovered) ?></span>
-                                <span>(<b><?php echo number_format($recoveredPercentage) ?></b>%)</span>
-                                <br>
-                                <span style="font-size: 13px;">Recovered / Discharged</span>
-                            </div>
-                            <div class="col-md-6">
-                                <span class="number-table"
-                                      style="color: red;"><?php echo number_format($total_deaths) ?></span>
-                                <span>(<b><?php echo number_format($deathPercentage) ?></b>%)</span>
-                                <br>
-                                <span style="font-size: 13px;">Deaths</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div style="margin-top:50px;"></div>
-
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <h5 class="card-header title-case">Recovered Statistics</h5>
-                    <div class="card-body">
-                        <h5 class="card-title number-table-main"><?php echo number_format($new_recovered_cases) ?></h5>
-                        <p style="color: #222">New Recovered Cases since Yesterday</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card">
-                    <h5 class="card-header title-case">Death Statistics</h5>
-                    <div class="card-body">
-                        <h5 class="card-title number-table-main"><?php echo number_format($new_death_cases) ?></h5>
-                        <p style="color: #222">New Death Cases since Yesterday</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div style="margin-top:50px;"></div>
-    </center>
-
-
-    <!--    table for confirmed data table-->
 
     <div>
 
-        <h1>Data Table</h1>
-
-        <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead style="color: #666666">
-            <tr>
-                <th>Country</th>
-                <th>Total Cases</th>
-                <th>New Cases</th>
-                <th>Total Death</th>
-                <th>New Death</th>
-                <th>Total Recovered</th>
-                <th>New Recovered</th>
-                <th>Active Cases</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            foreach ($data as $key => $value) {
-                $newConfirm = $value[$days_count]['confirmed'] - $value[$days_count_prev]['confirmed'];
-                $newDeath = $value[$days_count]['deaths'] - $value[$days_count_prev]['deaths'];
-                $newRecovered = $value[$days_count]['recovered'] - $value[$days_count_prev]['recovered'];
-                $activeCase = $value[$days_count]['confirmed'] - $value[$days_count]['deaths'] - $value[$days_count]['recovered'];
-                ?>
-                <tr>
-                    <th scope="row"><a href="country.php?country=<?php echo $key ?>"><?php echo $key ?></a></th>
-                    <td style="text-align: right">
-                        <?php echo number_format($value[$days_count]['confirmed']); ?>
-                    </td>
-                    <td style="text-align: right"><?php
-                        if ($newConfirm != 0) {
-                            echo number_format($newConfirm);
-                        } ?></td>
-                    <td style="text-align: right"><?php echo number_format($value[$days_count]['deaths']); ?></td>
-                    <td style="background: red; color: white; text-align: right"><?php
-                        if ($newDeath != 0) {
-                            echo number_format($newDeath);
-                        } ?></td>
-                    <td style="text-align: right"><?php echo number_format($value[$days_count]['recovered']); ?></td>
-                    <td style="text-align: right"><?php
-                        if ($newRecovered != 0) {
-                            echo number_format($newRecovered);
-                        } ?></td>
-                    <td style="text-align: right"><?php echo number_format($activeCase); ?></td>
-
-                </tr>
-            <?php } ?>
-
-            </tr>
-            </tbody>
-            <tfoot>
-            <th style="text-align: right">Total:</th>
-            <th style="text-align: right"><?php echo number_format($total_confirmed) ?></th>
-            <th style="text-align: right"><?php echo number_format($new_confirmed_cases) ?></th>
-            <th style="text-align: right"><?php echo number_format($total_deaths) ?></th>
-            <th style="text-align: right"><?php echo number_format($new_death_cases) ?></th>
-            <th style="text-align: right"><?php echo number_format($total_recovered) ?></th>
-            <th style="text-align: right"><?php echo number_format($new_recovered_cases) ?></th>
-            <th style="text-align: right"><?php echo number_format($activeCases_report) ?></th>
-            </tfoot>
-        </table>
-    </div>
-
-
-    <div>
-
-        <h1>Bangladeshi Data</h1>
+        <h1><?php
+            if (isset($_GET['country'])){
+            $getcountry = $_GET['country'];
+            echo $getcountry;}
+            ?> Data</h1>
 
         <table id="responsive-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead style="color: #666666">
@@ -329,8 +152,12 @@ include "includes/functions.php";
             </thead>
             <tbody>
             <?php
-            foreach ($data['Bangladesh'] as $bd) {
-                ?>
+            if (isset($_GET['country'])){
+                $getcountry = $_GET['country'];
+
+                foreach ($data[$getcountry] as $bd){
+
+            ?>
                 <tr>
                     <td><?php echo $bd['date'] ?></td>
                     <td><?php echo $bd['confirmed'] ?></td>
@@ -338,11 +165,11 @@ include "includes/functions.php";
                     <td><?php echo $bd['recovered'] ?></td>
                 </tr>
 
-            <?php } ?>
+            <?php } }?>
             </tbody>
 
         </table>
-    </div>
+</div>
 </div>
 
 <script src="assets/js/jquery.min.js"></script>
