@@ -302,7 +302,7 @@ include "includes/functions.php";
                 }
                 ?>
                 <th scope="row"><a target="_blank" style="color: #337ab7; /*text-decoration: none;*/"
-                                   href="country.php?country=<?php echo $key ?>"><?php echo $key ?></a></th>
+                                   href="country?country=<?php echo $key ?>"><?php echo $key ?></a></th>
                 <td style="text-align: right">
                     <?php echo number_format($value[$days_count]['confirmed']); ?>
                 </td>
