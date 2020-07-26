@@ -254,7 +254,8 @@ include "includes/functions.php";
 
         <h1>Data Table</h1>
 
-        <table id="datatable-buttons" class="table table-responsive table-bordered row-border hover order-column" cellspacing="0" width="100%">
+        <table id="datatable-buttons" class="table table-responsive table-bordered row-border hover order-column"
+               cellspacing="0" width="100%">
             <thead style="color: #666666">
             <tr>
                 <th>Country</th>
@@ -269,6 +270,20 @@ include "includes/functions.php";
             </tr>
             </thead>
             <tbody>
+            <tr style="
+    background-color: #DFDFDF !important;
+    color: #363945 !important;
+    font-weight: normal !important;
+">
+                <td>World</td>
+                <td style="text-align: right"><?php echo number_format($total_confirmed) ?></td>
+                <td style="text-align: right;"><?php echo "+" . number_format($new_confirmed_cases) ?></td>
+                <td style="text-align: right"><?php echo number_format($total_deaths) ?></td>
+                <td style="text-align: right;"><?php echo "+" . number_format($new_death_cases) ?></td>
+                <td style="text-align: right"><?php echo number_format($total_recovered) ?></td>
+                <td style="text-align: right"><?php echo number_format($new_recovered_cases) ?></td>
+                <td style="text-align: right"><?php echo number_format($activeCases_report) ?></td>
+            </tr>
             <?php
             $i = 0;
             foreach ($data as $key => $value) {
@@ -280,50 +295,53 @@ include "includes/functions.php";
                 ?>
                 <?php if ($value[$days_count]['confirmed'] == $value[$days_count]['recovered']) {
                     echo "<tr style='background: #EAF7D5;'>";
-            } elseif ($activeCase == 0){
+                } elseif ($activeCase == 0) {
                     echo "<tr style='background: #F0F0F0;'>";
-                }
-            else{
+                } else {
                     echo "<tr>";
                 }
                 ?>
-                    <th scope="row"><a target="_blank" style="color: #337ab7; /*text-decoration: none;*/" href="country.php?country=<?php echo $key ?>"><?php echo $key ?></a></th>
-                    <td style="text-align: right">
-                        <?php echo number_format($value[$days_count]['confirmed']); ?>
-                    </td>
+                <th scope="row"><a target="_blank" style="color: #337ab7; /*text-decoration: none;*/"
+                                   href="country.php?country=<?php echo $key ?>"><?php echo $key ?></a></th>
+                <td style="text-align: right">
+                    <?php echo number_format($value[$days_count]['confirmed']); ?>
+                </td>
 
-                    <?php if ($newConfirm != 0) { ?>
-                        <td style="background: #FFEEAA; text-align: right"><?php
-                            if ($newConfirm > 0){
-                                echo "+".number_format($newConfirm);
-                            } else{
-                                echo "-".number_format($newConfirm);
-                            }
+                <?php if ($newConfirm != 0) { ?>
+                    <td style="background: #FFEEAA; text-align: right"><?php
+                        if ($newConfirm > 0) {
+                            echo "+" . number_format($newConfirm);
+                        } else {
+                            echo "-" . number_format($newConfirm);
+                        }
 
-                            ?></td>
-                    <?php } else{ echo "
+                        ?></td>
+                <?php } else {
+                    echo "
                     <td style='text-align: right'></td>";
-                    }?>
+                } ?>
 
-                    <td style="text-align: right"><?php echo number_format($value[$days_count]['deaths']); ?></td>
+                <td style="text-align: right"><?php echo number_format($value[$days_count]['deaths']); ?></td>
                 <?php if ($newDeath != 0 && $newConfirm > 0) {
-                        ?>
+                    ?>
                     <td style="background: red; color: white; text-align: right"><?php
 
-                            echo "+".number_format($newDeath);
+                        echo "+" . number_format($newDeath);
                         ?></td>
-                    <?php } else{ echo "
+                <?php } else {
+                    echo "
                     <td style='text-align: right'></td>";
-                }?>
-                    <td style="text-align: right"><?php echo number_format($value[$days_count]['recovered']); ?></td>
-                    <td style="text-align: right"><?php
-                        if ($newRecovered != 0) {
-                            echo number_format($newRecovered);
-                        } ?></td>
-                    <td style="text-align: right"><?php echo number_format($activeCase); ?></td>
+                } ?>
+                <td style="text-align: right"><?php echo number_format($value[$days_count]['recovered']); ?></td>
+                <td style="text-align: right"><?php
+                    if ($newRecovered != 0) {
+                        echo number_format($newRecovered);
+                    } ?></td>
+                <td style="text-align: right"><?php echo number_format($activeCase); ?></td>
 
                 </tr>
-            <?php $i++; } ?>
+                <?php $i++;
+            } ?>
 
             </tr>
             </tbody>
@@ -331,9 +349,9 @@ include "includes/functions.php";
             <tr>
                 <th style="text-align: right">Total:</th>
                 <th style="text-align: right"><?php echo number_format($total_confirmed) ?></th>
-                <th style="text-align: right; background: #FFEEAA;"><?php echo "+".number_format($new_confirmed_cases) ?></th>
+                <th style="text-align: right; background: #FFEEAA;"><?php echo "+" . number_format($new_confirmed_cases) ?></th>
                 <th style="text-align: right"><?php echo number_format($total_deaths) ?></th>
-                <th style="text-align: right; background: red; color: white;"><?php echo "+".number_format($new_death_cases) ?></th>
+                <th style="text-align: right; background: red; color: white;"><?php echo "+" . number_format($new_death_cases) ?></th>
                 <th style="text-align: right"><?php echo number_format($total_recovered) ?></th>
                 <th style="text-align: right"><?php echo number_format($new_recovered_cases) ?></th>
                 <th style="text-align: right"><?php echo number_format($activeCases_report) ?></th>
@@ -357,15 +375,15 @@ include "includes/functions.php";
 </div>
 
 <footer>
-<!--    <div class="footerlinks">-->
-<!--        <div style="margin-bottom:20px"><a href="/"><img src="/img/worldometers-logo-footer.png" border="0" class="img-footer"></a></div>-->
-<!--        <a href="/about/">about</a> | <a href="/faq/">faq</a> | <a href="/languages/">languages</a> | <a href="/licensing/">licensing</a> | <a href="/contact/">contact</a>| <a href="/report_us/">report coronavirus cases</a>-->
-<!--    </div>-->
-<!--    <ul class="list-inline text-center socialbuttons">-->
-<!--        <li><a href="/newsletter-subscribe/" data-toggle="tooltip" data-placement="bottom" title="Newsletter"><i class="fa fa-bullhorn fa-round"></i></a></li>-->
-<!--        <li><a href="https://twitter.com/Worldometers"><i class="fa fa-twitter fa-round"></i></a></li>-->
-<!--        <li><a href="https://www.facebook.com/Worldometers.info"><i class="fa fa-facebook fa-round"></i></a></li>-->
-<!--    </ul>-->
+    <!--    <div class="footerlinks">-->
+    <!--        <div style="margin-bottom:20px"><a href="/"><img src="/img/worldometers-logo-footer.png" border="0" class="img-footer"></a></div>-->
+    <!--        <a href="/about/">about</a> | <a href="/faq/">faq</a> | <a href="/languages/">languages</a> | <a href="/licensing/">licensing</a> | <a href="/contact/">contact</a>| <a href="/report_us/">report coronavirus cases</a>-->
+    <!--    </div>-->
+    <!--    <ul class="list-inline text-center socialbuttons">-->
+    <!--        <li><a href="/newsletter-subscribe/" data-toggle="tooltip" data-placement="bottom" title="Newsletter"><i class="fa fa-bullhorn fa-round"></i></a></li>-->
+    <!--        <li><a href="https://twitter.com/Worldometers"><i class="fa fa-twitter fa-round"></i></a></li>-->
+    <!--        <li><a href="https://www.facebook.com/Worldometers.info"><i class="fa fa-facebook fa-round"></i></a></li>-->
+    <!--    </ul>-->
     <center>
         <div style="color: #ddd;
 
@@ -375,7 +393,8 @@ include "includes/functions.php";
     font-size: 12px;
     background-color: #fbfbfb;
     border-top: 1px solid #e3e7e9;
-">© Copyright Saltanat Global Limited - All rights reserved</div>
+">© Copyright Saltanat Global Limited - All rights reserved
+        </div>
     </center>
 
 </footer>
@@ -390,7 +409,6 @@ include "includes/functions.php";
 <script src="assets/js/jquery.nicescroll.js"></script>
 <script src="assets/js/jquery.slimscroll.js"></script>
 <script src="assets/js/jquery.scrollTo.min.js"></script>
-
 
 
 <!-- Required datatable js -->
@@ -431,15 +449,21 @@ include "includes/functions.php";
             buttons: ['copy', 'excel', 'pdf'],
             paging: false,
             info: false,
+            fixedHeader: true
         });
         table.order([1, 'desc']).draw();
-        $('#datatable-buttons tbody tr').each(function(i){
-            $(this).prepend("<td>" + (i+1) + "</td>")
+        $('#datatable-buttons tbody tr').each(function (i) {
+            if (i == 0){
+                $(this).prepend("<td></td>")
+            }else {
+                $(this).prepend("<td>" + (i) + "</td>")
+            }
+
         })
-        $('#datatable-buttons thead tr').each(function(i){
+        $('#datatable-buttons thead tr').each(function (i) {
             $(this).prepend("<th>#</th>")
         })
-        $('#datatable-buttons tfoot tr').each(function(i){
+        $('#datatable-buttons tfoot tr').each(function (i) {
             $(this).prepend("<th></th>")
         })
 
@@ -470,13 +494,9 @@ include "includes/functions.php";
         table.find("Bangladesh");
 
 
-
-
-
     });
 
 </script>
-
 
 
 </body>
