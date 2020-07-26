@@ -281,7 +281,7 @@ include "includes/functions.php";
                 <td style="text-align: right"><?php echo number_format($total_deaths) ?></td>
                 <td style="text-align: right;"><?php echo "+" . number_format($new_death_cases) ?></td>
                 <td style="text-align: right"><?php echo number_format($total_recovered) ?></td>
-                <td style="text-align: right"><?php echo number_format($new_recovered_cases) ?></td>
+                <td style="text-align: right"><?php echo "+" . number_format($new_recovered_cases) ?></td>
                 <td style="text-align: right"><?php echo number_format($activeCases_report) ?></td>
             </tr>
             <?php
@@ -333,10 +333,18 @@ include "includes/functions.php";
                     <td style='text-align: right'></td>";
                 } ?>
                 <td style="text-align: right"><?php echo number_format($value[$days_count]['recovered']); ?></td>
-                <td style="text-align: right"><?php
-                    if ($newRecovered != 0) {
-                        echo number_format($newRecovered);
-                    } ?></td>
+                <?php
+                if ($newRecovered != 0 && $newRecovered > 0) {
+                    ?>
+                    <td style="text-align: right; background-color:#c8e6c9; color:#000"><?php
+
+                        echo "+" . number_format($newRecovered);
+                        ?></td>
+                    <?php
+                } else {
+                    echo "<td></td>";
+                }
+                ?>
                 <td style="text-align: right"><?php echo number_format($activeCase); ?></td>
 
                 </tr>
@@ -353,7 +361,7 @@ include "includes/functions.php";
                 <th style="text-align: right"><?php echo number_format($total_deaths) ?></th>
                 <th style="text-align: right; background: red; color: white;"><?php echo "+" . number_format($new_death_cases) ?></th>
                 <th style="text-align: right"><?php echo number_format($total_recovered) ?></th>
-                <th style="text-align: right"><?php echo number_format($new_recovered_cases) ?></th>
+                <th style="text-align: right; background-color:#c8e6c9; color:#000"><?php echo "+" . number_format($new_recovered_cases) ?></th>
                 <th style="text-align: right"><?php echo number_format($activeCases_report) ?></th>
             </tr>
 
@@ -453,9 +461,9 @@ include "includes/functions.php";
         });
         table.order([1, 'desc']).draw();
         $('#datatable-buttons tbody tr').each(function (i) {
-            if (i == 0){
+            if (i == 0) {
                 $(this).prepend("<td></td>")
-            }else {
+            } else {
                 $(this).prepend("<td>" + (i) + "</td>")
             }
 

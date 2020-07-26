@@ -10,7 +10,7 @@ if (isset($_GET['country'])) {
 
     <head>
         <script async src="https://cdn.ampproject.org/v0.js"></script>
-        <title>COVID-19 Coronavirus Pandemic | Saltanat Global Limited</title>
+        <title><?php echo $getcountry?> Data | COVID-19 Coronavirus Pandemic | Saltanat Global Limited</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
         <!-- DataTables -->
@@ -132,24 +132,59 @@ if (isset($_GET['country'])) {
 
     <body>
     <div class="container">
-        <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic</div>
+        <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic <br> <span><b>Country Name: <?php echo $getcountry; ?></b></span></div>
 
         <div>
+            <?php
+            foreach ($data[$getcountry] as $value){
+                $countryDate = $value['date'];
+                $countryConfirm = $value['confirmed'];
+                $countryDeaths = $value['deaths'];
+                $countryRecovered = $value['recovered'];
+            }
+            ?>
 
-            <h1><?php echo $getcountry; ?> Data</h1>
+            <center>
+                <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Updated : <?php
+                    $date = date_create($countryDate);
+                    echo date_format($date, "F d, Y");
+                    ?></div>
 
-            <div>
-                <div class="col-xl-6">
-                    <div class="card-box">
-                        <h4 class="header-title m-t-0 m-b-30">Line Chart</h4>
-                        <!--                    <canvas id="lineChart" height="300"></canvas>-->
-                        <canvas id="myChart" width="400" height="400"></canvas>
+            </center>
+
+            <center class="content-inner">
+                <div class="maincounter-wrap" style="margin-top:15px">
+                    <h1>Coronavirus Cases:</h1>
+                    <div class="maincounter-number">
+                        <span style="color:#aaa"><?php echo number_format($countryConfirm); ?></span>
                     </div>
-                </div><!-- end col-->
-            </div>
+                </div>
+                <div class="maincounter-wrap" style="margin-top:15px">
+                    <h1>Deaths:</h1>
+                    <div class="maincounter-number">
+                        <?php echo number_format($countryDeaths); ?>
+                    </div>
+                </div>
+                <div class="maincounter-wrap" style="margin-top:15px;">
+                    <h1>Recovered:</h1>
+                    <div class="maincounter-number" style="color:#8ACA2B ">
+                        <?php echo number_format($countryRecovered); ?>
+                    </div>
+                </div>
+            </center>
 
 
-            <table id="responsive-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<!--            <div>-->
+<!--                <div class="col-sm-6">-->
+<!--                    <div class="card-box">-->
+<!--                        <h4 class="header-title m-t-0 m-b-30">Line Chart</h4>-->
+<!--                        <canvas id="myChart" width="400" height="400"></canvas>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+            <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead style="color: #666666">
                 <tr>
                     <th>Date</th>
@@ -164,9 +199,9 @@ if (isset($_GET['country'])) {
                     ?>
                     <tr>
                         <td><?php echo $bd['date'] ?></td>
-                        <td><?php echo $bd['confirmed'] ?></td>
-                        <td><?php echo $bd['deaths'] ?></td>
-                        <td><?php echo $bd['recovered'] ?></td>
+                        <td><?php echo number_format($bd['confirmed']) ?></td>
+                        <td><?php echo number_format($bd['deaths']) ?></td>
+                        <td><?php echo number_format($bd['recovered']) ?></td>
                     </tr>
 
                 <?php } ?>
@@ -200,15 +235,13 @@ if (isset($_GET['country'])) {
             data: {
                 labels: [
                     <?php
-                    if (isset($_GET['country'])) {
-                        $getcountry = $_GET['country'];
                         foreach ($data[$getcountry] as $bd) {
 //                    $date =  date_create($bd['date']);
 //                    $format = date_format($date, "F d, Y");
 //                    echo $format.",";
                             echo $bd['date'] . ",";
                         }
-                    }
+
                     ?>
                 ],
                 datasets: [{
@@ -232,12 +265,10 @@ if (isset($_GET['country'])) {
                     pointHitRadius: 10,
                     data: [
                         <?php
-                        if (isset($_GET['country'])) {
-                            $getcountry = $_GET['country'];
                             foreach ($data[$getcountry] as $bd) {
                                 echo $bd['confirmed'] . ",";
                             }
-                        }
+
 
                         ?>
                     ]
@@ -287,7 +318,7 @@ if (isset($_GET['country'])) {
                 buttons: ['copy', 'excel', 'pdf'],
 
             });
-            table.order([1, 'desc']).draw();
+            table.order([0, 'desc']).draw();
 
             // Key Tables
 
