@@ -25,10 +25,16 @@ echo "<tr>
 </th>
 <th >Population</th>
 </tr>";
-foreach ($rows as $row){
-    $cols = $row->getElementsByTagName('td');
-    echo "<tr><td>".$cols->item(0)->nodeValue."</td><td>".$cols->item(1)->nodeValue."</td><td>".$cols->item(2)->nodeValue."</td><td>".$cols->item(3)->nodeValue."</td><td>".$cols->item(4)->nodeValue."</td><td>".$cols->item(5)->nodeValue."</td><td>".$cols->item(6)->nodeValue."</td><td>".$cols->item(7)->nodeValue."</td><td>".$cols->item(8)->nodeValue."</td><td>".$cols->item(9)->nodeValue."</td><td>".$cols->item(10)->nodeValue."</td><td>".$cols->item(11)->nodeValue."</td><td>".$cols->item(12)->nodeValue."</td><td>".$cols->item(13)->nodeValue."</td><td>".$cols->item(14)->nodeValue."</td><td>".$cols->item(15)->nodeValue."</td></tr>";
 
-}
+    foreach ($rows as $row){
+        $cols = $row->getElementsByTagName('td');
+        if (!empty($cols->item(0)->nodeValue)){
+            echo "<tr><td>".$cols->item(0)->nodeValue."</td><td>".$cols->item(1)->nodeValue."</td><td>".$cols->item(2)->nodeValue."</td><td>".$cols->item(3)->nodeValue."</td><td>".$cols->item(4)->nodeValue."</td><td>".$cols->item(5)->nodeValue."</td><td>".$cols->item(6)->nodeValue."</td><td>".$cols->item(7)->nodeValue."</td><td>".$cols->item(8)->nodeValue."</td><td>".$cols->item(9)->nodeValue."</td><td>".$cols->item(10)->nodeValue."</td><td>".$cols->item(11)->nodeValue."</td><td>".$cols->item(12)->nodeValue."</td><td>".$cols->item(13)->nodeValue."</td><td>".$cols->item(14)->nodeValue."</td></tr>";
+
+        }
+
+    }
+
+
 echo"</table>";
 ?>
