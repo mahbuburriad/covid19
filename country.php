@@ -1,4 +1,5 @@
 <?php
+include "includes/realtimeData.php";
 include "includes/functions.php";
 if (isset($_GET['country'])) {
     $getcountry = $_GET['country'];
@@ -145,10 +146,8 @@ if (isset($_GET['country'])) {
             ?>
 
             <center>
-                <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Updated : <?php
-                    $date = date_create($countryDate);
-                    echo date_format($date, "F d, Y");
-                    ?></div>
+                <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Updated
+                    : <?php echo $last_update; ?></div>
 
             </center>
 

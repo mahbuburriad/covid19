@@ -309,32 +309,32 @@ include "includes/realtimeData.php";
                     }
                     ?>
                     <td><?php echo $cols->item(1)->nodeValue ?></td>
-                    <td><?php echo $cols->item(2)->nodeValue ?></td>
+                    <td style="text-align: right;"><?php echo $cols->item(2)->nodeValue ?></td>
                     <?php if (!empty($cols->item(3)->nodeValue)) { ?>
                         <td style="background: #FFEEAA; text-align: right"><?php echo $cols->item(3)->nodeValue ?></td>
                     <?php } else { ?>
                         <td style="text-align: right"><?php echo $cols->item(3)->nodeValue ?></td>
                     <?php } ?>
-                    <td><?php echo $cols->item(4)->nodeValue ?></td>
+                    <td style="text-align: right;"><?php echo $cols->item(4)->nodeValue ?></td>
                     <?php if (!empty($cols->item(5)->nodeValue)) { ?>
                         <td style="background: red; color: white;  text-align: right"><?php echo $cols->item(5)->nodeValue ?></td>
                     <?php } else { ?>
                         <td style="text-align: right"><?php echo $cols->item(5)->nodeValue ?></td>
                     <?php } ?>
 
-                    <td><?php echo $cols->item(6)->nodeValue ?></td>
+                    <td style="text-align: right;"><?php echo $cols->item(6)->nodeValue ?></td>
                     <?php if (!empty($cols->item(7)->nodeValue)) { ?>
                         <td style="text-align: right; background-color:#c8e6c9; color:#000"><?php echo $cols->item(7)->nodeValue ?></td>
                     <?php } else { ?>
                         <td style="text-align: right"><?php echo $cols->item(7)->nodeValue ?></td>
                     <?php } ?>
-                    <td><?php echo $cols->item(8)->nodeValue ?></td>
-                    <td><?php echo $cols->item(9)->nodeValue ?></td>
-                    <td><?php echo $cols->item(10)->nodeValue ?></td>
-                    <td><?php echo $cols->item(11)->nodeValue ?></td>
-                    <td><?php echo $cols->item(12)->nodeValue ?></td>
-                    <td><?php echo $cols->item(13)->nodeValue ?></td>
-                    <td><?php echo $cols->item(14)->nodeValue ?></td>
+                    <td style="text-align: right;"><?php echo $cols->item(8)->nodeValue ?></td>
+                    <td style="text-align: right;"><?php echo $cols->item(9)->nodeValue ?></td>
+                    <td style="text-align: right;"><?php echo $cols->item(10)->nodeValue ?></td>
+                    <td style="text-align: right;"><?php echo $cols->item(11)->nodeValue ?></td>
+                    <td style="text-align: right;"><?php echo $cols->item(12)->nodeValue ?></td>
+                    <td style="text-align: right;"><?php echo $cols->item(13)->nodeValue ?></td>
+                    <td style="text-align: right;"><?php echo $cols->item(14)->nodeValue ?></td>
                     </tr>
                 <?php }
             } ?>
