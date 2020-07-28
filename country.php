@@ -1,8 +1,62 @@
 <?php
 include "includes/realtimeData.php";
-include "includes/functions.php";
+
 if (isset($_GET['country'])) {
     $getcountry = $_GET['country'];
+
+    $total_confirmed = 0;
+    $death = 0;
+    $total_recovery = 0;
+    $currently_infected_patient = 0;
+    $serious = 0;
+    $new_recovery = 0;
+    $new_death = 0;
+    $new_confirmed_cases = 0;
+    $tot_cases = 0;
+    $death1m = 0;
+
+    foreach ($rows as $row) {
+        $cols = $row->getElementsByTagName('td');
+        if (!empty(@$cols->item(1)->nodeValue == $getcountry)) {
+            $total_confirmed = $cols->item(2)->nodeValue;
+            $new_confirmed_cases = $cols->item(3)->nodeValue;
+            $death = $cols->item(4)->nodeValue;
+            $total_recovery = $cols->item(6)->nodeValue;
+            $currently_infected_patient = $cols->item(8)->nodeValue;
+            $serious = $cols->item(9)->nodeValue;
+            $new_recovery = $cols->item(7)->nodeValue;
+            $new_death = $cols->item(5)->nodeValue;
+            $tot_cases = $cols->item(10)->nodeValue;
+            $death1m = $cols->item(11)->nodeValue;
+        }
+    }
+
+    $b = str_replace( ',', '', $currently_infected_patient );
+    if( is_numeric( $b ) ) {
+        $currently_infected_patient = $b;
+    }
+
+    $ser = str_replace( ',', '', $serious );
+    if( is_numeric( $ser  ) ) {
+        $serious = $ser;
+    }
+
+    $rec= str_replace( ',', '', $total_recovery );
+    if( is_numeric( $rec  ) ) {
+        $total_recovery = $rec;
+    }
+
+    $death= str_replace( ',', '', $death );
+
+    $conf= str_replace( ',', '', $total_confirmed );
+    if( is_numeric( $conf  ) ) {
+        $total_confirmed = $conf;
+    }
+
+    $mild_condition = $currently_infected_patient - $serious;
+    @$closed_cases = $total_recovery+$death;
+    @$recoveredPercentage = 100 - (($death * 100)/$closed_cases);
+    $deathPercentage = 100 - (($total_recovery * 100)/$closed_cases);
     ?>
 
     <!DOCTYPE html>
@@ -136,15 +190,6 @@ if (isset($_GET['country'])) {
         <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic <br> <span><b>Country Name: <?php echo $getcountry; ?></b></span></div>
 
         <div>
-            <?php
-            foreach ($data[$getcountry] as $value){
-                $countryDate = $value['date'];
-                $countryConfirm = $value['confirmed'];
-                $countryDeaths = $value['deaths'];
-                $countryRecovered = $value['recovered'];
-            }
-            ?>
-
             <center>
                 <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Updated
                     : <?php echo $last_update; ?></div>
@@ -155,32 +200,121 @@ if (isset($_GET['country'])) {
                 <div class="maincounter-wrap" style="margin-top:15px">
                     <h1>Coronavirus Cases:</h1>
                     <div class="maincounter-number">
-                        <span style="color:#aaa"><?php echo number_format($countryConfirm); ?></span>
+                        <span style="color:#aaa"><?php echo number_format($total_confirmed); ?></span>
                     </div>
                 </div>
                 <div class="maincounter-wrap" style="margin-top:15px">
                     <h1>Deaths:</h1>
                     <div class="maincounter-number">
-                        <?php echo number_format($countryDeaths); ?>
+                        <?php echo $death; ?>
                     </div>
                 </div>
                 <div class="maincounter-wrap" style="margin-top:15px;">
                     <h1>Recovered:</h1>
                     <div class="maincounter-number" style="color:#8ACA2B ">
-                        <?php echo number_format($countryRecovered); ?>
+                        <?php echo number_format($total_recovery); ?>
                     </div>
                 </div>
             </center>
 
 
-<!--            <div>-->
-<!--                <div class="col-sm-6">-->
-<!--                    <div class="card-box">-->
-<!--                        <h4 class="header-title m-t-0 m-b-30">Line Chart</h4>-->
-<!--                        <canvas id="myChart" width="400" height="400"></canvas>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div style="margin-top:50px;"></div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <h5 class="card-header title-case">Active cases</h5>
+                        <div class="card-body">
+                            <center>
+                            <h5 class="card-title number-table-main"><?php echo number_format($currently_infected_patient) ?></h5>
+                            <p style="color: #222">Currently Infected Patients</p>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                <span class="number-table"
+                                      style="color: #8080FF;"><?php echo number_format($mild_condition) ?></span><br>
+                                    <span style="font-size: 13px;">in Mild Condition</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="number-table"><?php echo number_format($serious) ?></span><br>
+                                    <span style="font-size: 13px;">Serious or Critical</span>
+                                </div>
+                            </div>
+                            </center>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <h5 class="card-header title-case">Closed cases</h5>
+                        <div class="card-body">
+                            <center>
+                            <h5 class="card-title number-table-main"><?php echo number_format($closed_cases) ?></h5>
+                            <p style="color: #222">Cases which had an outcome:</p>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                <span class="number-table" style="color: #8ACA2B;"
+                                ><?php echo number_format($total_recovery) ?></span>
+                                    <span>(<b><?php echo number_format($recoveredPercentage) ?></b>%)</span>
+                                    <br>
+                                    <span style="font-size: 13px;">Recovered / Discharged</span>
+                                </div>
+                                <div class="col-md-6">
+                                <span class="number-table"
+                                      style="color: red;"><?php echo $death ?></span>
+                                    <span>(<b><?php echo number_format($deathPercentage) ?></b>%)</span>
+                                    <br>
+                                    <span style="font-size: 13px;">Deaths</span>
+                                </div>
+                            </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:50px;"></div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <h5 class="card-header title-case">Recovered Statistics</h5>
+                        <div class="card-body">
+                            <center>
+                            <h5 class="card-title number-table-main"><?php echo $new_recovery ?></h5>
+                            <p style="color: #222">New Recovered Cases since Yesterday</p>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <h5 class="card-header title-case">Death Statistics</h5>
+                        <div class="card-body">
+                            <center>
+                            <h5 class="card-title number-table-main"><?php echo $new_death ?></h5>
+                            <p style="color: #222">New Death Cases since Yesterday</p>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:50px;"></div>
+            </center>
+
+            <div>
+                <div class="col-sm-6">
+                    <div class="card-box">
+                        <h4 class="header-title m-t-0 m-b-30">Line Chart</h4>
+                        <canvas id="myChart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
 
 
             <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -194,15 +328,18 @@ if (isset($_GET['country'])) {
                 </thead>
                 <tbody>
                 <?php
+                include "includes/functions.php";
+                if ($getcountry=='USA'){
+                    $getcountry = 'US';
+                }
                 foreach ($data[$getcountry] as $bd) {
                     ?>
                     <tr>
-                        <td><?php echo $bd['date'] ?></td>
-                        <td><?php echo number_format($bd['confirmed']) ?></td>
-                        <td><?php echo number_format($bd['deaths']) ?></td>
-                        <td><?php echo number_format($bd['recovered']) ?></td>
+                        <td style="text-align: right"><?php echo $bd['date'] ?></td>
+                        <td style="text-align: right"><?php echo number_format($bd['confirmed']) ?></td>
+                        <td style="text-align: right"> <?php echo number_format($bd['deaths']) ?></td>
+                        <td style="text-align: right"><?php echo number_format($bd['recovered']) ?></td>
                     </tr>
-
                 <?php } ?>
                 </tbody>
 

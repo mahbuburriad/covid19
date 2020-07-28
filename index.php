@@ -308,7 +308,8 @@ include "includes/realtimeData.php";
                         echo "<tr>";
                     }
                     ?>
-                    <td><?php echo $cols->item(1)->nodeValue ?></td>
+                    <td scope="row"><a target="_blank" style="color: #337ab7; /*text-decoration: none;*/"
+                                       href="country?country=<?php echo $cols->item(1)->nodeValue ?>"><?php echo $cols->item(1)->nodeValue ?></a></td>
                     <td style="text-align: right;"><?php echo $cols->item(2)->nodeValue ?></td>
                     <?php if (!empty($cols->item(3)->nodeValue)) { ?>
                         <td style="background: #FFEEAA; text-align: right"><?php echo $cols->item(3)->nodeValue ?></td>
