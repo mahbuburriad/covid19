@@ -27,6 +27,7 @@ $last_seven_days_case_report = 0;
 $last_update = 0;
 $activeCases_report = 0;
 
+
 // Total Cases Calculation
 foreach($data as $key => $value){
     $total_confirmed = $total_confirmed + $value[$days_count]['confirmed'];
