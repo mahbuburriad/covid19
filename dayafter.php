@@ -1,5 +1,5 @@
 <?php
-$day = 0;
+$day = 2;
 include "includes/realtimeData.php";
 ?>
 
@@ -501,17 +501,6 @@ include "includes/realtimeData.php";
     });
 
 </script>
-
-<script>
-    $.ajax({
-        url: "index",
-        success: function(data) {
-            $(data).contents().appendTo("body");
-        }
-    });
-</script>
-
-
 </body>
 
 </html>

@@ -1,6 +1,5 @@
 <?php
-$day = 0;
-include "includes/realtimeData.php";
+include "includes/functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -135,8 +134,10 @@ include "includes/realtimeData.php";
     <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic</div>
     <center>
 
-        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Updated
-            : <?php echo $last_update; ?></div>
+        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Updated : <?php
+            $date = date_create($last_update);
+            echo date_format($date, "F d, Y");
+            ?></div>
 
     </center>
 
@@ -176,12 +177,12 @@ include "includes/realtimeData.php";
                         <div class="row">
                             <div class="col-md-6">
                                 <span class="number-table"
-                                      style="color: #8080FF;"><?php echo number_format($mild_condition) ?></span><br>
-                                <span style="font-size: 13px;">in Mild Condition</span>
+                                      style="color: #8080FF;"><?php echo number_format($new_confirmed_cases) ?></span><br>
+                                <span style="font-size: 13px;">New Confirmed Cases</span>
                             </div>
                             <div class="col-md-6">
-                                <span class="number-table"><?php echo number_format($serious) ?></span><br>
-                                <span style="font-size: 13px;">Serious or Critical</span>
+                                <span class="number-table"><?php echo number_format($last_seven_days_case_report) ?></span><br>
+                                <span style="font-size: 13px;">Last 7 Days Cases</span>
                             </div>
                         </div>
 
@@ -226,7 +227,7 @@ include "includes/realtimeData.php";
                 <div class="card">
                     <h5 class="card-header title-case">Recovered Statistics</h5>
                     <div class="card-body">
-                        <h5 class="card-title number-table-main"><?php echo $new_recovered_cases ?></h5>
+                        <h5 class="card-title number-table-main"><?php echo number_format($new_recovered_cases) ?></h5>
                         <p style="color: #222">New Recovered Cases since Yesterday</p>
                     </div>
                 </div>
@@ -236,7 +237,7 @@ include "includes/realtimeData.php";
                 <div class="card">
                     <h5 class="card-header title-case">Death Statistics</h5>
                     <div class="card-body">
-                        <h5 class="card-title number-table-main"><?php echo $new_death_cases ?></h5>
+                        <h5 class="card-title number-table-main"><?php echo number_format($new_death_cases) ?></h5>
                         <p style="color: #222">New Death Cases since Yesterday</p>
                     </div>
                 </div>
@@ -257,22 +258,14 @@ include "includes/realtimeData.php";
                cellspacing="0" width="100%">
             <thead style="color: #666666">
             <tr>
-                <th>Country,<br/>Other</th>
-                <th>Total<br/>Cases</th>
-                <th>New<br/>Cases</th>
-                <th>Total<br/>Deaths</th>
-                <th>New<br/>Deaths</th>
-                <th>Total<br/>Recovered</th>
-                <th>New<br/>Recovered</th>
-                <th>Active<br/>Cases</th>
-                <th>Serious,<br/>Critical</th>
-                <th>Tot&nbsp;Cases/<br/>1M pop</th>
-                <th>Deaths/<br/>1M pop</th>
-                <th>Total<br/>Tests</th>
-                <th>Tests/<br/>
-                    <nobr>1M pop</nobr>
-                </th>
-                <th>Population</th>
+                <th>Country</th>
+                <th>Total Cases</th>
+                <th>New Cases</th>
+                <th>Total Death</th>
+                <th>New Death</th>
+                <th>Total Recovered</th>
+                <th>New Recovered</th>
+                <th>Active Cases</th>
 
             </tr>
             </thead>
@@ -284,61 +277,78 @@ include "includes/realtimeData.php";
 ">
                 <td>World</td>
                 <td style="text-align: right"><?php echo number_format($total_confirmed) ?></td>
-                <td style="text-align: right;"><?php echo $new_confirmed_cases ?></td>
+                <td style="text-align: right;"><?php echo "+" . number_format($new_confirmed_cases) ?></td>
                 <td style="text-align: right"><?php echo number_format($total_deaths) ?></td>
-                <td style="text-align: right;"><?php echo $new_death_cases ?></td>
+                <td style="text-align: right;"><?php echo "+" . number_format($new_death_cases) ?></td>
                 <td style="text-align: right"><?php echo number_format($total_recovered) ?></td>
-                <td style="text-align: right;"><?php echo $new_recovered_cases ?></td>
-                <td style="text-align: right"><?php echo number_format($currently_infected_patient) ?></td>
-                <td style="text-align: right"><?php echo number_format($serious) ?></td>
-                <td style="text-align: right"><?php echo $tot_cases ?></td>
-                <td style="text-align: right"><?php echo $death1m ?></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td style="text-align: right"><?php echo "+" . number_format($new_recovered_cases) ?></td>
+                <td style="text-align: right"><?php echo number_format($activeCases_report) ?></td>
             </tr>
             <?php
-            foreach ($rows as $row) {
-                $cols = $row->getElementsByTagName('td');
-                if (!empty($cols->item(0)->nodeValue)) {
-                    if ($cols->item(2)->nodeValue == $cols->item(6)->nodeValue) {
-                        echo "<tr style='background: #EAF7D5;'>";
-                    } elseif ($cols->item(8)->nodeValue == 0) {
-                        echo "<tr style='background: #F0F0F0;'>";
-                    } else {
-                        echo "<tr>";
-                    }
-                    ?>
-                    <td scope="row"><a target="_blank" style="color: #337ab7; /*text-decoration: none;*/"
-                                       href="country?country=<?php echo $cols->item(1)->nodeValue ?>"><?php echo $cols->item(1)->nodeValue ?></a></td>
-                    <td style="text-align: right;"><?php echo $cols->item(2)->nodeValue ?></td>
-                    <?php if (!empty($cols->item(3)->nodeValue)) { ?>
-                        <td style="background: #FFEEAA; text-align: right"><?php echo $cols->item(3)->nodeValue ?></td>
-                    <?php } else { ?>
-                        <td style="text-align: right"><?php echo $cols->item(3)->nodeValue ?></td>
-                    <?php } ?>
-                    <td style="text-align: right;"><?php echo $cols->item(4)->nodeValue ?></td>
-                    <?php if (!empty($cols->item(5)->nodeValue)) { ?>
-                        <td style="background: red; color: white;  text-align: right"><?php echo $cols->item(5)->nodeValue ?></td>
-                    <?php } else { ?>
-                        <td style="text-align: right"><?php echo $cols->item(5)->nodeValue ?></td>
-                    <?php } ?>
+            $i = 0;
+            foreach ($data as $key => $value) {
 
-                    <td style="text-align: right;"><?php echo $cols->item(6)->nodeValue ?></td>
-                    <?php if (!empty($cols->item(7)->nodeValue)) { ?>
-                        <td style="text-align: right; background-color:#c8e6c9; color:#000"><?php echo $cols->item(7)->nodeValue ?></td>
-                    <?php } else { ?>
-                        <td style="text-align: right"><?php echo $cols->item(7)->nodeValue ?></td>
-                    <?php } ?>
-                    <td style="text-align: right;"><?php echo $cols->item(8)->nodeValue ?></td>
-                    <td style="text-align: right;"><?php echo $cols->item(9)->nodeValue ?></td>
-                    <td style="text-align: right;"><?php echo $cols->item(10)->nodeValue ?></td>
-                    <td style="text-align: right;"><?php echo $cols->item(11)->nodeValue ?></td>
-                    <td style="text-align: right;"><?php echo $cols->item(12)->nodeValue ?></td>
-                    <td style="text-align: right;"><?php echo $cols->item(13)->nodeValue ?></td>
-                    <td style="text-align: right;"><?php echo $cols->item(14)->nodeValue ?></td>
-                    </tr>
-                <?php }
+                $newConfirm = $value[$days_count]['confirmed'] - $value[$days_count_prev]['confirmed'];
+                $newDeath = $value[$days_count]['deaths'] - $value[$days_count_prev]['deaths'];
+                $newRecovered = $value[$days_count]['recovered'] - $value[$days_count_prev]['recovered'];
+                $activeCase = $value[$days_count]['confirmed'] - $value[$days_count]['deaths'] - $value[$days_count]['recovered'];
+                ?>
+                <?php if ($value[$days_count]['confirmed'] == $value[$days_count]['recovered']) {
+                    echo "<tr style='background: #EAF7D5;'>";
+                } elseif ($activeCase == 0) {
+                    echo "<tr style='background: #F0F0F0;'>";
+                } else {
+                    echo "<tr>";
+                }
+                ?>
+                <th scope="row"><a target="_blank" style="color: #337ab7; /*text-decoration: none;*/"
+                                   href="country?country=<?php echo $key ?>"><?php echo $key ?></a></th>
+                <td style="text-align: right">
+                    <?php echo number_format($value[$days_count]['confirmed']); ?>
+                </td>
+
+                <?php if ($newConfirm != 0) { ?>
+                    <td style="background: #FFEEAA; text-align: right"><?php
+                        if ($newConfirm > 0) {
+                            echo "+" . number_format($newConfirm);
+                        } else {
+                            echo "-" . number_format($newConfirm);
+                        }
+
+                        ?></td>
+                <?php } else {
+                    echo "
+                    <td style='text-align: right'></td>";
+                } ?>
+
+                <td style="text-align: right"><?php echo number_format($value[$days_count]['deaths']); ?></td>
+                <?php if ($newDeath != 0 && $newConfirm > 0) {
+                    ?>
+                    <td style="background: red; color: white; text-align: right"><?php
+
+                        echo "+" . number_format($newDeath);
+                        ?></td>
+                <?php } else {
+                    echo "
+                    <td style='text-align: right'></td>";
+                } ?>
+                <td style="text-align: right"><?php echo number_format($value[$days_count]['recovered']); ?></td>
+                <?php
+                if ($newRecovered != 0 && $newRecovered > 0) {
+                    ?>
+                    <td style="text-align: right; background-color:#c8e6c9; color:#000"><?php
+
+                        echo "+" . number_format($newRecovered);
+                        ?></td>
+                    <?php
+                } else {
+                    echo "<td></td>";
+                }
+                ?>
+                <td style="text-align: right"><?php echo number_format($activeCase); ?></td>
+
+                </tr>
+                <?php $i++;
             } ?>
 
             </tr>
@@ -347,18 +357,12 @@ include "includes/realtimeData.php";
             <tr>
                 <th style="text-align: right">Total:</th>
                 <th style="text-align: right"><?php echo number_format($total_confirmed) ?></th>
-                <th style="text-align: right; background: #FFEEAA;"><?php echo $new_confirmed_cases ?></th>
+                <th style="text-align: right; background: #FFEEAA;"><?php echo "+" . number_format($new_confirmed_cases) ?></th>
                 <th style="text-align: right"><?php echo number_format($total_deaths) ?></th>
-                <th style="text-align: right; background: red; color: white;"><?php echo $new_death_cases ?></th>
+                <th style="text-align: right; background: red; color: white;"><?php echo "+" . number_format($new_death_cases) ?></th>
                 <th style="text-align: right"><?php echo number_format($total_recovered) ?></th>
-                <th style="text-align: right; background-color:#c8e6c9; color:#000"><?php echo $new_recovered_cases ?></th>
-                <th style="text-align: right"><?php echo number_format($currently_infected_patient) ?></th>
-                <th style="text-align: right"><?php echo number_format($serious) ?></th>
-                <th style="text-align: right"><?php echo $tot_cases ?></th>
-                <th style="text-align: right"><?php echo $death1m ?></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th style="text-align: right; background-color:#c8e6c9; color:#000"><?php echo "+" . number_format($new_recovered_cases) ?></th>
+                <th style="text-align: right"><?php echo number_format($activeCases_report) ?></th>
             </tr>
 
             </tfoot>
@@ -500,15 +504,6 @@ include "includes/realtimeData.php";
 
     });
 
-</script>
-
-<script>
-    $.ajax({
-        url: "index",
-        success: function(data) {
-            $(data).contents().appendTo("body");
-        }
-    });
 </script>
 
 

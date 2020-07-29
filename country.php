@@ -1,4 +1,5 @@
 <?php
+$day = 0;
 include "includes/realtimeData.php";
 
 if (isset($_GET['country'])) {

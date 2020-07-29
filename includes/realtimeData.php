@@ -4,7 +4,7 @@ $html = file_get_contents($url);
 $dom = new domDocument;
 @$dom->loadHTML($html);
 $tables = $dom->getElementsByTagName('table');
-$rows = $tables->item(0)->getElementsByTagName('tr');
+$rows = $tables->item($day)->getElementsByTagName('tr');
 
 $finder = new DomXPath($dom);
 $classname = 'font-size:13px; color:#999; margin-top:5px; text-align:center';
