@@ -135,8 +135,7 @@ include "includes/realtimeData.php";
     <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic</div>
     <center>
 
-        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Updated
-            : <?php echo $last_update; ?></div>
+        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center"><?php echo $last_update; ?></div>
 
     </center>
 
@@ -219,7 +218,6 @@ include "includes/realtimeData.php";
             </div>
         </div>
         <div style="margin-top:50px;"></div>
-
 
         <div class="row">
             <div class="col-md-6">
@@ -501,16 +499,6 @@ include "includes/realtimeData.php";
     });
 
 </script>
-
-<script>
-    $.ajax({
-        url: "index",
-        success: function(data) {
-            $(data).contents().appendTo("body");
-        }
-    });
-</script>
-
 
 </body>
 

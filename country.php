@@ -2,6 +2,19 @@
 $day = 0;
 include "includes/realtimeData.php";
 
+class BanglaConverter {
+    public static $bn = array("১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "০");
+    public static $en = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
+
+    public static function bn2en($number) {
+        return str_replace(self::$bn, self::$en, $number);
+    }
+
+    public static function en2bn($number) {
+        return str_replace(self::$en, self::$bn, $number);
+    }
+}
+
 if (isset($_GET['country'])) {
     $getcountry = $_GET['country'];
 
@@ -32,32 +45,32 @@ if (isset($_GET['country'])) {
         }
     }
 
-    $b = str_replace( ',', '', $currently_infected_patient );
-    if( is_numeric( $b ) ) {
+    $b = str_replace(',', '', $currently_infected_patient);
+    if (is_numeric($b)) {
         $currently_infected_patient = $b;
     }
 
-    $ser = str_replace( ',', '', $serious );
-    if( is_numeric( $ser  ) ) {
+    $ser = str_replace(',', '', $serious);
+    if (is_numeric($ser)) {
         $serious = $ser;
     }
 
-    $rec= str_replace( ',', '', $total_recovery );
-    if( is_numeric( $rec  ) ) {
+    $rec = str_replace(',', '', $total_recovery);
+    if (is_numeric($rec)) {
         $total_recovery = $rec;
     }
 
-    $death= str_replace( ',', '', $death );
+    $death = str_replace(',', '', $death);
 
-    $conf= str_replace( ',', '', $total_confirmed );
-    if( is_numeric( $conf  ) ) {
+    $conf = str_replace(',', '', $total_confirmed);
+    if (is_numeric($conf)) {
         $total_confirmed = $conf;
     }
 
     $mild_condition = $currently_infected_patient - $serious;
-    @$closed_cases = $total_recovery+$death;
-    @$recoveredPercentage = 100 - (($death * 100)/$closed_cases);
-    $deathPercentage = 100 - (($total_recovery * 100)/$closed_cases);
+    @$closed_cases = $total_recovery + $death;
+    @$recoveredPercentage = 100 - (($death * 100) / $closed_cases);
+    $deathPercentage = 100 - (($total_recovery * 100) / $closed_cases);
     ?>
 
     <!DOCTYPE html>
@@ -66,7 +79,7 @@ if (isset($_GET['country'])) {
 
     <head>
         <script async src="https://cdn.ampproject.org/v0.js"></script>
-        <title><?php echo $getcountry?> Data | COVID-19 Coronavirus Pandemic | Saltanat Global Limited</title>
+        <title><?php echo $getcountry ?> Data | COVID-19 Coronavirus Pandemic | Saltanat Global Limited</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
         <!-- DataTables -->
@@ -188,12 +201,12 @@ if (isset($_GET['country'])) {
 
     <body>
     <div class="container">
-        <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic <br> <span><b>Country Name: <?php echo $getcountry; ?></b></span></div>
+        <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic <br>
+            <span><b>Country Name: <?php echo $getcountry; ?></b></span></div>
 
         <div>
             <center>
-                <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Updated
-                    : <?php echo $last_update; ?></div>
+                <div style="font-size:13px; color:#999; margin-top:5px; text-align:center"><?php echo $last_update; ?></div>
 
             </center>
 
@@ -227,20 +240,20 @@ if (isset($_GET['country'])) {
                         <h5 class="card-header title-case">Active cases</h5>
                         <div class="card-body">
                             <center>
-                            <h5 class="card-title number-table-main"><?php echo number_format($currently_infected_patient) ?></h5>
-                            <p style="color: #222">Currently Infected Patients</p>
+                                <h5 class="card-title number-table-main"><?php echo number_format($currently_infected_patient) ?></h5>
+                                <p style="color: #222">Currently Infected Patients</p>
 
-                            <div class="row">
-                                <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
                                 <span class="number-table"
                                       style="color: #8080FF;"><?php echo number_format($mild_condition) ?></span><br>
-                                    <span style="font-size: 13px;">in Mild Condition</span>
+                                        <span style="font-size: 13px;">in Mild Condition</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span class="number-table"><?php echo number_format($serious) ?></span><br>
+                                        <span style="font-size: 13px;">Serious or Critical</span>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <span class="number-table"><?php echo number_format($serious) ?></span><br>
-                                    <span style="font-size: 13px;">Serious or Critical</span>
-                                </div>
-                            </div>
                             </center>
 
                         </div>
@@ -253,25 +266,25 @@ if (isset($_GET['country'])) {
                         <h5 class="card-header title-case">Closed cases</h5>
                         <div class="card-body">
                             <center>
-                            <h5 class="card-title number-table-main"><?php echo number_format($closed_cases) ?></h5>
-                            <p style="color: #222">Cases which had an outcome:</p>
+                                <h5 class="card-title number-table-main"><?php echo number_format($closed_cases) ?></h5>
+                                <p style="color: #222">Cases which had an outcome:</p>
 
-                            <div class="row">
-                                <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
                                 <span class="number-table" style="color: #8ACA2B;"
                                 ><?php echo number_format($total_recovery) ?></span>
-                                    <span>(<b><?php echo number_format($recoveredPercentage) ?></b>%)</span>
-                                    <br>
-                                    <span style="font-size: 13px;">Recovered / Discharged</span>
-                                </div>
-                                <div class="col-md-6">
+                                        <span>(<b><?php echo number_format($recoveredPercentage) ?></b>%)</span>
+                                        <br>
+                                        <span style="font-size: 13px;">Recovered / Discharged</span>
+                                    </div>
+                                    <div class="col-md-6">
                                 <span class="number-table"
                                       style="color: red;"><?php echo $death ?></span>
-                                    <span>(<b><?php echo number_format($deathPercentage) ?></b>%)</span>
-                                    <br>
-                                    <span style="font-size: 13px;">Deaths</span>
+                                        <span>(<b><?php echo number_format($deathPercentage) ?></b>%)</span>
+                                        <br>
+                                        <span style="font-size: 13px;">Deaths</span>
+                                    </div>
                                 </div>
-                            </div>
                             </center>
                         </div>
                     </div>
@@ -279,15 +292,29 @@ if (isset($_GET['country'])) {
             </div>
             <div style="margin-top:50px;"></div>
 
-
+            <?php
+            if (empty($new_recovery) && empty($new_death)) {
+                $day = 1;
+                include "includes/realtimeData.php";
+                $new_recovery = 0;
+                $new_death = 0;
+                foreach ($rows as $row) {
+                    $cols = $row->getElementsByTagName('td');
+                    if (!empty(@$cols->item(1)->nodeValue == $getcountry)) {
+                        $new_recovery = $cols->item(7)->nodeValue;
+                        $new_death = $cols->item(5)->nodeValue;
+                    }
+                }
+            }
+            ?>
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
                         <h5 class="card-header title-case">Recovered Statistics</h5>
                         <div class="card-body">
                             <center>
-                            <h5 class="card-title number-table-main"><?php echo $new_recovery ?></h5>
-                            <p style="color: #222">New Recovered Cases since Yesterday</p>
+                                <h5 class="card-title number-table-main"><?php echo $new_recovery ?></h5>
+                                <p style="color: #222">New Recovered Cases since Yesterday</p>
                             </center>
                         </div>
                     </div>
@@ -298,8 +325,8 @@ if (isset($_GET['country'])) {
                         <h5 class="card-header title-case">Death Statistics</h5>
                         <div class="card-body">
                             <center>
-                            <h5 class="card-title number-table-main"><?php echo $new_death ?></h5>
-                            <p style="color: #222">New Death Cases since Yesterday</p>
+                                <h5 class="card-title number-table-main"><?php echo $new_death ?></h5>
+                                <p style="color: #222">New Death Cases since Yesterday</p>
                             </center>
                         </div>
                     </div>
@@ -330,9 +357,10 @@ if (isset($_GET['country'])) {
                 <tbody>
                 <?php
                 include "includes/functions.php";
-                if ($getcountry=='USA'){
+                if ($getcountry == 'USA') {
                     $getcountry = 'US';
                 }
+
                 foreach ($data[$getcountry] as $bd) {
                     ?>
                     <tr>
@@ -342,6 +370,8 @@ if (isset($_GET['country'])) {
                         <td style="text-align: right"><?php echo number_format($bd['recovered']) ?></td>
                     </tr>
                 <?php } ?>
+
+
                 </tbody>
 
             </table>
@@ -372,12 +402,12 @@ if (isset($_GET['country'])) {
             data: {
                 labels: [
                     <?php
-                        foreach ($data[$getcountry] as $bd) {
+                    foreach ($data[$getcountry] as $bd) {
 //                    $date =  date_create($bd['date']);
 //                    $format = date_format($date, "F d, Y");
 //                    echo $format.",";
-                            echo $bd['date'] . ",";
-                        }
+                        echo $bd['date'] . ",";
+                    }
 
                     ?>
                 ],
@@ -402,9 +432,9 @@ if (isset($_GET['country'])) {
                     pointHitRadius: 10,
                     data: [
                         <?php
-                            foreach ($data[$getcountry] as $bd) {
-                                echo $bd['confirmed'] . ",";
-                            }
+                        foreach ($data[$getcountry] as $bd) {
+                            echo $bd['confirmed'] . ",";
+                        }
 
 
                         ?>
