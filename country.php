@@ -2,21 +2,27 @@
 $day = 0;
 include "includes/realtimeData.php";
 
-class BanglaConverter {
+class BanglaConverter
+{
     public static $bn = array("১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "০");
     public static $en = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
 
-    public static function bn2en($number) {
+    public static function bn2en($number)
+    {
         return str_replace(self::$bn, self::$en, $number);
     }
 
-    public static function en2bn($number) {
+    public static function en2bn($number)
+    {
         return str_replace(self::$en, self::$bn, $number);
     }
 }
 
 if (isset($_GET['country'])) {
     $getcountry = $_GET['country'];
+
+    $con = mysqli_connect('localhost', 'root', '', 'covid');
+    $get_data = mysqli_query($con, "Select * From data where data_country = '$getcountry' order by data_date desc");
 
     $total_confirmed = 0;
     $death = 0;
@@ -67,7 +73,7 @@ if (isset($_GET['country'])) {
         $total_confirmed = $conf;
     }
 
-    $mild_condition = $currently_infected_patient - $serious;
+    @$mild_condition = $currently_infected_patient - $serious;
     @$closed_cases = $total_recovery + $death;
     @$recoveredPercentage = 100 - (($death * 100) / $closed_cases);
     $deathPercentage = 100 - (($total_recovery * 100) / $closed_cases);
@@ -211,6 +217,7 @@ if (isset($_GET['country'])) {
             </center>
 
             <center class="content-inner">
+                <?php include "includes/menu.php" ?>
                 <div class="maincounter-wrap" style="margin-top:15px">
                     <h1>Coronavirus Cases:</h1>
                     <div class="maincounter-number">
@@ -250,7 +257,7 @@ if (isset($_GET['country'])) {
                                         <span style="font-size: 13px;">in Mild Condition</span>
                                     </div>
                                     <div class="col-md-6">
-                                        <span class="number-table"><?php echo number_format($serious) ?></span><br>
+                                        <span class="number-table"><?php echo $serious ?></span><br>
                                         <span style="font-size: 13px;">Serious or Critical</span>
                                     </div>
                                 </div>
@@ -335,14 +342,14 @@ if (isset($_GET['country'])) {
             <div style="margin-top:50px;"></div>
             </center>
 
-            <div>
-                <div class="col-sm-6">
-                    <div class="card-box">
-                        <h4 class="header-title m-t-0 m-b-30">Line Chart</h4>
-                        <canvas id="myChart" width="400" height="400"></canvas>
-                    </div>
-                </div>
-            </div>
+<!--                        <div>-->
+<!--                            <div class="col-sm-6">-->
+<!--                                <div class="card-box">-->
+<!--                                    <h4 class="header-title m-t-0 m-b-30">Line Chart</h4>-->
+<!--                                    <canvas id="myChart" width="400" height="400"></canvas>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
 
             <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -356,18 +363,24 @@ if (isset($_GET['country'])) {
                 </thead>
                 <tbody>
                 <?php
-                include "includes/functions.php";
+                // include "includes/functions.php";
                 if ($getcountry == 'USA') {
                     $getcountry = 'US';
                 }
 
-                foreach ($data[$getcountry] as $bd) {
+
+                while ($row_data = mysqli_fetch_array($get_data)) {
+                    $data_date = $row_data['data_date'];
+                    $data_confirm = $row_data['data_confirm'];
+                    $data_recovered = $row_data['data_recovered'];
+                    $data_death = $row_data['data_death'];
+
                     ?>
                     <tr>
-                        <td style="text-align: right"><?php echo $bd['date'] ?></td>
-                        <td style="text-align: right"><?php echo number_format($bd['confirmed']) ?></td>
-                        <td style="text-align: right"> <?php echo number_format($bd['deaths']) ?></td>
-                        <td style="text-align: right"><?php echo number_format($bd['recovered']) ?></td>
+                        <td style="text-align: right"><?php echo $data_date ?></td>
+                        <td style="text-align: right"><?php echo $data_confirm ?></td>
+                        <td style="text-align: right"><?php echo $data_recovered ?></td>
+                        <td style="text-align: right"><?php echo $data_death ?></td>
                     </tr>
                 <?php } ?>
 
@@ -402,13 +415,10 @@ if (isset($_GET['country'])) {
             data: {
                 labels: [
                     <?php
-                    foreach ($data[$getcountry] as $bd) {
-//                    $date =  date_create($bd['date']);
-//                    $format = date_format($date, "F d, Y");
-//                    echo $format.",";
-                        echo $bd['date'] . ",";
+                    while ($row_datad = mysqli_fetch_array($get_data)) {
+                        $date_chart = $row_datad['data_date'];
+                        echo $date_chart.",";
                     }
-
                     ?>
                 ],
                 datasets: [{
@@ -432,10 +442,10 @@ if (isset($_GET['country'])) {
                     pointHitRadius: 10,
                     data: [
                         <?php
-                        foreach ($data[$getcountry] as $bd) {
-                            echo $bd['confirmed'] . ",";
+                        while ($row_datac = mysqli_fetch_array($get_data)) {
+                            $country_chart = $row_datac['data_country'];
+                            echo $country_chart.",";
                         }
-
 
                         ?>
                     ]

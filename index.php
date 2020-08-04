@@ -137,13 +137,12 @@ include "includes/realtimeData.php";
 
         <div style="font-size:13px; color:#999; margin-top:5px; text-align:center"><?php echo $last_update; ?></div>
 
+
+
     </center>
 
     <center class="content-inner">
-        <!--        <div style="margin-top:20px; text-align:center; font-size:14px">-->
-        <!--            <a href="/">Global</a> - -->
-        <!--            <a href="/bangladesh">Bangladesh</a>-->
-        <!--        </div>-->
+        <?php include "includes/menu.php" ?>
         <div class="maincounter-wrap" style="margin-top:15px">
             <h1>Coronavirus Cases:</h1>
             <div class="maincounter-number">
