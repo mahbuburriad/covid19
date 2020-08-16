@@ -285,10 +285,6 @@ include "includes/realtimeData.php";
 
 
     <div>
-        <?php
-        $day = 0;
-        include "includes/realtimeData.php";
-        ?>
 
         <h1>Data Table</h1>
 

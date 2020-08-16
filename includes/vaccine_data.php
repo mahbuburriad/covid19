@@ -4,7 +4,7 @@ $html = file_get_contents($url);
 $dom = new domDocument;
 @$dom->loadHTML($html);
 $g_ai0_6 = $dom->getElementById('g-ai0-6');
-$rows = $g_ai0_6->getElementsByTagName('p');
+$pre = $g_ai0_6->getElementsByTagName('p');
 
 $g_ai0_7 = $dom->getElementById('g-ai0-7');
 $p1 = $g_ai0_7->getElementsByTagName('p');
@@ -28,7 +28,7 @@ $phase3 = null;
 $approval = null;
 $time = null;
 
-foreach ($rows as $row){
+foreach ($pre as $row){
     $preclinical =  $row->nodeValue;
 }
 
