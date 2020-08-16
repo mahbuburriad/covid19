@@ -72,6 +72,4 @@ foreach ($nodes as $node) {
     $recoveredPercentage = 100 - (($total_deaths * 100)/$closed_cases);
     $deathPercentage = 100 - (($total_recovered * 100)/$closed_cases);
 
-
-
 ?>

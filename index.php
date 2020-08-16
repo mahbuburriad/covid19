@@ -138,7 +138,6 @@ include "includes/realtimeData.php";
         <div style="font-size:13px; color:#999; margin-top:5px; text-align:center"><?php echo $last_update; ?></div>
 
 
-
     </center>
 
     <center class="content-inner">
@@ -216,6 +215,7 @@ include "includes/realtimeData.php";
                 </div>
             </div>
         </div>
+
         <div style="margin-top:50px;"></div>
 
         <div class="row">
@@ -240,6 +240,44 @@ include "includes/realtimeData.php";
             </div>
         </div>
         <div style="margin-top:50px;"></div>
+
+        <div class="row">
+            <div class="col-md-12 card">
+                <h1>Coronavirus Vaccine Tracker</h1>
+                <?php
+                include 'includes/vaccine_data.php';
+                ?>
+                <div>Last <?php echo $time ?></div>
+                <br>
+
+                <div class="row">
+
+                        <div class="col-md-2" style="background: #B6B6B6; color: white">
+                            <p>PRECLINICAL <br>
+                                <?php echo $preclinical ?> + <br>Vaccines <br> not yet in <br> human trials</p>
+                        </div>
+                        <div class="col-md-2" style="background: #75ACC8; color: white">
+                            <p>PHASE 1 <br> <?php echo $phase1 ?> <br>Vaccines<br> testing safety<br> and dosage</p>
+                        </div>
+                        <div class="col-md-3" style="background: #3B89B1; color: white">
+                            <p>PHASE 2 <br> <?php echo $phase2 ?> <br>Vaccines <br>in expanded<br> safety trials</p>
+                        </div>
+                        <div class="col-md-3" style="background: #006699; color: white">
+                            <p>PHASE 3 <br> <?php echo $phase3 ?> <br>Vaccines<br> in large-scale<br> efficacy tests
+                            </p>
+                        </div>
+                        <div class="col-md-2" style="background: #52887D; color: white">
+                            <p>APPROVAL <br> <?php echo $approval ?> <br>Vaccines<br> approved for early<br> or limited
+                                use</p>
+                        </div>
+                    </div>
+
+            </div>
+
+        </div>
+
+        <div style="margin-top:50px;"></div>
+
     </center>
 
 
@@ -247,6 +285,10 @@ include "includes/realtimeData.php";
 
 
     <div>
+        <?php
+        $day = 0;
+        include "includes/realtimeData.php";
+        ?>
 
         <h1>Data Table</h1>
 
@@ -307,7 +349,8 @@ include "includes/realtimeData.php";
                     }
                     ?>
                     <td scope="row"><a target="_blank" style="color: #337ab7; /*text-decoration: none;*/"
-                                       href="country?country=<?php echo $cols->item(1)->nodeValue ?>"><?php echo $cols->item(1)->nodeValue ?></a></td>
+                                       href="country?country=<?php echo $cols->item(1)->nodeValue ?>"><?php echo $cols->item(1)->nodeValue ?></a>
+                    </td>
                     <td style="text-align: right;"><?php echo $cols->item(2)->nodeValue ?></td>
                     <?php if (!empty($cols->item(3)->nodeValue)) { ?>
                         <td style="background: #FFEEAA; text-align: right"><?php echo $cols->item(3)->nodeValue ?></td>
