@@ -22,7 +22,7 @@ if (isset($_GET['country'])) {
     $getcountry = $_GET['country'];
 
     $con = mysqli_connect('localhost', 'root', '', 'covid');
-    $get_data = mysqli_query($con, "Select * From data where data_country = '$getcountry' order by data_date desc");
+    $get_data = mysqli_query($con, "Select * From data where data_country = '$getcountry' order by data_date desc"); //modify - secure
 
     $total_confirmed = 0;
     $death = 0;
