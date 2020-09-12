@@ -1,5 +1,6 @@
 <?php
 $day = 0;
+$data = 'World';
 include "includes/realtimeData.php";
 ?>
 

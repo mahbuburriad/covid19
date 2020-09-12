@@ -28,7 +28,7 @@ foreach ($nodes as $node) {
 
     foreach ($rows as $row) {
         $cols = $row->getElementsByTagName('td');
-        if (!empty(@$cols->item(1)->nodeValue == 'World')) {
+        if (!empty(@$cols->item(1)->nodeValue == $data)) {
             $total_confirmed = $cols->item(2)->nodeValue;
             $new_confirmed_cases = $cols->item(3)->nodeValue;
             $total_deaths = $cols->item(4)->nodeValue;

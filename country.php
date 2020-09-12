@@ -2,7 +2,7 @@
 $day = 0;
 include "includes/realtimeData.php";
 
-class BanglaConverter
+/*class BanglaConverter
 {
     public static $bn = array("১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "০");
     public static $en = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
@@ -16,7 +16,7 @@ class BanglaConverter
     {
         return str_replace(self::$en, self::$bn, $number);
     }
-}
+}*/
 
 if (isset($_GET['country'])) {
     $getcountry = $_GET['country'];
