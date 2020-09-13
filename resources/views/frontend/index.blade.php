@@ -116,37 +116,61 @@
                         <div style="margin-top:50px;"></div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="card">
-                                    <h5 class="card-header title-case">Recovered Statistics</h5>
+                                    <h5 class="card-header title-case">New Statistics</h5>
                                     <div class="card-body">
-                                        <h5 class="card-title number-table-main">
+                                        <div class="row">
+                                            <div class="col-md-3">
+
+                                        <h5 class="card-title number-table-main pull-left">
+                                            @if(!empty($bangladesh[0]->new_cases))
+                                                +{{is_numeric($bangladesh[0]->new_cases) ? number_format($bangladesh[0]->new_cases) : $bangladesh[0]->new_cases}}
+                                            @else
+                                                +{{is_numeric($yesterday[0]->new_cases) ? number_format($yesterday[0]->new_cases) : $yesterday[0]->new_cases}}
+                                            @endif
+                                        </h5>
+
+                                        <p class="pull-left" style="color: #222">New Confirmed</p>
+                                            </div>
+                                            <div class="col-md-3">
+
+                                        <h5 class="card-title number-table-main pull-right">
                                             @if(!empty($bangladesh[0]->new_recovered))
                                                 +{{is_numeric($bangladesh[0]->new_recovered) ? number_format($bangladesh[0]->new_recovered) : $bangladesh[0]->new_recovered}}
                                             @else
                                                 +{{is_numeric($yesterday[0]->new_recovered) ? number_format($yesterday[0]->new_recovered) : $yesterday[0]->new_recovered}}
                                             @endif
                                         </h5>
-                                        <p style="color: #222">New Recovered Cases since Yesterday</p>
+                                        <p class="pull-right" style="color: #222">New Recovered</p>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <h5 class="card-title number-table-main">
+                                                    @if(!empty($bangladesh[0]->new_deaths))
+                                                        +{{ is_numeric($bangladesh[0]->new_deaths) ?  number_format($bangladesh[0]->new_deaths) : $bangladesh[0]->new_deaths}}
+                                                    @else
+                                                        +{{ is_numeric($yesterday[0]->new_deaths) ?  number_format($yesterday[0]->new_deaths) : $yesterday[0]->new_deaths}}
+                                                    @endif
+                                                </h5>
+                                                <p style="color: #222">New Death</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                    <h5 class="card-title number-table-main">
+                                                        @if(!empty($bangladesh[0]->total_tests))
+                                                            {{ is_numeric($bangladesh[0]->total_tests) ?  number_format($bangladesh[0]->total_tests) : $bangladesh[0]->total_tests}}
+                                                        @else
+                                                            {{ is_numeric($yesterday[0]->total_tests) ?  number_format($yesterday[0]->total_tests) : $yesterday[0]->total_tests}}
+                                                        @endif
+                                                    </h5>
+                                                <p style="color: #222">Total Cases</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <h5 class="card-header title-case">Death Statistics</h5>
-                                    <div class="card-body">
-                                        <h5 class="card-title number-table-main">
-                                            @if(!empty($bangladesh[0]->new_deaths))
-                                                +{{ is_numeric($bangladesh[0]->new_deaths) ?  number_format($bangladesh[0]->new_deaths) : $bangladesh[0]->new_deaths}}
-                                            @else
-                                                +{{ is_numeric($yesterday[0]->new_deaths) ?  number_format($yesterday[0]->new_deaths) : $yesterday[0]->new_deaths}}
-                                            @endif
-                                        </h5>
-                                        <p style="color: #222">New Death Cases since Yesterday</p>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                         <div style="margin-top:50px;"></div>
                     </div>
@@ -224,23 +248,32 @@
                         <div style="margin-top:50px;"></div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="card">
-                                    <h5 class="card-header title-case">Recovered Statistics</h5>
-                                    <div class="card-body">
-                                        <h5 class="card-title number-table-main">+{{number_format($total[0]->new_recovered)}}</h5>
-                                        <p style="color: #222">New Recovered Cases since Yesterday</p>
-                                    </div>
-                                </div>
-                            </div>
+                                    <h5 class="card-header title-case">New Statistics</h5>
+                                    <div class="row">
 
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <h5 class="card-header title-case">Death Statistics</h5>
-                                    <div class="card-body">
-                                        <h5 class="card-title number-table-main">+{{number_format($total[0]->new_deaths)}}</h5>
-                                        <p style="color: #222">New Death Cases since Yesterday</p>
+
+                                    <div class="col-md-4">
+                                        <div class="card-body">
+                                            <h5 class="card-title number-table-main">+{{number_format($total[0]->new_cases)}}</h5>
+                                            <p style="color: #222">New Confirmed</p>
+                                        </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="card-body">
+                                            <h5 class="card-title number-table-main">+{{number_format($total[0]->new_recovered)}}</h5>
+                                            <p style="color: #222">New Recovered</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card-body">
+                                            <h5 class="card-title number-table-main">+{{number_format($total[0]->new_deaths)}}</h5>
+                                            <p style="color: #222">New Death</p>
+                                        </div>
+                                    </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -255,7 +288,7 @@
 
                 <h1>Data Table</h1>
 
-                <table id="dataTable" class="table table-bordered row-border hover order-column"
+                <table id="dataTable" class="table table-responsive table-bordered row-border hover order-column"
                        cellspacing="0" width="100%">
                     <thead style="color: #666666">
                     <tr>
@@ -374,7 +407,8 @@
                 lengthChange: false,
                 paging: false,
                 info: false,
-                fixedHeader: true
+                fixedHeader: true,
+                responsive : true
             });
             $('#dataTable tbody tr').each(function (i) {
                 if (i == 0) {
