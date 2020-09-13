@@ -400,6 +400,7 @@
 @endsection
 
 @section('script')
+{{--    <script src="{{url('https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js')}}"></script>--}}
     <script type="text/javascript">
         $(document).ready(function () {
             $('#dataTable').DataTable({
@@ -407,7 +408,10 @@
                 lengthChange: false,
                 paging: false,
                 info: false,
-                fixedHeader: true,
+                fixedHeader: {
+                    header: true,
+                    footer: false
+                },
                 responsive : true
             });
             $('#dataTable tbody tr').each(function (i) {
