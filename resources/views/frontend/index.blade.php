@@ -288,7 +288,7 @@
 
                 <h1>Data Table</h1>
 
-                <table id="dataTable" class="table table-responsive table-bordered row-border hover order-column"
+                <table id="dataTable" class="table table-bordered row-border hover order-column"
                        cellspacing="0" width="100%">
                     <thead style="color: #666666">
                     <tr>
