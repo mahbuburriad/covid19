@@ -14,8 +14,6 @@ class LiveController extends Controller
 {
     public function today()
     {
-        Artisan::call('view:clear');
-        Artisan::call('route:clear');
         $url = "https://www.worldometers.info/coronavirus/";
         $html = file_get_contents($url);
         $dom = new domDocument;
@@ -135,8 +133,6 @@ class LiveController extends Controller
                 }
             }
         }
-        Artisan::call('route:cache');
-        Artisan::call('view:cache');
 
         echo "created";
     }
