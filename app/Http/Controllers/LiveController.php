@@ -146,7 +146,7 @@ class LiveController extends Controller
         $tables = $dom->getElementsByTagName('table');
         $rows = $tables->item(1)->getElementsByTagName('tr');
 
-        Live::truncate();
+        Yesterday::truncate();
 
         foreach ($rows as $row) {
             $cols = $row->getElementsByTagName('td');
@@ -238,7 +238,7 @@ class LiveController extends Controller
 
 
 
-                    Live::create([
+                    Yesterday::create([
                         'country' => $country,
                         'total_cases' => $total_cases,
                         'new_cases' => $new_cases,
