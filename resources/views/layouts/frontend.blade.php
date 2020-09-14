@@ -117,9 +117,25 @@
 </head>
 <body>
 
+<section>
+    <div class="container-fluid">
+    <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic @yield('country') </div>
+
+    <center>
+        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: {{date('F d, Y, G:i', strtotime($total[0]->created_at))}} UTC</div>
+    </center>
+
+    @include('includes.menu')
+    </div>
+</section>
+
 @yield('content')
 
-
+<footer>
+    <center>
+        <div class="footer_text">© Copyright Saltanat Global Limited - All rights reserved</div>
+    </center>
+</footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="{{url('https://code.jquery.com/jquery-3.5.1.slim.min.js')}}" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

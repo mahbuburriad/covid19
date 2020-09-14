@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LiveController;
+use App\Http\Controllers\FrontendController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +21,9 @@ use App\Http\Controllers\LiveController;
 Route::get('/live', [LiveController::class, 'today'])->name('live');
 Route::get('/yesterday', [LiveController::class, 'yesterday'])->name('yesterday');
 Route::get('/data', [LiveController::class, 'data'])->name('data');
-Route::get('/', [LiveController::class, 'index'])->name('index');
-Route::get('country/{data}', [LiveController::class, 'country'])->name('country');
+Route::get('/bangladeshDistrictData', [LiveController::class, 'bangladeshDistrictData'])->name('bangladeshDistrictData');
+
+
+Route::get('/', [FrontendController::class, 'index'])->name('index');
+Route::get('yesterdayData', [FrontendController::class, 'yesterday'])->name('yesterdayData');
+Route::get('country/{data}', [FrontendController::class, 'country'])->name('country');

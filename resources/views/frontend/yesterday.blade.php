@@ -1,21 +1,11 @@
 @extends('layouts.frontend')
 
 @section('style')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
-          integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous"/>
     <style>
         .world {
             background-color: #DFDFDF !important;
             color: #363945 !important;
             font-weight: normal !important;
-        }
-
-        .fa-arrow-up {
-            color: red;
-        }
-
-        .fa-arrow-down {
-            color: green;
         }
     </style>
 @endsection
@@ -23,6 +13,7 @@
 
     <section>
         <div class="container-fluid">
+
             <center class="content-inner">
                 <div class="row">
                     <div class="col-md-6">
@@ -112,36 +103,14 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-3">
-
                                                 <h5 class="card-title number-table-main pull-left">
-                                                    @if(!empty($bangladesh[0]->new_cases))
-                                                        +{{is_numeric($bangladesh[0]->new_cases) ? number_format($bangladesh[0]->new_cases) : $bangladesh[0]->new_cases}}
-
-                                                        @if($bangladesh[0]->new_cases > $yesterday[0]->new_cases)
-                                                            <i class="fas fa-arrow-up fa-xs"></i>
-                                                        @else
-                                                            <i class="fas fa-arrow-down fa-xs"></i>
-                                                        @endif
-                                                    @else
-                                                        +{{is_numeric($yesterday[0]->new_cases) ? number_format($yesterday[0]->new_cases) : $yesterday[0]->new_cases}}
-                                                    @endif
+                                                    +{{is_numeric($bangladesh[0]->new_cases) ? number_format($bangladesh[0]->new_cases) : $bangladesh[0]->new_cases}}
                                                 </h5>
-
                                                 <p class="pull-left" style="color: #222">New Confirmed</p>
                                             </div>
                                             <div class="col-md-3">
-
                                                 <h5 class="card-title number-table-main pull-right">
-                                                    @if(!empty($bangladesh[0]->new_recovered))
-                                                        +{{is_numeric($bangladesh[0]->new_recovered) ? number_format($bangladesh[0]->new_recovered) : $bangladesh[0]->new_recovered}}
-                                                        @if($bangladesh[0]->new_recovered > $yesterday[0]->new_recovered)
-                                                            <i class="fas fa-arrow-up fa-xs"></i>
-                                                        @else
-                                                            <i class="fas fa-arrow-down fa-xs"></i>
-                                                        @endif
-                                                    @else
-                                                        +{{is_numeric($yesterday[0]->new_recovered) ? number_format($yesterday[0]->new_recovered) : $yesterday[0]->new_recovered}}
-                                                    @endif
+                                                    +{{is_numeric($bangladesh[0]->new_recovered) ? number_format($bangladesh[0]->new_recovered) : $bangladesh[0]->new_recovered}}
                                                 </h5>
                                                 <p class="pull-right" style="color: #222">New Recovered</p>
                                             </div>
@@ -150,11 +119,6 @@
                                                 <h5 class="card-title number-table-main">
                                                     @if(!empty($bangladesh[0]->new_deaths))
                                                         +{{ is_numeric($bangladesh[0]->new_deaths) ?  number_format($bangladesh[0]->new_deaths) : $bangladesh[0]->new_deaths}}
-                                                        @if($bangladesh[0]->new_deaths > $yesterday[0]->new_deaths)
-                                                            <i class="fas fa-arrow-up fa-xs"></i>
-                                                        @else
-                                                            <i class="fas fa-arrow-down fa-xs"></i>
-                                                        @endif
                                                     @else
                                                         +{{ is_numeric($yesterday[0]->new_deaths) ?  number_format($yesterday[0]->new_deaths) : $yesterday[0]->new_deaths}}
                                                     @endif
@@ -163,9 +127,13 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <h5 class="card-title number-table-main">
-                                                    {{ is_numeric($bangladesh[0]->total_tests - $yesterday[0]->total_tests) ?  number_format($bangladesh[0]->total_tests - $yesterday[0]->total_tests) : $bangladesh[0]->total_tests - $yesterday[0]->total_tests}}
+                                                    @if(!empty($bangladesh[0]->total_tests))
+                                                        {{ is_numeric($bangladesh[0]->total_tests) ?  number_format($bangladesh[0]->total_tests) : $bangladesh[0]->total_tests}}
+                                                    @else
+                                                        {{ is_numeric($yesterday[0]->total_tests) ?  number_format($yesterday[0]->total_tests) : $yesterday[0]->total_tests}}
+                                                    @endif
                                                 </h5>
-                                                <p style="color: #222">New Test</p>
+                                                <p style="color: #222">Total Cases</p>
                                             </div>
                                         </div>
                                     </div>
@@ -314,13 +282,27 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <tr class="world">
+                        <td style="text-align: left">World</td>
+                        <td>{{number_format($total[0]->total_cases)}}</td>
+                        <td>{{number_format($total[0]->new_cases)}}</td>
+                        <td>{{number_format($total[0]->total_deaths)}}</td>
+                        <td>{{number_format($total[0]->new_deaths)}}</td>
+                        <td>{{number_format($total[0]->total_recovered)}}</td>
+                        <td>{{number_format($total[0]->new_recovered)}}</td>
+                        <td>{{number_format($total[0]->active_cases)}}</td>
+                        <td>{{number_format($total[0]->serious)}}</td>
+                        <td>{{number_format($total[0]->tot_cases)}}</td>
+                        <td>{{number_format($total[0]->death1m)}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                     @foreach($data as $all)
                         <tr @if($all->total_cases == $all->total_recovered)
                             style="background: #EAF7D5;"
                             @elseif ($all->active_cases == 0)
                             style="background: #F0F0F0;"
-                            @elseif($all->country == 'World')
-                                class="world"
                             @else
                             style="background: white;"
                             @endif>
@@ -413,5 +395,4 @@
 
         });
     </script>
-
 @endsection
