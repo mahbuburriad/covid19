@@ -6,6 +6,7 @@ use App\Models\Data;
 use App\Models\Live;
 use App\Models\state;
 use App\Models\Yesterday;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -29,7 +30,10 @@ class FrontendController extends Controller
 
         $total = Live::where('country', $data)->get();
         $yesterday = Yesterday::where('country', $data)->get();
-        $states = state::where('country', $data)->get();
+        $states = state::where([
+            'country'=> $data,
+            'date' => Carbon::today()
+        ])->get();
 
         if ($data == 'USA'){
             $data = 'US';
