@@ -293,7 +293,7 @@
                             @elseif($all->country == 'World')
                             class="world"
                             @endif>
-                            <td style="text-align: left"><a href="{{route('country', $all->country)}}">{{$all->country}}</a></td>
+                            <td style="text-align: left"><a @if($all->country != 'World') href="{{route('country', $all->country)}} @endif">{{$all->country}}</a></td>
                             <td>{{!is_numeric($all->total_cases) ? $all->total_cases : number_format($all->total_cases)}}</td>
                             <td @if (!empty($all->new_cases)) style="background: #FFEEAA;" @endif>{{!is_numeric($all->new_cases) ? $all->new_cases : number_format($all->new_cases)}}</td>
                             <td>{{!is_numeric($all->total_deaths) ? $all->total_deaths : number_format($all->total_deaths)}}</td>
