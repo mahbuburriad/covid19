@@ -285,29 +285,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="world">
-                        <td style="text-align: left">World</td>
-                        <td>{{number_format($total[0]->total_cases)}}</td>
-                        <td>{{number_format($total[0]->new_cases)}}</td>
-                        <td>{{number_format($total[0]->total_deaths)}}</td>
-                        <td>{{number_format($total[0]->new_deaths)}}</td>
-                        <td>{{number_format($total[0]->total_recovered)}}</td>
-                        <td>{{number_format($total[0]->new_recovered)}}</td>
-                        <td>{{number_format($total[0]->active_cases)}}</td>
-                        <td>{{number_format($total[0]->serious)}}</td>
-                        <td>{{number_format($total[0]->tot_cases)}}</td>
-                        <td>{{number_format($total[0]->death1m)}}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
                     @foreach($data as $all)
                         <tr @if($all->total_cases == $all->total_recovered)
                             style="background: #EAF7D5;"
                             @elseif ($all->active_cases == 0)
                             style="background: #F0F0F0;"
-                            @else
-                            style="background: white;"
+                            @elseif($all->country == 'World')
+                            class="world"
                             @endif>
                             <td style="text-align: left"><a href="{{route('country', $all->country)}}">{{$all->country}}</a></td>
                             <td>{{!is_numeric($all->total_cases) ? $all->total_cases : number_format($all->total_cases)}}</td>
