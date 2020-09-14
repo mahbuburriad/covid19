@@ -21,7 +21,7 @@ class FrontendController extends Controller
 
     public function yesterday(){
         $bangladesh = Yesterday::where('country', 'Bangladesh')->get();
-        $data = Live::all();
+        $data = Yesterday::all();
         $total = $data->first()->get();
         return view('frontend.yesterday', compact('bangladesh', 'total', 'data'));
     }

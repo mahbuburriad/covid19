@@ -122,7 +122,7 @@
     <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic @yield('country') </div>
 
     <center>
-        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: {{date('F d, Y, G:i', strtotime($total[0]->created_at))}} UTC</div>
+        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: @yield('lastUpdate') UTC</div>
         @include('includes.menu')
     </center>
 
