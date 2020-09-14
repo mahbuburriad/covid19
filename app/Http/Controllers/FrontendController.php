@@ -15,14 +15,14 @@ class FrontendController extends Controller
         $bangladesh = Live::where('country', 'Bangladesh')->get();
         $yesterday = Yesterday::where('country', 'Bangladesh')->get();
         $data = Live::all();
-        $total = $data->first()->get();
+        $total = Live::where('country', 'World')->get();
         return view('frontend.index', compact('total', 'data', 'bangladesh', 'yesterday'));
     }
 
     public function yesterday(){
         $bangladesh = Yesterday::where('country', 'Bangladesh')->get();
         $data = Yesterday::all();
-        $total = $data->first()->get();
+        $total = Yesterday::where('country', 'World')->get();
         return view('frontend.yesterday', compact('bangladesh', 'total', 'data'));
     }
 

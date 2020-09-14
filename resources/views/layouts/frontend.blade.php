@@ -132,6 +132,10 @@
 
 @yield('content')
 
+<h5>Data Source</h5>
+<p> <b>Live Data Source:</b> https://www.worldometers.info/coronavirus/ <br> <b>Data by date John Hopkins University &amp; Pomber from github:</b> https://pomber.github.io/covid19/timeseries.json
+    <br> <b>Bangladesh District Wise Data source:</b> http://dashboard.dghs.gov.bd/webportal/pages/covid19.php </p>
+
 <footer>
     <center>
         <div class="footer_text">© Copyright Saltanat Global Limited - All rights reserved</div>
