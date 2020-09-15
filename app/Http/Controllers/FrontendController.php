@@ -13,23 +13,35 @@ class FrontendController extends Controller
 {
     public function index(){
         $bangladesh = Live::where('country', 'Bangladesh')->get();
-        $yesterday = Yesterday::where('country', 'Bangladesh')->get();
+        $yesterday = Yesterday::where([
+            'country' => 'Bangladesh',
+            'date' => Carbon::today()
+        ])->get();
         $data = Live::all();
         $total = Live::where('country', 'World')->get();
         return view('frontend.index', compact('total', 'data', 'bangladesh', 'yesterday'));
     }
 
     public function yesterday(){
-        $bangladesh = Yesterday::where('country', 'Bangladesh')->get();
-        $data = Yesterday::all();
-        $total = Yesterday::where('country', 'World')->get();
+        $bangladesh = Yesterday::where([
+            'country' => 'Bangladesh',
+            'date' => Carbon::today()
+        ])->get();
+        $data = Yesterday::where('date', Carbon::today())->get();
+        $total = Yesterday::where([
+            'country' => 'World',
+            'date' => Carbon::today()
+        ])->get();
         return view('frontend.yesterday', compact('bangladesh', 'total', 'data'));
     }
 
     public function country($data){
 
         $total = Live::where('country', $data)->get();
-        $yesterday = Yesterday::where('country', $data)->get();
+        $yesterday = Yesterday::where([
+            'country' => $data,
+            'date' => Carbon::today()
+        ])->get();
         $states = state::where([
             'country'=> $data,
             'date' => Carbon::today()
