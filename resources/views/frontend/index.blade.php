@@ -17,6 +17,15 @@
         .fa-arrow-down {
             color: green;
         }
+
+        .GeneratedMarquee {
+            line-height:1.3em;
+            color:#FFFFFF;
+            background-color:#CC3300;
+            padding:7px;
+            margin-top: 20px;
+        }
+
     </style>
 @endsection
 
@@ -25,7 +34,11 @@
 @section('content')
 
     <section>
+        <div class="container">
+            <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll">Top 5 Country affected today: @forelse($topFive as $top) {{$top->country}}, @empty not generated yet @endforelse</marquee>
+        </div>
         <div class="container-fluid">
+
             <center class="content-inner">
                 <div class="row">
                     <div class="col-md-6">

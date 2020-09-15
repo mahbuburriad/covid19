@@ -8,6 +8,7 @@ use App\Models\state;
 use App\Models\Yesterday;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
@@ -19,7 +20,11 @@ class FrontendController extends Controller
         ])->get();
         $data = Live::all();
         $total = Live::where('country', 'World')->get();
-        return view('frontend.index', compact('total', 'data', 'bangladesh', 'yesterday'));
+        $topFive = Live::select('country')->where([
+            ['country', '!=', 'World'],
+            ['new_cases', '!=', null]
+        ])->orderBY('new_cases', 'desc')->limit(5)->get();
+        return view('frontend.index', compact('total', 'data', 'bangladesh', 'yesterday', 'topFive'));
     }
 
     public function yesterday(){
