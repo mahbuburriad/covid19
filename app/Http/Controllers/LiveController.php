@@ -8,6 +8,7 @@ use App\Models\Yesterday;
 use Carbon\Carbon;
 use DOMDocument;
 use App\Models\Live;
+use Illuminate\Support\Facades\DB;
 
 class LiveController extends Controller
 {
@@ -29,7 +30,8 @@ class LiveController extends Controller
         echo "created";
     }
 
-    private function getData($day, $date){
+    private function getData($day, $date)
+    {
         $url = "https://www.worldometers.info/coronavirus/";
         $html = file_get_contents($url);
         $dom = new domDocument;
@@ -125,11 +127,11 @@ class LiveController extends Controller
                         $population = $pop;
                     }
 
-                    if ($date == 'yesterday'){
-                    $this->yesterdayInsert($country,$total_cases,$new_cases,$total_deaths,$new_deaths,$total_recovered,$new_recovered,$active_cases,$serious,$tot_cases,$death1m,$total_tests,$test1m,$population);
-                    } elseif($date = 'live'){
-                        $this->liveInsert($country,$total_cases,$new_cases,$total_deaths,$new_deaths,$total_recovered,$new_recovered,$active_cases,$serious,$tot_cases,$death1m,$total_tests,$test1m,$population);
-                    } else{
+                    if ($date == 'yesterday') {
+                        $this->yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
+                    } elseif ($date = 'live') {
+                        $this->liveInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
+                    } else {
                         echo 'date is invalid';
                     }
 
@@ -138,7 +140,8 @@ class LiveController extends Controller
         }
     }
 
-    public function yesterdayInsert($country,$total_cases,$new_cases,$total_deaths,$new_deaths,$total_recovered,$new_recovered,$active_cases,$serious,$tot_cases,$death1m,$total_tests,$test1m,$population){
+    public function yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population)
+    {
         Yesterday::create([
             'country' => $country,
             'total_cases' => $total_cases,
@@ -157,7 +160,8 @@ class LiveController extends Controller
         ]);
     }
 
-    public function liveInsert($country,$total_cases,$new_cases,$total_deaths,$new_deaths,$total_recovered,$new_recovered,$active_cases,$serious,$tot_cases,$death1m,$total_tests,$test1m,$population){
+    public function liveInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population)
+    {
         Live::create([
             'country' => $country,
             'total_cases' => $total_cases,
@@ -215,22 +219,18 @@ class LiveController extends Controller
         $tables = $dom->getElementById('example');
         $rows = $tables->getElementsByTagName('tr');
 
-        /*   $stateData = state::all();
-         if (count($stateData) > 0) {
-              foreach ($stateData as $stateDatas) {
-                  if ($stateDatas->date != Carbon::today()) {
-                      $this->insertStates($rows);
-                  }
-              }
-          }
-          else{
-              $this->insertStates($rows);
-          }*/
-        $this->insertStates($rows);
-        echo "created";
+        $stateData = DB::table('states')->latest('id')->first();
+
+        if ($stateData->date != Carbon::today()) {
+            $this->insertStates($rows);
+            echo "created";
+        } else{
+            echo 'already created';
+        }
     }
 
-    public function insertStates($rows){
+    public function insertStates($rows)
+    {
         foreach ($rows as $row) {
             $cols = $row->getElementsByTagName('td');
             if (is_object($cols->item(0)) || is_object($cols->item(1)) || is_object($cols->item(2))) {
