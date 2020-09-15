@@ -215,17 +215,18 @@ class LiveController extends Controller
         $tables = $dom->getElementById('example');
         $rows = $tables->getElementsByTagName('tr');
 
-        $stateData = state::all();
-        if (count($stateData) > 0) {
-            foreach ($stateData as $stateDatas) {
-                if ($stateDatas->date != Carbon::today()) {
-                    $this->insertStates($rows);
-                }
-            }
-        }
-        else{
-            $this->insertStates($rows);
-        }
+        /*   $stateData = state::all();
+         if (count($stateData) > 0) {
+              foreach ($stateData as $stateDatas) {
+                  if ($stateDatas->date != Carbon::today()) {
+                      $this->insertStates($rows);
+                  }
+              }
+          }
+          else{
+              $this->insertStates($rows);
+          }*/
+        $this->insertStates($rows);
         echo "created";
     }
 
