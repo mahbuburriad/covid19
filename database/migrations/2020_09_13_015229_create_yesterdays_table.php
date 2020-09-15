@@ -15,6 +15,7 @@ class CreateYesterdaysTable extends Migration
     {
         Schema::create('yesterdays', function (Blueprint $table) {
             $table->id();
+            $table->string('date');
             $table->string('country');
             $table->string('total_cases')->nullable();
             $table->string('new_cases')->nullable();

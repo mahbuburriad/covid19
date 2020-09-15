@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use DOMDocument;
 use App\Models\Live;
 use Illuminate\Support\Facades\DB;
+use function PHPUnit\Framework\isEmpty;
 
 class LiveController extends Controller
 {
@@ -127,8 +128,16 @@ class LiveController extends Controller
                         $population = $pop;
                     }
 
+                    $yesterdayData = DB::table('yesterdays')->latest('id')->first();
+
                     if ($date == 'yesterday') {
-                        $this->yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
+                        if (!isEmpty($yesterdayData) && $yesterdayData->date != Carbon::today()) {
+                            $this->yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
+                        }elseif(isEmpty($yesterdayData)){
+                            $this->yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
+                        } else{
+                            echo "wrong method";
+                        }
                     } elseif ($date = 'live') {
                         $this->liveInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
                     } else {
@@ -156,7 +165,8 @@ class LiveController extends Controller
             'death1m' => $death1m,
             'total_tests' => $total_tests,
             'test1m' => $test1m,
-            'population' => $population
+            'population' => $population,
+            'date' => Carbon::today()
         ]);
     }
 
@@ -221,11 +231,14 @@ class LiveController extends Controller
 
         $stateData = DB::table('states')->latest('id')->first();
 
-        if ($stateData->date != Carbon::today()) {
+        if (empty($stateData)){
+            $this->insertStates($rows);
+            echo "created";
+        } elseif ($stateData->date != Carbon::today() && !empty($stateData)) {
             $this->insertStates($rows);
             echo "created";
         } else{
-            echo 'already created';
+            echo "already created";
         }
     }
 
