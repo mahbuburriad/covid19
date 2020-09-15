@@ -20,10 +20,12 @@ class FrontendController extends Controller
         ])->get();
         $data = Live::all();
         $total = Live::where('country', 'World')->get();
-        $topFive = Live::select('country')->where([
+/*        $topFive = Live::select('country')->where([
             ['country', '!=', 'World'],
             ['new_cases', '!=', null]
-        ])->orderBY('new_cases', 'desc')->limit(5)->get();
+        ])->orderBY('length(new_cases)', 'desc')->limit(5)->get();*/
+
+        $topFive = DB::select("SELECT country FROM lives WHERE (country != 'World' and new_cases is not null) ORDER BY length(new_cases) DESC LIMIT 5 ");
         return view('frontend.index', compact('total', 'data', 'bangladesh', 'yesterday', 'topFive'));
     }
 

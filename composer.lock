@@ -1036,16 +1036,16 @@
         },
         {
             "name": "laravel/fortify",
-            "version": "v1.3.1",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/fortify.git",
-                "reference": "46448a071cd0c04140b984ec11bf0158b0b7da64"
+                "reference": "a255ce7e12601eb2b4972397c9f94a3e4ca13d32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/fortify/zipball/46448a071cd0c04140b984ec11bf0158b0b7da64",
-                "reference": "46448a071cd0c04140b984ec11bf0158b0b7da64",
+                "url": "https://api.github.com/repos/laravel/fortify/zipball/a255ce7e12601eb2b4972397c9f94a3e4ca13d32",
+                "reference": "a255ce7e12601eb2b4972397c9f94a3e4ca13d32",
                 "shasum": ""
             },
             "require": {
@@ -1090,7 +1090,7 @@
                 "auth",
                 "laravel"
             ],
-            "time": "2020-09-11T18:42:00+00:00"
+            "time": "2020-09-14T18:51:28+00:00"
         },
         {
             "name": "laravel/framework",
@@ -1257,16 +1257,16 @@
         },
         {
             "name": "laravel/jetstream",
-            "version": "v1.1.2",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/jetstream.git",
-                "reference": "4c2d09efd487a73e910a162aa459fcd2abec6519"
+                "reference": "c1ff4a55fccf674958a3b0ef5ec97cea81ad4501"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/jetstream/zipball/4c2d09efd487a73e910a162aa459fcd2abec6519",
-                "reference": "4c2d09efd487a73e910a162aa459fcd2abec6519",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/c1ff4a55fccf674958a3b0ef5ec97cea81ad4501",
+                "reference": "c1ff4a55fccf674958a3b0ef5ec97cea81ad4501",
                 "shasum": ""
             },
             "require": {
@@ -1315,7 +1315,7 @@
                 "laravel",
                 "tailwind"
             ],
-            "time": "2020-09-10T19:46:55+00:00"
+            "time": "2020-09-14T18:46:36+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -1680,16 +1680,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.2.2",
+            "version": "v2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "ad3f8de28e77acded47af1bc1cba2f9d719e2323"
+                "reference": "0480aa04aa08314dd2ed1b62615d8184e7d3071a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/ad3f8de28e77acded47af1bc1cba2f9d719e2323",
-                "reference": "ad3f8de28e77acded47af1bc1cba2f9d719e2323",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/0480aa04aa08314dd2ed1b62615d8184e7d3071a",
+                "reference": "0480aa04aa08314dd2ed1b62615d8184e7d3071a",
                 "shasum": ""
             },
             "require": {
@@ -1741,7 +1741,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-13T23:07:50+00:00"
+            "time": "2020-09-15T02:25:20+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -5117,16 +5117,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v5.1.0",
+            "version": "v5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "448c76d7a9e30c341ff5bc367a923af74ae18467"
+                "reference": "fba64139db67123c7a57072e5f8d3db10d160b66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/448c76d7a9e30c341ff5bc367a923af74ae18467",
-                "reference": "448c76d7a9e30c341ff5bc367a923af74ae18467",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/fba64139db67123c7a57072e5f8d3db10d160b66",
+                "reference": "fba64139db67123c7a57072e5f8d3db10d160b66",
                 "shasum": ""
             },
             "require": {
@@ -5149,7 +5149,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.1-dev"
+                    "dev-master": "5.2-dev"
                 }
             },
             "autoload": {
@@ -5189,7 +5189,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-14T19:26:25+00:00"
+            "time": "2020-09-14T15:57:31+00:00"
         },
         {
             "name": "voku/portable-ascii",
