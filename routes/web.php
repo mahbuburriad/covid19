@@ -27,3 +27,7 @@ Route::get('/bangladeshDistrictData', [LiveController::class, 'bangladeshDistric
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('yesterdayData', [FrontendController::class, 'yesterday'])->name('yesterdayData');
 Route::get('country/{data}', [FrontendController::class, 'country'])->name('country');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
