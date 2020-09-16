@@ -31,9 +31,33 @@ class FrontendController extends Controller
         }
         $topFive = ltrim($topC, ', ');
 
+        $overComeData = Live::select('country')->where([
+            ['country', '!=', 'World'],
+            ['active_cases', '!=', 'N/A'],
+            'active_cases' => '0'
+        ])->orderBy('new_cases', 'desc')->get();
+
+        $overComeDataGet = null;
+        foreach ($overComeData as $overC){
+            $overComeDataGet = $overComeDataGet.', '.$overC->country;
+        }
+        $overCome = ltrim($overComeDataGet, ',');
+
+        $overComeWithoutLoss = Live::select('country')->where([
+            ['country', '!=', 'World']
+        ])->whereColumn('total_cases', 'total_recovered')->orderBy('total_cases', 'desc')->get();
+
+        $overComeWithoutLossData = null;
+        foreach ($overComeWithoutLoss as $overComeWithout){
+            $overComeWithoutLossData = $overComeWithoutLossData.', '.$overComeWithout->country;
+        }
+        $overComeWithoutLossCountry = ltrim($overComeWithoutLossData, ',');
+
         //$topFive = DB::select("SELECT country FROM lives WHERE (country != 'World' and new_cases is not null) ORDER BY length(new_cases) DESC LIMIT 5 ");
         return view('frontend.index', [
-            'topFive' => $topFive
+            'topFive' => $topFive,
+            'overCome' => $overCome,
+            'overComeWithoutLossCountry' => $overComeWithoutLossCountry
         ], compact('total', 'data', 'bangladesh', 'yesterday'));
     }
 

@@ -34,7 +34,7 @@
 
     <section>
         <div class="container">
-            <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll">Top 5 countries affected today: {{$topFive}}</marquee>
+            <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll"><b>Top 5 countries affected today:</b> {{$topFive.'; '}} <b>Countries overcome from covid19: </b> {{$overCome.'; '}} <b>Countries overcome Without Loss: </b>{{$overComeWithoutLossCountry}}</marquee>
         </div>
         <div class="container-fluid">
 
