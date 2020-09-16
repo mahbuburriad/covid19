@@ -243,7 +243,7 @@ class LiveController extends Controller
         }
     }
 
-    public function insertStates($rows)
+    private function insertStates($rows)
     {
         foreach ($rows as $row) {
             $cols = $row->getElementsByTagName('td');
