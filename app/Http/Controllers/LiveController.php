@@ -8,6 +8,7 @@ use App\Models\Yesterday;
 use Carbon\Carbon;
 use DOMDocument;
 use App\Models\Live;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use function PHPUnit\Framework\isEmpty;
 
