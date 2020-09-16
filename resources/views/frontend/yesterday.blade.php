@@ -1,6 +1,7 @@
 @extends('layouts.frontend')
 
 @section('style')
+    <link rel="stylesheet" href="{{url('https://cdn.datatables.net/fixedheader/3.1.7/css/fixedHeader.bootstrap4.min.css')}}">
     <style>
         .world {
             background-color: #DFDFDF !important;
@@ -256,7 +257,7 @@
 
 
             </center>
-            <div>
+            <div class="table-responsive">
 
                 <h1>Data Table</h1>
 
@@ -350,7 +351,7 @@
 @endsection
 
 @section('script')
-    {{--    <script src="{{url('https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js')}}"></script>--}}
+    <script src="{{url('https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#dataTable').DataTable({

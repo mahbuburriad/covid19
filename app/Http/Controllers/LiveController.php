@@ -20,8 +20,9 @@ class LiveController extends Controller
         $date = 'live';
         $day = 0;
         $this->getData($day, $date);
-        echo "created";
         Artisan::call('view:cache');
+        echo "created";
+
     }
 
     public function yesterday()
@@ -31,8 +32,9 @@ class LiveController extends Controller
         $date = 'yesterday';
         $day = 1;
         $this->getData($day, $date);
-        echo "created";
         Artisan::call('view:cache');
+        echo "created";
+
     }
 
     private function getData($day, $date)

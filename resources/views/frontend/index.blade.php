@@ -3,6 +3,7 @@
 @section('style')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
           integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{{url('https://cdn.datatables.net/fixedheader/3.1.7/css/fixedHeader.bootstrap4.min.css')}}">
     <style>
         .world {
             background-color: #DFDFDF !important;
@@ -396,8 +397,7 @@
 @endsection
 
 @section('script')
-        <script src="{{url('https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js')}}"></script>
-        <script src="{{url('https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js')}}"></script>
+    <script src="{{url('https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#dataTable').DataTable({
