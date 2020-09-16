@@ -31,3 +31,33 @@ Route::get('country/{data}', [FrontendController::class, 'country'])->name('coun
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/config-cache', function (){
+    Artisan::call('config:cache');
+    return "config cache successfully";
+});
+
+Route::get('/config-clear', function (){
+    Artisan::call('config:clear');
+    return "config clear successfully";
+});
+
+Route::get('/route-cache', function (){
+    Artisan::call('route:cache');
+    return "route cache successfully";
+});
+
+Route::get('/route-clear', function (){
+    Artisan::call('route:clear');
+    return "route clear successfully";
+});
+
+Route::get('/view-clear', function (){
+    Artisan::call('view:clear');
+    return "view clear successfully";
+});
+
+Route::get('/view-cache', function (){
+    Artisan::call('view:cache');
+    return "view cache successfully";
+});

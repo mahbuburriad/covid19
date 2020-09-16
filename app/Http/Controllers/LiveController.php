@@ -15,20 +15,24 @@ class LiveController extends Controller
 {
     public function today()
     {
+        Artisan::call('view:clear');
         Live::truncate();
         $date = 'live';
         $day = 0;
         $this->getData($day, $date);
         echo "created";
+        Artisan::call('view:cache');
     }
 
     public function yesterday()
     {
+        Artisan::call('view:cache');
         //Yesterday::truncate();
         $date = 'yesterday';
         $day = 1;
         $this->getData($day, $date);
         echo "created";
+        Artisan::call('view:cache');
     }
 
     private function getData($day, $date)
@@ -194,6 +198,7 @@ class LiveController extends Controller
 
     public function data()
     {
+        Artisan::call('view:clear');
         // Retrieving Json Data
         $jsonData = file_get_contents("https://pomber.github.io/covid19/timeseries.json");
         $data = json_decode($jsonData, true);
@@ -219,10 +224,12 @@ class LiveController extends Controller
         }
 
         echo "created";
+        Artisan::call('view:cache');
     }
 
     public function bangladeshDistrictData()
     {
+        Artisan::call('view:clear');
         $url = "http://dashboard.dghs.gov.bd/webportal/pages/covid19.php";
         $html = file_get_contents($url);
         $dom = new domDocument;
@@ -241,6 +248,7 @@ class LiveController extends Controller
         } else{
             echo "already created";
         }
+        Artisan::call('view:cache');
     }
 
     private function insertStates($rows)
