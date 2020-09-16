@@ -20,13 +20,21 @@ class FrontendController extends Controller
         ])->get();
         $data = Live::all();
         $total = Live::where('country', 'World')->get();
-        $topFive = Live::select('country')->where([
+        $topFiveAffected = Live::select('country')->where([
             ['country', '!=', 'World'],
             ['new_cases', '!=', null]
         ])->orderBY('new_cases', 'desc')->limit(5)->get();
 
+        $topC = null;
+        foreach ($topFiveAffected as $top){
+            $topC = $topC.', '.$top->country;
+        }
+        $topFive = ltrim($topC, ', ');
+
         //$topFive = DB::select("SELECT country FROM lives WHERE (country != 'World' and new_cases is not null) ORDER BY length(new_cases) DESC LIMIT 5 ");
-        return view('frontend.index', compact('total', 'data', 'bangladesh', 'yesterday', 'topFive'));
+        return view('frontend.index', [
+            'topFive' => $topFive
+        ], compact('total', 'data', 'bangladesh', 'yesterday'));
     }
 
     public function yesterday(){

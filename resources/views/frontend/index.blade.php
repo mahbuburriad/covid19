@@ -33,7 +33,7 @@
 
     <section>
         <div class="container">
-            <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll">Top 5 Country affected today: @forelse($topFive as $top) {{$top->country}}, @empty not generated yet @endforelse</marquee>
+            <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll">Top 5 Country affected today: {{$topFive}}</marquee>
         </div>
         <div class="container-fluid">
 
