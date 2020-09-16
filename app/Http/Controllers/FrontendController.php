@@ -20,10 +20,13 @@ class FrontendController extends Controller
         ])->get();
         $data = Live::all();
         $total = Live::where('country', 'World')->get();
-        $topFiveAffected = Live::select('country')->where([
+/*        $topFiveAffected = Live::select('country')->where([
             ['country', '!=', 'World'],
             ['new_cases', '!=', null]
-        ])->orderBY('new_cases', 'desc')->limit(5)->get();
+        ])->orderBY('new_cases', 'desc')->limit(5)->get();*/
+
+        $laraCollect = collect($data);
+        $topFiveAffected = $laraCollect->sortByDesc('new_cases')->skip(1)->take(5);
 
         $topC = null;
         foreach ($topFiveAffected as $top){
