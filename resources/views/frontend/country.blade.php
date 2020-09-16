@@ -22,7 +22,6 @@
     <h6>Country Name : <b>{{$data}}</b> </h6>
 @endsection
 
-@section('lastUpdate') {{date('F d, Y, G:i', strtotime($total[0]->created_at))}} @endsection
 
 @section('content')
 

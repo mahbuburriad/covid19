@@ -122,7 +122,7 @@
     <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic @yield('country') </div>
 
     <center>
-        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: @yield('lastUpdate') UTC</div>
+        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: {{date('F d, Y G:i A', strtotime($total[0]->created_at))}} UTC <br> Local Time : <span id = "localTime"></span> </div>
         @include('includes.menu')
     </center>
 
@@ -147,6 +147,14 @@
 <script src="{{url('https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js')}}" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="{{url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')}}" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="{{url('https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js')}}" integrity="sha512-Q1f3TS3vSt1jQ8AwP2OuenztnLU6LwxgyyYOG1jgMW/cbEMHps/3wjvnl1P3WTrF3chJUWEoxDUEjMxDV8pujg==" crossorigin="anonymous"></script>
 @yield('script')
+
+<script>
+    $(document).ready(function() {
+        var a = moment.utc([{{date('Y,m-1,d,G,i', strtotime($total[0]->created_at))}}]);
+        $("#localTime").text(a.local().format('LLL'));
+    });
+</script>
 </body>
 </html>
