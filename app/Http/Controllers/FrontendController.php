@@ -19,14 +19,11 @@ class FrontendController extends Controller
             'date' => Carbon::today()
         ])->get();
         $data = Live::all();
-        $total = Live::where('country', 'World')->get();
-/*        $topFiveAffected = Live::select('country')->where([
-            ['country', '!=', 'World'],
-            ['new_cases', '!=', null]
-        ])->orderBY('new_cases', 'desc')->limit(5)->get();*/
 
         $laraCollect = collect($data);
         $topFiveAffected = $laraCollect->sortByDesc('new_cases')->skip(1)->take(5);
+
+        $total = $laraCollect->take(1);
 
         $topC = null;
         foreach ($topFiveAffected as $top){
@@ -56,7 +53,6 @@ class FrontendController extends Controller
         }
         $overComeWithoutLossCountry = ltrim($overComeWithoutLossData, ',');
 
-        //$topFive = DB::select("SELECT country FROM lives WHERE (country != 'World' and new_cases is not null) ORDER BY length(new_cases) DESC LIMIT 5 ");
         return view('frontend.index', [
             'topFive' => $topFive,
             'overCome' => $overCome,
@@ -70,10 +66,8 @@ class FrontendController extends Controller
             'date' => Carbon::today()
         ])->get();
         $data = Yesterday::where('date', Carbon::today())->get();
-        $total = Yesterday::where([
-            'country' => 'World',
-            'date' => Carbon::today()
-        ])->get();
+        $laraCollect = collect($data);
+        $total = $laraCollect->take(1);
         return view('frontend.yesterday', compact('bangladesh', 'total', 'data'));
     }
 
