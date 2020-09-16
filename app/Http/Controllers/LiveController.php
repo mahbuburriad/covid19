@@ -47,6 +47,23 @@ class LiveController extends Controller
         $tables = $dom->getElementsByTagName('table');
         $rows = $tables->item($day)->getElementsByTagName('tr');
 
+        $yesterdayData = DB::table('yesterdays')->latest('id')->first();
+
+        if (empty($yesterdayData)) {
+            $this->fetchDataRow($rows, $date);
+            echo "created";
+        } elseif (!empty($yesterdayData) && $yesterdayData->date != Carbon::today()) {
+            $this->fetchDataRow($rows, $date);
+            echo "created";
+        } else {
+            echo "already created";
+        }
+
+
+    }
+
+    private function fetchDataRow($rows, $date)
+    {
         foreach ($rows as $row) {
             $cols = $row->getElementsByTagName('td');
             if (is_object($cols->item(1)) || is_object($cols->item(2)) || is_object($cols->item(3)) || is_object($cols->item(4)) || is_object($cols->item(5)) || is_object($cols->item(6))
@@ -135,16 +152,8 @@ class LiveController extends Controller
                         $population = $pop;
                     }
 
-                    $yesterdayData = DB::table('yesterdays')->latest('id')->first();
 
                     if ($date == 'yesterday') {
-/*                        if (empty($yesterdayData)) {
-                            $this->yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
-                        }elseif(!empty($yesterdayData) && $yesterdayData->date != Carbon::today()){
-                            $this->yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
-                        } else{
-                            echo "wrong method";
-                        }*/
                         $this->yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
                     } elseif ($date = 'live') {
                         $this->liveInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
@@ -157,7 +166,7 @@ class LiveController extends Controller
         }
     }
 
-    public function yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population)
+    private function yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population)
     {
         Yesterday::create([
             'country' => $country,
@@ -178,7 +187,7 @@ class LiveController extends Controller
         ]);
     }
 
-    public function liveInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population)
+    private function liveInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population)
     {
         Live::create([
             'country' => $country,
@@ -206,7 +215,7 @@ class LiveController extends Controller
         $jsonData = file_get_contents("https://pomber.github.io/covid19/timeseries.json");
         $data = json_decode($jsonData, true);
 
-        Data::truncate();
+        //Data::truncate();
 
         foreach ($data as $key => $allData) {
             foreach ($data[$key] as $keyData) {
@@ -225,7 +234,6 @@ class LiveController extends Controller
                 ]);
             }
         }
-
         echo "created";
         Artisan::call('view:cache');
     }
@@ -242,13 +250,13 @@ class LiveController extends Controller
 
         $stateData = DB::table('states')->latest('id')->first();
 
-        if (empty($stateData)){
+        if (empty($stateData)) {
             $this->insertStates($rows);
             echo "created";
         } elseif ($stateData->date != Carbon::today() && !empty($stateData)) {
             $this->insertStates($rows);
             echo "created";
-        } else{
+        } else {
             echo "already created";
         }
         Artisan::call('view:cache');
