@@ -123,7 +123,7 @@
     <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic @yield('country') </div>
 
     <center>
-        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: {{date('F d, Y G:i A', strtotime($total[0]->created_at))}} UTC <br> Local Time : <span id = "localTime"></span> </div>
+        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: {{date('F d, Y G:i A', strtotime($data[0]->created_at))}} UTC <br> Local Time : <span id = "localTime"></span> </div>
         @include('includes.menu')
     </center>
 
@@ -154,7 +154,7 @@
 
 <script>
     $(document).ready(function() {
-        var a = moment.utc([{{date('Y,m-1,d,G,i', strtotime($total[0]->created_at))}}]);
+        var a = moment.utc([{{date('Y,m-1,d,G,i', strtotime($data[0]->created_at))}}]);
         $("#localTime").text(a.local().format('LLL'));
     });
 </script>

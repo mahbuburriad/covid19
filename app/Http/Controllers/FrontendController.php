@@ -7,8 +7,6 @@ use App\Models\Live;
 use App\Models\state;
 use App\Models\Yesterday;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
@@ -22,8 +20,6 @@ class FrontendController extends Controller
 
         $laraCollect = collect($data);
         $topFiveAffected = $laraCollect->sortByDesc('new_cases')->skip(1)->take(5);
-
-        $total = $laraCollect->take(1);
 
         $topC = null;
         foreach ($topFiveAffected as $top){
@@ -57,7 +53,7 @@ class FrontendController extends Controller
             'topFive' => $topFive,
             'overCome' => $overCome,
             'overComeWithoutLossCountry' => $overComeWithoutLossCountry
-        ], compact('total', 'data', 'bangladesh', 'yesterday'));
+        ], compact('data', 'bangladesh', 'yesterday'));
     }
 
     public function yesterday(){
@@ -66,28 +62,26 @@ class FrontendController extends Controller
             'date' => Carbon::today()
         ])->get();
         $data = Yesterday::where('date', Carbon::today())->get();
-        $laraCollect = collect($data);
-        $total = $laraCollect->take(1);
-        return view('frontend.yesterday', compact('bangladesh', 'total', 'data'));
+        return view('frontend.yesterday', compact('bangladesh',  'data'));
     }
 
-    public function country($data){
+    public function country($name){
 
-        $total = Live::where('country', $data)->get();
+        $data = Live::where('country', $name)->get();
         $yesterday = Yesterday::where([
-            'country' => $data,
+            'country' => $name,
             'date' => Carbon::today()
         ])->get();
         $states = state::where([
-            'country'=> $data,
+            'country'=> $name,
             'date' => Carbon::today()
         ])->get();
 
-        if ($data == 'USA'){
-            $data = 'US';
+        if ($name == 'USA'){
+            $name = 'US';
         }
-        $country = Data::where('country', $data)->get();
+        $country = Data::where('country', $name)->get();
 
-        return view('frontend.country', ['data' => $data], compact('total','country', 'yesterday', 'states'));
+        return view('frontend.country', ['name' => $name], compact('data','country', 'yesterday', 'states'));
     }
 }

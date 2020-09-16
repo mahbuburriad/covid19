@@ -22,7 +22,7 @@ class LiveController extends Controller
         $day = 0;
         $this->getData($day, $date);
         Artisan::call('view:cache');
-        echo "created";
+
 
     }
 
@@ -34,7 +34,6 @@ class LiveController extends Controller
         $day = 1;
         $this->getData($day, $date);
         Artisan::call('view:cache');
-        echo "created";
 
     }
 
@@ -49,13 +48,10 @@ class LiveController extends Controller
 
         $yesterdayData = DB::table('yesterdays')->latest('id')->first();
 
-        if (empty($yesterdayData)) {
+        if ((empty($yesterdayData) && $date == 'yesterday') || (!empty($yesterdayData) && $yesterdayData->date != Carbon::today() && $date == 'yesterday') || (!empty($yesterdayData) && $date != 'yesterday' && $date == 'live') ) {
             $this->fetchDataRow($rows, $date);
             echo "created";
-        } elseif (!empty($yesterdayData) && $yesterdayData->date != Carbon::today()) {
-            $this->fetchDataRow($rows, $date);
-            echo "created";
-        } else {
+        } else{
             echo "already created";
         }
 
@@ -250,10 +246,7 @@ class LiveController extends Controller
 
         $stateData = DB::table('states')->latest('id')->first();
 
-        if (empty($stateData)) {
-            $this->insertStates($rows);
-            echo "created";
-        } elseif ($stateData->date != Carbon::today() && !empty($stateData)) {
+        if ((empty($stateData)) || ($stateData->date != Carbon::today() && !empty($stateData))) {
             $this->insertStates($rows);
             echo "created";
         } else {

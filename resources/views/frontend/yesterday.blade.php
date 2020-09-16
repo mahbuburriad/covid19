@@ -152,17 +152,17 @@
                         <div class="maincounter-wrap" style="margin-top:15px">
                             <h1>World Cases:</h1>
                             <div class="maincounter-number">
-                                <span style="color:#aaa">{{number_format($total[0]->total_cases)}}</span>
+                                <span style="color:#aaa">{{number_format($data[0]->total_cases)}}</span>
                             </div>
                         </div>
                         <div class="maincounter-wrap" style="margin-top:15px">
                             <h1>Deaths:</h1>
-                            <div class="maincounter-number">{{number_format($total[0]->total_deaths)}}</div>
+                            <div class="maincounter-number">{{number_format($data[0]->total_deaths)}}</div>
                         </div>
                         <div class="maincounter-wrap" style="margin-top:15px;">
                             <h1>Recovered:</h1>
                             <div class="maincounter-number" style="color:#8ACA2B ">
-                                {{number_format($total[0]->total_recovered)}}
+                                {{number_format($data[0]->total_recovered)}}
                             </div>
                         </div>
                         <div style="margin-top:50px;"></div>
@@ -172,17 +172,17 @@
                                 <div class="card">
                                     <h5 class="card-header title-case">Active cases</h5>
                                     <div class="card-body">
-                                        <h5 class="card-title number-table-main">{{number_format($total[0]->active_cases)}}</h5>
+                                        <h5 class="card-title number-table-main">{{number_format($data[0]->active_cases)}}</h5>
                                         <p style="color: #222">Currently Infected Patients</p>
 
                                         <div class="row">
                                             <div class="col-md-6">
                                 <span class="number-table"
-                                      style="color: #8080FF;">{{number_format($total[0]->active_cases - $total[0]->serious)}}</span><br>
+                                      style="color: #8080FF;">{{number_format($data[0]->active_cases - $data[0]->serious)}}</span><br>
                                                 <span style="font-size: 13px;">in Mild Condition</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <span class="number-table">{{number_format($total[0]->serious)}}</span><br>
+                                                <span class="number-table">{{number_format($data[0]->serious)}}</span><br>
                                                 <span style="font-size: 13px;">Serious or Critical</span>
                                             </div>
                                         </div>
@@ -194,20 +194,20 @@
                                 <div class="card">
                                     <h5 class="card-header title-case">Closed cases</h5>
                                     <div class="card-body">
-                                        <h5 class="card-title number-table-main">{{number_format($total[0]->total_recovered + $total[0]->total_deaths)}}</h5>
+                                        <h5 class="card-title number-table-main">{{number_format($data[0]->total_recovered + $data[0]->total_deaths)}}</h5>
                                         <p style="color: #222">Cases which had an outcome:</p>
 
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <span class="number-table" style="color: #8ACA2B;">{{number_format($total[0]->total_recovered)}}</span>
-                                                <span>(<b>{{number_format(100-(($total[0]->total_deaths * 100)/($total[0]->total_recovered + $total[0]->total_deaths)))}}</b>%)</span>
+                                                <span class="number-table" style="color: #8ACA2B;">{{number_format($data[0]->total_recovered)}}</span>
+                                                <span>(<b>{{number_format(100-(($data[0]->total_deaths * 100)/($data[0]->total_recovered + $data[0]->total_deaths)))}}</b>%)</span>
                                                 <br>
                                                 <span style="font-size: 13px;">Recovered / Discharged</span>
                                             </div>
                                             <div class="col-md-6">
                                 <span class="number-table"
-                                      style="color: red;">{{number_format($total[0]->total_deaths)}}</span>
-                                                <span>(<b>{{number_format(100-(($total[0]->total_recovered * 100)/($total[0]->total_recovered + $total[0]->total_deaths)))}}</b>%)</span>
+                                      style="color: red;">{{number_format($data[0]->total_deaths)}}</span>
+                                                <span>(<b>{{number_format(100-(($data[0]->total_recovered * 100)/($data[0]->total_recovered + $data[0]->total_deaths)))}}</b>%)</span>
                                                 <br>
                                                 <span style="font-size: 13px;">Deaths</span>
                                             </div>
@@ -229,19 +229,19 @@
 
                                         <div class="col-md-4">
                                             <div class="card-body">
-                                                <h5 class="card-title number-table-main">+{{number_format($total[0]->new_cases)}}</h5>
+                                                <h5 class="card-title number-table-main">+{{number_format($data[0]->new_cases)}}</h5>
                                                 <p style="color: #222">New Confirmed</p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="card-body">
-                                                <h5 class="card-title number-table-main">+{{number_format($total[0]->new_recovered)}}</h5>
+                                                <h5 class="card-title number-table-main">+{{number_format($data[0]->new_recovered)}}</h5>
                                                 <p style="color: #222">New Recovered</p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="card-body">
-                                                <h5 class="card-title number-table-main">+{{number_format($total[0]->new_deaths)}}</h5>
+                                                <h5 class="card-title number-table-main">+{{number_format($data[0]->new_deaths)}}</h5>
                                                 <p style="color: #222">New Death</p>
                                             </div>
                                         </div>
@@ -313,16 +313,16 @@
                     <tfoot>
                     <tr>
                         <th>Total:</th>
-                        <th>{{number_format($total[0]->total_cases)}}</th>
-                        <th style="background: #FFEEAA;">{{number_format($total[0]->new_cases)}}</th>
-                        <th>{{number_format($total[0]->total_deaths)}}</th>
-                        <th style="background: red; color: white;">{{number_format($total[0]->new_deaths)}}</th>
-                        <th>{{number_format($total[0]->total_recovered)}}</th>
-                        <th style="background-color:#c8e6c9; color:#000">{{number_format($total[0]->new_recovered)}}</th>
-                        <th>{{number_format($total[0]->active_cases)}}</th>
-                        <th>{{number_format($total[0]->serious)}}</th>
-                        <th>{{number_format($total[0]->tot_cases)}}</th>
-                        <th>{{number_format($total[0]->death1m)}}</th>
+                        <th>{{number_format($data[0]->total_cases)}}</th>
+                        <th style="background: #FFEEAA;">{{number_format($data[0]->new_cases)}}</th>
+                        <th>{{number_format($data[0]->total_deaths)}}</th>
+                        <th style="background: red; color: white;">{{number_format($data[0]->new_deaths)}}</th>
+                        <th>{{number_format($data[0]->total_recovered)}}</th>
+                        <th style="background-color:#c8e6c9; color:#000">{{number_format($data[0]->new_recovered)}}</th>
+                        <th>{{number_format($data[0]->active_cases)}}</th>
+                        <th>{{number_format($data[0]->serious)}}</th>
+                        <th>{{number_format($data[0]->tot_cases)}}</th>
+                        <th>{{number_format($data[0]->death1m)}}</th>
                         <th></th>
                         <th></th>
                         <th></th>
