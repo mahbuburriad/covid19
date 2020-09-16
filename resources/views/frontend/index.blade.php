@@ -300,7 +300,7 @@
 
 
             </center>
-            <div>
+            <div class="table-responsive">
 
                 <h1>Data Table</h1>
 
@@ -396,7 +396,8 @@
 @endsection
 
 @section('script')
-    {{--    <script src="{{url('https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js')}}"></script>--}}
+        <script src="{{url('https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js')}}"></script>
+        <script src="{{url('https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#dataTable').DataTable({
