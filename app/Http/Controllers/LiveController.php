@@ -24,7 +24,7 @@ class LiveController extends Controller
 
     public function yesterday()
     {
-        Yesterday::truncate();
+        //Yesterday::truncate();
         $date = 'yesterday';
         $day = 1;
         $this->getData($day, $date);
@@ -131,13 +131,14 @@ class LiveController extends Controller
                     $yesterdayData = DB::table('yesterdays')->latest('id')->first();
 
                     if ($date == 'yesterday') {
-                        if (!isEmpty($yesterdayData) && $yesterdayData->date != Carbon::today()) {
+/*                        if (empty($yesterdayData)) {
                             $this->yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
-                        }elseif(isEmpty($yesterdayData)){
+                        }elseif(!empty($yesterdayData) && $yesterdayData->date != Carbon::today()){
                             $this->yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
                         } else{
                             echo "wrong method";
-                        }
+                        }*/
+                        $this->yesterdayInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
                     } elseif ($date = 'live') {
                         $this->liveInsert($country, $total_cases, $new_cases, $total_deaths, $new_deaths, $total_recovered, $new_recovered, $active_cases, $serious, $tot_cases, $death1m, $total_tests, $test1m, $population);
                     } else {
