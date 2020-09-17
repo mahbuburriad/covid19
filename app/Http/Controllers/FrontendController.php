@@ -12,10 +12,19 @@ class FrontendController extends Controller
 {
     public function index(){
         $bangladesh = Live::where('country', 'Bangladesh')->get();
+        $yesterdayData = Yesterday::all();
         $yesterday = Yesterday::where([
             'country' => 'Bangladesh',
             'date' => Carbon::today()
         ])->get();
+
+        if(empty($yesterday)){
+            $yesterday = Yesterday::where([
+                'country' => 'Bangladesh',
+                'date' => Carbon::yesterday()
+            ])->get();
+        }
+
         $data = Live::all();
 
         $laraCollect = collect($data);
