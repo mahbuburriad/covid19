@@ -142,7 +142,7 @@
                                                     @endif
                                                 </h5>
 
-                                                <p class="pull-left" style="color: #222">New Confirmed</p>
+                                                <p class="pull-left" style="color: #222">{{!empty($bangladesh[0]->new_cases) ? 'New' : 'Yesterday'}} Confirmed</p>
                                             </div>
                                             <div class="col-md-3">
 
@@ -158,7 +158,7 @@
                                                         +{{is_numeric($yesterday[0]->new_recovered) ? number_format($yesterday[0]->new_recovered) : $yesterday[0]->new_recovered}}
                                                     @endif
                                                 </h5>
-                                                <p class="pull-right" style="color: #222">New Recovered</p>
+                                                <p class="pull-right" style="color: #222">{{!empty($bangladesh[0]->new_recovered) ? 'New' : 'Yesterday'}} Recovered</p>
                                             </div>
 
                                             <div class="col-md-3">
@@ -174,7 +174,7 @@
                                                         +{{ is_numeric($yesterday[0]->new_deaths) ?  number_format($yesterday[0]->new_deaths) : $yesterday[0]->new_deaths}}
                                                     @endif
                                                 </h5>
-                                                <p style="color: #222">New Death</p>
+                                                <p style="color: #222">{{!empty($bangladesh[0]->new_deaths) ? 'New' : 'Yesterday'}} Death</p>
                                             </div>
                                             <div class="col-md-3">
                                                 <h5 class="card-title number-table-main">
