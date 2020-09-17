@@ -19,7 +19,7 @@ class FrontendController extends Controller
         $data = Live::all();
 
         $laraCollect = collect($data);
-        $topFiveAffected = $laraCollect->sortByDesc('new_cases')->skip(1)->take(5);
+        $topFiveAffected = $laraCollect->sortByDesc('new_cases')->skip(1)->where('new_cases', '!=', null)->take(5);
 
         $topC = null;
         foreach ($topFiveAffected as $top){
