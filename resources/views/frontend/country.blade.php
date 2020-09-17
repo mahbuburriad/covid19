@@ -178,7 +178,7 @@
             </center>
 
             <div>
-                @if($data == 'Bangladesh')
+                @if($name == 'Bangladesh')
                     <div class="row">
                         <div class="col-md-6">
                 @endif
@@ -205,7 +205,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                            @if($data == 'Bangladesh')
+                            @if($name == 'Bangladesh')
                         </div>
                         <div class="col-md-6">
                                 <h3>District Wise Data</h3>
