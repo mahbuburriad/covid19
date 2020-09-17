@@ -50,13 +50,13 @@ class FrontendController extends Controller
             ['country', '!=', 'World'],
             ['active_cases', '!=', 'N/A'],
             'active_cases' => '0'
-        ])->orderBy('new_cases', 'desc')->get();*/
+        ])->whereColumn([['total_cases', '>' , 'total_recovered']])->get()->sortByDesc('total_cases')->take(5);*/
 
         $overComeData = $laraCollect
             ->where('country', '!=', 'World')
             ->where('active_cases', '!=', 'N/A')
             ->where('active_cases' , '0')
-            ->sortByDesc('total_cases')
+            ->sortByDesc('country')
             ->take(5);
 
         $overComeDataGet = null;
@@ -66,7 +66,9 @@ class FrontendController extends Controller
         $overCome = ltrim($overComeDataGet, ',');
 
         $overComeWithoutLoss = Live::select('country')->where([
-            ['country', '!=', 'World']
+            ['country', '!=', 'World'],
+            ['active_cases', '!=', 'N/A'],
+            'active_cases' => '0'
         ])->whereColumn('total_cases', 'total_recovered')->get()->sortByDesc('total_cases')->take(5);
 
 /*        $overComeWithoutLoss = $laraCollect
