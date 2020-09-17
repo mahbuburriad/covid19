@@ -17,10 +17,11 @@ class FrontendController extends Controller
         $res = file_get_contents('https://www.iplocate.io/api/lookup/'.$ip);
         $res = json_decode($res);
         $ipCountry = $res->country;
-
+/*
         if (empty($ipCountry->country) || $ip = '127.0.0.1'){
             $ipCountry = 'Bangladesh';
-        } elseif ($ipCountry == 'United States'){
+        } else*/
+            if ($ipCountry == 'United States'){
             $ipCountry = 'USA';
         } elseif ($ipCountry == 'United Kingdom'){
             $ipCountry = 'UK';
