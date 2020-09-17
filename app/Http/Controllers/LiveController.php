@@ -51,6 +51,7 @@ class LiveController extends Controller
         if (!empty($yesterdayData) && $yesterdayData->date == Carbon::today() && $date == 'yesterday'){
             Yesterday::where('date', Carbon::today())->delete();
             $this->fetchDataRow($rows, $date);
+            echo 'I have found date , then delete it and create';
         }
        else if ((empty($yesterdayData) && $date == 'yesterday') || (!empty($yesterdayData) && $yesterdayData->date != Carbon::today() && $date == 'yesterday') || (!empty($yesterdayData) && $date != 'yesterday' && $date == 'live') ) {
             $this->fetchDataRow($rows, $date);
