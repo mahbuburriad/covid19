@@ -18,7 +18,7 @@ class FrontendController extends Controller
         $res = json_decode($res);
         $ipCountry = $res->country;
 
-        if (empty($ipCountry) || $ip = '127.0.0.1'){
+        if (empty($ipCountry->country) || $ip = '127.0.0.1'){
             $ipCountry = 'Bangladesh';
         } elseif ($ipCountry == 'United States'){
             $ipCountry = 'USA';
