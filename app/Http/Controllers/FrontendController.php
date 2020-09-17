@@ -7,19 +7,31 @@ use App\Models\Live;
 use App\Models\state;
 use App\Models\Yesterday;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
     public function index(){
+        $ip = request()->ip();
+        $data = Live::all();
+        $res = file_get_contents('https://www.iplocate.io/api/lookup/'.$ip);
+        $res = json_decode($res);
+        $ipCountry = $res->country;
+
+        if (empty($ipCountry) || $ip = '127.0.0.1'){
+            $ipCountry = 'Bangladesh';
+        } elseif ($ipCountry == 'United States'){
+            $ipCountry = 'USA';
+        }
+
         $yesterday = Yesterday::where([
-            'country' => 'Bangladesh',
+            'country' => $ipCountry,
             'date' => Carbon::today()
         ])->get();
-        $data = Live::all();
 
         $laraCollect = collect($data);
         $topFiveAffected = $laraCollect->sortByDesc('new_cases')->skip(1)->where('new_cases', '!=', null)->take(5);
-        $bangladesh = $laraCollect->where('country', 'Bangladesh')->all();
+        $bangladesh = $laraCollect->where('country', $ipCountry)->all();
 
         $bdKey = null;
         foreach ($bangladesh as $bdId){

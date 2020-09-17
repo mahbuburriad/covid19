@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="maincounter-wrap" style="margin-top:15px">
-                            <h1>Bangladesh Cases:</h1>
+                            <h1>{{$bangladesh[$bdKey]->country}} Cases:</h1>
                             <div class="maincounter-number">
                                 <span
                                     style="color:#aaa">{{!is_numeric($bangladesh[$bdKey]->total_cases) ? $bangladesh[$bdKey]->total_cases : number_format($bangladesh[$bdKey]->total_cases)}}</span>
