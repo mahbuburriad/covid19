@@ -191,6 +191,13 @@
                                                 <p style="color: #222">New Test</p>
                                             </div>
                                         </div>
+                                        @if(!empty($bangladesh[$bdKey]->new_cases))
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                Today's new confirmed rate percentage is among total Test: {{number_format((($bangladesh[$bdKey]->new_cases)*100)/($bangladesh[$bdKey]->total_tests - $yesterday[0]->total_tests), 2)}}%
+                                            </div>
+                                        </div>
+                                            @endif
                                     </div>
                                 </div>
                             </div>
@@ -312,7 +319,7 @@
                     </div>
                 </div>
             </center>
-            <div class="table-responsive" style="margin-top: 50px">
+            <div class="table-responsive" style="margin-top: 25px">
 
                 <h1>Data Table</h1>
 
