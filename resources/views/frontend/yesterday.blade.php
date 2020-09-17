@@ -355,7 +355,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#dataTable').DataTable({
-                order: [],
+                order: [[2,'desc']],
                 lengthChange: false,
                 paging: false,
                 info: false,
