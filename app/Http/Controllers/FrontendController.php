@@ -11,7 +11,6 @@ use Carbon\Carbon;
 class FrontendController extends Controller
 {
     public function index(){
-        $bangladesh = Live::where('country', 'Bangladesh')->get();
         $yesterday = Yesterday::where([
             'country' => 'Bangladesh',
             'date' => Carbon::today()
@@ -20,6 +19,12 @@ class FrontendController extends Controller
 
         $laraCollect = collect($data);
         $topFiveAffected = $laraCollect->sortByDesc('new_cases')->skip(1)->where('new_cases', '!=', null)->take(5);
+        $bangladesh = $laraCollect->where('country', 'Bangladesh')->all();
+
+        $bdKey = null;
+        foreach ($bangladesh as $bdId){
+            $bdKey = ($bdId->id)-1;
+        }
 
         $topC = null;
         foreach ($topFiveAffected as $top){
@@ -52,7 +57,8 @@ class FrontendController extends Controller
         return view('frontend.index', [
             'topFive' => $topFive,
             'overCome' => $overCome,
-            'overComeWithoutLossCountry' => $overComeWithoutLossCountry
+            'overComeWithoutLossCountry' => $overComeWithoutLossCountry,
+            'bdKey' => $bdKey
         ], compact('data', 'bangladesh', 'yesterday'));
     }
 
@@ -62,6 +68,7 @@ class FrontendController extends Controller
             'date' => Carbon::today()
         ])->get();
         $data = Yesterday::where('date', Carbon::today())->get();
+
         return view('frontend.yesterday', compact('bangladesh',  'data'));
     }
 

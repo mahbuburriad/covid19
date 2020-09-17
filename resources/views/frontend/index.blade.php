@@ -45,18 +45,18 @@
                             <h1>Bangladesh Cases:</h1>
                             <div class="maincounter-number">
                                 <span
-                                    style="color:#aaa">{{!is_numeric($bangladesh[0]->total_cases) ? $bangladesh[0]->total_cases : number_format($bangladesh[0]->total_cases)}}</span>
+                                    style="color:#aaa">{{!is_numeric($bangladesh[$bdKey]->total_cases) ? $bangladesh[$bdKey]->total_cases : number_format($bangladesh[$bdKey]->total_cases)}}</span>
                             </div>
                         </div>
                         <div class="maincounter-wrap" style="margin-top:15px">
                             <h1>Deaths:</h1>
                             <div
-                                class="maincounter-number">{{!is_numeric($bangladesh[0]->total_deaths) ? $bangladesh[0]->total_deaths : number_format($bangladesh[0]->total_deaths)}}</div>
+                                class="maincounter-number">{{!is_numeric($bangladesh[$bdKey]->total_deaths) ? $bangladesh[$bdKey]->total_deaths : number_format($bangladesh[$bdKey]->total_deaths)}}</div>
                         </div>
                         <div class="maincounter-wrap" style="margin-top:15px;">
                             <h1>Recovered:</h1>
                             <div class="maincounter-number" style="color:#8ACA2B ">
-                                {{!is_numeric($bangladesh[0]->total_recovered) ? $bangladesh[0]->total_recovered : number_format($bangladesh[0]->total_recovered)}}
+                                {{!is_numeric($bangladesh[$bdKey]->total_recovered) ? $bangladesh[$bdKey]->total_recovered : number_format($bangladesh[$bdKey]->total_recovered)}}
                             </div>
                         </div>
                         <div style="margin-top:50px;"></div>
@@ -66,21 +66,21 @@
                                 <div class="card">
                                     <h5 class="card-header title-case">Active cases</h5>
                                     <div class="card-body">
-                                        <h5 class="card-title number-table-main">{{!is_numeric($bangladesh[0]->active_cases) ? $bangladesh[0]->active_cases : number_format($bangladesh[0]->active_cases)}}</h5>
+                                        <h5 class="card-title number-table-main">{{!is_numeric($bangladesh[$bdKey]->active_cases) ? $bangladesh[$bdKey]->active_cases : number_format($bangladesh[$bdKey]->active_cases)}}</h5>
                                         <p style="color: #222">Currently Infected Patients</p>
 
                                         <div class="row">
                                             <div class="col-md-6">
                                 <span class="number-table"
                                       style="color: #8080FF;">
-                                        @if(empty($bangladesh[0]->active_cases))) @php $bangladesh[0]->active_cases = 0 @endphp @endif
-                                    @if(empty($bangladesh[0]->serious)) @php $bangladesh[0]->serious = 0 @endphp @endif
-                                    {{number_format($bangladesh[0]->active_cases - $bangladesh[0]->serious)}}</span><br>
+                                        @if(empty($bangladesh[$bdKey]->active_cases))) @php $bangladesh[$bdKey]->active_cases = 0 @endphp @endif
+                                    @if(empty($bangladesh[$bdKey]->serious)) @php $bangladesh[$bdKey]->serious = 0 @endphp @endif
+                                    {{number_format($bangladesh[$bdKey]->active_cases - $bangladesh[$bdKey]->serious)}}</span><br>
                                                 <span style="font-size: 13px;">in Mild Condition</span>
                                             </div>
                                             <div class="col-md-6">
                                                 <span
-                                                    class="number-table">{{is_numeric($bangladesh[0]->serious) ? number_format($bangladesh[0]->serious) : $bangladesh[0]->serious}}</span><br>
+                                                    class="number-table">{{is_numeric($bangladesh[$bdKey]->serious) ? number_format($bangladesh[$bdKey]->serious) : $bangladesh[$bdKey]->serious}}</span><br>
                                                 <span style="font-size: 13px;">Serious or Critical</span>
                                             </div>
                                         </div>
@@ -93,22 +93,22 @@
                                     <h5 class="card-header title-case">Closed cases</h5>
                                     <div class="card-body">
                                         <h5 class="card-title number-table-main">
-                                            @if(empty($bangladesh[0]->total_recovered))) @php $bangladesh[0]->total_recovered = 0 @endphp @endif
-                                            @if(empty($bangladesh[0]->total_deaths))) @php $bangladesh[0]->total_deaths = 0 @endphp @endif
-                                            {{number_format($bangladesh[0]->total_recovered + $bangladesh[0]->total_deaths)}}</h5>
+                                            @if(empty($bangladesh[$bdKey]->total_recovered))) @php $bangladesh[$bdKey]->total_recovered = 0 @endphp @endif
+                                            @if(empty($bangladesh[$bdKey]->total_deaths))) @php $bangladesh[$bdKey]->total_deaths = 0 @endphp @endif
+                                            {{number_format($bangladesh[$bdKey]->total_recovered + $bangladesh[$bdKey]->total_deaths)}}</h5>
                                         <p style="color: #222">Cases which had an outcome:</p>
 
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <span class="number-table" style="color: #8ACA2B;">{{number_format($bangladesh[0]->total_recovered)}}</span>
-                                                <span>(<b>{{number_format(100-(($bangladesh[0]->total_deaths * 100)/($bangladesh[0]->total_recovered + $bangladesh[0]->total_deaths)))}}</b>%)</span>
+                                                <span class="number-table" style="color: #8ACA2B;">{{number_format($bangladesh[$bdKey]->total_recovered)}}</span>
+                                                <span>(<b>{{number_format(100-(($bangladesh[$bdKey]->total_deaths * 100)/($bangladesh[$bdKey]->total_recovered + $bangladesh[$bdKey]->total_deaths)))}}</b>%)</span>
                                                 <br>
                                                 <span style="font-size: 13px;">Recovered / Discharged</span>
                                             </div>
                                             <div class="col-md-6">
                                 <span class="number-table"
-                                      style="color: red;">{{number_format($bangladesh[0]->total_deaths)}}</span>
-                                                <span>(<b>{{number_format(100-(($bangladesh[0]->total_recovered * 100)/($bangladesh[0]->total_recovered + $bangladesh[0]->total_deaths)))}}</b>%)</span>
+                                      style="color: red;">{{number_format($bangladesh[$bdKey]->total_deaths)}}</span>
+                                                <span>(<b>{{number_format(100-(($bangladesh[$bdKey]->total_recovered * 100)/($bangladesh[$bdKey]->total_recovered + $bangladesh[$bdKey]->total_deaths)))}}</b>%)</span>
                                                 <br>
                                                 <span style="font-size: 13px;">Deaths</span>
                                             </div>
@@ -129,10 +129,10 @@
                                             <div class="col-md-3">
 
                                                 <h5 class="card-title number-table-main pull-left">
-                                                    @if(!empty($bangladesh[0]->new_cases))
-                                                        +{{is_numeric($bangladesh[0]->new_cases) ? number_format($bangladesh[0]->new_cases) : $bangladesh[0]->new_cases}}
+                                                    @if(!empty($bangladesh[$bdKey]->new_cases))
+                                                        +{{is_numeric($bangladesh[$bdKey]->new_cases) ? number_format($bangladesh[$bdKey]->new_cases) : $bangladesh[$bdKey]->new_cases}}
 
-                                                        @if($bangladesh[0]->new_cases > $yesterday[0]->new_cases)
+                                                        @if($bangladesh[$bdKey]->new_cases > $yesterday[0]->new_cases)
                                                             <i class="fas fa-arrow-up fa-xs"></i>
                                                         @else
                                                             <i class="fas fa-arrow-down fa-xs"></i>
@@ -142,14 +142,14 @@
                                                     @endif
                                                 </h5>
 
-                                                <p class="pull-left" style="color: #222">{{!empty($bangladesh[0]->new_cases) ? 'New' : 'Yesterday'}} Confirmed</p>
+                                                <p class="pull-left" style="color: #222">{{!empty($bangladesh[$bdKey]->new_cases) ? 'New' : 'Yesterday'}} Confirmed</p>
                                             </div>
                                             <div class="col-md-3">
 
                                                 <h5 class="card-title number-table-main pull-right">
-                                                    @if(!empty($bangladesh[0]->new_recovered))
-                                                        +{{is_numeric($bangladesh[0]->new_recovered) ? number_format($bangladesh[0]->new_recovered) : $bangladesh[0]->new_recovered}}
-                                                        @if($bangladesh[0]->new_recovered > $yesterday[0]->new_recovered)
+                                                    @if(!empty($bangladesh[$bdKey]->new_recovered))
+                                                        +{{is_numeric($bangladesh[$bdKey]->new_recovered) ? number_format($bangladesh[$bdKey]->new_recovered) : $bangladesh[$bdKey]->new_recovered}}
+                                                        @if($bangladesh[$bdKey]->new_recovered > $yesterday[0]->new_recovered)
                                                             <i class="fas fa-arrow-up fa-xs"></i>
                                                         @else
                                                             <i class="fas fa-arrow-down fa-xs"></i>
@@ -158,14 +158,14 @@
                                                         +{{is_numeric($yesterday[0]->new_recovered) ? number_format($yesterday[0]->new_recovered) : $yesterday[0]->new_recovered}}
                                                     @endif
                                                 </h5>
-                                                <p class="pull-right" style="color: #222">{{!empty($bangladesh[0]->new_recovered) ? 'New' : 'Yesterday'}} Recovered</p>
+                                                <p class="pull-right" style="color: #222">{{!empty($bangladesh[$bdKey]->new_recovered) ? 'New' : 'Yesterday'}} Recovered</p>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <h5 class="card-title number-table-main">
-                                                    @if(!empty($bangladesh[0]->new_deaths))
-                                                        +{{ is_numeric($bangladesh[0]->new_deaths) ?  number_format($bangladesh[0]->new_deaths) : $bangladesh[0]->new_deaths}}
-                                                        @if($bangladesh[0]->new_deaths > $yesterday[0]->new_deaths)
+                                                    @if(!empty($bangladesh[$bdKey]->new_deaths))
+                                                        +{{ is_numeric($bangladesh[$bdKey]->new_deaths) ?  number_format($bangladesh[$bdKey]->new_deaths) : $bangladesh[$bdKey]->new_deaths}}
+                                                        @if($bangladesh[$bdKey]->new_deaths > $yesterday[0]->new_deaths)
                                                             <i class="fas fa-arrow-up fa-xs"></i>
                                                         @else
                                                             <i class="fas fa-arrow-down fa-xs"></i>
@@ -174,11 +174,11 @@
                                                         +{{ is_numeric($yesterday[0]->new_deaths) ?  number_format($yesterday[0]->new_deaths) : $yesterday[0]->new_deaths}}
                                                     @endif
                                                 </h5>
-                                                <p style="color: #222">{{!empty($bangladesh[0]->new_deaths) ? 'New' : 'Yesterday'}} Death</p>
+                                                <p style="color: #222">{{!empty($bangladesh[$bdKey]->new_deaths) ? 'New' : 'Yesterday'}} Death</p>
                                             </div>
                                             <div class="col-md-3">
                                                 <h5 class="card-title number-table-main">
-                                                    {{ is_numeric($bangladesh[0]->total_tests - $yesterday[0]->total_tests) ?  number_format($bangladesh[0]->total_tests - $yesterday[0]->total_tests) : $bangladesh[0]->total_tests - $yesterday[0]->total_tests}}
+                                                    {{ is_numeric($bangladesh[$bdKey]->total_tests - $yesterday[0]->total_tests) ?  number_format($bangladesh[$bdKey]->total_tests - $yesterday[0]->total_tests) : $bangladesh[$bdKey]->total_tests - $yesterday[0]->total_tests}}
                                                 </h5>
                                                 <p style="color: #222">New Test</p>
                                             </div>
