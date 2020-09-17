@@ -34,7 +34,7 @@
 
     <section>
         <div class="container">
-            <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll"><b>Top 5 countries affected today:</b> {{$topFive.'; '}} <b>Countries overcome from covid19: </b> {{$overCome.'; '}} <b>Countries overcome Without Loss: </b>{{$overComeWithoutLossCountry}}</marquee>
+            <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll"><b>Top 5 countries that most number of affected people today:</b> {{$topFive.'; '}} <b>Countries with least active cases: </b> {{$overCome.'; '}} <b>Least active cases without death: </b>{{$overComeWithoutLossCountry}}</marquee>
         </div>
         <div class="container-fluid">
 
@@ -118,6 +118,8 @@
                             </div>
                         </div>
 
+
+
                         <div style="margin-top:50px;"></div>
 
                         <div class="row">
@@ -133,12 +135,13 @@
                                                         +{{is_numeric($bangladesh[$bdKey]->new_cases) ? number_format($bangladesh[$bdKey]->new_cases) : $bangladesh[$bdKey]->new_cases}}
 
                                                         @if($bangladesh[$bdKey]->new_cases > $yesterday[0]->new_cases)
-                                                            <i class="fas fa-arrow-up fa-xs"></i>
+                                                            <i class="fas fa-arrow-up fa-xs" title="Compared with yesterday confirmed case; Yesterday was {{$yesterday[0]->new_cases}}}"></i>
                                                         @else
-                                                            <i class="fas fa-arrow-down fa-xs"></i>
+                                                            <i class="fas fa-arrow-down fa-xs" title="Compared with yesterday confirmed case; Yesterday was {{$yesterday[0]->new_cases}}"></i>
                                                         @endif
                                                     @else
                                                         +{{is_numeric($yesterday[0]->new_cases) ? number_format($yesterday[0]->new_cases) : $yesterday[0]->new_cases}}
+                                                        <i class="fas fa-thermometer-empty fa-xs" title="Today's data is not updated yet"></i>
                                                     @endif
                                                 </h5>
 
@@ -150,12 +153,13 @@
                                                     @if(!empty($bangladesh[$bdKey]->new_recovered))
                                                         +{{is_numeric($bangladesh[$bdKey]->new_recovered) ? number_format($bangladesh[$bdKey]->new_recovered) : $bangladesh[$bdKey]->new_recovered}}
                                                         @if($bangladesh[$bdKey]->new_recovered > $yesterday[0]->new_recovered)
-                                                            <i class="fas fa-arrow-up fa-xs"></i>
+                                                            <i class="fas fa-arrow-up fa-xs" title="Compare with Yesterday recovered case; Yesterday was {{$yesterday[0]->new_recovered}}"></i>
                                                         @else
-                                                            <i class="fas fa-arrow-down fa-xs"></i>
+                                                            <i class="fas fa-arrow-down fa-xs" title="Compare with Yesterday recovered case; Yesterday was {{$yesterday[0]->new_recovered}}"></i>
                                                         @endif
                                                     @else
                                                         +{{is_numeric($yesterday[0]->new_recovered) ? number_format($yesterday[0]->new_recovered) : $yesterday[0]->new_recovered}}
+                                                        <i class="fas fa-thermometer-empty fa-xs" title="Today's data is not updated yet"></i>
                                                     @endif
                                                 </h5>
                                                 <p class="pull-right" style="color: #222">{{!empty($bangladesh[$bdKey]->new_recovered) ? 'New' : 'Yesterday'}} Recovered</p>
@@ -166,12 +170,13 @@
                                                     @if(!empty($bangladesh[$bdKey]->new_deaths))
                                                         +{{ is_numeric($bangladesh[$bdKey]->new_deaths) ?  number_format($bangladesh[$bdKey]->new_deaths) : $bangladesh[$bdKey]->new_deaths}}
                                                         @if($bangladesh[$bdKey]->new_deaths > $yesterday[0]->new_deaths)
-                                                            <i class="fas fa-arrow-up fa-xs"></i>
+                                                            <i class="fas fa-arrow-up fa-xs" title="Compare with Yesterday death case; Yesterday was {{$yesterday[0]->new_deaths}}"></i>
                                                         @else
-                                                            <i class="fas fa-arrow-down fa-xs"></i>
+                                                            <i class="fas fa-arrow-down fa-xs" title="Compare with Yesterday death case; Yesterday was {{$yesterday[0]->new_deaths}}"></i>
                                                         @endif
                                                     @else
                                                         +{{ is_numeric($yesterday[0]->new_deaths) ?  number_format($yesterday[0]->new_deaths) : $yesterday[0]->new_deaths}}
+                                                        <i class="fas fa-thermometer-empty fa-xs" title="Today's data is not updated yet"></i>
                                                     @endif
                                                 </h5>
                                                 <p style="color: #222">{{!empty($bangladesh[$bdKey]->new_deaths) ? 'New' : 'Yesterday'}} Death</p>
@@ -179,6 +184,9 @@
                                             <div class="col-md-3">
                                                 <h5 class="card-title number-table-main">
                                                     {{ is_numeric($bangladesh[$bdKey]->total_tests - $yesterday[0]->total_tests) ?  number_format($bangladesh[$bdKey]->total_tests - $yesterday[0]->total_tests) : $bangladesh[$bdKey]->total_tests - $yesterday[0]->total_tests}}
+                                                    @if(empty($bangladesh[$bdKey]->total_tests))
+                                                        <i class="fas fa-thermometer-empty fa-xs" title="Today's data is not updated yet"></i>
+                                                    @endif
                                                 </h5>
                                                 <p style="color: #222">New Test</p>
                                             </div>
@@ -189,8 +197,13 @@
 
 
                         </div>
-                        <div style="margin-top:50px;"></div>
+                        <div class="text-left d-md-none d-sm-block d-xs-none" style="margin-top: 10px">
+                            <i class="fas fa-arrow-up fa-xs"></i> = Rate is increasing than yesterday <br>
+                            <i class="fas fa-arrow-down fa-xs"></i> = Rate is decreasing than yesterday <br>
+                            <i class="fas fa-thermometer-empty fa-xs"></i> = Today's data is not updated yet
+                        </div>
                     </div>
+
 
                     <div class="col-md-6">
                         <div class="maincounter-wrap" style="margin-top:15px">
@@ -298,10 +311,8 @@
 
                     </div>
                 </div>
-
-
             </center>
-            <div class="table-responsive">
+            <div class="table-responsive" style="margin-top: 50px">
 
                 <h1>Data Table</h1>
 

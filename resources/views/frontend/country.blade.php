@@ -215,6 +215,7 @@
                                         <th>Division</th>
                                         <th>District</th>
                                         <th>#</th>
+                                        {{--<th>sss</th>--}}
                                     </tr>
                                     </thead>
 
@@ -224,6 +225,7 @@
                                             <td>{{$state->state}}</td>
                                             <td>{{$state->district}}</td>
                                             <td style="text-align: right">{{number_format($state->numberOfPeople)}}</td>
+                                            {{--<td>{{$state->booted}}</td>--}}
                                         </tr>
                                     @endforeach
                                     </tbody>

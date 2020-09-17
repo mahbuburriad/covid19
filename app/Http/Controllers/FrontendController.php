@@ -22,6 +22,8 @@ class FrontendController extends Controller
             $ipCountry = 'Bangladesh';
         } elseif ($ipCountry == 'United States'){
             $ipCountry = 'USA';
+        } elseif ($ipCountry == 'United Kingdom'){
+            $ipCountry = 'UK';
         }
 
         $yesterday = Yesterday::where([
@@ -44,11 +46,18 @@ class FrontendController extends Controller
         }
         $topFive = ltrim($topC, ', ');
 
-        $overComeData = Live::select('country')->where([
+/*        $overComeData = Live::select('country')->where([
             ['country', '!=', 'World'],
             ['active_cases', '!=', 'N/A'],
             'active_cases' => '0'
-        ])->orderBy('new_cases', 'desc')->get();
+        ])->orderBy('new_cases', 'desc')->get();*/
+
+        $overComeData = $laraCollect
+            ->where('country', '!=', 'World')
+            ->where('active_cases', '!=', 'N/A')
+            ->where('active_cases' , '0')
+            ->sortByDesc('total_cases')
+            ->take(5);
 
         $overComeDataGet = null;
         foreach ($overComeData as $overC){
@@ -58,7 +67,11 @@ class FrontendController extends Controller
 
         $overComeWithoutLoss = Live::select('country')->where([
             ['country', '!=', 'World']
-        ])->whereColumn('total_cases', 'total_recovered')->orderBy('total_cases', 'desc')->get();
+        ])->whereColumn('total_cases', 'total_recovered')->get()->sortByDesc('total_cases')->take(5);
+
+/*        $overComeWithoutLoss = $laraCollect
+            ->where('country', '!=', 'World')
+            ->where('total_cases','total_recovered');*/
 
         $overComeWithoutLossData = null;
         foreach ($overComeWithoutLoss as $overComeWithout){
