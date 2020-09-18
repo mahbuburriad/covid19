@@ -14,7 +14,7 @@ class FrontendController extends Controller
     public function index(){
         $ip = request()->ip();
         $data = Live::all();
-        $res = file_get_contents('https://www.iplocate.io/api/lookup/'.$ip);
+/*        $res = file_get_contents('https://www.iplocate.io/api/lookup/'.$ip);
         $res = json_decode($res);
         $ipCountry = $res->country;
 
@@ -25,7 +25,11 @@ class FrontendController extends Controller
             $ipCountry = 'USA';
         } elseif ($ipCountry == 'United Kingdom'){
             $ipCountry = 'UK';
-        }
+        }else{
+                $ipCountry = 'Bangladesh';
+            }*/
+
+        $ipCountry = 'Bangladesh';
 
         $yesterday = Yesterday::where([
             'country' => $ipCountry,
