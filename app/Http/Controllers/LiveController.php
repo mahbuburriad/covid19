@@ -279,4 +279,19 @@ class LiveController extends Controller
             }
         }
     }
+
+
+    public function test(){
+        $file = file_get_contents("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv");
+
+        $fileData=fopen($file,'r');
+        $fileData=explode("\n",$file);
+        while (($line = fgetcsv($fileData)) !== FALSE) {
+
+            $s[] = $line;
+        }
+        echo "<pre>";
+        var_dump($s);
+
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtisanController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LiveController;
@@ -24,6 +25,7 @@ Route::get('/yesterday', [LiveController::class, 'yesterday'])->name('yesterday'
 Route::get('/data', [LiveController::class, 'data'])->name('data');
 Route::get('/bangladeshDistrictData', [LiveController::class, 'bangladeshDistrictData'])->name('bangladeshDistrictData');
 
+Route::get('/test', [LiveController::class, 'test'])->name('test');
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('yesterdayData', [FrontendController::class, 'yesterday'])->name('yesterdayData');
@@ -33,32 +35,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/config-cache', function (){
-    Artisan::call('config:cache');
-    return "config cache successfully";
-});
-
-Route::get('/config-clear', function (){
-    Artisan::call('config:clear');
-    return "config clear successfully";
-});
-
-Route::get('/route-cache', function (){
-    Artisan::call('route:cache');
-    return "route cache successfully";
-});
-
-Route::get('/route-clear', function (){
-    Artisan::call('route:clear');
-    return "route clear successfully";
-});
-
-Route::get('/view-clear', function (){
-    Artisan::call('view:clear');
-    return "view clear successfully";
-});
-
-Route::get('/view-cache', function (){
-    Artisan::call('view:cache');
-    return "view cache successfully";
-});
+Route::get('/optimize/{todo}', [ArtisanController::class, 'optimize']);
