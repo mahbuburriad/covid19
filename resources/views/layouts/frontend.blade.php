@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-{{--    <script async src="https://cdn.ampproject.org/v0.js"></script>--}}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <!-- CSRF Token -->
@@ -26,85 +25,6 @@
     <meta property="og:description" content="@yield('description', 'Live statistics and coronavirus news tracking the number of confirmed cases, recovered patients and death toll due to the COVID-19 coronavirus from Wuhan, China. Coronavirus counter with new cases, deaths, news and updates')">
     <meta property="og:url" content="{{Request::url()}}">
     <meta property="og:type" content="website">
-
-{{--    <link rel="shortcut icon" href="{{asset('assets/images/logo.png')}}">
-
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('assets/images/logo.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('assets/images/logo.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets/images/logo.png')}}">
-    <link rel="apple-touch-icon-precomposed" href="{{asset('assets/images/logo.png')}}">--}}
-
-{{--    <script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "NewsArticle",
-        "headline": "Open-source framework for publishing content",
-        "datePublished": "2015-10-07T12:02:41Z",
-        "image": [
-            "logo.jpg"
-        ]
-    }
-</script>
-    <style amp-boilerplate>body {
-            -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-            -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-            -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-            animation: -amp-start 8s steps(1, end) 0s 1 normal both
-        }
-
-        @-webkit-keyframes -amp-start {
-            from {
-                visibility: hidden
-            }
-            to {
-                visibility: visible
-            }
-        }
-
-        @-moz-keyframes -amp-start {
-            from {
-                visibility: hidden
-            }
-            to {
-                visibility: visible
-            }
-        }
-
-        @-ms-keyframes -amp-start {
-            from {
-                visibility: hidden
-            }
-            to {
-                visibility: visible
-            }
-        }
-
-        @-o-keyframes -amp-start {
-            from {
-                visibility: hidden
-            }
-            to {
-                visibility: visible
-            }
-        }
-
-        @keyframes -amp-start {
-            from {
-                visibility: hidden
-            }
-            to {
-                visibility: visible
-            }
-        }
-    </style>
-    <noscript>
-        <style amp-boilerplate>body {
-                -webkit-animation: none;
-                -moz-animation: none;
-                -ms-animation: none;
-                animation: none
-            }</style>
-    </noscript>--}}
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')}}" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
