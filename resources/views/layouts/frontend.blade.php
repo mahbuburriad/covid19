@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
+{{--    <script async src="https://cdn.ampproject.org/v0.js"></script>--}}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <!-- CSRF Token -->
@@ -34,7 +34,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets/images/logo.png')}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset('assets/images/logo.png')}}">--}}
 
-    <script type="application/ld+json">
+{{--    <script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "NewsArticle",
@@ -104,7 +104,7 @@
                 -ms-animation: none;
                 animation: none
             }</style>
-    </noscript>
+    </noscript>--}}
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')}}" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
