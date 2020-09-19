@@ -9,8 +9,8 @@ class ArtisanController extends Controller
         if ($todo == 'optimizeClear'){
             Artisan::call('optimize:clear');
             return 'optimization clear';
-        } elseif ($todo == 'optimizeCache'){
-            Artisan::call('optimize:cache');
+        } elseif ($todo == 'cache'){
+            Artisan::call('optimize');
             return 'optimization cached successfully';
         } elseif ($todo == 'configClear'){
             Artisan::call('config:clear');
