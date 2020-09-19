@@ -130,6 +130,14 @@ class FrontendController extends Controller
             'country' => $name,
             'date' => Carbon::today()
         ])->get();
+
+        if (isEmpty($yesterday)){
+            $yesterday = Yesterday::where([
+                'country' => $name,
+                'date' => Carbon::yesterday()
+            ])->get();
+        }
+
         $states = state::where([
             'country'=> $name,
             'date' => Carbon::today()
