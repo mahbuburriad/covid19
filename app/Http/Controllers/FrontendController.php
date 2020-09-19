@@ -7,8 +7,6 @@ use App\Models\Live;
 use App\Models\state;
 use App\Models\Yesterday;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use function PHPUnit\Framework\isEmpty;
 
 class FrontendController extends Controller
 {
@@ -36,13 +34,6 @@ class FrontendController extends Controller
             'country' => $ipCountry,
             'date' => Carbon::today()
         ])->get();
-
-        if (isEmpty($yesterday)){
-            $yesterday = Yesterday::where([
-                'country' => $ipCountry,
-                'date' => Carbon::yesterday()
-            ])->get();
-        }
 
         $laraCollect = collect($data);
         $topFiveAffected = $laraCollect->sortByDesc('new_cases')->skip(1)->where('new_cases', '!=', null)->take(5);
@@ -108,17 +99,7 @@ class FrontendController extends Controller
             'date' => Carbon::today()
         ])->get();
 
-        if (isEmpty($bangladesh)){
-            $bangladesh = Yesterday::where([
-                'country' => 'Bangladesh',
-                'date' => Carbon::yesterday()
-            ])->get();
-        }
         $data = Yesterday::where('date', Carbon::today())->get();
-
-        if (isEmpty($data)){
-            $data = Yesterday::where('date', Carbon::yesterday())->get();
-        }
 
         return view('frontend.yesterday', compact('bangladesh',  'data'));
     }
@@ -130,13 +111,6 @@ class FrontendController extends Controller
             'country' => $name,
             'date' => Carbon::today()
         ])->get();
-
-        if (isEmpty($yesterday)){
-            $yesterday = Yesterday::where([
-                'country' => $name,
-                'date' => Carbon::yesterday()
-            ])->get();
-        }
 
         $states = state::where([
             'country'=> $name,
