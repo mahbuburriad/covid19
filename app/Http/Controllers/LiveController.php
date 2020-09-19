@@ -216,7 +216,7 @@ class LiveController extends Controller
         $jsonData = file_get_contents("https://pomber.github.io/covid19/timeseries.json");
         $data = json_decode($jsonData, true);
 
-        //Data::truncate();
+        Data::truncate();
 
         foreach ($data as $key => $allData) {
             foreach ($data[$key] as $keyData) {
