@@ -36,3 +36,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/optimize/{todo}', [ArtisanController::class, 'optimize']);
+
+

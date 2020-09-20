@@ -34,7 +34,14 @@
 
     <section>
         <div class="container">
-            <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll"><b>Top 5 countries that most number of affected people today:</b> {{$topFive.'; '}} <b>Countries with least active cases: </b> {{$overCome.'; '}} <b>Least active cases without death: </b>{{$overComeWithoutLossCountry}}</marquee>
+            <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll">
+                <b>Top 5 countries that most number of affected people today:</b> {{$topFive.'; '}}
+                <b>Countries with least active cases: </b> {{$overCome.'; '}}
+                <b>Least active cases without death: </b>{{$overComeWithoutLossCountry}}
+                <b>Top 5 countries by death per 1 million people: </b>{{$death1mNews}}
+                <b>Top 5 countries by total cases per 1 million people: </b>{{$total1mNews}}
+
+            </marquee>
         </div>
         <div class="container-fluid">
 

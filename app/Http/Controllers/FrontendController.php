@@ -36,7 +36,11 @@ class FrontendController extends Controller
         ])->get();
 
         $laraCollect = collect($data);
-        $topFiveAffected = $laraCollect->sortByDesc('new_cases')->where('country', '!=', 'World')->where('new_cases', '!=', null)->take(5);
+        $topFiveAffected = $laraCollect
+            ->sortByDesc('new_cases')
+            ->where('country', '!=', 'World')
+            ->where('new_cases', '!=', null)
+            ->take(5);
         $bangladesh = $laraCollect->where('country', $ipCountry)->all();
 
         $bdKey = null;
@@ -85,13 +89,42 @@ class FrontendController extends Controller
         }
         $overComeWithoutLossCountry = ltrim($overComeWithoutLossData, ',');
 
+
+        //top 5 country by death 1 million people
+        $death1mDataCollect = $laraCollect
+            ->sortByDesc('death1m')
+            ->where('country', '!=', 'World')
+            ->where('death1m', '!=', null)
+            ->take(5);
+        $death1mDataGet = null;
+        foreach ($death1mDataCollect as $death){
+            $death1mDataGet = $death1mDataGet.', '.$death->country;
+        }
+        $death1mNews = ltrim($death1mDataGet, ' ,');
+
+        $totcase1mCollect = $laraCollect
+            ->sortByDesc('tot_cases')
+            ->where('country', '!=', 'World')
+            ->where('tot_cases', '!=', null)
+            ->take(5);
+
+        $totCase1mDataGet = null;
+        foreach ($totcase1mCollect as $total1m){
+            $totCase1mDataGet = $totCase1mDataGet.', '.$total1m->country;
+        }
+        $total1mNews = ltrim($totCase1mDataGet, ' ,');
+
+
         return view('frontend.index', [
+            'death1mNews' => $death1mNews,
             'topFive' => $topFive,
             'overCome' => $overCome,
             'overComeWithoutLossCountry' => $overComeWithoutLossCountry,
-            'bdKey' => $bdKey
+            'bdKey' => $bdKey,
+            'total1mNews' => $total1mNews
         ], compact('data', 'bangladesh', 'yesterday'));
     }
+
 
     public function yesterday(){
         $bangladesh = Yesterday::where([
