@@ -282,16 +282,23 @@ class LiveController extends Controller
 
 
     public function test(){
-        $file = file_get_contents("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv");
+        $url = "https://www.raps.org/news-and-articles/news-articles/2020/3/covid-19-vaccine-tracker";
+        $html = file_get_contents($url);
+        $dom = new domDocument;
+        @$dom->loadHTML($html);
+        $tables = $dom->getElementById('vax');
+        dd($tables);
+        $rows = $tables->getElementsByTagName('table');
+        dd($rows);
 
-        $fileData=fopen($file,'r');
-        $fileData=explode("\n",$file);
-        while (($line = fgetcsv($fileData)) !== FALSE) {
+/*        $rows = $tables->getElementsByTagName('tr');
+        dd($rows);
 
-            $s[] = $line;
-        }
-        echo "<pre>";
-        var_dump($s);
+        foreach ($rows as $row) {
+            $cols = $row->getElementsByTagName('td');
+            dd($cols->item(3)->nodeValue);
+        }*/
+
 
     }
 }

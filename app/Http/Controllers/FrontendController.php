@@ -36,7 +36,7 @@ class FrontendController extends Controller
         ])->get();
 
         $laraCollect = collect($data);
-        $topFiveAffected = $laraCollect->sortByDesc('new_cases')->skip(1)->where('new_cases', '!=', null)->take(5);
+        $topFiveAffected = $laraCollect->sortByDesc('new_cases')->where('country', '!=', 'World')->where('new_cases', '!=', null)->take(5);
         $bangladesh = $laraCollect->where('country', $ipCountry)->all();
 
         $bdKey = null;
