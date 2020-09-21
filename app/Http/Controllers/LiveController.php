@@ -282,13 +282,13 @@ class LiveController extends Controller
 
 
     public function test(){
-        $url = "https://www.raps.org/news-and-articles/news-articles/2020/3/covid-19-vaccine-tracker";
+        $url = "http://www.statnews.com/feature/coronavirus/drugs-vaccines-tracker/";
         $html = file_get_contents($url);
         $dom = new domDocument;
         @$dom->loadHTML($html);
-        $tables = $dom->getElementById('vax');
+        $tables = $dom->getElementsByTagName('table');
         dd($tables);
-        $rows = $tables->getElementsByTagName('table');
+        $rows = $tables->item(0)->getElementsByTagName('tr');
         dd($rows);
 
 /*        $rows = $tables->getElementsByTagName('tr');
