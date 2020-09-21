@@ -406,7 +406,10 @@
                             <td>{{!is_numeric($all->death1m) ? $all->death1m : number_format($all->death1m)}}</td>
                             <td>{{!is_numeric($all->total_tests)  ? $all->total_tests : number_format($all->total_tests)}}</td>
                             <td>{{!is_numeric($all->test1m) ? $all->test1m : number_format($all->test1m)}}</td>
-                            <td>{{!is_numeric($all->population) ? $all->population : number_format($all->population)}}
+                            <td>
+                                @if($all->population != '1')
+                                    {{!is_numeric($all->population) ? $all->population : number_format($all->population)}}
+                                    @endif
                             @if($all->country == 'World')
                                 {{number_format($totalPopulation)}}
                                 @endif
