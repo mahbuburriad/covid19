@@ -375,9 +375,13 @@
                                     @if(!is_numeric($all->population))
                                         @php $all->population = 1 @endphp
                                     @endif
+
+                                @if($all->population != '1')
                                 <span class="percentage" title="Total case confirmed according to population">
                                     ({{number_format((($all->total_cases)*100)/($all->population), 2)}})%
                                 </span>
+                                    @endif
+
                                     @endif
                             </td>
                             <td @if (!empty($all->new_cases)) style="background: #FFEEAA;" @endif>{{!is_numeric($all->new_cases) ? $all->new_cases : number_format($all->new_cases)}}</td>
