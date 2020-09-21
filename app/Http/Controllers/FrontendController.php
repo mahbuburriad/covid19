@@ -7,6 +7,7 @@ use App\Models\Live;
 use App\Models\state;
 use App\Models\Yesterday;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
@@ -114,6 +115,10 @@ class FrontendController extends Controller
         }
         $total1mNews = ltrim($totCase1mDataGet, ' ,');
 
+        $totalPopulation = DB::table('lives')
+            ->select(DB::raw('sum(population) as total_population'))
+            ->where('country', '!=', 'World')
+            ->get();
 
         return view('frontend.index', [
             'death1mNews' => $death1mNews,
@@ -121,7 +126,8 @@ class FrontendController extends Controller
             'overCome' => $overCome,
             'overComeWithoutLossCountry' => $overComeWithoutLossCountry,
             'bdKey' => $bdKey,
-            'total1mNews' => $total1mNews
+            'total1mNews' => $total1mNews,
+            'totalPopulation' => $totalPopulation[0]->total_population
         ], compact('data', 'bangladesh', 'yesterday'));
     }
 

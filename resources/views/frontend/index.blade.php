@@ -42,9 +42,9 @@
             <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll">
                 <b>Top 5 countries that most number of affected people today:</b> {{$topFive.'; '}}
                 <b>Countries with least active cases: </b> {{$overCome.'; '}}
-                <b>Least active cases without death: </b>{{$overComeWithoutLossCountry}}
-                <b>Top 5 countries by death per 1 million people: </b>{{$death1mNews}}
-                <b>Top 5 countries by total cases per 1 million people: </b>{{$total1mNews}}
+                <b>Least active cases without death: </b>{{$overComeWithoutLossCountry.'; '}}
+                <b>Top 5 countries by death per 1 million people: </b>{{$death1mNews.'; '}}
+                <b>Top 5 countries by total cases per 1 million people: </b>{{$total1mNews.'; '}}
 
             </marquee>
         </div>
@@ -381,7 +381,10 @@
                                     ({{number_format((($all->total_cases)*100)/($all->population), 2)}})%
                                 </span>
                                     @endif
-
+                                @else
+                                    <span class="percentage" title="Total case confirmed according to population">
+                                    ({{number_format((($all->total_cases)*100)/$totalPopulation, 2)}})%
+                                </span>
                                     @endif
                             </td>
                             <td @if (!empty($all->new_cases)) style="background: #FFEEAA;" @endif>{{!is_numeric($all->new_cases) ? $all->new_cases : number_format($all->new_cases)}}</td>
@@ -403,7 +406,11 @@
                             <td>{{!is_numeric($all->death1m) ? $all->death1m : number_format($all->death1m)}}</td>
                             <td>{{!is_numeric($all->total_tests)  ? $all->total_tests : number_format($all->total_tests)}}</td>
                             <td>{{!is_numeric($all->test1m) ? $all->test1m : number_format($all->test1m)}}</td>
-                            <td>{{!is_numeric($all->population) ? $all->population : number_format($all->population)}}</td>
+                            <td>{{!is_numeric($all->population) ? $all->population : number_format($all->population)}}
+                            @if($all->country == 'World')
+                                {{number_format($totalPopulation)}}
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
