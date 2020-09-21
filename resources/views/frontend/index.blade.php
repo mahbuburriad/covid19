@@ -45,6 +45,8 @@
                 <b>Least active cases without death: </b>{{$overComeWithoutLossCountry.'; '}}
                 <b>Top 5 countries by death per 1 million people: </b>{{$death1mNews.'; '}}
                 <b>Top 5 countries by total cases per 1 million people: </b>{{$total1mNews.'; '}}
+                <b>Top 5 countries by death rate percentage accordint to total case confirmed: </b>{{$deathRateNews.'; '}}
+                <b>Top 5 countries by total case percetage according to population: </b>{{$totalCaseNews.'; '}}
 
             </marquee>
         </div>

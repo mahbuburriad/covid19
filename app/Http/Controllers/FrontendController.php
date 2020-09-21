@@ -120,6 +120,33 @@ class FrontendController extends Controller
             ->where('country', '!=', 'World')
             ->get();
 
+        $ratePercentage = DB::table('lives')
+            ->select(DB::raw('country, Round(((IFNULL(total_deaths, 0)*100)/total_cases), 2) as death_percent_rate, Round(((IFNULL(total_cases, 0)*100)/(IFNULL(population, 1))), 2) as total_case_percent'))
+            ->where('country', '!=', 'World')
+            ->get();
+
+        $rateCollection = collect($ratePercentage);
+
+        $deathRateData = $rateCollection
+            ->sortByDesc('death_percent_rate')
+            ->take(5);
+        $deathRateGet = null;
+        foreach ($deathRateData as $deathRate){
+            $deathRateGet = $death1mDataGet.', '.$deathRate->country;
+        }
+        $deathRateNews = ltrim($deathRateGet, ', ');
+
+        $totalCaseData = $rateCollection
+            ->sortByDesc('total_case_percent')
+            ->take(5);
+
+        $totalCaseGet = null;
+        foreach ($totalCaseData as $totalCase){
+            $totalCaseGet = $totalCaseGet.', '.$totalCase->country;
+        }
+        $totalCaseNews = ltrim($totalCaseGet, ', ');
+
+
         return view('frontend.index', [
             'death1mNews' => $death1mNews,
             'topFive' => $topFive,
@@ -127,7 +154,9 @@ class FrontendController extends Controller
             'overComeWithoutLossCountry' => $overComeWithoutLossCountry,
             'bdKey' => $bdKey,
             'total1mNews' => $total1mNews,
-            'totalPopulation' => $totalPopulation[0]->total_population
+            'totalPopulation' => $totalPopulation[0]->total_population,
+            'deathRateNews' => $deathRateNews,
+            'totalCaseNews' => $totalCaseNews
         ], compact('data', 'bangladesh', 'yesterday'));
     }
 
