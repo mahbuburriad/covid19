@@ -20,21 +20,26 @@ use App\Http\Controllers\FrontendController;
     return view('welcome');
 });*/
 
-Route::get('/live', [LiveController::class, 'today'])->name('live');
-Route::get('/yesterday', [LiveController::class, 'yesterday'])->name('yesterday');
-Route::get('/data', [LiveController::class, 'data'])->name('data');
-Route::get('/bangladeshDistrictData', [LiveController::class, 'bangladeshDistrictData'])->name('bangladeshDistrictData');
+Route::get('/', function () {
+    return 'Welcome to Saltanat Global Limited';
+})->name('/');
 
-Route::get('/test', [LiveController::class, 'test'])->name('test');
+Route::prefix('covid19')->group(function (){
+Route::get('live', [LiveController::class, 'today'])->name('live');
+Route::get('yesterday', [LiveController::class, 'yesterday'])->name('yesterday');
+Route::get('data', [LiveController::class, 'data'])->name('data');
+Route::get('bangladeshDistrictData', [LiveController::class, 'bangladeshDistrictData'])->name('bangladeshDistrictData');
+
+Route::get('test', [LiveController::class, 'test'])->name('test');
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('yesterdayData', [FrontendController::class, 'yesterday'])->name('yesterdayData');
 Route::get('country/{name}', [FrontendController::class, 'country'])->name('country');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+/*Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+})->name('dashboard');*/
 
 Route::get('/optimize/{todo}', [ArtisanController::class, 'optimize']);
 
-
+});
