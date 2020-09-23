@@ -20,11 +20,11 @@ use App\Http\Controllers\FrontendController;
     return view('welcome');
 });*/
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return 'Welcome to Saltanat Global Limited';
-})->name('/');
+})->name('/');*/
 
-Route::prefix('covid19')->group(function (){
+/*Route::prefix('covid19')->group(function (){*/
 Route::get('live', [LiveController::class, 'today'])->name('live');
 Route::get('yesterday', [LiveController::class, 'yesterday'])->name('yesterday');
 Route::get('data', [LiveController::class, 'data'])->name('data');
@@ -42,4 +42,4 @@ Route::get('country/{name}', [FrontendController::class, 'country'])->name('coun
 
 Route::get('/optimize/{todo}', [ArtisanController::class, 'optimize']);
 
-});
+/*});*/
