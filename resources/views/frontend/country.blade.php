@@ -169,6 +169,14 @@
                                         <p style="color: #222">New Test</p>
                                     </div>
                                 </div>
+
+                                @if(!empty($data[0]->new_cases))
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            Today's new confirmed affected rate among total Tests: {{number_format((($data[0]->new_cases)*100)/($data[0]->total_tests - $yesterday[0]->total_tests), 2)}}%
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

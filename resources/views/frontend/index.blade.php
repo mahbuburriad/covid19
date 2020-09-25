@@ -21,10 +21,17 @@
 
         .GeneratedMarquee {
             line-height:1.3em;
-            color:#FFFFFF;
-            background-color:#CC3300;
+            color:#000000;
+            background-color:#c0c0c0;
             padding:7px;
             margin-top: 20px;
+        }
+        .GeneratedMarqueebangla {
+            line-height:1.3em;
+            color:#000;
+            background-color:#c0c0c0;
+            padding:7px;
+            margin-top: 5px;
         }
 
         .percentage{
@@ -40,14 +47,23 @@
     <section>
         <div class="container">
             <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll">
-                <b>Top 5 countries that most number of affected people today:</b> {{$topFive.'; '}}
-                <b>Countries with least active cases: </b> {{$overCome.'; '}}
-                <b>Least active cases without death: </b>{{$overComeWithoutLossCountry.'; '}}
-                <b>Top 5 countries by death per 1 million people: </b>{{$death1mNews.'; '}}
-                <b>Top 5 countries by total cases per 1 million people: </b>{{$total1mNews.'; '}}
                 <b>Top 5 countries by death rate percentage according to total case confirmed: </b>{{$deathRateNews.'; '}}
                 <b>Top 5 countries by total case percentage according to population: </b>{{$totalCaseNews.'; '}}
+                <b>Least active cases without death: </b>{{$overComeWithoutLossCountry.'; '}}
+                <b>Top 5 countries by death per 1 million people: </b>{{$death1mNews.'; '}}
+                <b>Countries with least active cases: </b> {{$overCome.'; '}}
+                <b>Top 5 countries by total cases per 1 million people: </b>{{$total1mNews.'; '}}
+                <b>Top 5 countries that most number of affected people today:</b> {{$topFive.'; '}}
+            </marquee>
 
+            <marquee class="GeneratedMarqueebangla" direction="left" scrollamount="5" behavior="scroll">
+                <b>মোট আক্ত্রান্তের সংখ্যা অনুযায়ী মৃত্যুর হার শতাংশের ভিত্তিতে শীর্ষ পাঁচটি দেশ: </b>{{$deathRateNews.'; '}}
+                <b>দেশের মোট জনসংখ্যার ভিত্তিতে মোট আক্ত্রান্ত অনুযায়ী শীর্ষ পাঁচটি দেশ: </b>{{$totalCaseNews.'; '}}
+                <b>করনা আক্রান্ত হয়েও মৃত্যু হয়নি এমন শীর্ষ পাঁচটি দেশ: </b>{{$overComeWithoutLossCountry.'; '}}
+                <b>প্রতি ১ মিলিয়নে মৃত্যুর হার অনুযায়ী শীর্ষ পাঁচটি দেশ: </b>{{$death1mNews.'; '}}
+                <b>বর্তমান সময়ে কোনো সক্রিয় কেস নেই এমন শীর্ষ পাঁচটি দেশ: </b> {{$overCome.'; '}}
+                <b>প্রতি ১ মিলিয়নে আক্রান্তের হার অনুযায়ী শীর্ষ পাঁচটি দেশ: </b>{{$total1mNews.'; '}}
+                <b>আজকের আক্ত্রান্তের সংখ্যা অনু্যায়ী শীর্ষ পাঁচটি দেশ :</b> {{$topFive.'; '}}
             </marquee>
         </div>
         <div class="container-fluid">
