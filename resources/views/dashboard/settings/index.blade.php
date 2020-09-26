@@ -55,47 +55,29 @@
                             </div>
                             <div class="form-row">
 
-                                <div class="form-group col-md-8">
+                                <div class="form-group col-md-12">
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-3">
                                             <label class="col-form-label">Mobile</label>
                                             <input type="text" name="data[mobile]" class="form-control"
                                                    value="{{$settings->mobile}}">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-3">
                                             <label class="col-form-label">Website</label>
                                             <input type="text" name="data[website]" class="form-control"
                                                    value="{{$settings->website}}">
                                         </div>
+                                        <div class="form-group col-md-3">
+                                            <label class="col-form-label">Footer Text Left</label>
+                                            <input type="text" name="data[footer_text_left]" class="form-control"
+                                                   value="{{$settings->footer_text_left}}">
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label class="col-form-label">Footer Text Right</label>
+                                            <input type="text" name="data[footer_text_right]" class="form-control"
+                                                   value="{{$settings->footer_text_right}}">
+                                        </div>
                                     </div>
-
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <div class="form-group col-md-12">
-                                        <label class="col-form-label">Currency</label>
-                                        <input type="text" name="data[currency]" class="form-control"
-                                               value="{{$settings->currency}}">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label class="col-form-label">Currency Position</label>
-                                    <select name="data[currency_position]" class="form-control">
-                                        <option value="left" {{$settings->currency_position == 'left' ? 'selected' : ''}}>Left</option>
-                                        <option value="right" {{$settings->currency_position == 'right' ? 'selected' : ''}}>Right</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label class="col-form-label">Footer Text Left</label>
-                                    <input type="text" name="data[footer_text_left]" class="form-control"
-                                           value="{{$settings->footer_text_left}}">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label class="col-form-label">Footer Text Right</label>
-                                    <input type="text" name="data[footer_text_right]" class="form-control"
-                                           value="{{$settings->footer_text_right}}">
                                 </div>
                             </div>
                             <div class="form-row">

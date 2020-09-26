@@ -16,25 +16,25 @@ class SettingsSeeder extends Seeder
     {
         DB::table('settings')->insert([
             'settings_key' => 'website_title',
-            'settings_value' => 'ERP Solution',
+            'settings_value' => 'Covid19 - CoronaVirus Pandemic',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         DB::table('settings')->insert([
             'settings_key' => 'website_email',
-            'settings_value' => 'demo@gmail.com',
+            'settings_value' => 'info@saltanatglobal.com',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         DB::table('settings')->insert([
             'settings_key' => 'address',
-            'settings_value' => 'demo@gmail.com',
+            'settings_value' => 'House 108, Apt C2, Road 11 Road # 28, Block # C, Banani, Dhaka 1213',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         DB::table('settings')->insert([
             'settings_key' => 'mobile',
-            'settings_value' => '01711155222',
+            'settings_value' => '01311311655',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -47,14 +47,14 @@ class SettingsSeeder extends Seeder
 
         DB::table('settings')->insert([
             'settings_key' => 'footer_text_left',
-            'settings_value' => 'Example All rights reserved.',
+            'settings_value' => 'All rights reserved - Saltanat Global Limited',
             'created_at' => now(),
             'updated_at' => now(),
 
         ]);
         DB::table('settings')->insert([
             'settings_key' => 'footer_text_right',
-            'settings_value' => 'Something Footer Text Right',
+            'settings_value' => 'Covid19 - CoronaVirus Pandemic Control Panel',
             'created_at' => now(),
             'updated_at' => now(),
 
