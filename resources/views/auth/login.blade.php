@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{--    <meta name="description"
+          content="Cuba admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords"
+          content="admin template, Cuba admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">--}}
+    @if(!empty($settings['logo']))
+        <link rel="icon" href="{{asset('/storage/image/'.$settings['logo'])}}" type="image/x-icon">
+    @else
+        <link rel="icon" href="{{asset('/storage/default/logo.png')}}" type="image/x-icon">
+    @endif
+    @if(!empty($settings['logo']))
+        <link rel="shortcut icon" href="{{asset('/storage/image/'.$settings['favicon'])}}" type="image/x-icon">
+    @else
+        <link rel="shortcut icon" href="{{asset('/storage/default/logo.png')}}" type="image/x-icon">
+    @endif
+    <title>{{$settings['website_title']}} Login</title>
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap"
+          rel="stylesheet">
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/fontawesome.css')}}">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/icofont.css')}}">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/themify.css')}}">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/flag-icon.css')}}">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/feather-icon.css')}}">
+    <!-- Plugins css start-->
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.css')}}">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+    <link id="color" rel="stylesheet" href="{{asset('assets/css/color-1.css')}}" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}">
+</head>
+<body>
+<!-- Loader starts-->
+<div class="loader-wrapper">
+    <div class="loader-index"><span></span></div>
+    <svg>
+        <defs></defs>
+        <filter id="goo">
+            <fegaussianblur in="SourceGraphic" stddeviation="11" result="blur"></fegaussianblur>
+            <fecolormatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo">    </fecolormatrix>
+        </filter>
+    </svg>
+</div>
+<!-- Loader ends-->
+<!-- page-wrapper Start-->
+<div class="page-wrapper">
+    <div class="container-fluid p-0">
+        <!-- login page start-->
+        <div class="authentication-main mt-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="auth-innerright auth-bg">
+                        <div class="authentication-box">
+                            <center>
+                            @if(!empty($settings['favicon']))
+                                <img src="{{asset('/storage/image/'.$settings['favicon'])}}" class="img-responsive" width="80" alt="{{$settings['website_title']}}">
+                            @else
+                                <img src="{{asset('/storage/default/logo.png')}}" class="img-responsive" alt="{{$settings['website_title']}}">
+                                @endif
+
+                                @if(!empty($settings['website_title']))
+                                    <h4 class="txt-primary">{{$settings["website_title"]}}</h4>
+                                @else
+                                    <h4>ERP Control Panel</h4>
+                                    <x-alert/>
+                                    @endif
+
+                            </center>
+                            <div class="mt-4">
+                                <div class="card-body p-0">
+                                    <div style="width: 600px" class="cont text-center">
+                                        <div>
+                                            <form method="POST" style="align: center; margin: 0 auto" class="form-horizontal m-t-20 theme-form" action="{{ route('login') }}">
+                                                @csrf
+                                                <h4 class="text-center">Login</h4>
+                                                <div class="form-group">
+                                                    <div class="col-xs-12">
+                                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Enter Email Address">
+
+                                                        @error('email')
+                                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-xs-12">
+                                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Enter Password">
+                                                        @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-xs-12">
+                                                        <div class="checkbox checkbox-custom">
+                                                            <input  class="form-check-input"  type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="remember">
+                                                                {{ __('Remember Me') }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group text-center m-t-30">
+                                                    <div class="col-xs-12">
+                                                        <button class="btn btn-primary" name="admin_login" type="submit">{{ __('Login') }}</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- login page end-->
+    </div>
+</div>
+<!-- latest jquery-->
+<script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
+<!-- Bootstrap js-->
+<script src="{{asset('assets/js/bootstrap/popper.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap/bootstrap.js')}}"></script>
+<!-- feather icon js-->
+<script src="{{asset('assets/js/icons/feather-icon/feather.min.js')}}"></script>
+<script src="{{asset('assets/js/icons/feather-icon/feather-icon.js')}}"></script>
+<!-- Sidebar jquery-->
+<script src="{{asset('assets/js/sidebar-menu.js')}}"></script>
+<script src="{{asset('assets/js/config.js')}}"></script>
+<!-- Plugins JS start-->
+<script src="{{asset('assets/js/login.js')}}"></script>
+<!-- Plugins JS Ends-->
+<!-- Theme js-->
+<script src="{{asset('assets/js/script.js')}}"></script>
+<!-- login js-->
+<!-- Plugin used-->
+</body>
+</html>
