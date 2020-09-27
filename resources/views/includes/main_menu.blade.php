@@ -3,6 +3,17 @@
 </li>
 
 <li class="dropdown">
+    <a class="nav-link menu-title  {{request()->route()->getPrefix() == '/data' ? 'active' : '' }}" href="javascript:void(0)"><i data-feather="file-text"></i><span>Data</span>
+        <div class="according-menu"><i class="fa fa-angle-{{request()->route()->getPrefix() == '/data' ? 'down' : 'right' }}"></i></div>
+    </a>
+
+    <ul class="nav-submenu menu-content" style="display: {{request()->route()->getPrefix() == '/data' ? 'block;' : 'none;' }}">
+        <li ><a class="{{ Route::currentRouteName()=='liveData' ? 'active' : '' }}" href="{{route('liveData')}}">Live</a></li>
+        <li ><a class="{{ Route::currentRouteName()=='yesterdayData' ? 'active' : '' }}" href="{{route('yesterdayData')}}">Live</a></li>
+    </ul>
+</li>
+
+<li class="dropdown">
     <a class="nav-link menu-title  {{request()->route()->getPrefix() == '/settings' ? 'active' : '' }}" href="javascript:void(0)"><i data-feather="file-text"></i><span>Settings</span>
         <div class="according-menu"><i class="fa fa-angle-{{request()->route()->getPrefix() == '/settings' ? 'down' : 'right' }}"></i></div>
     </a>

@@ -39,4 +39,9 @@ Route::prefix('settings')->group(function (){
     Route::patch('settingUpdate', [SettingsController::class, 'update'])->name('settingsUpdate');
 });
 
+Route::prefix('data')->group(function (){
+    Route::get('live', [dashboardController::class, 'liveData'])->name('liveData');
+    Route::get('yesterday', [dashboardController::class, 'yesterdayData'])->name('yesterdayData');
+});
+
 
