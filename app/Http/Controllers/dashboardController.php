@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Data;
 use App\Models\Live;
+use App\Models\state;
 use App\Models\Yesterday;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -31,6 +33,24 @@ class dashboardController extends Controller
     public function worldometer(){
         $worldometers = Yesterday::all();
         return view('dashboard.data.worldometer', compact('worldometers'));
+    }
+
+    public function jhpomber(){
+        $datas = Data::all();
+        return view('dashboard.data.jhpomber', compact('datas'));
+    }
+
+    public function bangladeshToday(){
+        $bangladesh = state::where([
+            'country' => 'Bangladesh',
+            'date' => Carbon::today()
+        ])->get();
+        return view('dashboard.data.bangladeshToday', compact('bangladesh'));
+    }
+
+    public function bangladeshAll(){
+        $bangladesh = state::where('country', 'Bangladesh')->get();
+        return view('dashboard.data.bangladeshAll', compact('bangladesh'));
     }
 
 

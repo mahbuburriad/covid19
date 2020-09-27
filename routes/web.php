@@ -43,9 +43,12 @@ Route::prefix('data')->group(function (){
     Route::get('live', [dashboardController::class, 'liveData'])->name('liveData');
     Route::get('yesterdayShow', [dashboardController::class, 'yesterdayData'])->name('yesterdayShow');
     Route::get('worldometer', [dashboardController::class, 'worldometer'])->name('worldometer');
-/*    Route::get('jhpomber', [dashboardController::class, 'jhpomber'])->name('jhpomber');
+    Route::get('jhpomber', [dashboardController::class, 'jhpomber'])->name('jhpomber');
+});
+
+Route::prefix('state')->group(function (){
     Route::get('bangladeshToday', [dashboardController::class, 'bangladeshToday'])->name('bangladeshToday');
-    Route::get('bangladeshAll', [dashboardController::class, 'bangladeshAll'])->name('bangladeshAll');*/
+    Route::get('bangladeshAll', [dashboardController::class, 'bangladeshAll'])->name('bangladeshAll');
 });
 
 
