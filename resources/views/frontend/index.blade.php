@@ -182,7 +182,7 @@
                                                 <h5 class="card-title number-table-main pull-right">
                                                     @if(!empty($bangladesh[$bdKey]->new_recovered))
                                                         +{{is_numeric($bangladesh[$bdKey]->new_recovered) ? number_format($bangladesh[$bdKey]->new_recovered) : $bangladesh[$bdKey]->new_recovered}}
-                                                        @if($bangladesh[$bdKey]->new_recovered > $yesterday[0]->new_recovered)
+                                                        @if($bangladesh[$bdKey]->new_recovered < $yesterday[0]->new_recovered)
                                                             <i class="fas fa-arrow-up fa-xs" title="Compare with Yesterday recovered case; Yesterday was {{$yesterday[0]->new_recovered}}"></i>
                                                         @else
                                                             <i class="fas fa-arrow-down fa-xs" title="Compare with Yesterday recovered case; Yesterday was {{$yesterday[0]->new_recovered}}"></i>
