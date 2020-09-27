@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Artisan;
+use Spatie\Sitemap\SitemapGenerator;
 
 class ArtisanController extends Controller
 {
@@ -36,5 +37,10 @@ class ArtisanController extends Controller
         } else{
             return 'You put wrong information';
         }
+    }
+
+    public function sitemap(){
+        SitemapGenerator::create('https://covid19.saltanatglobal.com')->writeToFile('sitemap.xml');
+        return 'sitemap created';
     }
 }

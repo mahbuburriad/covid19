@@ -24,6 +24,7 @@ Route::get('/', [FrontendController::class, 'index'])->name('fIndex');
 Route::get('yesterday', [FrontendController::class, 'yesterday'])->name('yesterdayData');
 Route::get('country/{name}', [FrontendController::class, 'country'])->name('country');
 Route::get('optimize/{todo}', [ArtisanController::class, 'optimize']);
+Route::get('sitemap', [ArtisanController::class, 'sitemap'])->name('sitemap');
 
 
 
