@@ -8,18 +8,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LiveController;
 use App\Http\Controllers\FrontendController;
 
-Route::get('/live', [LiveController::class, 'today'])->name('live');
-Route::get('/yesterday', [LiveController::class, 'yesterday'])->name('yesterday');
-Route::get('/data', [LiveController::class, 'data'])->name('data');
-Route::get('/bangladeshDistrictData', [LiveController::class, 'bangladeshDistrictData'])->name('bangladeshDistrictData');
+Route::get('liveInsert', [LiveController::class, 'today'])->name('live');
+Route::get('yesterdayInsert', [LiveController::class, 'yesterday'])->name('yesterday');
+Route::get('data', [LiveController::class, 'data'])->name('data');
+Route::get('bangladeshDistrictData', [LiveController::class, 'bangladeshDistrictData'])->name('bangladeshDistrictData');
 
-Route::get('/test', [LiveController::class, 'test'])->name('test');
+Route::get('test', [LiveController::class, 'test'])->name('test');
 
 Route::get('/', [FrontendController::class, 'index'])->name('fIndex');
-Route::get('/yesterdayData', [FrontendController::class, 'yesterday'])->name('yesterdayData');
-Route::get('/country/{name}', [FrontendController::class, 'country'])->name('country');
+Route::get('yesterdayData', [FrontendController::class, 'yesterday'])->name('yesterdayData');
+Route::get('country/{name}', [FrontendController::class, 'country'])->name('country');
 
-Route::get('/optimize/{todo}', [ArtisanController::class, 'optimize']);
+Route::get('optimize/{todo}', [ArtisanController::class, 'optimize']);
 
 Auth::routes(['register' => false]);
 
@@ -39,9 +39,9 @@ Route::prefix('settings')->group(function (){
     Route::patch('settingUpdate', [SettingsController::class, 'update'])->name('settingsUpdate');
 });
 
-Route::prefix('data')->group(function (){
+Route::prefix('dataDictionary')->group(function (){
     Route::get('live', [dashboardController::class, 'liveData'])->name('liveData');
-    Route::get('yesterday', [dashboardController::class, 'yesterdayData'])->name('yesterdayData');
+    Route::get('yesterdayData', [dashboardController::class, 'yesterdayData'])->name('yesterdayData');
 });
 
 
