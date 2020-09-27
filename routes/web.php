@@ -10,13 +10,13 @@ use App\Http\Controllers\FrontendController;
 
 Route::get('liveInsert', [LiveController::class, 'today'])->name('live');
 Route::get('yesterdayInsert', [LiveController::class, 'yesterday'])->name('yesterday');
-Route::get('data', [LiveController::class, 'data'])->name('data');
-Route::get('bangladeshDistrictData', [LiveController::class, 'bangladeshDistrictData'])->name('bangladeshDistrictData');
+Route::get('dataInsert', [LiveController::class, 'data'])->name('data');
+Route::get('stateInsert', [LiveController::class, 'bangladeshDistrictData'])->name('bangladeshDistrictData');
 
 Route::get('test', [LiveController::class, 'test'])->name('test');
 
 Route::get('/', [FrontendController::class, 'index'])->name('fIndex');
-Route::get('yesterdayData', [FrontendController::class, 'yesterday'])->name('yesterdayData');
+Route::get('yesterday', [FrontendController::class, 'yesterday'])->name('yesterdayData');
 Route::get('country/{name}', [FrontendController::class, 'country'])->name('country');
 
 Route::get('optimize/{todo}', [ArtisanController::class, 'optimize']);
@@ -39,9 +39,9 @@ Route::prefix('settings')->group(function (){
     Route::patch('settingUpdate', [SettingsController::class, 'update'])->name('settingsUpdate');
 });
 
-Route::prefix('dataDictionary')->group(function (){
+Route::prefix('data')->group(function (){
     Route::get('live', [dashboardController::class, 'liveData'])->name('liveData');
-    Route::get('yesterdayData', [dashboardController::class, 'yesterdayData'])->name('yesterdayData');
+    Route::get('yesterdayShow', [dashboardController::class, 'yesterdayData'])->name('yesterdayShow');
 });
 
 
