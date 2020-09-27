@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Live;
 use App\Models\Yesterday;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class dashboardController extends Controller
@@ -23,7 +24,7 @@ class dashboardController extends Controller
     }
 
     public function yesterdayData(){
-        $yesterdays = Yesterday::all();
+        $yesterdays = Yesterday::where('date', Carbon::today())->get();
         return view('dashboard.data.yesterday', compact('yesterdays'));
     }
 }

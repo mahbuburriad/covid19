@@ -9,7 +9,7 @@
 
     <ul class="nav-submenu menu-content" style="display: {{request()->route()->getPrefix() == '/data' ? 'block;' : 'none;' }}">
         <li ><a class="{{ Route::currentRouteName()=='liveData' ? 'active' : '' }}" href="{{route('liveData')}}">Live</a></li>
-        <li ><a class="{{ Route::currentRouteName()=='yesterdayData' ? 'active' : '' }}" href="{{route('yesterdayData')}}">Live</a></li>
+        <li ><a class="{{ Route::currentRouteName()=='yesterdayShow' ? 'active' : '' }}" href="{{route('yesterdayShow')}}">Yesterday</a></li>
     </ul>
 </li>
 

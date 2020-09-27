@@ -52,25 +52,24 @@
                                 </thead>
                                 <tbody>
                                 <x-alert/>
-                                @foreach($lives as $live)
-                                    <tr class="{{$live->country == 'World' ? 'world':''}}">
-                                        <td>{{$live->country}}</td>
-                                        <td>{{$live->total_cases}}</td>
-                                        <td>{{$live->new_cases}}</td>
-                                        <td>{{$live->total_deaths}}</td>
-                                        <td>{{$live->new_deaths}}</td>
-                                        <td>{{$live->total_recovered}}</td>
-                                        <td>{{$live->new_recovered}}</td>
-                                        <td>{{$live->active_cases}}</td>
-                                        <td>{{$live->serious}}</td>
-                                        <td>{{$live->tot_cases}}</td>
-                                        <td>{{$live->death1m}}</td>
-                                        <td>{{$live->total_tests}}</td>
-                                        <td>{{$live->test1m}}</td>
-                                        <td>{{$live->population}}</td>
+                                @foreach($yesterdays as $yesterday)
+                                    <tr class="{{$yesterday->country == 'World' ? 'world':''}}">
+                                        <td>{{$yesterday->country}}</td>
+                                        <td>{{$yesterday->total_cases}}</td>
+                                        <td>{{$yesterday->new_cases}}</td>
+                                        <td>{{$yesterday->total_deaths}}</td>
+                                        <td>{{$yesterday->new_deaths}}</td>
+                                        <td>{{$yesterday->total_recovered}}</td>
+                                        <td>{{$yesterday->new_recovered}}</td>
+                                        <td>{{$yesterday->active_cases}}</td>
+                                        <td>{{$yesterday->serious}}</td>
+                                        <td>{{$yesterday->tot_cases}}</td>
+                                        <td>{{$yesterday->death1m}}</td>
+                                        <td>{{$yesterday->total_tests}}</td>
+                                        <td>{{$yesterday->test1m}}</td>
+                                        <td>{{$yesterday->population}}</td>
                                     </tr>
                                 @endforeach
-
                                 </tbody>
                             </table>
                         </div>
