@@ -8,19 +8,26 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LiveController;
 use App\Http\Controllers\FrontendController;
 
+//Insert Data
 Route::get('liveInsert', [LiveController::class, 'today'])->name('live');
 Route::get('yesterdayInsert', [LiveController::class, 'yesterday'])->name('yesterday');
 Route::get('dataInsert', [LiveController::class, 'data'])->name('data');
 Route::get('stateInsert', [LiveController::class, 'bangladeshDistrictData'])->name('bangladeshDistrictData');
+Route::get('vaccineInsert', [LiveController::class, 'vaccineInsert'])->name('vaccineInsert');
 
+//For testing
 Route::get('test', [LiveController::class, 'test'])->name('test');
 
+
+//Frontend Show
 Route::get('/', [FrontendController::class, 'index'])->name('fIndex');
 Route::get('yesterday', [FrontendController::class, 'yesterday'])->name('yesterdayData');
 Route::get('country/{name}', [FrontendController::class, 'country'])->name('country');
-
 Route::get('optimize/{todo}', [ArtisanController::class, 'optimize']);
 
+
+
+//Admin Panel
 Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

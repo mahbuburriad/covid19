@@ -243,22 +243,92 @@
 
 
                     <div class="col-md-6">
-                        <div class="maincounter-wrap" style="margin-top:15px">
-                            <h1>World Cases:</h1>
-                            <div class="maincounter-number">
-                                <span style="color:#aaa">{{number_format($data[0]->total_cases)}}</span>
+                        <div class="row">
+                            <div class="col-md-6" style="color: white">
+                                <h1 style="color: #555">Vaccine Tracker</h1>
+                                <a target="_blank" style="font-size: 80%; color: #555" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html">The New York Times</a>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card" style="background-color: #75ACC8">
+                                            <div class="card-header h3">
+                                                {{$vaccines[0]->phase1}}
+                                            </div>
+                                            <div class="card-body">
+                                                PHASE 1 (Testing safety and dosage)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card" style="background-color: #3B89B1;">
+                                            <div class="card-header h3">
+                                                {{$vaccines[0]->phase2}}
+                                            </div>
+                                            <div class="card-body">
+                                                PHASE 2 (In expanded safety trials)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top: 5px">
+                                    <div class="col-md-6">
+                                        <div class="card" style="background-color: #006699">
+                                            <div class="card-header h3">
+                                                {{$vaccines[0]->phase3}}
+                                            </div>
+                                            <div class="card-body">
+                                                PHASE 3 (In large-scale efficacy tests)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card" style="background-color: #719D94;">
+                                            <div class="card-header h3">
+                                                {{$vaccines[0]->limited}}
+                                            </div>
+                                            <div class="card-body">
+                                                LIMITED (Approved for early or limited use)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 5px">
+                                    <div class="col-md-12">
+                                        <div class="card" style="background-color: #006E59;">
+                                            <div class="card-header h3">
+                                                {{$vaccines[0]->approved}}
+                                            </div>
+                                            <div class="card-body">
+                                                APPROVED (Approved for full use)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="maincounter-wrap" style="margin-top:15px">
-                            <h1>Deaths:</h1>
-                            <div class="maincounter-number">{{number_format($data[0]->total_deaths)}}</div>
-                        </div>
-                        <div class="maincounter-wrap" style="margin-top:15px;">
-                            <h1>Recovered:</h1>
-                            <div class="maincounter-number" style="color:#8ACA2B ">
-                                {{number_format($data[0]->total_recovered)}}
+                            <div class="col-md-6">
+                                <div class="maincounter-wrap" style="margin-top:15px">
+                                    <h1>World Cases:</h1>
+                                    <div class="maincounter-number">
+                                        <span style="color:#aaa">{{number_format($data[0]->total_cases)}}</span>
+                                    </div>
+                                </div>
+                                <div class="maincounter-wrap" style="margin-top:15px">
+                                    <h1>Deaths:</h1>
+                                    <div class="maincounter-number">{{number_format($data[0]->total_deaths)}}</div>
+                                </div>
+                                <div class="maincounter-wrap" style="margin-top:15px;">
+                                    <h1>Recovered:</h1>
+                                    <div class="maincounter-number" style="color:#8ACA2B ">
+                                        {{number_format($data[0]->total_recovered)}}
+                                    </div>
+                                </div>
                             </div>
+
+
                         </div>
+
+
                         <div style="margin-top:50px;"></div>
 
                         <div class="row">

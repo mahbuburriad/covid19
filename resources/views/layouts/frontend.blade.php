@@ -64,8 +64,10 @@
 @yield('content')
 
 <h5>Data Source</h5>
-<p> <b>Live Data Source:</b> https://www.worldometers.info/ <br> <b>Data by date John Hopkins University &amp; Pomber from github:</b> https://pomber.github.io/covid19
-    <br> <b>Bangladesh District Wise Data source:</b> http://dashboard.dghs.gov.bd/webportal/pages/covid19.php </p>
+<p> <b>Live Data Source:</b> https://www.worldometers.info/ <br>
+    <b>Data by date John Hopkins University &amp; Pomber from github:</b> https://pomber.github.io/covid19 <br>
+    <b>Bangladesh District Wise Data source:</b> http://dashboard.dghs.gov.bd/webportal/pages/covid19.php </p>
+    <b>Vaccine Tracker Data Source:</b> https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html</p>
 
 <footer>
     <center>

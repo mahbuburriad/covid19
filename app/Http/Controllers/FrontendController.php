@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Data;
 use App\Models\Live;
 use App\Models\state;
+use App\Models\VaccineTracker;
 use App\Models\Yesterday;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -146,6 +147,8 @@ class FrontendController extends Controller
         }
         $totalCaseNews = ltrim($totalCaseGet, ', ');
 
+        $vaccines = VaccineTracker::where('date', Carbon::today())->get();
+
 
         return view('frontend.index', [
             'death1mNews' => $death1mNews,
@@ -157,7 +160,7 @@ class FrontendController extends Controller
             'totalPopulation' => $totalPopulation[0]->total_population,
             'deathRateNews' => $deathRateNews,
             'totalCaseNews' => $totalCaseNews
-        ], compact('data', 'bangladesh', 'yesterday'));
+        ], compact('data', 'bangladesh', 'yesterday', 'vaccines'));
     }
 
 
