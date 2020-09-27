@@ -19,7 +19,7 @@
         <link rel="shortcut icon" href="{{asset('/storage/default/logo.png')}}" type="image/x-icon">
     @endif
 
-    <title>@yield('title', 'COVID-19 Coronavirus Pandemic')| Saltanat Global Limited</title>
+    <title>@yield('title', 'COVID-19 Coronavirus Pandemic') | Saltanat Global Limited</title>
 
     <meta name="title" content="@yield('title', 'COVID-19 Coronavirus Pandemic')| Saltanat Global Limited">
     <meta name="description" content="@yield('description', 'Live statistics and coronavirus news tracking the number of confirmed cases, recovered patients and death toll due to the COVID-19 coronavirus from Wuhan, China. Coronavirus counter with new cases, deaths, news and updates')">
@@ -37,6 +37,16 @@
     <meta property="og:url" content="{{Request::url()}}">
     <meta property="og:type" content="website">
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-178645137-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-178645137-1');
+    </script>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')}}" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="{{url('https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css')}}">
@@ -46,15 +56,7 @@
 
     @yield('style')
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-178645137-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', 'UA-178645137-1');
-    </script>
 
 </head>
 <body>
