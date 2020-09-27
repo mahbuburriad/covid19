@@ -137,7 +137,7 @@
                                         <h5 class="card-title number-table-main pull-right">
                                             @if(!empty($data[0]->new_recovered))
                                                 +{{is_numeric($data[0]->new_recovered) ? number_format($data[0]->new_recovered) : $data[0]->new_recovered}}
-                                                @if($data[0]->new_recovered < $yesterday[0]->new_recovered)
+                                                @if($data[0]->new_recovered > $yesterday[0]->new_recovered)
                                                     <i class="fas fa-arrow-up fa-xs" style="color: green" title="Compare with Yesterday recovered case; Yesterday was {{$yesterday[0]->new_recovered}}"></i>
                                                 @else
                                                     <i class="fas fa-arrow-down fa-xs" style="color: red" title="Compare with Yesterday recovered case; Yesterday was {{$yesterday[0]->new_recovered}}"></i>
