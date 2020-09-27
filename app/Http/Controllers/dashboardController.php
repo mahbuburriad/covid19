@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Data;
 use App\Models\Live;
 use App\Models\state;
+use App\Models\VaccineTracker;
 use App\Models\Yesterday;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -51,6 +52,11 @@ class dashboardController extends Controller
     public function bangladeshAll(){
         $bangladesh = state::where('country', 'Bangladesh')->get();
         return view('dashboard.data.bangladeshAll', compact('bangladesh'));
+    }
+
+    public function vaccineData(){
+        $vaccines = VaccineTracker::orderBy('id', 'desc')->get();
+        return view('dashboard.data.vaccineData', compact('vaccines'));
     }
 
 

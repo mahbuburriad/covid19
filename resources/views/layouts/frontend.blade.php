@@ -8,6 +8,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    @if(!empty($settings['logo']))
+        <link rel="icon" href="{{asset('/storage/image/'.$settings['logo'])}}" type="image/x-icon">
+    @else
+        <link rel="icon" href="{{asset('/storage/default/logo.png')}}" type="image/x-icon">
+    @endif
+    @if(!empty($settings['logo']))
+        <link rel="shortcut icon" href="{{asset('/storage/image/'.$settings['favicon'])}}" type="image/x-icon">
+    @else
+        <link rel="shortcut icon" href="{{asset('/storage/default/logo.png')}}" type="image/x-icon">
+    @endif
+
     <title>@yield('title', 'COVID-19 Coronavirus Pandemic')| Saltanat Global Limited</title>
 
     <meta name="title" content="@yield('title', 'COVID-19 Coronavirus Pandemic')| Saltanat Global Limited">
@@ -50,7 +61,10 @@
 
 <section>
     <div class="container-fluid">
-    <div class="label-counter" id="page-top">COVID-19 Coronavirus Pandemic @yield('country') </div>
+        <div class="row">
+
+        </div>
+    <div class="label-counter" id="page-top"><a href="https://saltanatglobal.com"><img class="img-thumbnail" width="60" style="margin-right: 30px" src="{{asset('/storage/image/'.$settings['logo'])}}" alt="Saltanat Global Limited"></a>COVID-19 Coronavirus Pandemic @yield('country') </div>
 
     <center>
         <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: {{date('F d, Y G:i A', strtotime($data[0]->created_at))}} UTC <br> Local Time : <span id = "localTime"></span> </div>
@@ -66,7 +80,7 @@
 <h5>Data Source</h5>
 <p> <b>Live Data Source:</b> https://www.worldometers.info/ <br>
     <b>Data by date John Hopkins University &amp; Pomber from github:</b> https://pomber.github.io/covid19 <br>
-    <b>Bangladesh District Wise Data source:</b> http://dashboard.dghs.gov.bd/webportal/pages/covid19.php </p>
+    <b>Bangladesh District Wise Data source:</b> http://dashboard.dghs.gov.bd/webportal/pages/covid19.php <br>
     <b>Vaccine Tracker Data Source:</b> https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html</p>
 
 <footer>

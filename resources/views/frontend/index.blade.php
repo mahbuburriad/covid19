@@ -246,7 +246,7 @@
                         <div class="row">
                             <div class="col-md-6" style="color: white">
                                 <h1 style="color: #555">Vaccine Tracker</h1>
-                                <a target="_blank" style="font-size: 80%; color: #555" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html">The New York Times</a>
+                                <a target="_blank" style="font-size: 80%; color: #555" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html">Data Source: The New York Times</a>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="card" style="background-color: #75ACC8">

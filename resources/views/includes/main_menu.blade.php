@@ -10,6 +10,7 @@
     <ul class="nav-submenu menu-content" style="display: {{request()->route()->getPrefix() == '/data' ? 'block;' : 'none;' }}">
         <li ><a class="{{ Route::currentRouteName()=='liveData' ? 'active' : '' }}" href="{{route('liveData')}}">Live</a></li>
         <li ><a class="{{ Route::currentRouteName()=='yesterdayShow' ? 'active' : '' }}" href="{{route('yesterdayShow')}}">Yesterday</a></li>
+        <li ><a class="{{ Route::currentRouteName()=='vaccineData' ? 'active' : '' }}" href="{{route('vaccineData')}}">Vaccine Tracker</a></li>
         <li>
             <a class="submenu-title {{ in_array(Route::currentRouteName(), ['worldometer', 'jhpomber']) ? 'active' : '' }}" href="javascript:void(0)">Data Dictionary
                 <div class="according-menu"><i class="fa fa-angle-{{ in_array(Route::currentRouteName(), ['worldometer', 'jhpomber']) ? 'down' : 'right' }}"></i></div>

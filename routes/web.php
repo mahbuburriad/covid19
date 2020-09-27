@@ -51,6 +51,7 @@ Route::prefix('data')->group(function (){
     Route::get('yesterdayShow', [dashboardController::class, 'yesterdayData'])->name('yesterdayShow');
     Route::get('worldometer', [dashboardController::class, 'worldometer'])->name('worldometer');
     Route::get('jhpomber', [dashboardController::class, 'jhpomber'])->name('jhpomber');
+    Route::get('vaccineData', [dashboardController::class, 'vaccineData'])->name('vaccineData');
 });
 
 Route::prefix('state')->group(function (){
