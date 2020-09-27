@@ -27,4 +27,11 @@ class dashboardController extends Controller
         $yesterdays = Yesterday::where('date', Carbon::today())->get();
         return view('dashboard.data.yesterday', compact('yesterdays'));
     }
+
+    public function worldometer(){
+        $worldometers = Yesterday::all();
+        return view('dashboard.data.worldometer', compact('worldometers'));
+    }
+
+
 }
