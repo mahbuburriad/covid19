@@ -520,7 +520,7 @@
                         <th>{{number_format($data[0]->death1m)}}</th>
                         <th></th>
                         <th></th>
-                        <th></th>
+                        <th>{{number_format($totalPopulation)}}</th>
                     </tr>
 
                     </tfoot>

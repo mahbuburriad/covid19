@@ -60,8 +60,8 @@
                                     <div class="col-md-6">
                                 <span class="number-table"
                                       style="color: #8080FF;">
-                                        @if(empty($data[0]->active_cases))) @php $data[0]->active_cases = 0 @endphp @endif
-                                    @if(empty($data[0]->serious)) @php $data[0]->serious = 0 @endphp @endif
+                                        @if(empty($data[0]->active_cases) || !is_numeric($data[0]->active_cases))) @php $data[0]->active_cases = 0 @endphp @endif
+                                    @if(empty($data[0]->serious) || !is_numeric($data[0]->serious)) @php $data[0]->serious = 0 @endphp @endif
                                     {{number_format($data[0]->active_cases - $data[0]->serious)}}</span><br>
                                         <span style="font-size: 13px;">in Mild Condition</span>
                                     </div>
@@ -79,8 +79,8 @@
                             <h5 class="card-header title-case">Closed cases</h5>
                             <div class="card-body">
                                 <h5 class="card-title number-table-main">
-                                    @if(empty($data[0]->total_recovered))) @php $data[0]->total_recovered = 0 @endphp @endif
-                                    @if(empty($data[0]->total_deaths))) @php $data[0]->total_deaths = 0 @endphp @endif
+                                    @if(empty($data[0]->total_recovered) || !is_numeric($data[0]->total_recovered))) @php $data[0]->total_recovered = 0 @endphp @endif
+                                    @if(empty($data[0]->total_deaths) || !is_numeric($data[0]->total_deaths))) @php $data[0]->total_deaths = 0 @endphp @endif
                                     {{number_format($data[0]->total_recovered + $data[0]->total_deaths)}}</h5>
                                 <p style="color: #222">Cases which had an outcome:</p>
 
@@ -168,8 +168,9 @@
                                     </div>
                                     <div class="col-md-3">
                                         <h5 class="card-title number-table-main">
+                                            @if(!empty($data[0]->total_tests) && !empty($yesterday[0]->total_tests))
                                             {{ is_numeric($data[0]->total_tests - $yesterday[0]->total_tests) ?  number_format($data[0]->total_tests - $yesterday[0]->total_tests) : $data[0]->total_tests - $yesterday[0]->total_tests}}
-                                            @if(empty($data[0]->total_tests))
+                                                @elseif(empty($data[0]->total_tests))
                                                 <i class="fas fa-thermometer-empty fa-xs" title="Today's data is not updated yet"></i>
                                             @endif
                                         </h5>
