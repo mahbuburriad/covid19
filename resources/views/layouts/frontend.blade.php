@@ -79,12 +79,12 @@
 </section>
 
 @yield('content')
-
+<br>
 <h5>Data Source</h5>
-<p> <b>Live Data Source:</b> https://www.worldometers.info/ <br>
-    <b>Data by date John Hopkins University &amp; Pomber from github:</b> https://pomber.github.io/covid19 <br>
-    <b>Bangladesh District Wise Data source:</b> http://dashboard.dghs.gov.bd/webportal/pages/covid19.php <br>
-    <b>Vaccine Tracker Data Source:</b> https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html</p>
+<p> <b>Live Data Source:</b> <a style="color: black" href="https://www.worldometers.info/coronavirus/" target="_blank">Worldometers</a> <br>
+    <b>Data by date John Hopkins University &amp; Pomber from github:</b> <a style="color: black" href="https://github.com/pomber/covid19">John Hopkins - Pomber</a> <br>
+    <b>Bangladesh District Wise Data source:</b> <a style="color: black" href="//dashboard.dghs.gov.bd/webportal/pages/covid19.php">dghs.gov.bd</a> <br>
+    <b>Vaccine Tracker Data Source:</b> <a style="color: black" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html">The New Work Times</a></p>
 
 <footer>
     <center>
