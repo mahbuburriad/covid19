@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\ArtisanController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\AdminController;
@@ -14,6 +15,8 @@ Route::get('yesterdayInsert', [LiveController::class, 'yesterday'])->name('yeste
 Route::get('dataInsert', [LiveController::class, 'data'])->name('data');
 Route::get('stateInsert', [LiveController::class, 'bangladeshDistrictData'])->name('bangladeshDistrictData');
 Route::get('vaccineInsert', [LiveController::class, 'vaccineInsert'])->name('vaccineInsert');
+
+Route::get('dataGet/{dataFor}', [ApiController::class, 'dataInsert']);
 
 //For testing
 Route::get('test', [LiveController::class, 'test'])->name('test');
