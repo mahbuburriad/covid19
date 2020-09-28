@@ -15,6 +15,28 @@ class CreateContinentsTable extends Migration
     {
         Schema::create('continents', function (Blueprint $table) {
             $table->id();
+            $table->string('date');
+            $table->string('updated');
+            $table->string('cases');
+            $table->string('todayCases');
+            $table->string('deaths');
+            $table->string('todayDeaths');
+            $table->string('recovered');
+            $table->string('todayRecovered');
+            $table->string('active')->nullable();
+            $table->string('critical')->nullable();
+            $table->string('casesPerOneMillion')->nullable();
+            $table->string('deathsPerOneMillion')->nullable();
+            $table->string('tests')->nullable();
+            $table->string('testsPerOneMillion')->nullable();
+            $table->string('population')->nullable();
+            $table->string('continent')->nullable();
+            $table->string('activePerOneMillion')->nullable();
+            $table->string('recoveredPerOneMillion')->nullable();
+            $table->string('criticalPerOneMillion')->nullable();
+            $table->string('lat')->nullable();
+            $table->string('long')->nullable();
+            $table->text('countries')->nullable();
             $table->timestamps();
         });
     }

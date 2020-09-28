@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Continent;
 use App\Models\Live;
 use App\Models\Yesterday;
 use Carbon\Carbon;
-//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
@@ -46,6 +46,26 @@ class ApiController extends Controller
             } else {
                 echo "already created";
             }
+        } else if($dataFor == 'continent'){
+            $url = Http::get('https://disease.sh/v3/covid-19/continents?sort=cases&allowNull=true');
+            $data = $url->json();
+
+            $continentData = DB::table('continents')->latest('id')->first();
+
+            if (!empty($continentData) && $continentData->date == Carbon::today()) {
+                Continent::where('date', Carbon::today())->delete();
+                $this->continentInsert($data);
+                echo 'I have found date , then delete it and create';
+            } else if (empty($continentData) || (!empty($continentData) && $continentData->date != Carbon::today())) {
+                $this->continentInsert($data);
+                echo "created";
+            } else {
+                echo "already created";
+            }
+        }
+
+        else{
+            echo 'wrong Insertion';
         }
 
     }
@@ -175,6 +195,36 @@ class ApiController extends Controller
                     'criticalPerOneMillion' => $dataGet['criticalPerOneMillion']
                 ]);
             }
+        }
+    }
+
+    private function continentInsert($data){
+        foreach ($data as $value){
+            Continent::create([
+                'date' => Carbon::today(),
+                'updated' => $value['updated'],
+                'cases' => $value['cases'],
+                'todayCases' => $value['todayCases'],
+                'deaths' => $value['deaths'],
+                'todayDeaths' => $value['todayDeaths'],
+                'recovered' => $value['recovered'],
+                'todayRecovered' => $value['todayRecovered'],
+                'active' => $value['active'],
+                'critical' => $value['critical'],
+                'casesPerOneMillion' => $value['casesPerOneMillion'],
+                'deathsPerOneMillion' => $value['deathsPerOneMillion'],
+                'tests' => $value['tests'],
+                'testsPerOneMillion' => $value['testsPerOneMillion'],
+                'population' => $value['population'],
+                'continent' => $value['continent'],
+                'activePerOneMillion' => $value['activePerOneMillion'],
+                'recoveredPerOneMillion' => $value['recoveredPerOneMillion'],
+                'criticalPerOneMillion' => $value['criticalPerOneMillion'],
+                'lat' => $value['continentInfo']['lat'],
+                'long' => $value['continentInfo']['long'],
+                'countries' => implode(',', $value['countries']),
+            ]);
+
         }
     }
 }
