@@ -9,5 +9,8 @@ class Data extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['country', 'date', 'confirm', 'recovered', 'death'];
+    protected $fillable = [
+        'country', 'date', 'confirm', 'recovered', 'death',
+        'state', 'updatedAt', 'latitude', 'longitude', 'province'
+        ];
 }

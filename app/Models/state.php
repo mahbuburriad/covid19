@@ -11,27 +11,8 @@ class state extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['date', 'country', 'state', 'district', 'numberOfPeople'];
+    protected $fillable = [
+        'date', 'country', 'state', 'district', 'numberOfPeople'
+    ];
 
-/*    protected static function booted()
-    {
-        static::addGlobalScope(new numberScope);
-    }*/
-
-/*    protected static function booted()
-    {
-        static::addGlobalScope('age', function (Builder $builder) {
-            $builder->where('numberOfPeople', '<', 200);
-        });
-    }*/
 }
-
-
-/*class numberScope implements scope{
-
-    public function apply(Builder $builder, Model $model)
-    {
-        // TODO: Implement apply() method.
-        $builder->where('numberOfPeople', '<', 200);
-    }
-}*/

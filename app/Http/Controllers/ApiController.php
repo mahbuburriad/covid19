@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Continent;
 use App\Models\Live;
+use App\Models\UsaData;
 use App\Models\Yesterday;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -58,6 +59,22 @@ class ApiController extends Controller
                 echo 'I have found date , then delete it and create';
             } else if (empty($continentData) || (!empty($continentData) && $continentData->date != Carbon::today())) {
                 $this->continentInsert($data);
+                echo "created";
+            } else {
+                echo "already created";
+            }
+        } elseif($dataFor == 'usaData'){
+            $url = Http::get('https://disease.sh/v3/covid-19/states?sort=cases&allowNull=true');
+            $data = $url->json();
+
+            $usaData = DB::table('usa_data')->latest('id')->first();
+
+            if (!empty($usaData) && $usaData->date == Carbon::today()) {
+                UsaData::where('date', Carbon::today())->delete();
+                $this->usaDataInsert($data);
+                echo 'I have found date , then delete it and create';
+            } else if (empty($usaData) || (!empty($usaData) && $usaData->date != Carbon::today())) {
+                $this->usaDataInsert($data);
                 echo "created";
             } else {
                 echo "already created";
@@ -225,6 +242,26 @@ class ApiController extends Controller
                 'countries' => implode(',', $value['countries']),
             ]);
 
+        }
+    }
+
+    private function usaDataInsert($data){
+        foreach ($data as $value){
+            UsaData::create([
+                'updated' => $value['updated'],
+                'todayCases' => $value['todayCases'],
+                'deaths' => $value['deaths'],
+                'todayDeaths' => $value['todayDeaths'],
+                'active' => $value['active'],
+                'casesPerOneMillion' => $value['casesPerOneMillion'],
+                'deathsPerOneMillion' => $value['deathsPerOneMillion'],
+                'tests' => $value['tests'],
+                'testsPerOneMillion' => $value['testsPerOneMillion'],
+                'population' => $value['population'],
+                'state' => $value['state'],
+                'cases' => $value['cases'],
+                'date' => Carbon::today()
+            ]);
         }
     }
 }
