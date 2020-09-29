@@ -1,5 +1,7 @@
 @extends('layouts.frontend')
 
+@section('title') Yesterday | @endsection
+
 @section('style')
     <link rel="stylesheet" href="{{url('https://cdn.datatables.net/fixedheader/3.1.7/css/fixedHeader.bootstrap4.min.css')}}">
     <style>

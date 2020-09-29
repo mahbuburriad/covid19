@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Data;
 use App\Models\Live;
 use App\Models\state;
+use App\Models\Therapeutic;
+use App\Models\Vaccine;
 use App\Models\VaccineTracker;
 use App\Models\Yesterday;
 use Carbon\Carbon;
@@ -194,5 +196,33 @@ class FrontendController extends Controller
         $country = Data::where('country', $name)->get();
 
         return view('frontend.country', ['name' => $name], compact('data','country', 'yesterday', 'states'));
+    }
+
+
+    public function vaccine(){
+        $data = Vaccine::where('date', Carbon::today())->get();
+        $vaccines = VaccineTracker::where('date', Carbon::today())->get();
+        return view('frontend.vaccine', compact('data', 'vaccines'));
+    }
+
+    public function therapeutics(){
+        $data = Therapeutic::where('date', Carbon::today())->get();
+
+        $collection = collect($data);
+        $phase1 = $collection->where('trialPhase', 'Phase 1')->count();
+        $phase2 = $collection->where('trialPhase', 'Phase 2')->count();
+        $phase3 = $collection->where('trialPhase', 'Phase 3')->count();
+        $phase2_3 = $collection->where('trialPhase', 'Phase 2/3')->count();
+        $phase1_2 = $collection->where('trialPhase', 'Phase 1/2')->count();
+        $phase1b = $collection->where('trialPhase', 'Phase 1b')->count();
+        $phase1_2_3 = $collection->where('trialPhase', 'Phase 1/2/3')->count();
+        $phase2_4 = $collection->where('trialPhase', 'Phase 2/4')->count();
+        $phase2b_3 = $collection->where('trialPhase', 'Phase 2b/3')->count();
+
+        return view('frontend.therapeutics', [
+            'phase1' => $phase1+$phase1_2+$phase1b+$phase1_2_3,
+            'phase2' => $phase2+$phase2_3+$phase2_4+$phase2b_3,
+            'phase3' => $phase3,
+        ], compact('data'));
     }
 }

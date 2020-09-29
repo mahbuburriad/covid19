@@ -16,7 +16,7 @@ Route::get('dataInsert', [LiveController::class, 'data'])->name('data');
 Route::get('stateInsert', [LiveController::class, 'bangladeshDistrictData'])->name('bangladeshDistrictData');
 Route::get('vaccineInsert', [LiveController::class, 'vaccineInsert'])->name('vaccineInsert');
 
-Route::get('dataGet/{dataFor}', [ApiController::class, 'dataInsert']);
+Route::get('dataGet/{dataFor}', [ApiController::class, 'dataInsert'])->name('dataGet');
 
 //For testing
 Route::get('test', [LiveController::class, 'test'])->name('test');
@@ -28,6 +28,8 @@ Route::get('yesterday', [FrontendController::class, 'yesterday'])->name('yesterd
 Route::get('country/{name}', [FrontendController::class, 'country'])->name('country');
 Route::get('optimize/{todo}', [ArtisanController::class, 'optimize']);
 Route::get('sitemap', [ArtisanController::class, 'sitemap'])->name('sitemap');
+Route::get('vaccine', [FrontendController::class, 'vaccine'])->name('vaccine');
+Route::get('therapeutics', [FrontendController::class, 'therapeutics'])->name('therapeutics');
 
 
 
