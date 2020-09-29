@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CountryData;
 use App\Models\Data;
 use App\Models\state;
 use App\Models\VaccineTracker;
@@ -11,7 +12,7 @@ use DOMDocument;
 use App\Models\Live;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
-use function PHPUnit\Framework\isEmpty;
+use Illuminate\Support\Facades\Http;
 
 class LiveController extends Controller
 {
@@ -49,15 +50,14 @@ class LiveController extends Controller
 
         $yesterdayData = DB::table('yesterdays')->latest('id')->first();
 
-        if (!empty($yesterdayData) && $yesterdayData->date == Carbon::today() && $date == 'yesterday'){
+        if (!empty($yesterdayData) && $yesterdayData->date == Carbon::today() && $date == 'yesterday') {
             Yesterday::where('date', Carbon::today())->delete();
             $this->fetchDataRow($rows, $date);
             echo 'I have found date , then delete it and create';
-        }
-       else if ((empty($yesterdayData) && $date == 'yesterday') || (!empty($yesterdayData) && $yesterdayData->date != Carbon::today() && $date == 'yesterday') || (!empty($yesterdayData) && $date != 'yesterday' && $date == 'live') ) {
+        } else if ((empty($yesterdayData) && $date == 'yesterday') || (!empty($yesterdayData) && $yesterdayData->date != Carbon::today() && $date == 'yesterday') || (!empty($yesterdayData) && $date != 'yesterday' && $date == 'live')) {
             $this->fetchDataRow($rows, $date);
             echo "created";
-        } else{
+        } else {
             echo "already created";
         }
 
@@ -281,7 +281,8 @@ class LiveController extends Controller
         }
     }
 
-    public function vaccineInsert(){
+    public function vaccineInsert()
+    {
         $url = "https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html";
         $html = file_get_contents($url);
         $dom = new domDocument;
@@ -312,28 +313,28 @@ class LiveController extends Controller
         $approval = null;
         $time = null;
 
-        foreach ($pre as $row){
-            $phase1 =  $row->nodeValue;
+        foreach ($pre as $row) {
+            $phase1 = $row->nodeValue;
         }
 
-        foreach ($p1 as $row){
-            $phase2 =  $row->nodeValue;
+        foreach ($p1 as $row) {
+            $phase2 = $row->nodeValue;
         }
 
-        foreach ($p2 as $row){
-            $phase3 =  $row->nodeValue;
+        foreach ($p2 as $row) {
+            $phase3 = $row->nodeValue;
         }
 
-        foreach ($p3 as $row){
-            $limited =  $row->nodeValue;
+        foreach ($p3 as $row) {
+            $limited = $row->nodeValue;
         }
 
-        foreach ($approve as $row){
-            $approval =  $row->nodeValue;
+        foreach ($approve as $row) {
+            $approval = $row->nodeValue;
         }
 
-        foreach ($times as $row){
-            $time =  $row->nodeValue;
+        foreach ($times as $row) {
+            $time = $row->nodeValue;
         }
 
         $vaccine = DB::table('vaccine_trackers')->latest('id')->first();
@@ -352,68 +353,50 @@ class LiveController extends Controller
         } else {
             echo "already created";
         }
-
-
-
-
     }
 
+    public function test()
+    {
+        $response = Http::get('https://disease.sh/v3/covid-19/countries');
 
-    public function test(){
-        $url = "https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html";
-        $html = file_get_contents($url);
-        $dom = new domDocument;
-        @$dom->loadHTML($html);
+        $so = $response->json();
 
-        $g_ai0_6 = $dom->getElementById('g-ai0-6');
-        $pre = $g_ai0_6->getElementsByTagName('p');
-
-        $g_ai0_7 = $dom->getElementById('g-ai0-7');
-        $p1 = $g_ai0_7->getElementsByTagName('p');
-
-        $g_ai0_7 = $dom->getElementById('g-ai0-8');
-        $p2 = $g_ai0_7->getElementsByTagName('p');
-
-        $g_ai0_7 = $dom->getElementById('g-ai0-9');
-        $p3 = $g_ai0_7->getElementsByTagName('p');
-
-        $g_ai0_7 = $dom->getElementById('g-ai0-10');
-        $approve = $g_ai0_7->getElementsByTagName('p');
-
-        $site_content = $dom->getElementById('site-content');
-        $times = $site_content->getElementsByTagName('time');
-
-        $preclinical = null;
-        $phase1 = null;
-        $phase2 = null;
-        $phase3 = null;
-        $approval = null;
-        $time = null;
-
-        foreach ($pre as $row){
-            $preclinical =  $row->nodeValue;
+        foreach ($so as $s) {
+            CountryData::create([
+                'updated' => $s['updated'],
+                'country' => $s['country'],
+                'iso2' => $s['countryInfo']['iso2'],
+                'iso3' => $s['countryInfo']['iso3'],
+                'lat' => $s['countryInfo']['lat'],
+                'long' => $s['countryInfo']['long'],
+                'flag' => $s['countryInfo']['flag'],
+                'cases' => $s['cases'],
+                'todayCases' => $s['todayCases'],
+                'deaths' => $s['deaths'],
+                'todayDeaths' => $s['todayDeaths'],
+                'recovered' => $s['recovered'],
+                'todayRecovered' => $s['todayRecovered'],
+                'active' => $s['active'],
+                'critical' => $s['critical'],
+                'casesPerOneMillion' => $s['casesPerOneMillion'],
+                'deathsPerOneMillion' => $s['deathsPerOneMillion'],
+                'tests' => $s['tests'],
+                'testsPerOneMillion' => $s['testsPerOneMillion'],
+                'population' => $s['population'],
+                'continent' => $s['continent'],
+                'oneCasePerPeople' => $s['oneCasePerPeople'],
+                'oneDeathPerPeople' => $s['oneDeathPerPeople'],
+                'oneTestPerPeople' => $s['oneTestPerPeople'],
+                'activePerOneMillion' => $s['activePerOneMillion'],
+                'recoveredPerOneMillion' => $s['recoveredPerOneMillion'],
+                'criticalPerOneMillion' => $s['criticalPerOneMillion']
+            ]);
         }
 
-        foreach ($p1 as $row){
-            $phase1 =  $row->nodeValue;
-        }
+        /*        dd(date('Y-m-d', 1601286465242/1000));*/
 
-        foreach ($p2 as $row){
-            $phase2 =  $row->nodeValue;
-        }
-
-        foreach ($p3 as $row){
-            $phase3 =  $row->nodeValue;
-        }
-
-        foreach ($approve as $row){
-            $approval =  $row->nodeValue;
-        }
-
-        foreach ($times as $row){
-            $time =  $row->nodeValue;
-        }
-
+        /*        dd($so[15]['countryInfo']['iso3']);*/
+        return 'Thanks';
     }
 
 
