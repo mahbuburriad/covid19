@@ -19,7 +19,7 @@
         <link rel="shortcut icon" href="{{asset('/storage/default/logo.png')}}" type="image/x-icon">
     @endif
 
-    <title>@yield('title', 'COVID-19 Coronavirus Pandemic') | Saltanat Global Limited</title>
+    <title>@yield('title') COVID-19 Coronavirus Pandemic | Saltanat Global Limited</title>
 
     <meta name="title" content="@yield('title', 'COVID-19 Coronavirus Pandemic')| Saltanat Global Limited">
     <meta name="description" content="@yield('description', 'Live statistics and coronavirus news tracking the number of confirmed cases, recovered patients and death toll due to the COVID-19 coronavirus from Wuhan, China. Coronavirus counter with new cases, deaths, news and updates')">
