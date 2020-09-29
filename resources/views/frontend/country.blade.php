@@ -201,6 +201,47 @@
 
             </center>
 
+            @if($name == 'US')
+                <div class="table-responsive">
+                    <h3>State Wise Data</h3>
+                    <table class="table table-striped table-bordered" id="usaTable">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>State</th>
+                            <th>Total Cases</th>
+                            <th>Today's Cases</th>
+                            <th>Deaths</th>
+                            <th>Today's Deaths</th>
+                            <th>Active</th>
+                            <th>Case/1m</th>
+                            <th>Death/1m</th>
+                            <th>Tests</th>
+                            <th>Test/1m</th>
+                            <th>Population</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        @forelse($usaData as $value)
+                        <tr>
+                            <td style="text-align: left">{{$value->state}}</td>
+                            <td>{{is_numeric($value->cases) ? number_format($value->cases) : $value->cases}}</td>
+                            <td>{{is_numeric($value->todayCases) ? number_format($value->todayCases) : $value->todayCases}}</td>
+                            <td>{{is_numeric($value->deaths) ? number_format($value->deaths) : $value->deaths}}</td>
+                            <td>{{is_numeric($value->todayDeaths) ? number_format($value->todayDeaths) : $value->todayDeaths}}</td>
+                            <td>{{is_numeric($value->active) ? number_format($value->active) : $value->active}}</td>
+                            <td>{{is_numeric($value->casesPerOneMillion) ? number_format($value->casesPerOneMillion) : $value->casesPerOneMillion}}</td>
+                            <td>{{is_numeric($value->deathsPerOneMillion) ? number_format($value->deathsPerOneMillion) : $value->deathsPerOneMillion}}</td>
+                            <td>{{is_numeric($value->tests) ? number_format($value->tests) : $value->tests}}</td>
+                            <td>{{is_numeric($value->testsPerOneMillion) ? number_format($value->testsPerOneMillion) : $value->testsPerOneMillion}}</td>
+                            <td>{{is_numeric($value->population) ? number_format($value->population) : $value->population}}</td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
+
             <div>
                 @if($name == 'Bangladesh')
                     <div class="row">
@@ -276,6 +317,10 @@
             $('#stateTable').DataTable({
                 order: [2, 'desc'],
             });
+
+            $('#usaTable').DataTable({
+                order: []
+            })
         });
     </script>
 @endsection
