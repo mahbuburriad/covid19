@@ -32,7 +32,7 @@
 
     <!--    meta tag for social media-->
 
-    <meta property="og:title" content="@yield('title', 'COVID-19 Coronavirus Pandemic')| Saltanat Global Limited">
+    <meta property="og:title" content="@yield('title') COVID-19 Coronavirus Pandemic | Saltanat Global Limited">
     <meta property="og:description" content="@yield('description', 'Live statistics and coronavirus news tracking the number of confirmed cases, recovered patients and death toll due to the COVID-19 coronavirus from Wuhan, China. Coronavirus counter with new cases, deaths, news and updates')">
     <meta property="og:url" content="{{Request::url()}}">
     <meta property="og:type" content="website">
