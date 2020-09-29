@@ -6,6 +6,7 @@ use App\Models\Data;
 use App\Models\Live;
 use App\Models\state;
 use App\Models\Therapeutic;
+use App\Models\UsaData;
 use App\Models\Vaccine;
 use App\Models\VaccineTracker;
 use App\Models\Yesterday;
@@ -190,12 +191,14 @@ class FrontendController extends Controller
             'date' => Carbon::today()
         ])->get();
 
+        $usaData = UsaData::where('date', Carbon::today())->get();
+
         if ($name == 'USA'){
             $name = 'US';
         }
         $country = Data::where('country', $name)->get();
 
-        return view('frontend.country', ['name' => $name], compact('data','country', 'yesterday', 'states'));
+        return view('frontend.country', ['name' => $name], compact('data','country', 'yesterday', 'states', 'usaData'));
     }
 
 

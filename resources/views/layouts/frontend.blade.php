@@ -70,7 +70,7 @@
     <div class="label-counter" id="page-top"><a href="https://saltanatglobal.com"><img class="img-thumbnail" width="60" style="margin-right: 30px" src="{{asset('/storage/image/'.$settings['logo'])}}" alt="Saltanat Global Limited"></a>COVID-19 Coronavirus Pandemic @yield('country') </div>
 
     <center>
-        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: {{date('F d, Y G:i A', strtotime($data[0]->created_at))}} UTC <br> Local Time : <span id = "localTime"></span> </div>
+        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: {{date('F d, Y G:i A', strtotime($data[0]->created_at))}} UTC <br> Local Time : <span id = "localTime"></span> ({{$data[0]->created_at->diffForHumans()}}) </div>
         @include('includes.menu')
     </center>
 
