@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Data extends Model
+class Vaccine extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'country', 'date', 'confirm', 'recovered', 'death'
-        ];
+        'candidate', 'mechanism', 'sponsors', 'details', 'trialPhase', 'institutions', 'date'
+    ];
 }

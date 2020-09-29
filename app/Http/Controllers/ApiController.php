@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Continent;
+use App\Models\Data;
 use App\Models\Live;
 use App\Models\UsaData;
+use App\Models\Vaccine;
 use App\Models\Yesterday;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -75,6 +77,22 @@ class ApiController extends Controller
                 echo 'I have found date , then delete it and create';
             } else if (empty($usaData) || (!empty($usaData) && $usaData->date != Carbon::today())) {
                 $this->usaDataInsert($data);
+                echo "created";
+            } else {
+                echo "already created";
+            }
+        } elseif($dataFor == 'vaccine'){
+            $url = Http::get('https://disease.sh/v3/covid-19/vaccine');
+            $data = $url->json();
+
+            $vaccineData = DB::table('vaccines')->latest('id')->first();
+
+            if (!empty($vaccineData) && $vaccineData->date == Carbon::today()) {
+                Vaccine::where('date', Carbon::today())->delete();
+                $this->vaccine($data);
+                echo 'I have found date , then delete it and create';
+            } else if (empty($vaccineData) || (!empty($vaccineData) && $vaccineData->date != Carbon::today())) {
+                $this->vaccine($data);
                 echo "created";
             } else {
                 echo "already created";
@@ -261,6 +279,20 @@ class ApiController extends Controller
                 'state' => $value['state'],
                 'cases' => $value['cases'],
                 'date' => Carbon::today()
+            ]);
+        }
+    }
+
+    private function vaccine($data){
+        foreach ($data['data'] as $value){
+            Vaccine::create([
+                'date' => Carbon::today(),
+                'candidate' => $value['candidate'],
+                'mechanism' => $value['mechanism'],
+                'sponsors' => implode(',', $value['sponsors']),
+                'details' => $value['details'],
+                'trialPhase' => $value['trialPhase'],
+                'institutions' => implode(', ', $value['institutions'])
             ]);
         }
     }
