@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title') Vaccine Info | @endsection
+@section('title') Therapeutics Info | @endsection
 
 @section('content')
     <section style="margin-top: 50px">>
