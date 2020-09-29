@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Continent;
 use App\Models\Data;
 use App\Models\Live;
+use App\Models\Therapeutic;
 use App\Models\UsaData;
 use App\Models\Vaccine;
 use App\Models\Yesterday;
@@ -97,6 +98,23 @@ class ApiController extends Controller
             } else {
                 echo "already created";
             }
+        } elseif($dataFor == 'therapeutics'){
+            $url = Http::get('https://disease.sh/v3/covid-19/therapeutics');
+            $data = $url->json();
+
+            $therapeutics = DB::table('therapeutics')->latest('id')->first();
+
+            if (!empty($therapeutics) && $therapeutics->date == Carbon::today()) {
+                Therapeutic::where('date', Carbon::today())->delete();
+                $this->therapeutics($data);
+                echo 'I have found date , then delete it and create';
+            } else if (empty($therapeutics) || (!empty($therapeutics) && $therapeutics->date != Carbon::today())) {
+                $this->therapeutics($data);
+                echo "created";
+            } else {
+                echo "already created";
+            }
+
         }
 
         else{
@@ -293,6 +311,21 @@ class ApiController extends Controller
                 'details' => $value['details'],
                 'trialPhase' => $value['trialPhase'],
                 'institutions' => implode(', ', $value['institutions'])
+            ]);
+        }
+    }
+
+    private function therapeutics($data){
+        foreach ($data['data'] as $value){
+            Therapeutic::create([
+                'date' => Carbon::today(),
+                'medicationClass' => $value['medicationClass'],
+                'tradeName' => implode(',', $value['tradeName']),
+                'details' => $value['details'],
+                'developerResearcher' => implode(',', $value['developerResearcher']),
+                'sponsors' => implode(',', $value['sponsors']),
+                'trialPhase' => $value['trialPhase'],
+                'lastUpdate' => $value['lastUpdate']
             ]);
         }
     }
