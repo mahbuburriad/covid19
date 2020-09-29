@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
           integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous"/>
     <link rel="stylesheet" href="{{url('https://cdn.datatables.net/fixedheader/3.1.7/css/fixedHeader.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/jqvmap.min.css')}}">
     <style>
         .world {
             background-color: #DFDFDF !important;
@@ -37,6 +38,135 @@
         .percentage{
             color: #696969;
             font-size: 80%;
+        }
+
+        .map-status-wrap {
+            background-color: #FFFFFF;
+            padding: 40px 30px;
+        }
+
+        @media only screen and (max-width: 767.98px),
+        only screen and (min-width: 768px) and (max-width: 991.98px),
+        only screen and (min-width: 992px) and (max-width: 1199.98px) {
+            .map-status-wrap {
+                margin-top: 30px;
+            }
+        }
+
+        .map-status-wrap .map-status {
+            height: 400px;
+            width: 100%;
+        }
+
+        @media only screen and (max-width: 767.98px) {
+            .map-status-wrap .map-status {
+                height: 250px;
+            }
+        }
+
+        .map-status-colors {
+            margin-bottom: 22px;
+        }
+
+        .map-status-colors .colors {
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .map-status-colors .colors li {
+            font-size: 18px;
+            color: #4D4D4D;
+        }
+
+        .map-status-colors .colors li:not(:last-child) {
+            margin-right: 20px;
+        }
+
+        .map-status-colors .colors li span {
+            display: inline-block;
+            height: 15px;
+            width: 15px;
+            margin-right: 5px;
+        }
+
+        .map-status-colors .colors li span.min {
+            background-color: #ACCDDC;
+        }
+
+        .map-status-colors .colors li span.mid {
+            background-color: #4A97B9;
+        }
+
+        .map-status-colors .colors li span.max {
+            background-color: #006491;
+        }
+
+        .map-content-wrap {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        @media only screen and (max-width: 767.98px) {
+            .map-content-wrap {
+                position: static;
+                width: 100%;
+                height: 500px;
+            }
+        }
+
+        .map-content-wrap .tracker-block__body {
+            height: 100%;
+        }
+
+        .map-content-wrap::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .map-content-wrap::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .map-content-wrap::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        .map-content-wrap::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .map-content-wrap .select-country {
+            margin-bottom: 40px;
+        }
+
+        .map-content-wrap .select-country .dropdown-toggle {
+            color: #FFFFFF;
+        }
+
+        .map-content-wrap .select2-selection--single {
+            background-color: transparent;
+        }
+
+        .map-content-wrap .select2-selection__rendered {
+            color: #FFFFFF !important;
+            font-size: 16px !important;
+        }
+
+        .map-content-wrap .select2-selection__rendered img {
+            margin-right: 10px;
+        }
+
+        .corona-map-tracker {
+            height: 100vh;
+            width: 100%;
+        }
+
+        @media only screen and (max-width: 767.98px) {
+            .corona-map-tracker {
+                height: 400px;
+            }
         }
 
     </style>
@@ -243,72 +373,7 @@
 
 
                     <div class="col-md-6">
-                        <div class="row">
 
-                            <div class="col-md-6" style="color: white">
-                                <div class="d-md-none d-sm-block d-xs-none" style="margin-top: 35px"></div>
-                                <h1 style="color: #555">Vaccine Tracker</h1>
-                                <a target="_blank" style="font-size: 80%; color: #555" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html">Data Source: The New York Times</a>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card" style="background-color: #75ACC8">
-                                            <div class="card-header h3">
-                                                {{$vaccines[0]->phase1}}
-                                            </div>
-                                            <div class="card-body">
-                                                PHASE 1 (Testing safety and dosage)
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card" style="background-color: #3B89B1;">
-                                            <div class="card-header h3">
-                                                {{$vaccines[0]->phase2}}
-                                            </div>
-                                            <div class="card-body">
-                                                PHASE 2 (In expanded safety trials)
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="margin-top: 5px">
-                                    <div class="col-md-6">
-                                        <div class="card" style="background-color: #006699">
-                                            <div class="card-header h3">
-                                                {{$vaccines[0]->phase3}}
-                                            </div>
-                                            <div class="card-body">
-                                                PHASE 3 (In large-scale efficacy tests)
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card" style="background-color: #719D94;">
-                                            <div class="card-header h3">
-                                                {{$vaccines[0]->limited}}
-                                            </div>
-                                            <div class="card-body">
-                                                LIMITED (Approved for early or limited use)
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: 5px">
-                                    <div class="col-md-12">
-                                        <div class="card" style="background-color: #006E59;">
-                                            <div class="card-header h3">
-                                                {{$vaccines[0]->approved}}
-                                            </div>
-                                            <div class="card-body">
-                                                APPROVED (Approved for full use)
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
                                 <div class="maincounter-wrap" style="margin-top:15px">
                                     <h1>World Cases:</h1>
                                     <div class="maincounter-number">
@@ -325,11 +390,6 @@
                                         {{number_format($data[0]->total_recovered)}}
                                     </div>
                                 </div>
-                            </div>
-
-
-                        </div>
-
 
                         <div style="margin-top:50px;"></div>
 
@@ -421,6 +481,86 @@
                     </div>
                 </div>
             </center>
+
+            <div class="row">
+                <div class="col-md-6 text-center" style="color: white">
+                    <div class="d-md-none d-sm-block d-xs-none" style="margin-top: 35px"></div>
+                    <h1 style="color: #555">Vaccine Tracker</h1>
+                    <a target="_blank" style="font-size: 80%; color: #555" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html">Data Source: The New York Times</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card" style="background-color: #75ACC8">
+                                <div class="card-header h3">
+                                    {{$vaccines[0]->phase1}}
+                                </div>
+                                <div class="card-body">
+                                    PHASE 1 (Testing safety and dosage)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card" style="background-color: #3B89B1;">
+                                <div class="card-header h3">
+                                    {{$vaccines[0]->phase2}}
+                                </div>
+                                <div class="card-body">
+                                    PHASE 2 (In expanded safety trials)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col-md-6">
+                            <div class="card" style="background-color: #006699">
+                                <div class="card-header h3">
+                                    {{$vaccines[0]->phase3}}
+                                </div>
+                                <div class="card-body">
+                                    PHASE 3 (In large-scale efficacy tests)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card" style="background-color: #719D94;">
+                                <div class="card-header h3">
+                                    {{$vaccines[0]->limited}}
+                                </div>
+                                <div class="card-body">
+                                    LIMITED (Approved for early or limited use)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col-md-12">
+                            <div class="card" style="background-color: #006E59;">
+                                <div class="card-header h3">
+                                    {{$vaccines[0]->approved}}
+                                </div>
+                                <div class="card-body">
+                                    APPROVED (Approved for full use)
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="map-status-wrap" id="map-status-report">
+                        <div class="map-status-colors">
+                            <ul class="colors d-flex">
+                                <li><span class="min"></span>&#60;50k</li>
+                                <li><span class="mid"></span>&#60;100k</li>
+                                <li><span class="max"></span>&#62;100k</li>
+                            </ul>
+                        </div>
+
+                        <div class="map-status" id="map-status"></div>
+                    </div>
+                </div>
+            </div>
+
             <div class="table-responsive" style="margin-top: 25px">
 
                 <h1>Data Table</h1>
@@ -549,8 +689,84 @@
 
 @section('script')
     <script src="{{url('https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery.vmap.min.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery.vmap.world.js')}}"></script>
     <script type="text/javascript">
+
         $(document).ready(function () {
+
+            // API BASE URL
+            const BASE_URL = "https://corona.lmao.ninja/";
+
+            /**
+             *  Function for Fetch Data
+             * @param url
+             * @returns {Promise<any>}
+             */
+            async function getData(url) {
+                let response = await fetch(url);
+                return await response.json();
+            }
+
+            const mapStatus = async function (selectorID) {
+                const countriesData = await getData(BASE_URL + 'v2/countries');
+                const map = selectorID.querySelector('#map-status');
+                const mostCases = "#006491";
+                const mediumCases = "#4A97B9";
+                const minCases = "#ACCDDC";
+                const mapColors = {};
+
+                countriesData.map(async (country) => {
+                    if (country.countryInfo.iso2) {
+                        const countryCode = country.countryInfo.iso2.toLowerCase();
+                        if (country.cases >= 0 && country.cases <= 50000) {
+                            mapColors[countryCode] = minCases;
+                        } else if (country.cases > 50000 && country.cases <= 100000) {
+                            mapColors[countryCode] = mediumCases;
+                        } else if (country.cases > 100000) {
+                            mapColors[countryCode] = mostCases;
+                        }
+                    }
+                })
+
+                jQuery(map).vectorMap({
+                    map: 'world_en',
+                    backgroundColor: null,
+                    borderColor: '#fff',
+                    borderOpacity: 0.1,
+                    borderWidth: 1,
+                    enableZoom: false,
+                    hoverColor: null,
+                    hoverOpacity: null,
+                    normalizeFunction: 'linear',
+                    scaleColors: ['#b6d6ff', '#005ace'],
+                    selectedColor: null,
+                    selectedRegions: null,
+                    showTooltip: true,
+                    colors: mapColors,
+                    onLabelShow: async function (event, label, code) {
+                        const cdata = await getData(BASE_URL + `v2/countries/${code}`);
+                        const country = `${cdata.country}`;
+                        const confirmed = `: Confirmed : ${cdata.cases}`;
+                        const death= `, Death : ${cdata.deaths}`;
+                        const recovered= `, Recovered : ${cdata.deaths}`;
+                        //const ddd = `${cdata.country}: ${cdata.cases}`;
+                        const ddd = country+confirmed+death+recovered;
+                        if (label.length) {
+                            label[0].innerText = ddd;
+                        } else {
+                            event.preventDefault();
+                        }
+                    },
+                });
+            }
+
+
+            const mapWiseReport = document.getElementById('map-status-report');
+            if (mapWiseReport) {
+                mapStatus(mapWiseReport);
+            }
+
             $('#dataTable').DataTable({
                 order: [],
                 lengthChange: false,
@@ -576,7 +792,6 @@
             $('#dataTable tfoot tr').each(function (i) {
                 $(this).prepend("<th></th>")
             })
-
         });
     </script>
 
