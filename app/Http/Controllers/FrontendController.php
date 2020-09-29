@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Continent;
 use App\Models\Data;
 use App\Models\Live;
 use App\Models\state;
@@ -152,6 +153,18 @@ class FrontendController extends Controller
 
         $vaccines = VaccineTracker::where('date', Carbon::today())->get();
 
+        $continents = Continent::where('date', Carbon::today())->get();
+        $continentCollection = collect($continents);
+        $continentTotalCase = $continentCollection->sortByDesc('cases');
+
+        $continentPercentage = DB::table('continents')
+            ->select(DB::raw('continent, Round(((IFNULL(deaths, 0)*100)/cases), 2) as death_percent_rate, Round(((IFNULL(cases, 0)*100)/(IFNULL(population, 1))), 2) as total_case_percent'))
+            ->where('date', Carbon::today())
+            ->get();
+        $conCollection = collect($continentPercentage);
+
+        $deathContinentNews = $conCollection->sortByDesc('death_percent_rate');
+        $caseContinentNews = $conCollection->sortByDesc('total_case_percent');
 
         return view('frontend.index', [
             'death1mNews' => $death1mNews,
@@ -163,7 +176,7 @@ class FrontendController extends Controller
             'totalPopulation' => $totalPopulation[0]->total_population,
             'deathRateNews' => $deathRateNews,
             'totalCaseNews' => $totalCaseNews
-        ], compact('data', 'bangladesh', 'yesterday', 'vaccines'));
+        ], compact('data', 'bangladesh', 'yesterday', 'vaccines', 'continentTotalCase', 'deathContinentNews', 'caseContinentNews'));
     }
 
 
