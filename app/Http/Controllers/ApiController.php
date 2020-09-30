@@ -21,11 +21,11 @@ class ApiController extends Controller
             $Worldurl = Http::get('https://disease.sh/v3/covid-19/all?allowNull=false');
             $worldData = $Worldurl->json();
             $data = $url->json();
-            if ($url->ok() && $Worldurl->ok()){
+            if ($url->ok() && $Worldurl->ok()) {
                 Live::truncate();
                 $this->dataCreate($worldData, $data, $dataFor);
                 echo 'created';
-            } else{
+            } else {
                 echo 'Server access failed';
             }
 
@@ -37,19 +37,24 @@ class ApiController extends Controller
             $worldData = $Worldurl->json();
             $data = $url->json();
 
-            $yesterdayData = DB::table('yesterdays')->latest('id')->first();
+            if ($url->ok() && $Worldurl->ok()) {
+                
+                $yesterdayData = DB::table('yesterdays')->latest('id')->first();
 
-            if (!empty($yesterdayData) && $yesterdayData->date == Carbon::today()) {
-                Yesterday::where('date', Carbon::today())->delete();
-                $this->dataCreate($worldData, $data, $dataFor);
-                echo 'I have found date , then delete it and create';
-            } else if (empty($yesterdayData) || (!empty($yesterdayData) && $yesterdayData->date != Carbon::today())) {
-                $this->dataCreate($worldData, $data, $dataFor);
-                echo "created";
+                if (!empty($yesterdayData) && $yesterdayData->date == Carbon::today()) {
+                    Yesterday::where('date', Carbon::today())->delete();
+                    $this->dataCreate($worldData, $data, $dataFor);
+                    echo 'I have found date , then delete it and create';
+                } else if (empty($yesterdayData) || (!empty($yesterdayData) && $yesterdayData->date != Carbon::today())) {
+                    $this->dataCreate($worldData, $data, $dataFor);
+                    echo "created";
+                } else {
+                    echo "already created";
+                }
             } else {
-                echo "already created";
+                echo 'Server access failed';
             }
-        } else if($dataFor == 'continent'){
+        } else if ($dataFor == 'continent') {
             $url = Http::get('https://disease.sh/v3/covid-19/continents?sort=cases&allowNull=true');
             $data = $url->json();
 
@@ -65,7 +70,7 @@ class ApiController extends Controller
             } else {
                 echo "already created";
             }
-        } elseif($dataFor == 'usaData'){
+        } elseif ($dataFor == 'usaData') {
             $url = Http::get('https://disease.sh/v3/covid-19/states?sort=cases&allowNull=true');
             $data = $url->json();
 
@@ -81,7 +86,7 @@ class ApiController extends Controller
             } else {
                 echo "already created";
             }
-        } elseif($dataFor == 'vaccine'){
+        } elseif ($dataFor == 'vaccine') {
             $url = Http::get('https://disease.sh/v3/covid-19/vaccine');
             $data = $url->json();
 
@@ -97,7 +102,7 @@ class ApiController extends Controller
             } else {
                 echo "already created";
             }
-        } elseif($dataFor == 'therapeutics'){
+        } elseif ($dataFor == 'therapeutics') {
             $url = Http::get('https://disease.sh/v3/covid-19/therapeutics');
             $data = $url->json();
 
@@ -114,9 +119,7 @@ class ApiController extends Controller
                 echo "already created";
             }
 
-        }
-
-        else{
+        } else {
             echo 'wrong Insertion';
         }
 
@@ -250,8 +253,9 @@ class ApiController extends Controller
         }
     }
 
-    private function continentInsert($data){
-        foreach ($data as $value){
+    private function continentInsert($data)
+    {
+        foreach ($data as $value) {
             Continent::create([
                 'date' => Carbon::today(),
                 'updated' => $value['updated'],
@@ -280,8 +284,9 @@ class ApiController extends Controller
         }
     }
 
-    private function usaDataInsert($data){
-        foreach ($data as $value){
+    private function usaDataInsert($data)
+    {
+        foreach ($data as $value) {
             UsaData::create([
                 'updated' => $value['updated'],
                 'todayCases' => $value['todayCases'],
@@ -300,8 +305,9 @@ class ApiController extends Controller
         }
     }
 
-    private function vaccine($data){
-        foreach ($data['data'] as $value){
+    private function vaccine($data)
+    {
+        foreach ($data['data'] as $value) {
             Vaccine::create([
                 'date' => Carbon::today(),
                 'candidate' => $value['candidate'],
@@ -314,8 +320,9 @@ class ApiController extends Controller
         }
     }
 
-    private function therapeutics($data){
-        foreach ($data['data'] as $value){
+    private function therapeutics($data)
+    {
+        foreach ($data['data'] as $value) {
             Therapeutic::create([
                 'date' => Carbon::today(),
                 'medicationClass' => $value['medicationClass'],
