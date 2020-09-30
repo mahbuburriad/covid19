@@ -104,6 +104,9 @@
         .map-status-colors .colors li span.max {
             background-color: #006491;
         }
+        .map-status-colors .colors li span.danger {
+            background-color: #CA0B00;
+        }
 
         .map-content-wrap .select2-selection__rendered img {
             margin-right: 10px;
@@ -499,7 +502,8 @@
                             <ul class="colors d-flex">
                                 <li><span class="min"></span>&#60;50k</li>
                                 <li><span class="mid"></span>&#60;100k</li>
-                                <li><span class="max"></span>&#62;100k</li>
+                                <li><span class="max"></span>&#60;100k</li>
+                                <li><span class="danger"></span>&#62;5M</li>
                             </ul>
                         </div>
 
@@ -658,6 +662,7 @@
                 const mostCases = "#006491";
                 const mediumCases = "#4A97B9";
                 const minCases = "#ACCDDC";
+                const dangerArea = "#CA0B00";
 /*                const mostCases = "#7C0A02";
                 const mediumCases = "#C21807";
                 const minCases = "#ED2939";*/
@@ -670,8 +675,10 @@
                             mapColors[countryCode] = minCases;
                         } else if (country.cases > 50000 && country.cases <= 100000) {
                             mapColors[countryCode] = mediumCases;
-                        } else if (country.cases > 100000) {
+                        } else if (country.cases > 100000 && country.cases <= 5000000) {
                             mapColors[countryCode] = mostCases;
+                        } else if(country.cases > 5000000){
+                            mapColors[countryCode] = dangerArea;
                         }
                     }
                 })
