@@ -88,9 +88,9 @@
     <b>Data by date John Hopkins University &amp; Pomber from github:</b> <a style="color: black" href="https://github.com/pomber/covid19">John Hopkins - Pomber</a> <br>
     <b>Bangladesh District Wise Data source:</b> <a style="color: black" href="//dashboard.dghs.gov.bd/webportal/pages/covid19.php">dghs.gov.bd</a> <br>
     <b>Vaccine Tracker Data Source:</b> <a style="color: black" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html">The New Work Times</a> <br>
-    <b>Get vaccine trial data from RAPS (Regulatory Affairs Professional Society). Specifically published by Jeff Craven </b> <a style="color: black" href="https://www.raps.org/news-and-articles/news-articles/2020/3/covid-19-vaccine-tracker">RAPS</a>
+    <b>Get vaccine trial data from RAPS (Regulatory Affairs Professional Society). Specifically published by Jeff Craven: </b> <a style="color: black" href="https://www.raps.org/news-and-articles/news-articles/2020/3/covid-19-vaccine-tracker">RAPS</a>
     <br>
-    <b>Get therapeutics trial data from RAPS (Regulatory Affairs Professional Society). Specifically published by Jeff Craven </b> <a style="color: black" href="https://www.raps.org/news-and-articles/news-articles/2020/3/covid-19-therapeutics-tracker">RAPS</a></p>
+    <b>Get therapeutics trial data from RAPS (Regulatory Affairs Professional Society). Specifically published by Jeff Craven: </b> <a style="color: black" href="https://www.raps.org/news-and-articles/news-articles/2020/3/covid-19-therapeutics-tracker">RAPS</a></p>
 <footer>
     <center>
         <div class="footer_text">© Copyright <span class="logoFont">Saltanat Global Limited</span> - All rights reserved</div>
