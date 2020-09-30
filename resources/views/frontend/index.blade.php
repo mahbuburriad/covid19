@@ -105,70 +105,8 @@
             background-color: #006491;
         }
 
-        .map-content-wrap {
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        @media only screen and (max-width: 767.98px) {
-            .map-content-wrap {
-                position: static;
-                width: 100%;
-                height: 500px;
-            }
-        }
-
-        .map-content-wrap .tracker-block__body {
-            height: 100%;
-        }
-
-        .map-content-wrap::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        .map-content-wrap::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        .map-content-wrap::-webkit-scrollbar-thumb {
-            background: #888;
-        }
-
-        .map-content-wrap::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-
-        .map-content-wrap .select-country {
-            margin-bottom: 40px;
-        }
-
-        .map-content-wrap .select-country .dropdown-toggle {
-            color: #FFFFFF;
-        }
-
-        .map-content-wrap .select2-selection--single {
-            background-color: transparent;
-        }
-
-        .map-content-wrap .select2-selection__rendered {
-            color: #FFFFFF !important;
-            font-size: 16px !important;
-        }
-
         .map-content-wrap .select2-selection__rendered img {
             margin-right: 10px;
-        }
-
-        .corona-map-tracker {
-            height: 100vh;
-            width: 100%;
-        }
-
-        @media only screen and (max-width: 767.98px) {
-            .corona-map-tracker {
-                height: 400px;
-            }
         }
 
     </style>
@@ -464,19 +402,19 @@
 
                                         <div class="col-md-4">
                                             <div class="card-body">
-                                                <h5 class="card-title number-table-main">+{{number_format($data[0]->new_cases)}}</h5>
+                                                <h5 class="card-title number-table-main">+{{number_format($data[0]->new_cases)}} </h5> {{--<span class="percentage">({{number_format((($data[0]->new_cases)*100)/($data[0]->total_tests), 2)}})%</span>--}}
                                                 <p style="color: #222">New Confirmed</p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="card-body">
-                                                <h5 class="card-title number-table-main">+{{number_format($data[0]->new_recovered)}}</h5>
+                                                <h5 class="card-title number-table-main">+{{number_format($data[0]->new_recovered)}}</h5> {{--<span class="percentage">({{number_format((($data[0]->new_recovered)*100)/($data[0]->total_tests), 2)}})%</span>--}}
                                                 <p style="color: #222">New Recovered</p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="card-body">
-                                                <h5 class="card-title number-table-main">+{{number_format($data[0]->new_deaths)}}</h5>
+                                                <h5 class="card-title number-table-main">+{{number_format($data[0]->new_deaths)}}</h5> {{--<span class="percentage">({{number_format((($data[0]->new_deaths)*100)/($data[0]->total_tests), 2)}})%</span>--}}
                                                 <p style="color: #222">New Death</p>
                                             </div>
                                         </div>
@@ -720,6 +658,9 @@
                 const mostCases = "#006491";
                 const mediumCases = "#4A97B9";
                 const minCases = "#ACCDDC";
+/*                const mostCases = "#7C0A02";
+                const mediumCases = "#C21807";
+                const minCases = "#ED2939";*/
                 const mapColors = {};
 
                 countriesData.map(async (country) => {

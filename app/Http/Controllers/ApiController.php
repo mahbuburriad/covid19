@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Continent;
-use App\Models\Data;
 use App\Models\Live;
 use App\Models\Therapeutic;
 use App\Models\UsaData;

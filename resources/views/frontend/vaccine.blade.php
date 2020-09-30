@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title') Vaccine Info | @endsection
+@section('title') Covid19 Vaccine Tracker (Live): {{$vaccines[0]->phase1+$vaccines[0]->phase2+$vaccines[0]->phase3+$vaccines[0]->limited+$vaccines[0]->approved}} vaccines, {{$vaccines[0]->limited}} limited approved from @endsection
 
 @section('content')
     <section>

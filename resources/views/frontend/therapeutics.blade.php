@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title') Therapeutics Info | @endsection
+@section('title') Covid19 Therapeutics Tracker (Live): {{$phase1+$phase2+$phase3}} therapeutics, {{$phase3}} in phase 3 from @endsection
 
 @section('content')
     <section style="margin-top: 50px">>
