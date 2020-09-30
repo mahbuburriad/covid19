@@ -38,7 +38,7 @@ class ApiController extends Controller
             $data = $url->json();
 
             if ($url->ok() && $Worldurl->ok()) {
-                
+
                 $yesterdayData = DB::table('yesterdays')->latest('id')->first();
 
                 if (!empty($yesterdayData) && $yesterdayData->date == Carbon::today()) {

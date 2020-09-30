@@ -500,10 +500,10 @@
                     <div class="map-status-wrap" id="map-status-report">
                         <div class="map-status-colors">
                             <ul class="colors d-flex">
-                                <li><span class="min"></span>&#60;50k</li>
-                                <li><span class="mid"></span>&#60;100k</li>
-                                <li><span class="max"></span>&#60;100k</li>
-                                <li><span class="danger"></span>&#62;5M</li>
+                                <li><span class="min" title="Total Case below 50,000"></span>&#60;50k</li>
+                                <li><span class="mid" title="Total Case below 100,000"></span>&#60;100k</li>
+                                <li><span class="max" title="Total Case below 5,000,000"></span>&#60;5M</li>
+                                <li><span class="danger" title="Total Case above 5,000,000"></span>&#62;5M</li>
                             </ul>
                         </div>
 
@@ -704,7 +704,6 @@
                         const confirmed = `: Confirmed : ${cdata.cases}`;
                         const death= `, Death : ${cdata.deaths}`;
                         const recovered= `, Recovered : ${cdata.deaths}`;
-                        //const ddd = `${cdata.country}: ${cdata.cases}`;
                         const ddd = country+confirmed+death+recovered;
                         if (label.length) {
                             label[0].innerText = ddd;
