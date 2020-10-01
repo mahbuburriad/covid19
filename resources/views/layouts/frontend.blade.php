@@ -53,7 +53,7 @@
 
     @yield('style')
 
-
+    <meta http-equiv="refresh" content="600">
 
 </head>
 <body>
