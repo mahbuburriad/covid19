@@ -8,15 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    @if(!empty($settings['logo']))
-        <link rel="icon" href="{{asset('/storage/image/'.$settings['logo'])}}" type="image/x-icon">
-    @else
-        <link rel="icon" href="{{asset('/storage/default/logo.png')}}" type="image/x-icon">
+    @if(!empty($settings['favicon']))
+        <link rel="icon" href="{{asset('/storage/image/'.$settings['favicon'])}}" type="image/x-icon">
     @endif
-    @if(!empty($settings['logo']))
+    @if(!empty($settings['favicon']))
         <link rel="shortcut icon" href="{{asset('/storage/image/'.$settings['favicon'])}}" type="image/x-icon">
-    @else
-        <link rel="shortcut icon" href="{{asset('/storage/default/logo.png')}}" type="image/x-icon">
     @endif
 
     <title>@yield('title') COVID-19 Coronavirus Pandemic | Saltanat Global Limited</title>
