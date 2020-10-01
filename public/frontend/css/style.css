@@ -91,7 +91,7 @@ a:hover {
     color: #005949;
 }
 
-tfoot tr tr, td {
+tfoot tr th, td {
     text-align: right
 }
 

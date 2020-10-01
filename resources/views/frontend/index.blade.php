@@ -597,7 +597,7 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th>Total:</th>
+                        <th style="text-align: left">Total:</th>
                         <th>{{number_format($data[0]->total_cases)}}</th>
                         <th style="background: #FFEEAA;">{{number_format($data[0]->new_cases)}}</th>
                         <th>{{number_format($data[0]->total_deaths)}}</th>
