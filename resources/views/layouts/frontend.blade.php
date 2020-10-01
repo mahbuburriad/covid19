@@ -58,12 +58,17 @@
 </head>
 <body>
 
-<section>
-    <div class="container-fluid">
-        <div class="row">
-
-        </div>
-    <div class="label-counter" id="page-top"><a href="https://saltanatglobal.com"><img class="img-thumbnail" width="60" style="margin-right: 30px" src="{{asset('/storage/image/'.$settings['logo'])}}" alt="Saltanat Global Limited"></a>COVID-19 Coronavirus Pandemic @yield('country') </div>
+<section class="mt-1">
+    <div class="container">
+{{--        <div class="row label-counter">
+            <div class="col-md-6 col-sm-6">
+                <a class="float-right" href="https://saltanatglobal.com"><img width="60" class="img-thumbnail" style="margin-right: 30px" src="{{asset('/storage/image/'.$settings['logo'])}}" alt="Saltanat Global Limited"></a>
+            </div>
+            <div class="col-md-6 col-sm-6 pull-left">
+                <div class="float-left" id="page-top">COVID-19 Coronavirus Pandemic @yield('country') </div>
+            </div>
+        </div>--}}
+    <div class="label-counter" id="page-top"><a href="https://saltanatglobal.com"><img width="60" style="margin-right: 30px" src="{{asset('/storage/image/'.$settings['logo'])}}" alt="Saltanat Global Limited"></a>COVID-19 Coronavirus Pandemic @yield('country') </div>
 
     <center>
         <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: {{date('F d, Y G:i A', strtotime($data[0]->created_at))}} UTC <br> Local Time : <span id = "localTime"></span> ({{$data[0]->created_at->diffForHumans()}}) </div>
