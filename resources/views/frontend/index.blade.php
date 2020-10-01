@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
           integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous"/>
     <link rel="stylesheet" href="{{url('https://cdn.datatables.net/fixedheader/3.1.7/css/fixedHeader.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/css/jqvmap.min.css')}}">
+    <link rel="stylesheet" href="{{url('https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css')}}">
     <style>
         .world {
             background-color: #DFDFDF !important;
@@ -637,8 +637,8 @@
 
 @section('script')
     <script src="{{url('https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js')}}"></script>
-    <script src="{{asset('frontend/js/jquery.vmap.min.js')}}"></script>
-    <script src="{{asset('frontend/js/jquery.vmap.world.js')}}"></script>
+    <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js')}}"></script>
+    <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/maps/jquery.vmap.world.js')}}"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
