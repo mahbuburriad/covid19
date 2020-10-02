@@ -118,7 +118,7 @@
 @section('content')
 
     <section>
-        <div class="container">
+        <div class="container-fluid">
             <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll">
                 <b>Top 5 countries by death rate percentage according to total case confirmed: </b>{{$deathRateNews.'; '}}
                 <b>Continents by total affected: </b> @foreach($continentTotalCase as $continent) {{$continent->continent}}, @endforeach
