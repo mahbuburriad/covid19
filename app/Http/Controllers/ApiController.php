@@ -21,10 +21,17 @@ class ApiController extends Controller
             $Worldurl = Http::get('https://disease.sh/v3/covid-19/all?allowNull=false');
             $worldData = $Worldurl->json();
             $data = $url->json();
+            $liveData = Live::all();
             if ($url->ok() && $Worldurl->ok()) {
-                Live::truncate();
-                $this->dataCreate($worldData, $data, $dataFor);
-                echo 'created';
+                if (count($liveData) == count($data)+1){
+                    $dataFor = 'liveUpdate';
+                    $this->dataCreate($worldData, $data, $dataFor);
+                    echo 'updated';
+                } elseif(count($liveData) != (count($data)+1)){
+                    Live::truncate();
+                    $this->dataCreate($worldData, $data, $dataFor);
+                    echo 'created';
+                }
             } else {
                 echo 'Server access failed';
             }
@@ -185,6 +192,66 @@ class ApiController extends Controller
                     'recoveredPerOneMillion' => $dataGet['recoveredPerOneMillion'],
                     'criticalPerOneMillion' => $dataGet['criticalPerOneMillion']
                 ]);
+            }
+        }
+
+        if ($dataFor == 'liveUpdate') {
+            Live::where('country', 'World')
+                ->update([
+                    'updated' => $worldData['updated'],
+                    'total_cases' => $worldData['cases'],
+                    'new_cases' => $worldData['todayCases'],
+                    'total_deaths' => $worldData['deaths'],
+                    'new_deaths' => $worldData['todayDeaths'],
+                    'total_recovered' => $worldData['recovered'],
+                    'new_recovered' => $worldData['todayRecovered'],
+                    'active_cases' => $worldData['active'],
+                    'serious' => $worldData['critical'],
+                    'tot_cases' => $worldData['casesPerOneMillion'],
+                    'death1m' => $worldData['deathsPerOneMillion'],
+                    'total_tests' => $worldData['tests'],
+                    'test1m' => $worldData['testsPerOneMillion'],
+                    'population' => $worldData['population'],
+                    'continent' => 'World',
+                    'oneCasePerPeople' => $worldData['oneCasePerPeople'],
+                    'oneDeathPerPeople' => $worldData['oneDeathPerPeople'],
+                    'oneTestPerPeople' => $worldData['oneTestPerPeople'],
+                    'activePerOneMillion' => $worldData['activePerOneMillion'],
+                    'recoveredPerOneMillion' => $worldData['recoveredPerOneMillion'],
+                    'criticalPerOneMillion' => $worldData['criticalPerOneMillion']
+                ]);
+
+
+            foreach ($data as $dataGet) {
+                Live::where('country', $dataGet['country'])
+                    ->update([
+                        'updated' => $dataGet['updated'],
+                        'iso2' => $dataGet['countryInfo']['iso2'],
+                        'iso3' => $dataGet['countryInfo']['iso3'],
+                        'lat' => $dataGet['countryInfo']['lat'],
+                        'long' => $dataGet['countryInfo']['long'],
+                        'flag' => $dataGet['countryInfo']['flag'],
+                        'total_cases' => $dataGet['cases'],
+                        'new_cases' => $dataGet['todayCases'],
+                        'total_deaths' => $dataGet['deaths'],
+                        'new_deaths' => $dataGet['todayDeaths'],
+                        'total_recovered' => $dataGet['recovered'],
+                        'new_recovered' => $dataGet['todayRecovered'],
+                        'active_cases' => $dataGet['active'],
+                        'serious' => $dataGet['critical'],
+                        'tot_cases' => $dataGet['casesPerOneMillion'],
+                        'death1m' => $dataGet['deathsPerOneMillion'],
+                        'total_tests' => $dataGet['tests'],
+                        'test1m' => $dataGet['testsPerOneMillion'],
+                        'population' => $dataGet['population'],
+                        'continent' => $dataGet['continent'],
+                        'oneCasePerPeople' => $dataGet['oneCasePerPeople'],
+                        'oneDeathPerPeople' => $dataGet['oneDeathPerPeople'],
+                        'oneTestPerPeople' => $dataGet['oneTestPerPeople'],
+                        'activePerOneMillion' => $dataGet['activePerOneMillion'],
+                        'recoveredPerOneMillion' => $dataGet['recoveredPerOneMillion'],
+                        'criticalPerOneMillion' => $dataGet['criticalPerOneMillion']
+                    ]);
             }
         }
 

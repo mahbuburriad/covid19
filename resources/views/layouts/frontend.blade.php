@@ -53,7 +53,7 @@
 
     @yield('style')
 
-    <meta http-equiv="refresh" content="600">
+    <meta http-equiv="refresh" content="300">
 
 </head>
 <body>
@@ -71,7 +71,7 @@
     <div class="label-counter" id="page-top"><a href="https://saltanatglobal.com"><img class="img-responsive" width="30" style="margin-right: 30px" src="{{asset('/storage/image/'.$settings['logo'])}}" alt="Saltanat Global Limited"></a>COVID-19 Coronavirus Pandemic @yield('country') </div>
 
     <center>
-        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: {{date('F d, Y G:i A', strtotime($data[0]->created_at))}} UTC <br> Local Time : <span id = "localTime"></span> ({{$data[0]->created_at->diffForHumans()}}) </div>
+        <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: {{date('F d, Y G:i A', strtotime($data[0]->updated_at))}} UTC <br> Local Time : <span id = "localTime"></span> ({{$data[0]->updated_at->diffForHumans()}}) </div>
         @include('includes.menu')
     </center>
 
@@ -111,7 +111,7 @@
 
 <script>
     $(document).ready(function() {
-        var a = moment.utc([{{date('Y,m-1,d,G,i', strtotime($data[0]->created_at))}}]);
+        var a = moment.utc([{{date('Y,m-1,d,G,i', strtotime($data[0]->updated_at))}}]);
         $("#localTime").text(a.local().format('LLL'));
     });
 </script>

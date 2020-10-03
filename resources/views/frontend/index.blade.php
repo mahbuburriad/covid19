@@ -120,29 +120,29 @@
     <section>
         <div class="container-fluid">
             <marquee class="GeneratedMarquee" direction="left" scrollamount="5" behavior="scroll">
-                <b>Top 5 countries by death rate percentage according to total case confirmed: </b>{{$deathRateNews.'; '}}
+                <b>Death rate percentage according to total case confirmed: </b>{{$deathRateNews.'; '}}
                 <b>Continents by total affected: </b> @foreach($continentTotalCase as $continent) {{$continent->continent}}, @endforeach
-                <b>Top 5 countries by total case percentage according to population: </b>{{$totalCaseNews.'; '}}
+                <b>Total case percentage according to population: </b>{{$totalCaseNews.'; '}}
                 <b>Least active cases without death: </b>{{$overComeWithoutLossCountry.'; '}}
                 <b>Continents by death rate percentage according to total case confirmed: </b>@foreach($deathContinentNews as $continents) {{$continents->continent}} - {{$continents->death_percent_rate}}%, @endforeach
-                <b>Top 5 countries by death per 1 million people: </b>{{$death1mNews.'; '}}
+                <b>Death per 1 million people: </b>{{$death1mNews.'; '}}
                 <b>Countries with least active cases: </b> {{$overCome.'; '}}
                 <b>Continents by confirmed rate percentage according to population: </b>@foreach($caseContinentNews as $continents) {{$continents->continent}} - {{$continents->total_case_percent}}%, @endforeach
-                <b>Top 5 countries by total cases per 1 million people: </b>{{$total1mNews.'; '}}
-                <b>Top 5 countries that most number of affected people today:</b> {{$topFive.'; '}}
+                <b>Total cases per 1 million people: </b>{{$total1mNews.'; '}}
+                <b>Most number of affected people today:</b> {{$topFive.'; '}}
             </marquee>
 
             <marquee class="GeneratedMarqueebangla" direction="left" scrollamount="5" behavior="scroll">
-                <b>মোট আক্রান্তের সংখ্যা অনুযায়ী মৃত্যুর হার শতাংশের ভিত্তিতে শীর্ষ পাঁচটি দেশ: </b>{{$deathRateNews.'; '}}
+                <b>মোট আক্রান্তের সংখ্যা অনুযায়ী মৃত্যুর হার: </b>{{$deathRateNews.'; '}}
                 <b>আক্রান্তের ভিত্তিতে মহাদেশের তালিকা: </b> @foreach($continentTotalCase as $continent) {{$continent->continent}}, @endforeach
-                <b>দেশের মোট জনসংখ্যার ভিত্তিতে মোট আক্ত্রান্ত অনুযায়ী শীর্ষ পাঁচটি দেশ: </b>{{$totalCaseNews.'; '}}
-                <b>করনা আক্রান্ত হয়েও মৃত্যু হয়নি এমন শীর্ষ পাঁচটি দেশ: </b>{{$overComeWithoutLossCountry.'; '}}
+                <b>দেশের মোট জনসংখ্যার ভিত্তিতে মোট আক্ত্রান্ত: </b>{{$totalCaseNews.'; '}}
+                <b>করনা আক্রান্ত হয়েও মৃত্যু হয়নি: </b>{{$overComeWithoutLossCountry.'; '}}
                 <b>আক্রান্তের ভিত্তিতে মৃত্যুর হার অনুযায়ী মহাদেশসমুহ: </b>@foreach($deathContinentNews as $continents) {{$continents->continent}} - {{$continents->death_percent_rate}}%, @endforeach
-                <b>প্রতি ১ মিলিয়নে মৃত্যুর হার অনুযায়ী শীর্ষ পাঁচটি দেশ: </b>{{$death1mNews.'; '}}
-                <b>বর্তমান সময়ে কোনো সক্রিয় কেস নেই এমন শীর্ষ পাঁচটি দেশ: </b> {{$overCome.'; '}}
+                <b>প্রতি ১ মিলিয়নে মৃত্যুর হার অনুযায়ী: </b>{{$death1mNews.'; '}}
+                <b>বর্তমান সময়ে কোনো সক্রিয় কেস নেই: </b> {{$overCome.'; '}}
                 <b>জনসংখার ভিত্তিতে আক্রান্তের হার অনুযায়ী মহাদেশসমুহ: </b>@foreach($caseContinentNews as $continents) {{$continents->continent}} - {{$continents->total_case_percent}}%, @endforeach
-                <b>প্রতি ১ মিলিয়নে আক্রান্তের হার অনুযায়ী শীর্ষ পাঁচটি দেশ: </b>{{$total1mNews.'; '}}
-                <b>আজকের আক্ত্রান্তের সংখ্যা অনু্যায়ী শীর্ষ পাঁচটি দেশ :</b> {{$topFive.'; '}}
+                <b>প্রতি ১ মিলিয়নে আক্রান্তের হার অনুযায়ী : </b>{{$total1mNews.'; '}}
+                <b>আজকের আক্ত্রান্তের সংখ্যা অনু্যায়ী:</b> {{$topFive.'; '}}
 
             </marquee>
         </div>
