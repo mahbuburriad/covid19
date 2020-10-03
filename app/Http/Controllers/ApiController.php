@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Continent;
+use App\Models\IndiaData;
 use App\Models\Live;
 use App\Models\Therapeutic;
 use App\Models\UsaData;
@@ -23,11 +24,11 @@ class ApiController extends Controller
             $data = $url->json();
             $liveData = Live::all();
             if ($url->ok() && $Worldurl->ok()) {
-                if (count($liveData) == count($data)+1){
+                if (count($liveData) == count($data) + 1) {
                     $dataFor = 'liveUpdate';
                     $this->dataCreate($worldData, $data, $dataFor);
                     echo 'updated';
-                } elseif(count($liveData) != (count($data)+1)){
+                } elseif (count($liveData) != (count($data) + 1)) {
                     Live::truncate();
                     $this->dataCreate($worldData, $data, $dataFor);
                     echo 'created';
@@ -126,6 +127,30 @@ class ApiController extends Controller
                 echo "already created";
             }
 
+        } elseif ($dataFor == 'indiaData') {
+            $url = Http::get('https://disease.sh/v3/covid-19/gov/India?allowNull=true');
+            $data = $url->json();
+
+            $india = DB::table('india_data')->latest('id')->first();
+
+            if (!empty($india) && $india->date == Carbon::today()) {
+                $indiaDataAll = IndiaData::all();
+
+                if (count($data['states']) == (count($indiaDataAll) - 1)) {
+                    $dataFor = 'indiaDataUpdate';
+                    $this->indiaData($data, $dataFor);
+                    echo 'I have found date , then update it';
+                } elseif (count($data['states']) != (count($indiaDataAll) - 1)) {
+                    IndiaData::where('date', Carbon::today())->delete();
+                    $this->indiaData($data, $dataFor);
+                    echo 'I have found date , then delete and create again';
+                }
+            } else if (empty($india) || (!empty($india) && $india->date != Carbon::today())) {
+                $this->indiaData($data, $dataFor);
+                echo "created";
+            } else {
+                echo "already created";
+            }
         } else {
             echo 'wrong Insertion';
         }
@@ -402,4 +427,76 @@ class ApiController extends Controller
             ]);
         }
     }
+
+    private function indiaData($data, $dataFor)
+    {
+
+        if ($dataFor == 'indiaData') {
+
+            IndiaData::create([
+                'date' => Carbon::today(),
+                'state' => 'total',
+                'active' => $data['total']['active'],
+                'recovered' => $data['total']['recovered'],
+                'deaths' => $data['total']['deaths'],
+                'cases' => $data['total']['cases'],
+                'todayActive' => $data['total']['todayActive'],
+                'todayRecovered' => $data['total']['todayRecovered'],
+                'todayDeaths' => $data['total']['todayDeaths'],
+                'todayCases' => $data['total']['todayCases'],
+            ]);
+
+
+            foreach ($data['states'] as $value) {
+                IndiaData::create([
+                    'date' => Carbon::today(),
+                    'state' => $value['state'],
+                    'active' => $value['active'],
+                    'recovered' => $value['recovered'],
+                    'deaths' => $value['deaths'],
+                    'cases' => $value['cases'],
+                    'todayActive' => $value['todayActive'],
+                    'todayRecovered' => $value['todayRecovered'],
+                    'todayDeaths' => $value['todayDeaths'],
+                    'todayCases' => $value['todayCases'],
+                ]);
+
+            }
+        } elseif ($dataFor == 'indiaDataUpdate') {
+
+
+            IndiaData::where('state', 'total')
+                ->update([
+                    'active' => $data['total']['active'],
+                    'recovered' => $data['total']['recovered'],
+                    'deaths' => $data['total']['deaths'],
+                    'cases' => $data['total']['cases'],
+                    'todayActive' => $data['total']['todayActive'],
+                    'todayRecovered' => $data['total']['todayRecovered'],
+                    'todayDeaths' => $data['total']['todayDeaths'],
+                    'todayCases' => $data['total']['todayCases'],
+                ]);
+
+
+            foreach ($data['states'] as $value) {
+                IndiaData::where('state', $value['state'])
+                    ->update([
+                        'active' => $value['active'],
+                        'recovered' => $value['recovered'],
+                        'deaths' => $value['deaths'],
+                        'cases' => $value['cases'],
+                        'todayActive' => $value['todayActive'],
+                        'todayRecovered' => $value['todayRecovered'],
+                        'todayDeaths' => $value['todayDeaths'],
+                        'todayCases' => $value['todayCases'],
+                    ]);
+
+            }
+
+        }
+
+
+    }
+
+
 }
