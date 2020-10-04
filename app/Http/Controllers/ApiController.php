@@ -70,7 +70,7 @@ class ApiController extends Controller
                     $this->dataCreate($worldData, $data, $dataFor);
                     echo "created";
                 } else {
-                    echo "already created";
+                    echo "Nothing to do";
                 }
             } else {
                 echo 'Server access failed';
@@ -81,16 +81,32 @@ class ApiController extends Controller
 
             $continentData = DB::table('continents')->latest('id')->first();
 
-            if (!empty($continentData) && $continentData->date == Carbon::today()) {
-                Continent::where('date', Carbon::today())->delete();
-                $this->continentInsert($data);
-                echo 'I have found date , then delete it and create';
-            } else if (empty($continentData) || (!empty($continentData) && $continentData->date != Carbon::today())) {
-                $this->continentInsert($data);
-                echo "created";
-            } else {
-                echo "already created";
+            if ($url->ok()){
+                if (!empty($continentData) && $continentData->date == Carbon::today()) {
+                    $continentAll = Continent::where('date', Carbon::today())->get();
+
+                    if (count($data) == count($continentAll)){
+                        $dataFor = 'continentUpdate';
+                        $this->continentInsert($data, $dataFor);
+                        echo 'I have found date , then update';
+                    } elseif (count($data) != count($continentAll)){
+                        Continent::where('date', Carbon::today())->delete();
+                        $this->continentInsert($data, $dataFor);
+                        echo 'I have found date , then delete it and create';
+                    } else{
+                        echo 'something is wrong';
+                    }
+                } else if (empty($continentData) || (!empty($continentData) && $continentData->date != Carbon::today())) {
+                    $this->continentInsert($data, $dataFor);
+                    echo "created";
+                } else {
+                    echo "Nothing to do";
+                }
+            } else{
+                echo 'Server Error';
             }
+
+
         } elseif ($dataFor == 'usaData') {
             $url = Http::get('https://disease.sh/v3/covid-19/states?sort=cases&allowNull=true');
             $data = $url->json();
@@ -416,35 +432,66 @@ class ApiController extends Controller
         }
     }
 
-    private function continentInsert($data)
+    private function continentInsert($data, $dataFor)
     {
-        foreach ($data as $value) {
-            Continent::create([
-                'date' => Carbon::today(),
-                'updated' => $value['updated'],
-                'cases' => $value['cases'],
-                'todayCases' => $value['todayCases'],
-                'deaths' => $value['deaths'],
-                'todayDeaths' => $value['todayDeaths'],
-                'recovered' => $value['recovered'],
-                'todayRecovered' => $value['todayRecovered'],
-                'active' => $value['active'],
-                'critical' => $value['critical'],
-                'casesPerOneMillion' => $value['casesPerOneMillion'],
-                'deathsPerOneMillion' => $value['deathsPerOneMillion'],
-                'tests' => $value['tests'],
-                'testsPerOneMillion' => $value['testsPerOneMillion'],
-                'population' => $value['population'],
-                'continent' => $value['continent'],
-                'activePerOneMillion' => $value['activePerOneMillion'],
-                'recoveredPerOneMillion' => $value['recoveredPerOneMillion'],
-                'criticalPerOneMillion' => $value['criticalPerOneMillion'],
-                'lat' => $value['continentInfo']['lat'],
-                'long' => $value['continentInfo']['long'],
-                'countries' => implode(',', $value['countries']),
-            ]);
+        if ($dataFor == 'continent'){
+            foreach ($data as $value) {
+                Continent::create([
+                    'date' => Carbon::today(),
+                    'updated' => $value['updated'],
+                    'cases' => $value['cases'],
+                    'todayCases' => $value['todayCases'],
+                    'deaths' => $value['deaths'],
+                    'todayDeaths' => $value['todayDeaths'],
+                    'recovered' => $value['recovered'],
+                    'todayRecovered' => $value['todayRecovered'],
+                    'active' => $value['active'],
+                    'critical' => $value['critical'],
+                    'casesPerOneMillion' => $value['casesPerOneMillion'],
+                    'deathsPerOneMillion' => $value['deathsPerOneMillion'],
+                    'tests' => $value['tests'],
+                    'testsPerOneMillion' => $value['testsPerOneMillion'],
+                    'population' => $value['population'],
+                    'continent' => $value['continent'],
+                    'activePerOneMillion' => $value['activePerOneMillion'],
+                    'recoveredPerOneMillion' => $value['recoveredPerOneMillion'],
+                    'criticalPerOneMillion' => $value['criticalPerOneMillion'],
+                    'lat' => $value['continentInfo']['lat'],
+                    'long' => $value['continentInfo']['long'],
+                    'countries' => implode(',', $value['countries']),
+                ]);
 
+            }
+        } elseif ($dataFor == 'continentUpdate'){
+            foreach ($data as $value) {
+                Continent::where('continent', $value['continent'])->update([
+                    'updated' => $value['updated'],
+                    'cases' => $value['cases'],
+                    'todayCases' => $value['todayCases'],
+                    'deaths' => $value['deaths'],
+                    'todayDeaths' => $value['todayDeaths'],
+                    'recovered' => $value['recovered'],
+                    'todayRecovered' => $value['todayRecovered'],
+                    'active' => $value['active'],
+                    'critical' => $value['critical'],
+                    'casesPerOneMillion' => $value['casesPerOneMillion'],
+                    'deathsPerOneMillion' => $value['deathsPerOneMillion'],
+                    'tests' => $value['tests'],
+                    'testsPerOneMillion' => $value['testsPerOneMillion'],
+                    'population' => $value['population'],
+                    'activePerOneMillion' => $value['activePerOneMillion'],
+                    'recoveredPerOneMillion' => $value['recoveredPerOneMillion'],
+                    'criticalPerOneMillion' => $value['criticalPerOneMillion'],
+                    'lat' => $value['continentInfo']['lat'],
+                    'long' => $value['continentInfo']['long'],
+                    'countries' => implode(',', $value['countries']),
+                ]);
+
+            }
+        } else{
+            echo 'something is wrong';
         }
+
     }
 
     private function usaDataInsert($data)
