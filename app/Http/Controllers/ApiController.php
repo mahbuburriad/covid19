@@ -32,7 +32,7 @@ class ApiController extends Controller
                     Live::truncate();
                     $this->dataCreate($worldData, $data, $dataFor);
                     echo 'created';
-                } else{
+                } else {
                     echo 'something is wrong';
                 }
             } else {
@@ -54,15 +54,15 @@ class ApiController extends Controller
                 if (!empty($yesterdayData) && $yesterdayData->date == Carbon::today()) {
 
                     $yesterdayAll = Yesterday::where('date', Carbon::today())->get();
-                    if (count($data) == (count($yesterdayAll)-1)){
+                    if (count($data) == (count($yesterdayAll) - 1)) {
                         $dataFor = 'yesterdayUpdate';
                         $this->dataCreate($worldData, $data, $dataFor);
                         echo 'I have found date , then update it';
-                    } elseif (count($data) != (count($yesterdayAll)-1)){
+                    } elseif (count($data) != (count($yesterdayAll) - 1)) {
                         Yesterday::where('date', Carbon::today())->delete();
                         $this->dataCreate($worldData, $data, $dataFor);
                         echo 'I have found date , then delete it and create';
-                    } else{
+                    } else {
                         echo 'something is wrong';
                     }
 
@@ -81,19 +81,19 @@ class ApiController extends Controller
 
             $continentData = DB::table('continents')->latest('id')->first();
 
-            if ($url->ok()){
+            if ($url->ok()) {
                 if (!empty($continentData) && $continentData->date == Carbon::today()) {
                     $continentAll = Continent::where('date', Carbon::today())->get();
 
-                    if (count($data) == count($continentAll)){
+                    if (count($data) == count($continentAll)) {
                         $dataFor = 'continentUpdate';
                         $this->continentInsert($data, $dataFor);
                         echo 'I have found date , then update';
-                    } elseif (count($data) != count($continentAll)){
+                    } elseif (count($data) != count($continentAll)) {
                         Continent::where('date', Carbon::today())->delete();
                         $this->continentInsert($data, $dataFor);
                         echo 'I have found date , then delete it and create';
-                    } else{
+                    } else {
                         echo 'something is wrong';
                     }
                 } else if (empty($continentData) || (!empty($continentData) && $continentData->date != Carbon::today())) {
@@ -102,7 +102,7 @@ class ApiController extends Controller
                 } else {
                     echo "Nothing to do";
                 }
-            } else{
+            } else {
                 echo 'Server Error';
             }
 
@@ -113,19 +113,19 @@ class ApiController extends Controller
 
             $usaData = DB::table('usa_data')->latest('id')->first();
 
-            if ($url->ok()){
+            if ($url->ok()) {
                 if (!empty($usaData) && $usaData->date == Carbon::today()) {
                     $usaDataAll = UsaData::where('date', Carbon::today())->get();
 
-                    if (count($data) == count($usaDataAll)){
+                    if (count($data) == count($usaDataAll)) {
                         $dataFor = 'usaDataUpdate';
                         $this->usaDataInsert($data, $dataFor);
                         echo 'I have found date , then update';
-                    } elseif (count($data) != count($usaDataAll)){
+                    } elseif (count($data) != count($usaDataAll)) {
                         UsaData::where('date', Carbon::today())->delete();
                         $this->usaDataInsert($data, $dataFor);
                         echo 'I have found date , then delete it and create';
-                    } else{
+                    } else {
                         echo 'something is wrong';
                     }
                 } else if (empty($usaData) || (!empty($usaData) && $usaData->date != Carbon::today())) {
@@ -134,7 +134,7 @@ class ApiController extends Controller
                 } else {
                     echo "already created";
                 }
-            } else{
+            } else {
                 echo 'Server Error';
             }
         } elseif ($dataFor == 'vaccine') {
@@ -143,20 +143,20 @@ class ApiController extends Controller
 
             $vaccineData = DB::table('vaccines')->latest('id')->first();
 
-            if ($url->ok()){
+            if ($url->ok()) {
                 if (!empty($vaccineData) && $vaccineData->date == Carbon::today()) {
 
                     $vaccineAll = Vaccine::where('date', Carbon::today())->get();
 
-                    if (count($data['data']) == count($vaccineAll)){
+                    if (count($data['data']) == count($vaccineAll)) {
                         $dataFor = 'vaccineUpdate';
                         $this->vaccine($data, $dataFor);
                         echo 'I have found date , then update';
-                    } elseif (count($data['data']) != count($vaccineAll)){
+                    } elseif (count($data['data']) != count($vaccineAll)) {
                         Vaccine::where('date', Carbon::today())->delete();
                         $this->vaccine($data, $dataFor);
                         echo 'I have found date , then delete it and create';
-                    } else{
+                    } else {
                         echo 'something is wrong';
                     }
                 } else if (empty($vaccineData) || (!empty($vaccineData) && $vaccineData->date != Carbon::today())) {
@@ -165,7 +165,7 @@ class ApiController extends Controller
                 } else {
                     echo "Nothing to do";
                 }
-            } else{
+            } else {
                 echo 'server error';
             }
 
@@ -404,8 +404,8 @@ class ApiController extends Controller
             }
         }
 
-        if ($dataFor == 'yesterdayUpdate'){
-            Yesterday::where('country' , 'World')->update([
+        if ($dataFor == 'yesterdayUpdate') {
+            Yesterday::where('country', 'World')->update([
                 'updated' => $worldData['updated'],
                 'total_cases' => $worldData['cases'],
                 'new_cases' => $worldData['todayCases'],
@@ -465,7 +465,7 @@ class ApiController extends Controller
 
     private function continentInsert($data, $dataFor)
     {
-        if ($dataFor == 'continent'){
+        if ($dataFor == 'continent') {
             foreach ($data as $value) {
                 Continent::create([
                     'date' => Carbon::today(),
@@ -493,7 +493,7 @@ class ApiController extends Controller
                 ]);
 
             }
-        } elseif ($dataFor == 'continentUpdate'){
+        } elseif ($dataFor == 'continentUpdate') {
             foreach ($data as $value) {
                 Continent::where('continent', $value['continent'])->update([
                     'updated' => $value['updated'],
@@ -519,7 +519,7 @@ class ApiController extends Controller
                 ]);
 
             }
-        } else{
+        } else {
             echo 'something is wrong';
         }
 
@@ -527,7 +527,7 @@ class ApiController extends Controller
 
     private function usaDataInsert($data, $dataFor)
     {
-        if ($dataFor == 'usaData'){
+        if ($dataFor == 'usaData') {
             foreach ($data as $value) {
                 UsaData::create([
                     'updated' => $value['updated'],
@@ -545,7 +545,7 @@ class ApiController extends Controller
                     'date' => Carbon::today()
                 ]);
             }
-        } elseif ($dataFor == 'usaDataUpdate'){
+        } elseif ($dataFor == 'usaDataUpdate') {
             foreach ($data as $value) {
                 UsaData::where('state', $value['state'])->update([
                     'updated' => $value['updated'],
@@ -561,7 +561,7 @@ class ApiController extends Controller
                     'cases' => $value['cases'],
                 ]);
             }
-        } else{
+        } else {
             echo 'something is wrong';
         }
 
@@ -569,7 +569,7 @@ class ApiController extends Controller
 
     private function vaccine($data, $dataFor)
     {
-        if ($dataFor == 'vaccine'){
+        if ($dataFor == 'vaccine') {
             foreach ($data['data'] as $value) {
                 Vaccine::create([
                     'date' => Carbon::today(),
@@ -581,7 +581,7 @@ class ApiController extends Controller
                     'institutions' => implode(', ', $value['institutions'])
                 ]);
             }
-        } elseif ($dataFor == 'vaccineUpdate'){
+        } elseif ($dataFor == 'vaccineUpdate') {
             foreach ($data['data'] as $value) {
                 Vaccine::where('candidate', $value['candidate'])->update([
                     'candidate' => $value['candidate'],
@@ -593,7 +593,7 @@ class ApiController extends Controller
                 ]);
             }
 
-        } else{
+        } else {
             echo 'Something is Wrong';
         }
 
