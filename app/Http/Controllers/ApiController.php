@@ -32,6 +32,8 @@ class ApiController extends Controller
                     Live::truncate();
                     $this->dataCreate($worldData, $data, $dataFor);
                     echo 'created';
+                } else{
+                    echo 'something is wrong';
                 }
             } else {
                 echo 'Server access failed';
@@ -50,9 +52,20 @@ class ApiController extends Controller
                 $yesterdayData = DB::table('yesterdays')->latest('id')->first();
 
                 if (!empty($yesterdayData) && $yesterdayData->date == Carbon::today()) {
-                    Yesterday::where('date', Carbon::today())->delete();
-                    $this->dataCreate($worldData, $data, $dataFor);
-                    echo 'I have found date , then delete it and create';
+
+                    $yesterdayAll = Yesterday::where('date', Carbon::today())->get();
+                    if (count($data) == (count($yesterdayAll)-1)){
+                        $dataFor = 'yesterdayUpdate';
+                        $this->dataCreate($worldData, $data, $dataFor);
+                        echo 'I have found date , then update it';
+                    } elseif (count($data) != (count($yesterdayAll)-1)){
+                        Yesterday::where('date', Carbon::today())->delete();
+                        $this->dataCreate($worldData, $data, $dataFor);
+                        echo 'I have found date , then delete it and create';
+                    } else{
+                        echo 'something is wrong';
+                    }
+
                 } else if (empty($yesterdayData) || (!empty($yesterdayData) && $yesterdayData->date != Carbon::today())) {
                     $this->dataCreate($worldData, $data, $dataFor);
                     echo "created";
@@ -315,6 +328,64 @@ class ApiController extends Controller
                     'date' => Carbon::today(),
                     'updated' => $dataGet['updated'],
                     'country' => $dataGet['country'],
+                    'iso2' => $dataGet['countryInfo']['iso2'],
+                    'iso3' => $dataGet['countryInfo']['iso3'],
+                    'lat' => $dataGet['countryInfo']['lat'],
+                    'long' => $dataGet['countryInfo']['long'],
+                    'flag' => $dataGet['countryInfo']['flag'],
+                    'total_cases' => $dataGet['cases'],
+                    'new_cases' => $dataGet['todayCases'],
+                    'total_deaths' => $dataGet['deaths'],
+                    'new_deaths' => $dataGet['todayDeaths'],
+                    'total_recovered' => $dataGet['recovered'],
+                    'new_recovered' => $dataGet['todayRecovered'],
+                    'active_cases' => $dataGet['active'],
+                    'serious' => $dataGet['critical'],
+                    'tot_cases' => $dataGet['casesPerOneMillion'],
+                    'death1m' => $dataGet['deathsPerOneMillion'],
+                    'total_tests' => $dataGet['tests'],
+                    'test1m' => $dataGet['testsPerOneMillion'],
+                    'population' => $dataGet['population'],
+                    'continent' => $dataGet['continent'],
+                    'oneCasePerPeople' => $dataGet['oneCasePerPeople'],
+                    'oneDeathPerPeople' => $dataGet['oneDeathPerPeople'],
+                    'oneTestPerPeople' => $dataGet['oneTestPerPeople'],
+                    'activePerOneMillion' => $dataGet['activePerOneMillion'],
+                    'recoveredPerOneMillion' => $dataGet['recoveredPerOneMillion'],
+                    'criticalPerOneMillion' => $dataGet['criticalPerOneMillion']
+                ]);
+            }
+        }
+
+        if ($dataFor == 'yesterdayUpdate'){
+            Yesterday::where('country' , 'World')->update([
+                'updated' => $worldData['updated'],
+                'total_cases' => $worldData['cases'],
+                'new_cases' => $worldData['todayCases'],
+                'total_deaths' => $worldData['deaths'],
+                'new_deaths' => $worldData['todayDeaths'],
+                'total_recovered' => $worldData['recovered'],
+                'new_recovered' => $worldData['todayRecovered'],
+                'active_cases' => $worldData['active'],
+                'serious' => $worldData['critical'],
+                'tot_cases' => $worldData['casesPerOneMillion'],
+                'death1m' => $worldData['deathsPerOneMillion'],
+                'total_tests' => $worldData['tests'],
+                'test1m' => $worldData['testsPerOneMillion'],
+                'population' => $worldData['population'],
+                'continent' => 'World',
+                'oneCasePerPeople' => $worldData['oneCasePerPeople'],
+                'oneDeathPerPeople' => $worldData['oneDeathPerPeople'],
+                'oneTestPerPeople' => $worldData['oneTestPerPeople'],
+                'activePerOneMillion' => $worldData['activePerOneMillion'],
+                'recoveredPerOneMillion' => $worldData['recoveredPerOneMillion'],
+                'criticalPerOneMillion' => $worldData['criticalPerOneMillion']
+            ]);
+
+
+            foreach ($data as $dataGet) {
+                Yesterday::where('country', $dataGet['country'])->update([
+                    'updated' => $dataGet['updated'],
                     'iso2' => $dataGet['countryInfo']['iso2'],
                     'iso3' => $dataGet['countryInfo']['iso3'],
                     'lat' => $dataGet['countryInfo']['lat'],
