@@ -113,15 +113,29 @@ class ApiController extends Controller
 
             $usaData = DB::table('usa_data')->latest('id')->first();
 
-            if (!empty($usaData) && $usaData->date == Carbon::today()) {
-                UsaData::where('date', Carbon::today())->delete();
-                $this->usaDataInsert($data);
-                echo 'I have found date , then delete it and create';
-            } else if (empty($usaData) || (!empty($usaData) && $usaData->date != Carbon::today())) {
-                $this->usaDataInsert($data);
-                echo "created";
-            } else {
-                echo "already created";
+            if ($url->ok()){
+                if (!empty($usaData) && $usaData->date == Carbon::today()) {
+                    $usaDataAll = UsaData::where('date', Carbon::today())->get();
+
+                    if (count($data) == count($usaDataAll)){
+                        $dataFor = 'usaDataUpdate';
+                        $this->usaDataInsert($data, $dataFor);
+                        echo 'I have found date , then update';
+                    } elseif (count($data) != count($usaDataAll)){
+                        UsaData::where('date', Carbon::today())->delete();
+                        $this->usaDataInsert($data, $dataFor);
+                        echo 'I have found date , then delete it and create';
+                    } else{
+                        echo 'something is wrong';
+                    }
+                } else if (empty($usaData) || (!empty($usaData) && $usaData->date != Carbon::today())) {
+                    $this->usaDataInsert($data, $dataFor);
+                    echo "created";
+                } else {
+                    echo "already created";
+                }
+            } else{
+                echo 'Server Error';
             }
         } elseif ($dataFor == 'vaccine') {
             $url = Http::get('https://disease.sh/v3/covid-19/vaccine');
@@ -129,16 +143,33 @@ class ApiController extends Controller
 
             $vaccineData = DB::table('vaccines')->latest('id')->first();
 
-            if (!empty($vaccineData) && $vaccineData->date == Carbon::today()) {
-                Vaccine::where('date', Carbon::today())->delete();
-                $this->vaccine($data);
-                echo 'I have found date , then delete it and create';
-            } else if (empty($vaccineData) || (!empty($vaccineData) && $vaccineData->date != Carbon::today())) {
-                $this->vaccine($data);
-                echo "created";
-            } else {
-                echo "already created";
+            if ($url->ok()){
+                if (!empty($vaccineData) && $vaccineData->date == Carbon::today()) {
+
+                    $vaccineAll = Vaccine::where('date', Carbon::today())->get();
+
+                    if (count($data['data']) == count($vaccineAll)){
+                        $dataFor = 'vaccineUpdate';
+                        $this->vaccine($data, $dataFor);
+                        echo 'I have found date , then update';
+                    } elseif (count($data['data']) != count($vaccineAll)){
+                        Vaccine::where('date', Carbon::today())->delete();
+                        $this->vaccine($data, $dataFor);
+                        echo 'I have found date , then delete it and create';
+                    } else{
+                        echo 'something is wrong';
+                    }
+                } else if (empty($vaccineData) || (!empty($vaccineData) && $vaccineData->date != Carbon::today())) {
+                    $this->vaccine($data, $dataFor);
+                    echo "created";
+                } else {
+                    echo "Nothing to do";
+                }
+            } else{
+                echo 'server error';
             }
+
+
         } elseif ($dataFor == 'therapeutics') {
             $url = Http::get('https://disease.sh/v3/covid-19/therapeutics');
             $data = $url->json();
@@ -494,40 +525,79 @@ class ApiController extends Controller
 
     }
 
-    private function usaDataInsert($data)
+    private function usaDataInsert($data, $dataFor)
     {
-        foreach ($data as $value) {
-            UsaData::create([
-                'updated' => $value['updated'],
-                'todayCases' => $value['todayCases'],
-                'deaths' => $value['deaths'],
-                'todayDeaths' => $value['todayDeaths'],
-                'active' => $value['active'],
-                'casesPerOneMillion' => $value['casesPerOneMillion'],
-                'deathsPerOneMillion' => $value['deathsPerOneMillion'],
-                'tests' => $value['tests'],
-                'testsPerOneMillion' => $value['testsPerOneMillion'],
-                'population' => $value['population'],
-                'state' => $value['state'],
-                'cases' => $value['cases'],
-                'date' => Carbon::today()
-            ]);
+        if ($dataFor == 'usaData'){
+            foreach ($data as $value) {
+                UsaData::create([
+                    'updated' => $value['updated'],
+                    'todayCases' => $value['todayCases'],
+                    'deaths' => $value['deaths'],
+                    'todayDeaths' => $value['todayDeaths'],
+                    'active' => $value['active'],
+                    'casesPerOneMillion' => $value['casesPerOneMillion'],
+                    'deathsPerOneMillion' => $value['deathsPerOneMillion'],
+                    'tests' => $value['tests'],
+                    'testsPerOneMillion' => $value['testsPerOneMillion'],
+                    'population' => $value['population'],
+                    'state' => $value['state'],
+                    'cases' => $value['cases'],
+                    'date' => Carbon::today()
+                ]);
+            }
+        } elseif ($dataFor == 'usaDataUpdate'){
+            foreach ($data as $value) {
+                UsaData::where('state', $value['state'])->update([
+                    'updated' => $value['updated'],
+                    'todayCases' => $value['todayCases'],
+                    'deaths' => $value['deaths'],
+                    'todayDeaths' => $value['todayDeaths'],
+                    'active' => $value['active'],
+                    'casesPerOneMillion' => $value['casesPerOneMillion'],
+                    'deathsPerOneMillion' => $value['deathsPerOneMillion'],
+                    'tests' => $value['tests'],
+                    'testsPerOneMillion' => $value['testsPerOneMillion'],
+                    'population' => $value['population'],
+                    'cases' => $value['cases'],
+                ]);
+            }
+        } else{
+            echo 'something is wrong';
         }
+
     }
 
-    private function vaccine($data)
+    private function vaccine($data, $dataFor)
     {
-        foreach ($data['data'] as $value) {
-            Vaccine::create([
-                'date' => Carbon::today(),
-                'candidate' => $value['candidate'],
-                'mechanism' => $value['mechanism'],
-                'sponsors' => implode(',', $value['sponsors']),
-                'details' => $value['details'],
-                'trialPhase' => $value['trialPhase'],
-                'institutions' => implode(', ', $value['institutions'])
-            ]);
+        if ($dataFor == 'vaccine'){
+            foreach ($data['data'] as $value) {
+                Vaccine::create([
+                    'date' => Carbon::today(),
+                    'candidate' => $value['candidate'],
+                    'mechanism' => $value['mechanism'],
+                    'sponsors' => implode(',', $value['sponsors']),
+                    'details' => $value['details'],
+                    'trialPhase' => $value['trialPhase'],
+                    'institutions' => implode(', ', $value['institutions'])
+                ]);
+            }
+        } elseif ($dataFor == 'vaccineUpdate'){
+            foreach ($data['data'] as $value) {
+                Vaccine::where('candidate', $value['candidate'])->update([
+                    'candidate' => $value['candidate'],
+                    'mechanism' => $value['mechanism'],
+                    'sponsors' => implode(',', $value['sponsors']),
+                    'details' => $value['details'],
+                    'trialPhase' => $value['trialPhase'],
+                    'institutions' => implode(', ', $value['institutions'])
+                ]);
+            }
+
+        } else{
+            echo 'Something is Wrong';
         }
+
+
     }
 
     private function therapeutics($data)
