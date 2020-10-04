@@ -2,13 +2,26 @@
 
 @section('title') Covid19 Therapeutics Tracker (Live): {{$phase1+$phase2+$phase3}} therapeutics, {{$phase3}} in phase 3 from @endsection
 
+@section('style')
+    <style>
+        .btn.focus, .btn:focus {
+            outline: 0;
+            box-shadow: 0 0 black;
+        }
+        button.btn.btn-block.btn-link {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+@endsection
+
 @section('content')
-    <section style="margin-top: 50px">>
-        <div class="container text-center" style="color: white">
+    <section style="margin-top: 25px">
+        <div class="container text-center" {{--style="color: white"--}}>
             <h3 style="color: black">Therapeutics Tracker</h3>
             <div class="row">
                 <div class="col-md-3" >
-                    <div class="card" style="background: #1a82c5">
+                    <div class="card" {{--style="background: #1a82c5"--}}>
                         <div class="card-header h4">
                             {{$phase1+$phase2+$phase3}}
                         </div>
@@ -18,7 +31,7 @@
                     </div>
                 </div>
                 <div class="col-md-3" >
-                    <div class="card" style="background: #0a6aa1">
+                    <div class="card" {{--style="background: #0a6aa1"--}}>
                         <div class="card-header h4">
                             {{$phase1}}
                         </div>
@@ -28,7 +41,7 @@
                     </div>
                 </div>
                 <div class="col-md-3" >
-                    <div class="card" style="background: #1b4b72">
+                    <div class="card" {{--style="background: #1b4b72"--}}>
                         <div class="card-header h4">
                             {{$phase2}}
                         </div>
@@ -38,7 +51,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card"   style="background: #0c5460">
+                    <div class="card"   {{--style="background: #0c5460"--}}>
                         <div class="card-header h4">
                             {{$phase3}}
                         </div>
@@ -56,7 +69,7 @@
             @forelse($data as $value)
                 <div class="accordion" id="accordionExample">
                     <div class="card">
-                        <div class="card-header" id="heading{{$value->id}}}">
+                        <div class="card-header" id="heading{{$value->id}}">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse{{$value->id}}" aria-expanded="false" aria-controls="collapse{{$value->id}}">
                                     {{$value->tradeName}}

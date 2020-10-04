@@ -433,13 +433,13 @@
             </center>
 
             <div class="row">
-                <div class="col-md-6 text-center" style="color: white">
+                <div class="col-md-6 text-center" {{--style="color: white"--}}>
                     <div class="d-md-none d-sm-block d-xs-none" style="margin-top: 35px"></div>
                     <h1 style="color: #555">Vaccine Tracker</h1>
                     <a target="_blank" style="font-size: 80%; color: #555" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html">Data Source: The New York Times</a>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="card" style="background-color: #75ACC8">
+                            <div class="card" {{--style="background-color: #75ACC8"--}}>
                                 <div class="card-header h3">
                                     {{$vaccines[0]->phase1}}
                                 </div>
@@ -449,7 +449,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card" style="background-color: #3B89B1;">
+                            <div class="card" {{--style="background-color: #3B89B1;"--}}>
                                 <div class="card-header h3">
                                     {{$vaccines[0]->phase2}}
                                 </div>
@@ -462,7 +462,7 @@
 
                     <div class="row" style="margin-top: 5px">
                         <div class="col-md-6">
-                            <div class="card" style="background-color: #006699">
+                            <div class="card" {{--style="background-color: #006699"--}}>
                                 <div class="card-header h3">
                                     {{$vaccines[0]->phase3}}
                                 </div>
@@ -472,7 +472,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card" style="background-color: #719D94;">
+                            <div class="card" {{--style="background-color: #719D94;"--}}>
                                 <div class="card-header h3">
                                     {{$vaccines[0]->limited}}
                                 </div>
@@ -484,7 +484,7 @@
                     </div>
                     <div class="row" style="margin-top: 5px">
                         <div class="col-md-12">
-                            <div class="card" style="background-color: #006E59;">
+                            <div class="card" {{--style="background-color: #006E59;"--}}>
                                 <div class="card-header h3">
                                     {{$vaccines[0]->approved}}
                                 </div>
