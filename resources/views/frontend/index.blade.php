@@ -435,7 +435,7 @@
             <div class="row">
                 <div class="col-md-6 text-center" {{--style="color: white"--}}>
                     <div class="d-md-none d-sm-block d-xs-none" style="margin-top: 35px"></div>
-                    <h1 style="color: #555">Vaccine Tracker</h1>
+                    <h3 style="color: #555">Vaccine Tracker</h3>
                     <a target="_blank" style="font-size: 80%; color: #555" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html">Data Source: The New York Times</a>
                     <div class="row">
                         <div class="col-md-6">

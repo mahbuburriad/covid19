@@ -9,13 +9,14 @@ body {
     text-align: center;
     background-color: #f5f5f5;
     color: #777;
-    font-size: 19px;
+/*    font-size: 19px;*/
 /*    text-transform: uppercase;*/
     font-family: roboto condensed, sans-serif;
 }
 
 #page-top {
-    padding: 20px;
+/*    padding: 20px;*/
+    padding: 2px;
 }
 
 .maincounter-wrap {

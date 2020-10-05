@@ -20,7 +20,7 @@
 @endsection
 
 @section('country')
-    <h6>Country Name : <b>{{$name}}</b> </h6>
+    <p style="margin-left: 22px">Country Name : <b>{{$name}}</b> </p>
 @endsection
 
 
