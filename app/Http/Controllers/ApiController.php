@@ -194,7 +194,7 @@ class ApiController extends Controller
             $india = DB::table('india_data')->latest('id')->first();
 
             if (!empty($india) && $india->date == Carbon::today()) {
-                $indiaDataAll = IndiaData::all();
+                $indiaDataAll = IndiaData::where('date', Carbon::today())->get();
 
                 if (count($data['states']) == (count($indiaDataAll) - 1)) {
                     $dataFor = 'indiaDataUpdate';
