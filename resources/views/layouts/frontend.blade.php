@@ -86,15 +86,18 @@
     <div class="container-fluid">
 <h5>Data Source</h5>
 <p> <b>Live Data Source:</b> <a style="color: black" href="https://www.worldometers.info/coronavirus/" target="_blank">Worldometers</a> <br>
-    <b>Data by date John Hopkins University &amp; Pomber from github:</b> <a style="color: black" href="https://github.com/pomber/covid19">John Hopkins - Pomber</a> <br>
-    <b>Bangladesh District Wise Data source:</b> <a style="color: black" href="//dashboard.dghs.gov.bd/webportal/pages/covid19.php">dghs.gov.bd</a> <br>
-    <b>Vaccine Tracker Data Source:</b> <a style="color: black" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html">The New Work Times</a> <br>
-    <b>Get vaccine trial data from RAPS (Regulatory Affairs Professional Society). Specifically published by Jeff Craven: </b> <a style="color: black" href="https://www.raps.org/news-and-articles/news-articles/2020/3/covid-19-vaccine-tracker">RAPS</a>
+    <b>Data by date John Hopkins University &amp; Pomber from github:</b> <a style="color: black" href="https://github.com/pomber/covid19" target="_blank">John Hopkins - Pomber</a> <br>
+    <b>Bangladesh District Wise Data source:</b> <a style="color: black" href="//dashboard.dghs.gov.bd/webportal/pages/covid19.php" target="_blank">dghs.gov.bd</a> <br>
+    <b>Vaccine Tracker Data Source:</b> <a style="color: black" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html" target="_blank">The New Work Times</a> <br>
+    <b>Get vaccine trial data from RAPS (Regulatory Affairs Professional Society). Specifically published by Jeff Craven: </b> <a style="color: black" href="https://www.raps.org/news-and-articles/news-articles/2020/3/covid-19-vaccine-tracker" target="_blank">RAPS</a>
     <br>
-    <b>Get therapeutics trial data from RAPS (Regulatory Affairs Professional Society). Specifically published by Jeff Craven: </b> <a style="color: black" href="https://www.raps.org/news-and-articles/news-articles/2020/3/covid-19-therapeutics-tracker">RAPS</a></p>
+    <b>Get therapeutics trial data from RAPS (Regulatory Affairs Professional Society). Specifically published by Jeff Craven: </b> <a style="color: black" href="https://www.raps.org/news-and-articles/news-articles/2020/3/covid-19-therapeutics-tracker" target="_blank">RAPS</a><br>
+    <b>USA Data Source: </b> <a style="color: black" href="https://www.worldometers.info/coronavirus/country/us/" target="_blank">Worldometer</a> <br>
+    <b>India Data Source: </b> <a style="color: black" href="https://www.mohfw.gov.in/" target="_blank">Get COVID-19 government reported data for a specific country</a> <br>
+    <b>API for covid19: </b> <a style="color: black" href="https://corona.lmao.ninja/" target="_blank">Corona Ninja</a></p>
 <footer>
     <center>
-        <div class="footer_text">© Copyright <span class="logoFont">Saltanat Global Limited</span> - All rights reserved</div>
+        <div class="footer_text">© Copyright <a class="logoFont" style="text-decoration: none" href="https://saltanatglobal.com">Saltanat Global Limited</a>- All rights reserved</div>
     </center>
 </footer>
     </div>
