@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title') {{$name}} | @endsection
+@section('title') {{$name}} coronavirus update (Live): {{!is_numeric($data[0]->total_cases) ? $data[0]->total_cases : number_format($data[0]->total_cases)}} cases and {{!is_numeric($data[0]->total_deaths) ? $data[0]->total_deaths : number_format($data[0]->total_deaths)}} deaths from @endsection
 
 @section('style')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
