@@ -608,8 +608,8 @@
                         <th>{{number_format($data[0]->serious)}}</th>
                         <th>{{number_format($data[0]->tot_cases)}}</th>
                         <th>{{number_format($data[0]->death1m)}}</th>
-                        <th></th>
-                        <th></th>
+                        <th>{{!is_numeric($data[0]->total_tests)  ? $data[0]->total_tests : number_format($data[0]->total_tests)}}</th>
+                        <th>{{!is_numeric($data[0]->test1m) ? $data[0]->test1m : number_format($data[0]->test1m)}}</th>
                         <th>{{number_format($totalPopulation)}}</th>
                     </tr>
 
