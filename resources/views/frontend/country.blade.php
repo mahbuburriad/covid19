@@ -3,8 +3,10 @@
 @section('title') {{$name}} coronavirus update (Live): {{!is_numeric($data[0]->total_cases) ? $data[0]->total_cases : number_format($data[0]->total_cases)}} cases and {{!is_numeric($data[0]->total_deaths) ? $data[0]->total_deaths : number_format($data[0]->total_deaths)}} deaths from @endsection
 
 @section('style')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+    <link rel="stylesheet" href="{{url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css')}}"
           integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{{url('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css')}}" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
+
     <style>
         .stateData td{
             text-align: left;
@@ -25,7 +27,6 @@
 
 
 @section('content')
-
     <section>
         <div class="container">
 
@@ -198,6 +199,19 @@
                 </div>
                 <div style="margin-top:50px;"></div>
 
+                <div class="row card">
+                    <div class="card-header">
+                        <h6 class="text-center">Chart View</h6>
+                    </div>
+                    <div class="col-xl-12 card-body">
+                        <div class="corona-chart-stats report-item mt-0" id="chart-canvas">
+                            <div class="chart-wrap">
+                                <canvas id="chart-canvas" style="width: 100%; height: 100%"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top:50px;"></div>
             </center>
 
             @if($name == 'India')
@@ -344,8 +358,115 @@
 @endsection
 
 @section('script')
+    <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js')}}" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+
+            async function getData(url) {
+                let response = await fetch(url);
+                return await response.json();
+            }
+
+
+            const chartReport = async (selectorId) => {
+                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+                function chartData(data) {
+                    let reports = [];
+                    let labels = [];
+                    let dates = [];
+
+                    data.map((item, index) => {
+                        const value = item.Confirmed - data[index > 0 ? (index - 1) : 0].Confirmed;
+                        reports.push(value < 0 ? data[index - 1] : value);
+                        labels.push(`Day ${index + 1}`);
+                        const d = new Date(item.Date);
+                        const day = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
+                        const month = d.getMonth();
+                        const dateUSFormat = `${months[month]} ${day}`;
+                        dates.push(dateUSFormat);
+                    })
+
+                    const config = {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: '',
+                                backgroundColor: '#AEBEFF',
+                                borderColor: '#AEBEFF',
+                                borderWidth: '5',
+                                data: reports,
+                                fill: false,
+                                pointBackgroundColor: '#fff',
+                                pointBorderColor: '#fff',
+                                pointBorderWidth: 5
+                            }]
+                        },
+                        options: {
+                            height: 450,
+                            responsive: true,
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: false
+                            },
+                            tooltips: {
+                                displayColors: false,
+                                backgroundColor: '#fff',
+                                titleFontColor: '#354150',
+                                bodyFontColor: '#354150',
+                                bodyFontSize: 14,
+                                xPadding: 10,
+                                yPadding: 10,
+                                callbacks: {
+                                    title: function (tooltipItems) {
+                                        return "Day - " + (Number(tooltipItems[0].index) + 1) + ", " + dates[Number(tooltipItems[0].index)];
+                                    },
+                                    label: function (tooltipItem) {
+                                        return "Infected: " + Number(tooltipItem.yLabel) + "+";
+                                    }
+                                }
+                            },
+                            hover: {
+                                mode: 'nearest',
+                                intersect: true
+                            },
+                            layout: {
+                                padding: {
+                                    left: 15,
+                                    right: 15,
+                                    top: 30,
+                                    bottom: 15
+                                }
+                            },
+                            scales: {
+                                xAxes: [{
+                                    gridLines: {
+                                        color: "rgba(0, 0, 0, 0)",
+                                    }
+                                }]
+                            }
+                        }
+                    };
+
+                    const canvas = selectorId.querySelector('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.height = 450;
+                    window.myLine = new Chart(ctx, config);
+                }
+
+                const data = await getData('https://api.covid19api.com/total/dayone/country/'+'{{$name}}');
+                chartData(data);
+            }
+
+            const chartID = document.getElementById('chart-canvas');
+            if (chartID) {
+                chartReport(chartID);
+            }
+
+
             $('#dataTable').DataTable({
                 order: [0, 'desc'],
             });
