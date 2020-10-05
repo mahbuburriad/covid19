@@ -110,3 +110,16 @@ tfoot tr th, td {
     font-style: normal;
 }
 
+.page-item.active .page-link {
+    background-color: #2C3E50;
+    border-color: #2C3E50;
+}
+.page-link {
+    color: #2C3E50;
+}
+
+.page-link:hover{
+    color: #566573;
+}
+
+
