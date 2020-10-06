@@ -18,6 +18,11 @@ Route::get('vaccineInsert', [LiveController::class, 'vaccineInsert'])->name('vac
 
 Route::get('dataGet/{dataFor}', [ApiController::class, 'dataInsert'])->name('dataGet');
 
+//Get all
+Route::get('all', function (){
+   return view('frontend.all');
+});
+
 //For testing
 Route::get('test', [LiveController::class, 'test'])->name('test');
 

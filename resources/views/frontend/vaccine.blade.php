@@ -93,26 +93,24 @@
         <div class="container">
             <h4 class="text-center">Vaccine Produce Company Information</h4>
 
-
-
-            @forelse($data as $value)
+            @forelse($data as $key => $value)
             <div class="accordion" id="accordionExample">
                 <div class="card">
                     <div class="card-header" id="heading{{$value->id}}">
                         <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse{{$value->id}}" aria-expanded="false" aria-controls="collapse{{$value->id}}">
+                            <button class="btn btn-link btn-block text-left {{$key === 0 ? '': 'collapsed'}}" type="button" data-toggle="collapse" data-target="#collapse{{$value->id}}" aria-expanded="{{$key === 0 ? 'true': 'false'}}" aria-controls="collapse{{$value->id}}">
                                 {{$value->mechanism}}
                             </button>
                         </h2>
                     </div>
-                    <div id="collapse{{$value->id}}" class="collapse" aria-labelledby="heading{{$value->id}}" data-parent="#accordionExample">
+                    <div id="collapse{{$value->id}}" class="collapse {{$key === 0 ? 'show': ''}}" aria-labelledby="heading{{$value->id}}" data-parent="#accordionExample">
                         <div class="card-body">
                             <p> <b> Candidate : </b> {{$value->candidate}}</p>
                             <p> <b>  Mechanism :</b> {{$value->mechanism}}</p>
                             <p><b>  Sponsors : </b>{{$value->sponsors}}</p>
                             <p><b>  TrialPhase : </b>{{$value->trialPhase}}</p>
                             <p><b>  Institutions : </b>{{$value->institutions}}</p>
-                            <p><b>  Details : </b>{{$value->details}}</p>
+                            <p><b>  Details : </b>@php echo $value->details @endphp</p>
                         </div>
                     </div>
                 </div>
