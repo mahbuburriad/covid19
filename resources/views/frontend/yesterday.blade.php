@@ -10,6 +10,10 @@
             color: #363945 !important;
             font-weight: normal !important;
         }
+        .percentage {
+            color: #696969;
+            font-size: 80%;
+        }
     </style>
 @endsection
 
@@ -294,27 +298,68 @@
                             style="background: #F0F0F0;"
                             @elseif($all->country == 'World')
                             class="world"
+                            @else
+                            style="background: white;"
                             @endif>
                             <td style="text-align: left"><a @if($all->country != 'World') href="{{route('country', $all->country)}} @endif">{{$all->country}}</a></td>
-                            <td>{{!is_numeric($all->total_cases) ? $all->total_cases : number_format($all->total_cases)}}</td>
+                            <td>{{!is_numeric($all->total_cases) ? $all->total_cases : number_format($all->total_cases)}}
+                                @if($all->population != null || !empty($all->population) || $all->population != 0)
+                                    <span class="percentage" title="Total case confirmed according to population">
+                                    ({{number_format((($all->total_cases)*100)/($all->population), 2)}})%
+                                </span>
+                                @endif
+                            </td>
                             <td @if (!empty($all->new_cases)) style="background: #FFEEAA;" @endif>{{!is_numeric($all->new_cases) ? $all->new_cases : number_format($all->new_cases)}}</td>
-                            <td>{{!is_numeric($all->total_deaths) ? $all->total_deaths : number_format($all->total_deaths)}}</td>
+                            <td>{{!is_numeric($all->total_deaths) ? $all->total_deaths : number_format($all->total_deaths)}}
+
+                                @if(is_numeric($all->total_deaths) && !empty($all->total_deaths))
+                                    <span class="percentage" title="Death percentage according to total cases confirmed">
+                                    ({{number_format((($all->total_deaths)*100)/($all->total_cases), 2)}})%
+                                </span>
+                                @endif
+                            </td>
                             <td @if (!empty($all->new_deaths)) style="background: red; color: white" @endif>{{!is_numeric($all->new_deaths) ? $all->new_deaths : number_format($all->new_deaths)}}</td>
-                            <td>{{!is_numeric($all->total_recovered) ? $all->total_recovered : number_format($all->total_recovered)}}</td>
+                            <td>{{!is_numeric($all->total_recovered) ? $all->total_recovered : number_format($all->total_recovered)}}
+                                @if(is_numeric($all->total_recovered) && !empty($all->total_recovered))
+                                    <span class="percentage" title="Recovered percentage according to total cases confirmed">
+                                    ({{number_format((($all->total_recovered)*100)/($all->total_cases), 2)}})%
+                                </span>
+                                @endif
+                            </td>
                             <td @if (!empty($all->new_recovered)) style="background-color:#c8e6c9; color:#000" @endif>{{!is_numeric($all->new_recovered)  ? $all->new_recovered : number_format($all->new_recovered)}}</td>
-                            <td>{{!is_numeric($all->active_cases) ? $all->active_cases : number_format($all->active_cases)}}</td>
-                            <td>{{!is_numeric($all->serious) ? $all->serious :number_format($all->serious)}}</td>
+                            <td>{{!is_numeric($all->active_cases) ? $all->active_cases : number_format($all->active_cases)}}
+                                @if(is_numeric($all->active_cases) && !empty($all->active_cases))
+                                    <span class="percentage" title="Active Case percentage according to total cases confirmed">
+                                    ({{number_format((($all->active_cases)*100)/($all->total_cases), 2)}})%
+                                </span>
+                                @endif
+                            </td>
+                            <td>{{!is_numeric($all->serious) ? $all->serious :number_format($all->serious)}}
+                                @if(is_numeric($all->serious) && !empty($all->serious) && is_numeric($all->active_cases) && !empty($all->active_cases))
+                                    <span class="percentage" title="Serious condition according to active cases">
+                                    ({{number_format((($all->serious)*100)/($all->active_cases), 2)}})%
+                                </span>
+                                @endif
+                            </td>
                             <td>{{!is_numeric($all->tot_cases)  ? $all->tot_cases : number_format($all->tot_cases)}}</td>
                             <td>{{!is_numeric($all->death1m) ? $all->death1m : number_format($all->death1m)}}</td>
-                            <td>{{!is_numeric($all->total_tests)  ? $all->total_tests : number_format($all->total_tests)}}</td>
+                            <td>{{!is_numeric($all->total_tests)  ? $all->total_tests : number_format($all->total_tests)}}
+                                @if(is_numeric($all->total_tests) && !empty($all->total_tests) && is_numeric($all->population) && !empty($all->population))
+                                    <span class="percentage" title="Test according to population">
+                                    ({{number_format((($all->total_tests)*100)/($all->population), 2)}})%
+                                </span>
+                                @endif
+                            </td>
                             <td>{{!is_numeric($all->test1m) ? $all->test1m : number_format($all->test1m)}}</td>
-                            <td>{{!is_numeric($all->population) ? $all->population : number_format($all->population)}}</td>
+                            <td>
+                                {{!is_numeric($all->population) ? $all->population : number_format($all->population)}}
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th>Total:</th>
+                        <th style="text-align: left">Total:</th>
                         <th>{{number_format($data[0]->total_cases)}}</th>
                         <th style="background: #FFEEAA;">{{number_format($data[0]->new_cases)}}</th>
                         <th>{{number_format($data[0]->total_deaths)}}</th>
@@ -325,9 +370,9 @@
                         <th>{{number_format($data[0]->serious)}}</th>
                         <th>{{number_format($data[0]->tot_cases)}}</th>
                         <th>{{number_format($data[0]->death1m)}}</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>{{!is_numeric($data[0]->total_tests)  ? $data[0]->total_tests : number_format($data[0]->total_tests)}}</th>
+                        <th>{{!is_numeric($data[0]->test1m) ? $data[0]->test1m : number_format($data[0]->test1m)}}</th>
+                        <th>{{number_format($data[0]->population)}}</th>
                     </tr>
 
                     </tfoot>

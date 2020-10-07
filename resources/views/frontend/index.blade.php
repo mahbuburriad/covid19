@@ -23,21 +23,22 @@
         }
 
         .GeneratedMarquee {
-            line-height:1.3em;
-            color:#000000;
-            background-color:#c0c0c0;
-            padding:7px;
+            line-height: 1.3em;
+            color: #000000;
+            background-color: #c0c0c0;
+            padding: 7px;
             margin-top: 20px;
         }
+
         .GeneratedMarqueebangla {
-            line-height:1.3em;
-            color:#000;
-            background-color:#c0c0c0;
-            padding:7px;
+            line-height: 1.3em;
+            color: #000;
+            background-color: #c0c0c0;
+            padding: 7px;
             margin-top: 5px;
         }
 
-        .percentage{
+        .percentage {
             color: #696969;
             font-size: 80%;
         }
@@ -47,9 +48,7 @@
             padding: 40px 30px;
         }
 
-        @media only screen and (max-width: 767.98px),
-        only screen and (min-width: 768px) and (max-width: 991.98px),
-        only screen and (min-width: 992px) and (max-width: 1199.98px) {
+        @media only screen and (max-width: 767.98px), only screen and (min-width: 768px) and (max-width: 991.98px), only screen and (min-width: 992px) and (max-width: 1199.98px) {
             .map-status-wrap {
                 margin-top: 30px;
             }
@@ -104,6 +103,7 @@
         .map-status-colors .colors li span.max {
             background-color: #006491;
         }
+
         .map-status-colors .colors li span.danger {
             background-color: #CA0B00;
         }
@@ -124,10 +124,12 @@
                 <b>Continents by total affected: </b> @foreach($continentTotalCase as $continent) {{$continent->continent}}, @endforeach
                 <b>Total case percentage according to population: </b>{{$totalCaseNews.'; '}}
                 <b>Least active cases without death: </b>{{$overComeWithoutLossCountry.'; '}}
-                <b>Continents by death rate percentage according to total case confirmed: </b>@foreach($deathContinentNews as $continents) {{$continents->continent}} - {{$continents->death_percent_rate}}%, @endforeach
+                <b>Continents by death rate percentage according to total case confirmed: </b>@foreach($deathContinentNews as $continents) {{$continents->continent}}
+                - {{$continents->death_percent_rate}}%, @endforeach
                 <b>Death per 1 million people: </b>{{$death1mNews.'; '}}
                 <b>Countries with least active cases: </b> {{$overCome.'; '}}
-                <b>Continents by confirmed rate percentage according to population: </b>@foreach($caseContinentNews as $continents) {{$continents->continent}} - {{$continents->total_case_percent}}%, @endforeach
+                <b>Continents by confirmed rate percentage according to population: </b>@foreach($caseContinentNews as $continents) {{$continents->continent}}
+                - {{$continents->total_case_percent}}%, @endforeach
                 <b>Total cases per 1 million people: </b>{{$total1mNews.'; '}}
                 <b>Most number of affected people today:</b> {{$topFive.'; '}}
             </marquee>
@@ -137,10 +139,12 @@
                 <b>আক্রান্তের ভিত্তিতে মহাদেশের তালিকা: </b> @foreach($continentTotalCase as $continent) {{$continent->continent}}, @endforeach
                 <b>দেশের মোট জনসংখ্যার ভিত্তিতে মোট আক্ত্রান্ত: </b>{{$totalCaseNews.'; '}}
                 <b>করনা আক্রান্ত হয়েও মৃত্যু হয়নি: </b>{{$overComeWithoutLossCountry.'; '}}
-                <b>আক্রান্তের ভিত্তিতে মৃত্যুর হার অনুযায়ী মহাদেশসমুহ: </b>@foreach($deathContinentNews as $continents) {{$continents->continent}} - {{$continents->death_percent_rate}}%, @endforeach
+                <b>আক্রান্তের ভিত্তিতে মৃত্যুর হার অনুযায়ী মহাদেশসমুহ: </b>@foreach($deathContinentNews as $continents) {{$continents->continent}}
+                - {{$continents->death_percent_rate}}%, @endforeach
                 <b>প্রতি ১ মিলিয়নে মৃত্যুর হার অনুযায়ী: </b>{{$death1mNews.'; '}}
                 <b>বর্তমান সময়ে কোনো সক্রিয় কেস নেই: </b> {{$overCome.'; '}}
-                <b>জনসংখার ভিত্তিতে আক্রান্তের হার অনুযায়ী মহাদেশসমুহ: </b>@foreach($caseContinentNews as $continents) {{$continents->continent}} - {{$continents->total_case_percent}}%, @endforeach
+                <b>জনসংখার ভিত্তিতে আক্রান্তের হার অনুযায়ী মহাদেশসমুহ: </b>@foreach($caseContinentNews as $continents) {{$continents->continent}}
+                - {{$continents->total_case_percent}}%, @endforeach
                 <b>প্রতি ১ মিলিয়নে আক্রান্তের হার অনুযায়ী : </b>{{$total1mNews.'; '}}
                 <b>আজকের আক্ত্রান্তের সংখ্যা অনু্যায়ী:</b> {{$topFive.'; '}}
 
@@ -229,7 +233,6 @@
                         </div>
 
 
-
                         <div style="margin-top:50px;"></div>
 
                         <div class="row">
@@ -245,9 +248,11 @@
                                                         +{{is_numeric($bangladesh[$bdKey]->new_cases) ? number_format($bangladesh[$bdKey]->new_cases) : $bangladesh[$bdKey]->new_cases}}
 
                                                         @if($bangladesh[$bdKey]->new_cases > $yesterday[0]->new_cases)
-                                                            <i class="fas fa-arrow-up fa-xs" title="Compared with yesterday confirmed case; Yesterday was {{$yesterday[0]->new_cases}}}"></i>
+                                                            <i class="fas fa-arrow-up fa-xs"
+                                                               title="Compared with yesterday confirmed case; Yesterday was {{$yesterday[0]->new_cases}}}"></i>
                                                         @else
-                                                            <i class="fas fa-arrow-down fa-xs" title="Compared with yesterday confirmed case; Yesterday was {{$yesterday[0]->new_cases}}"></i>
+                                                            <i class="fas fa-arrow-down fa-xs"
+                                                               title="Compared with yesterday confirmed case; Yesterday was {{$yesterday[0]->new_cases}}"></i>
                                                         @endif
                                                     @else
                                                         +{{is_numeric($yesterday[0]->new_cases) ? number_format($yesterday[0]->new_cases) : $yesterday[0]->new_cases}}
@@ -263,9 +268,11 @@
                                                     @if(!empty($bangladesh[$bdKey]->new_recovered))
                                                         +{{is_numeric($bangladesh[$bdKey]->new_recovered) ? number_format($bangladesh[$bdKey]->new_recovered) : $bangladesh[$bdKey]->new_recovered}}
                                                         @if($bangladesh[$bdKey]->new_recovered > $yesterday[0]->new_recovered)
-                                                            <i class="fas fa-arrow-up fa-xs" style="color: green" title="Compare with Yesterday recovered case; Yesterday was {{$yesterday[0]->new_recovered}}"></i>
+                                                            <i class="fas fa-arrow-up fa-xs" style="color: green"
+                                                               title="Compare with Yesterday recovered case; Yesterday was {{$yesterday[0]->new_recovered}}"></i>
                                                         @else
-                                                            <i class="fas fa-arrow-down fa-xs" style="color: red" title="Compare with Yesterday recovered case; Yesterday was {{$yesterday[0]->new_recovered}}"></i>
+                                                            <i class="fas fa-arrow-down fa-xs" style="color: red"
+                                                               title="Compare with Yesterday recovered case; Yesterday was {{$yesterday[0]->new_recovered}}"></i>
                                                         @endif
                                                     @else
                                                         +{{is_numeric($yesterday[0]->new_recovered) ? number_format($yesterday[0]->new_recovered) : $yesterday[0]->new_recovered}}
@@ -280,9 +287,11 @@
                                                     @if(!empty($bangladesh[$bdKey]->new_deaths))
                                                         +{{ is_numeric($bangladesh[$bdKey]->new_deaths) ?  number_format($bangladesh[$bdKey]->new_deaths) : $bangladesh[$bdKey]->new_deaths}}
                                                         @if($bangladesh[$bdKey]->new_deaths > $yesterday[0]->new_deaths)
-                                                            <i class="fas fa-arrow-up fa-xs" title="Compare with Yesterday death case; Yesterday was {{$yesterday[0]->new_deaths}}"></i>
+                                                            <i class="fas fa-arrow-up fa-xs"
+                                                               title="Compare with Yesterday death case; Yesterday was {{$yesterday[0]->new_deaths}}"></i>
                                                         @else
-                                                            <i class="fas fa-arrow-down fa-xs" title="Compare with Yesterday death case; Yesterday was {{$yesterday[0]->new_deaths}}"></i>
+                                                            <i class="fas fa-arrow-down fa-xs"
+                                                               title="Compare with Yesterday death case; Yesterday was {{$yesterday[0]->new_deaths}}"></i>
                                                         @endif
                                                     @else
                                                         +{{ is_numeric($yesterday[0]->new_deaths) ?  number_format($yesterday[0]->new_deaths) : $yesterday[0]->new_deaths}}
@@ -302,12 +311,14 @@
                                             </div>
                                         </div>
                                         @if(!empty($bangladesh[$bdKey]->new_cases))
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                Today's new confirmed affected rate among total Tests: {{number_format((($bangladesh[$bdKey]->new_cases)*100)/($bangladesh[$bdKey]->total_tests - $yesterday[0]->total_tests), 2)}}%
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    Today's new confirmed affected rate among total
+                                                    Tests: {{number_format((($bangladesh[$bdKey]->new_cases)*100)/($bangladesh[$bdKey]->total_tests - $yesterday[0]->total_tests), 2)}}
+                                                    %
+                                                </div>
                                             </div>
-                                        </div>
-                                            @endif
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -324,22 +335,22 @@
 
                     <div class="col-md-6">
 
-                                <div class="maincounter-wrap" style="margin-top:15px">
-                                    <h1>World Cases:</h1>
-                                    <div class="maincounter-number">
-                                        <span style="color:#aaa">{{number_format($data[0]->total_cases)}}</span>
-                                    </div>
-                                </div>
-                                <div class="maincounter-wrap" style="margin-top:15px">
-                                    <h1>Deaths:</h1>
-                                    <div class="maincounter-number">{{number_format($data[0]->total_deaths)}}</div>
-                                </div>
-                                <div class="maincounter-wrap" style="margin-top:15px;">
-                                    <h1>Recovered:</h1>
-                                    <div class="maincounter-number" style="color:#8ACA2B ">
-                                        {{number_format($data[0]->total_recovered)}}
-                                    </div>
-                                </div>
+                        <div class="maincounter-wrap" style="margin-top:15px">
+                            <h1>World Cases:</h1>
+                            <div class="maincounter-number">
+                                <span style="color:#aaa">{{number_format($data[0]->total_cases)}}</span>
+                            </div>
+                        </div>
+                        <div class="maincounter-wrap" style="margin-top:15px">
+                            <h1>Deaths:</h1>
+                            <div class="maincounter-number">{{number_format($data[0]->total_deaths)}}</div>
+                        </div>
+                        <div class="maincounter-wrap" style="margin-top:15px;">
+                            <h1>Recovered:</h1>
+                            <div class="maincounter-number" style="color:#8ACA2B ">
+                                {{number_format($data[0]->total_recovered)}}
+                            </div>
+                        </div>
 
                         <div style="margin-top:50px;"></div>
 
@@ -405,19 +416,22 @@
 
                                         <div class="col-md-4">
                                             <div class="card-body">
-                                                <h5 class="card-title number-table-main">+{{number_format($data[0]->new_cases)}} </h5> {{--<span class="percentage">({{number_format((($data[0]->new_cases)*100)/($data[0]->total_tests), 2)}})%</span>--}}
+                                                <h5 class="card-title number-table-main">
+                                                    +{{number_format($data[0]->new_cases)}} </h5> {{--<span class="percentage">({{number_format((($data[0]->new_cases)*100)/($data[0]->total_tests), 2)}})%</span>--}}
                                                 <p style="color: #222">New Confirmed</p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="card-body">
-                                                <h5 class="card-title number-table-main">+{{number_format($data[0]->new_recovered)}}</h5> {{--<span class="percentage">({{number_format((($data[0]->new_recovered)*100)/($data[0]->total_tests), 2)}})%</span>--}}
+                                                <h5 class="card-title number-table-main">
+                                                    +{{number_format($data[0]->new_recovered)}}</h5> {{--<span class="percentage">({{number_format((($data[0]->new_recovered)*100)/($data[0]->total_tests), 2)}})%</span>--}}
                                                 <p style="color: #222">New Recovered</p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="card-body">
-                                                <h5 class="card-title number-table-main">+{{number_format($data[0]->new_deaths)}}</h5> {{--<span class="percentage">({{number_format((($data[0]->new_deaths)*100)/($data[0]->total_tests), 2)}})%</span>--}}
+                                                <h5 class="card-title number-table-main">
+                                                    +{{number_format($data[0]->new_deaths)}}</h5> {{--<span class="percentage">({{number_format((($data[0]->new_deaths)*100)/($data[0]->total_tests), 2)}})%</span>--}}
                                                 <p style="color: #222">New Death</p>
                                             </div>
                                         </div>
@@ -436,7 +450,8 @@
                 <div class="col-md-6 text-center" {{--style="color: white"--}}>
                     <div class="d-md-none d-sm-block d-xs-none" style="margin-top: 35px"></div>
                     <h3 style="color: #555">Vaccine Tracker</h3>
-                    <a target="_blank" style="font-size: 80%; color: #555" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html">Data Source: The New York Times</a>
+                    <a target="_blank" style="font-size: 80%; color: #555" href="https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html">Data Source: The
+                        New York Times</a>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card" {{--style="background-color: #75ACC8"--}}>
@@ -546,51 +561,62 @@
                             @elseif ($all->active_cases == 0)
                             style="background: #F0F0F0;"
                             @elseif($all->country == 'World')
-                                class="world"
+                            class="world"
                             @else
                             style="background: white;"
                             @endif>
                             <td style="text-align: left"><a @if($all->country != 'World') href="{{route('country', $all->country)}} @endif">{{$all->country}}</a></td>
                             <td>{{!is_numeric($all->total_cases) ? $all->total_cases : number_format($all->total_cases)}}
-                                @if($all->country != 'World')
-                                    @if(!is_numeric($all->population))
-                                        @php $all->population = 1 @endphp
-                                    @endif
-
-                                @if($all->population != '1')
-                                <span class="percentage" title="Total case confirmed according to population">
+                                @if($all->population != null || !empty($all->population) || $all->population != 0)
+                                    <span class="percentage" title="Total case confirmed according to population">
                                     ({{number_format((($all->total_cases)*100)/($all->population), 2)}})%
                                 </span>
-                                    @endif
-                                @else
-                                    <span class="percentage" title="Total case confirmed according to population">
-                                    ({{number_format((($all->total_cases)*100)/$totalPopulation, 2)}})%
-                                </span>
-                                    @endif
+                                @endif
                             </td>
                             <td @if (!empty($all->new_cases)) style="background: #FFEEAA;" @endif>{{!is_numeric($all->new_cases) ? $all->new_cases : number_format($all->new_cases)}}</td>
                             <td>{{!is_numeric($all->total_deaths) ? $all->total_deaths : number_format($all->total_deaths)}}
 
-                                @if(!is_numeric($all->total_deaths))
-                                    @php $all->total_deaths = 0 @endphp
-                                @endif
-                                <span class="percentage" title="Death percentage according to total cases confirmed">
+                                @if(is_numeric($all->total_deaths) && !empty($all->total_deaths))
+                                    <span class="percentage" title="Death percentage according to total cases confirmed">
                                     ({{number_format((($all->total_deaths)*100)/($all->total_cases), 2)}})%
                                 </span>
+                                @endif
                             </td>
                             <td @if (!empty($all->new_deaths)) style="background: red; color: white" @endif>{{!is_numeric($all->new_deaths) ? $all->new_deaths : number_format($all->new_deaths)}}</td>
-                            <td>{{!is_numeric($all->total_recovered) ? $all->total_recovered : number_format($all->total_recovered)}}</td>
+                            <td>{{!is_numeric($all->total_recovered) ? $all->total_recovered : number_format($all->total_recovered)}}
+                                @if(is_numeric($all->total_recovered) && !empty($all->total_recovered))
+                                    <span class="percentage" title="Recovered percentage according to total cases confirmed">
+                                    ({{number_format((($all->total_recovered)*100)/($all->total_cases), 2)}})%
+                                </span>
+                                @endif
+                            </td>
                             <td @if (!empty($all->new_recovered)) style="background-color:#c8e6c9; color:#000" @endif>{{!is_numeric($all->new_recovered)  ? $all->new_recovered : number_format($all->new_recovered)}}</td>
-                            <td>{{!is_numeric($all->active_cases) ? $all->active_cases : number_format($all->active_cases)}}</td>
-                            <td>{{!is_numeric($all->serious) ? $all->serious :number_format($all->serious)}}</td>
+                            <td>{{!is_numeric($all->active_cases) ? $all->active_cases : number_format($all->active_cases)}}
+                                @if(is_numeric($all->active_cases) && !empty($all->active_cases))
+                                    <span class="percentage" title="Active Case percentage according to total cases confirmed">
+                                    ({{number_format((($all->active_cases)*100)/($all->total_cases), 2)}})%
+                                </span>
+                                @endif
+                            </td>
+                            <td>{{!is_numeric($all->serious) ? $all->serious :number_format($all->serious)}}
+                                @if(is_numeric($all->serious) && !empty($all->serious) && is_numeric($all->active_cases) && !empty($all->active_cases))
+                                    <span class="percentage" title="Serious condition according to active cases">
+                                    ({{number_format((($all->serious)*100)/($all->active_cases), 2)}})%
+                                </span>
+                                @endif
+                            </td>
                             <td>{{!is_numeric($all->tot_cases)  ? $all->tot_cases : number_format($all->tot_cases)}}</td>
                             <td>{{!is_numeric($all->death1m) ? $all->death1m : number_format($all->death1m)}}</td>
-                            <td>{{!is_numeric($all->total_tests)  ? $all->total_tests : number_format($all->total_tests)}}</td>
+                            <td>{{!is_numeric($all->total_tests)  ? $all->total_tests : number_format($all->total_tests)}}
+                                @if(is_numeric($all->total_tests) && !empty($all->total_tests) && is_numeric($all->population) && !empty($all->population))
+                                    <span class="percentage" title="Test according to population">
+                                    ({{number_format((($all->total_tests)*100)/($all->population), 2)}})%
+                                </span>
+                                @endif
+                            </td>
                             <td>{{!is_numeric($all->test1m) ? $all->test1m : number_format($all->test1m)}}</td>
                             <td>
-                                @if($all->population != '1')
-                                    {{!is_numeric($all->population) ? $all->population : number_format($all->population)}}
-                                    @endif
+                                {{!is_numeric($all->population) ? $all->population : number_format($all->population)}}
                             </td>
                         </tr>
                     @endforeach
@@ -610,7 +636,7 @@
                         <th>{{number_format($data[0]->death1m)}}</th>
                         <th>{{!is_numeric($data[0]->total_tests)  ? $data[0]->total_tests : number_format($data[0]->total_tests)}}</th>
                         <th>{{!is_numeric($data[0]->test1m) ? $data[0]->test1m : number_format($data[0]->test1m)}}</th>
-                        <th>{{number_format($totalPopulation)}}</th>
+                        <th>{{number_format($data[0]->population)}}</th>
                     </tr>
 
                     </tfoot>
@@ -663,9 +689,9 @@
                 const mediumCases = "#4A97B9";
                 const minCases = "#ACCDDC";
                 const dangerArea = "#CA0B00";
-/*                const mostCases = "#7C0A02";
-                const mediumCases = "#C21807";
-                const minCases = "#ED2939";*/
+                /*                const mostCases = "#7C0A02";
+                                const mediumCases = "#C21807";
+                                const minCases = "#ED2939";*/
                 const mapColors = {};
 
                 countriesData.map(async (country) => {
@@ -677,7 +703,7 @@
                             mapColors[countryCode] = mediumCases;
                         } else if (country.cases > 100000 && country.cases <= 5000000) {
                             mapColors[countryCode] = mostCases;
-                        } else if(country.cases > 5000000){
+                        } else if (country.cases > 5000000) {
                             mapColors[countryCode] = dangerArea;
                         }
                     }
@@ -702,9 +728,9 @@
                         const cdata = await getData(BASE_URL + `v2/countries/${code}`);
                         const country = `${cdata.country}`;
                         const confirmed = `: Confirmed : ${cdata.cases}`;
-                        const death= `, Death : ${cdata.deaths}`;
-                        const recovered= `, Recovered : ${cdata.deaths}`;
-                        const ddd = country+confirmed+death+recovered;
+                        const death = `, Death : ${cdata.deaths}`;
+                        const recovered = `, Recovered : ${cdata.deaths}`;
+                        const ddd = country + confirmed + death + recovered;
                         if (label.length) {
                             label[0].innerText = ddd;
                         } else {
