@@ -42,6 +42,7 @@ class GenerateSitemap extends Command
                     ($url->segment(1) === 'test') ||
                     ($url->segment(1) === 'home') ||
                     ($url->segment(1) === 'login')
+                    ($url->segment(1) === 'check')
                 ) {
                     return;
                 }

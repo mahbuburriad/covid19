@@ -18,16 +18,14 @@ Route::get('vaccineInsert', [LiveController::class, 'vaccineInsert'])->name('vac
 
 Route::get('dataGet/{dataFor}', [ApiController::class, 'dataInsert'])->name('dataGet');
 
-//Get all
-Route::get('all', function (){
-   return view('frontend.all');
-});
+
 
 //For testing
 Route::get('test', [LiveController::class, 'test'])->name('test');
 
 
 //Frontend Show
+Route::get('check', [FrontendController::class, 'check'])->name('check');
 Route::get('/', [FrontendController::class, 'index'])->name('fIndex');
 Route::get('yesterday', [FrontendController::class, 'yesterday'])->name('yesterdayData');
 Route::get('country/{name}', [FrontendController::class, 'country'])->name('country');

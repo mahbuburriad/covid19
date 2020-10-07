@@ -14,10 +14,24 @@ use App\Models\VaccineTracker;
 use App\Models\Yesterday;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use function PHPUnit\Framework\isEmpty;
 
 class FrontendController extends Controller
 {
+    public function check(){
+        $live = Live::all();
+        $yesterday = Yesterday::where('date', Carbon::today())->get();
+        $continent = Continent::where('date', Carbon::today())->get();
+        $usaData = UsaData::where('date', Carbon::today())->get();
+        $vaccine = Vaccine::where('date', Carbon::today())->get();
+        $therapeutics = Therapeutic::where('date', Carbon::today())->get();
+        $indiaData = IndiaData::where('date', Carbon::today())->get();
+        $stateInsert = state::where('date', Carbon::today())->get();
+        $dataInsert = Data::all();
+        $vaccineInsert = VaccineTracker::where('date', Carbon::today())->get();
+
+        return view('frontend.check', compact('live', 'yesterday', 'continent', 'usaData', 'vaccine', 'therapeutics', 'indiaData', 'stateInsert', 'dataInsert', 'vaccineInsert'));
+    }
+
     public function index()
     {
         $ip = request()->ip();
