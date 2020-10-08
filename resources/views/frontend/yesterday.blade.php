@@ -15,7 +15,7 @@
             color: #696969;
             font-size: 80%;
         }
-        
+
         div.dt-buttons {
             float: left !important;
         }

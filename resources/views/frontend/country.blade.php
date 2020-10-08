@@ -388,7 +388,7 @@
                     })
 
                     const config = {
-                        type: 'line',
+                        type: 'bar',
                         data: {
                             labels: labels,
                             datasets: [{
