@@ -428,7 +428,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#dataTable').DataTable({
-                order: [/*[2,'desc']*/],
+                order: [],
                 columnDefs: [
                     {
                         orderable: false,
@@ -441,6 +441,10 @@
                     {
                         targets: 0,
                         className: 'noVis'
+                    },
+                    {
+                        targets: [0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+                        searchable: false
                     }
                 ],
                 lengthChange: false,
@@ -460,7 +464,11 @@
                         collectionLayout: 'two-column',
                         columns: ':not(.noVis)'
                     }
-                ]
+                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search..."
+                }
             });
         });
     </script>
