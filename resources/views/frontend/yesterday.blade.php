@@ -15,6 +15,14 @@
             color: #696969;
             font-size: 80%;
         }
+        
+        div.dt-buttons {
+            float: left !important;
+        }
+
+        div.dataTables_wrapper div.dataTables_filter label {
+            float: right !important;
+        }
     </style>
 @endsection
 
