@@ -299,7 +299,7 @@
                 @endif
                 <h3>Date Wise Data</h3>
 
-                <table id="dataTable" class="table table-bordered row-border hover order-column">
+                <table id="dataTable" class="table table-bordered table-striped row-border hover order-column">
                     <thead class="thead-dark">
                     <tr>
                         <th>Date</th>
@@ -324,7 +324,7 @@
                         </div>
                         <div class="col-md-6">
                                 <h3>District Wise Data</h3>
-                                <table id="stateTable" class="table table-bordered row-border hover order-column">
+                                <table id="stateTable" class="table table-bordered table-striped row-border hover order-column">
                                     <thead class="thead-dark">
                                     <tr>
                                         <th>Division</th>
@@ -469,17 +469,53 @@
 
             $('#dataTable').DataTable({
                 order: [0, 'desc'],
+                columnDefs: [
+                    {
+                        targets: [1,2,3],
+                        searchable: false
+                    }
+                ],
             });
 
             $('#stateTable').DataTable({
                 order: [2, 'desc'],
+                columnDefs: [
+                    {
+                        orderable: false,
+                        targets: [0, 1]
+                    },
+                    {
+                        targets: [2],
+                        searchable: false
+                    }
+                ],
             });
 
             $('#usaTable').DataTable({
-                order: []
+                order: [],
+                columnDefs: [
+                    {
+                        orderable: false,
+                        targets: [0]
+                    },
+                    {
+                        targets: [1,2,3,4,5,6,7,8,9,10],
+                        searchable: false
+                    }
+                ],
             })
             $('#indiaTable').DataTable({
-                order: []
+                order: [],
+                columnDefs: [
+                    {
+                        orderable: false,
+                        targets: [0]
+                    },
+                    {
+                        targets: [1,2,3,4,5,6,7,8],
+                        searchable: false
+                    }
+                ],
             })
         });
     </script>

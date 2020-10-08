@@ -112,11 +112,11 @@ tfoot tr th, td {
 }
 
 .page-item.active .page-link {
-    background-color: #2C3E50;
-    border-color: #2C3E50;
+    background-color: #343A40;
+    border-color: #343A40;
 }
 .page-link {
-    color: #2C3E50;
+    color: #343A40;
 }
 
 .page-link:hover{
