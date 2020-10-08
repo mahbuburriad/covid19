@@ -7,6 +7,7 @@
           integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous"/>
     <link rel="stylesheet" href="{{url('https://cdn.datatables.net/fixedheader/3.1.7/css/fixedHeader.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{url('https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jqvmap.min.css')}}">
+    <link rel="stylesheet" href="{{url('https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css')}}">
     <style>
         .world {
             background-color: #DFDFDF !important;
@@ -531,10 +532,11 @@
 
                 <h1>Data Table</h1>
 
-                <table id="dataTable" class="table table-bordered row-border hover order-column"
+                <table id="dataTable" class="table table-bordered row-border hover order-column display"
                        cellspacing="0" width="100%">
                     <thead style="color: #666666">
                     <tr>
+                        <th>#</th>
                         <th>Country,<br/>Other</th>
                         <th>Total<br/>Cases</th>
                         <th>New<br/>Cases</th>
@@ -544,17 +546,24 @@
                         <th>New<br/>Recovered</th>
                         <th>Active<br/>Cases</th>
                         <th>Serious,<br/>Critical</th>
-                        <th>Tot&nbsp;Cases/<br/>1M pop</th>
+                        <th>Total&nbsp;Cases/<br/>1M pop</th>
                         <th>Deaths/<br/>1M pop</th>
+                        <th>Critical/<br/>1M pop</th>
+                        <th>Recovered/<br/>1M pop</th>
+                        <th>Active/<br/>1M pop</th>
+                        <th>1Case/<br/>pop</th>
+                        <th>1Death/<br/>pop</th>
                         <th>Total<br/>Tests</th>
                         <th>Tests/<br/>
                             <nobr>1M pop</nobr>
                         </th>
+                        <th>1Test/<br/>pop</th>
                         <th>Population</th>
 
                     </tr>
                     </thead>
                     <tbody>
+                    @php $i = 0; @endphp
                     @foreach($data as $all)
                         <tr @if($all->total_cases == $all->total_recovered)
                             style="background: #EAF7D5;"
@@ -565,6 +574,7 @@
                             @else
                             style="background: white;"
                             @endif>
+                            <td>{{$i == 0 ? '' : $i}}</td>
                             <td style="text-align: left"><a @if($all->country != 'World') href="{{route('country', $all->country)}} @endif">{{$all->country}}</a></td>
                             <td>{{!is_numeric($all->total_cases) ? $all->total_cases : number_format($all->total_cases)}}
                                 @if($all->population != null || !empty($all->population) || $all->population != 0)
@@ -607,6 +617,11 @@
                             </td>
                             <td>{{!is_numeric($all->tot_cases)  ? $all->tot_cases : number_format($all->tot_cases)}}</td>
                             <td>{{!is_numeric($all->death1m) ? $all->death1m : number_format($all->death1m)}}</td>
+                            <td>{{!is_numeric($all->criticalPerOneMillion) ? $all->criticalPerOneMillion : number_format($all->criticalPerOneMillion)}}</td>
+                            <td>{{!is_numeric($all->recoveredPerOneMillion) ? $all->recoveredPerOneMillion : number_format($all->recoveredPerOneMillion)}}</td>
+                            <td>{{!is_numeric($all->activePerOneMillion) ? $all->activePerOneMillion : number_format($all->activePerOneMillion)}}</td>
+                            <td>{{!is_numeric($all->oneCasePerPeople) ? $all->oneCasePerPeople : number_format($all->oneCasePerPeople)}}</td>
+                            <td>{{!is_numeric($all->oneDeathPerPeople) ? $all->oneDeathPerPeople : number_format($all->oneDeathPerPeople)}}</td>
                             <td>{{!is_numeric($all->total_tests)  ? $all->total_tests : number_format($all->total_tests)}}
                                 @if(is_numeric($all->total_tests) && !empty($all->total_tests) && is_numeric($all->population) && !empty($all->population))
                                     <span class="percentage" title="Test according to population">
@@ -615,14 +630,17 @@
                                 @endif
                             </td>
                             <td>{{!is_numeric($all->test1m) ? $all->test1m : number_format($all->test1m)}}</td>
+                            <td>{{!is_numeric($all->oneTestPerPeople) ? $all->oneTestPerPeople : number_format($all->oneTestPerPeople)}}</td>
                             <td>
                                 {{!is_numeric($all->population) ? $all->population : number_format($all->population)}}
                             </td>
                         </tr>
+                        @php $i++ @endphp
                     @endforeach
                     </tbody>
                     <tfoot>
                     <tr>
+                        <th></th>
                         <th style="text-align: left">Total:</th>
                         <th>{{number_format($data[0]->total_cases)}}</th>
                         <th style="background: #FFEEAA;">{{number_format($data[0]->new_cases)}}</th>
@@ -634,8 +652,14 @@
                         <th>{{number_format($data[0]->serious)}}</th>
                         <th>{{number_format($data[0]->tot_cases)}}</th>
                         <th>{{number_format($data[0]->death1m)}}</th>
+                        <th>{{!is_numeric($data[0]->criticalPerOneMillion) ? $data[0]->criticalPerOneMillion : number_format($data[0]->criticalPerOneMillion)}}</th>
+                        <th>{{!is_numeric($data[0]->recoveredPerOneMillion) ? $data[0]->recoveredPerOneMillion : number_format($data[0]->recoveredPerOneMillion)}}</th>
+                        <th>{{!is_numeric($data[0]->activePerOneMillion) ? $data[0]->activePerOneMillion : number_format($data[0]->activePerOneMillion)}}</th>
+                        <th>{{!is_numeric($data[0]->oneCasePerPeople) ? $data[0]->oneCasePerPeople : number_format($data[0]->oneCasePerPeople)}}</th>
+                        <th>{{!is_numeric($data[0]->oneDeathPerPeople) ? $data[0]->oneDeathPerPeople : number_format($data[0]->oneDeathPerPeople)}}</th>
                         <th>{{!is_numeric($data[0]->total_tests)  ? $data[0]->total_tests : number_format($data[0]->total_tests)}}</th>
                         <th>{{!is_numeric($data[0]->test1m) ? $data[0]->test1m : number_format($data[0]->test1m)}}</th>
+                        <th>{{!is_numeric($data[0]->oneTestPerPeople) ? $data[0]->oneTestPerPeople : number_format($data[0]->oneTestPerPeople)}}</th>
                         <th>{{number_format($data[0]->population)}}</th>
                     </tr>
 
@@ -663,6 +687,8 @@
 
 @section('script')
     <script src="{{url('https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js')}}"></script>
+    <script src="{{url('https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{url('https://cdn.datatables.net/buttons/1.6.4/js/buttons.colVis.min.js')}}"></script>
     <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js')}}"></script>
     <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/maps/jquery.vmap.world.js')}}"></script>
     <script type="text/javascript">
@@ -689,9 +715,6 @@
                 const mediumCases = "#4A97B9";
                 const minCases = "#ACCDDC";
                 const dangerArea = "#CA0B00";
-                /*                const mostCases = "#7C0A02";
-                                const mediumCases = "#C21807";
-                                const minCases = "#ED2939";*/
                 const mapColors = {};
 
                 countriesData.map(async (country) => {
@@ -748,6 +771,20 @@
 
             $('#dataTable').DataTable({
                 order: [],
+                columnDefs: [
+                    {
+                        orderable: false,
+                        targets: [0, 1]
+                    },
+                    {
+                        visible: false,
+                        targets: [10,11,12,13,14,15,16,18,19]
+                    },
+                    {
+                        targets: 0,
+                        className: 'noVis'
+                    }
+                ],
                 lengthChange: false,
                 paging: false,
                 info: false,
@@ -755,22 +792,18 @@
                     header: true,
                     footer: false
                 },
-                responsive: true
+                responsive: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'collection',
+                        text: 'Table control',
+                        extend: 'colvis',
+                        collectionLayout: 'two-column',
+                        columns: ':not(.noVis)'
+                    }
+                ]
             });
-            $('#dataTable tbody tr').each(function (i) {
-                if (i == 0) {
-                    $(this).prepend("<td></td>")
-                } else {
-                    $(this).prepend("<td>" + (i) + "</td>")
-                }
-
-            })
-            $('#dataTable thead tr').each(function (i) {
-                $(this).prepend("<th>#</th>")
-            })
-            $('#dataTable tfoot tr').each(function (i) {
-                $(this).prepend("<th></th>")
-            })
         });
     </script>
 

@@ -237,9 +237,14 @@ class FrontendController extends Controller
 
         $data = Yesterday::where('date', Carbon::today())->get();
 
+
+
         if (count($data) == 0){
             $data = Yesterday::where('date', Carbon::yesterday())->get();
         }
+
+        $dataCollection = collect($data);
+        $data = $dataCollection->sortByDesc('new_cases');
 
         return view('frontend.yesterday', compact('bangladesh', 'data'));
     }
