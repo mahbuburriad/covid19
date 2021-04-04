@@ -15,20 +15,20 @@
         <link rel="shortcut icon" href="{{asset('/storage/image/'.$settings['favicon'])}}" type="image/x-icon">
     @endif
 
-    <title>@yield('title') COVID-19 Coronavirus Pandemic | Saltanat Global Limited</title>
+    <title>@yield('title') COVID-19 Coronavirus Pandemic | Mahbubur Riad</title>
 
-    <meta name="title" content="@yield('title', 'COVID-19 Coronavirus Pandemic')| Saltanat Global Limited">
+    <meta name="title" content="@yield('title', 'COVID-19 Coronavirus Pandemic')| Mahbubur riad">
     <meta name="description" content="@yield('description', 'Live statistics and coronavirus news tracking the number of confirmed cases, recovered patients and death toll due to the COVID-19 coronavirus from Wuhan, China. Coronavirus counter with new cases, deaths, news and updates')">
     <meta name="keywords" content="covid19, coronavirus, corona virus, show corona virus information, corona virus info, corona virus status, coronavirus info, covid19 tracker, covid19 status, find covid19 data, find corona virus information, get corona virus data, get covid19 data, coronavirus update, coronavirus bangladesh, corona virus US, @yield('keywords')">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
     <meta name="revisit-after" content="1 days">
-    <meta name="author" content="Saltanat Global Limited">
+    <meta name="author" content="Mahbubur riad">
 
     <!--    meta tag for social media-->
 
-    <meta property="og:title" content="@yield('title') COVID-19 Coronavirus Pandemic | Saltanat Global Limited">
+    <meta property="og:title" content="@yield('title') COVID-19 Coronavirus Pandemic | Mahbubur riad">
     <meta property="og:description" content="@yield('description', 'Live statistics and coronavirus news tracking the number of confirmed cases, recovered patients and death toll due to the COVID-19 coronavirus from Wuhan, China. Coronavirus counter with new cases, deaths, news and updates')">
     <meta property="og:url" content="{{Request::url()}}">
     <meta property="og:type" content="website">
@@ -59,7 +59,7 @@
 
 <section class="mt-1">
     <div class="container-fluid">
-    <div class="label-counter" id="page-top"><a href="https://saltanatglobal.com"><img class="img-responsive" width="20" style="margin-right: 30px" src="{{asset('/storage/image/'.$settings['logo'])}}" alt="Saltanat Global Limited"></a>COVID-19 Coronavirus Pandemic @yield('country') </div>
+    <div class="label-counter" id="page-top">{{--<a href="https://mahbuburriad.com"><img class="img-responsive" width="20" style="margin-right: 30px" src="{{asset('/storage/image/'.$settings['logo'])}}" alt="Mahbubur riad"></a>--}}COVID-19 Coronavirus Pandemic @yield('country') </div>
 
     <center>
         <div style="font-size:13px; color:#999; margin-top:5px; text-align:center">Last Update: {{date('F d, Y G:i A', strtotime($data[0]->updated_at))}} UTC <br> Local Time : <span id = "localTime"></span> ({{$data[0]->updated_at->diffForHumans()}}) </div>
@@ -88,7 +88,7 @@
     <b>API for covid19: </b> <a style="color: black" href="https://corona.lmao.ninja/" target="_blank">Corona Ninja</a></p>
 <footer>
     <center>
-        <div class="footer_text">© Copyright <a class="logoFont" style="text-decoration: none" href="https://saltanatglobal.com">Saltanat Global Limited</a>- All rights reserved</div>
+        <div class="footer_text">© Copyright <a class="logoFont" style="text-decoration: none" href="https://mahbuburriad.com">Mahbubur riad</a>- All rights reserved</div>
     </center>
 </footer>
     </div>

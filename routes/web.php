@@ -31,6 +31,7 @@ Route::get('yesterday', [FrontendController::class, 'yesterday'])->name('yesterd
 Route::get('country/{name}', [FrontendController::class, 'country'])->name('country');
 Route::get('optimize/{todo}', [ArtisanController::class, 'optimize']);
 Route::get('sitemap', [ArtisanController::class, 'sitemap'])->name('sitemap');
+Route::get('storagelink', [ArtisanController::class, 'storagelink'])->name('storagelink');
 Route::get('vaccine', [FrontendController::class, 'vaccine'])->name('vaccine');
 Route::get('therapeutics', [FrontendController::class, 'therapeutics'])->name('therapeutics');
 

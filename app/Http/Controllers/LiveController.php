@@ -288,19 +288,19 @@ class LiveController extends Controller
         $dom = new domDocument;
         @$dom->loadHTML($html);
 
-        $g_ai0_6 = $dom->getElementById('g-ai0-6');
+        $g_ai0_6 = $dom->getElementById('g-ai0-7');
         $pre = $g_ai0_6->getElementsByTagName('p');
 
-        $g_ai0_7 = $dom->getElementById('g-ai0-7');
+        $g_ai0_7 = $dom->getElementById('g-ai0-8');
         $p1 = $g_ai0_7->getElementsByTagName('p');
 
-        $g_ai0_7 = $dom->getElementById('g-ai0-8');
+        $g_ai0_7 = $dom->getElementById('g-ai0-9');
         $p2 = $g_ai0_7->getElementsByTagName('p');
 
-        $g_ai0_7 = $dom->getElementById('g-ai0-9');
+        $g_ai0_7 = $dom->getElementById('g-ai0-10');
         $p3 = $g_ai0_7->getElementsByTagName('p');
 
-        $g_ai0_7 = $dom->getElementById('g-ai0-10');
+        $g_ai0_7 = $dom->getElementById('g-ai0-11');
         $approve = $g_ai0_7->getElementsByTagName('p');
 
         $site_content = $dom->getElementById('site-content');

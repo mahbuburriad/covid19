@@ -40,7 +40,12 @@ class ArtisanController extends Controller
     }
 
     public function sitemap(){
-        SitemapGenerator::create('https://covid19.saltanatglobal.com')->writeToFile('sitemap.xml');
+        SitemapGenerator::create('https://covid19.mahbuburriad.com')->writeToFile('sitemap.xml');
+        return 'sitemap created';
+    }
+
+    public function storagelink(){
+        Artisan::call('storage:link');
         return 'sitemap created';
     }
 }
