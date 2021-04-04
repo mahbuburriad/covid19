@@ -33,4 +33,6 @@ class AppServiceProvider extends ServiceProvider
         }
         View::share('settings', $settings);
     }
+
+    //need to comment this before install composer and other things
 }
