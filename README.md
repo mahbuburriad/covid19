@@ -1,60 +1,155 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+<img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License">
 </p>
 
-## About Laravel
+## About Covid19 Project
+covid19 corona virus score application is a web application framework with expressive, elegant syntax and build with laravel 8. This is open source project under MIT License. That means its free and you can contribute to this open source project.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Working Method:
+This application using various type of API. and Web Scraper to really work this application perfectly. Have lots of information.
+Interface is currently inspired from Worldometer.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## API & URL Providers (Thanks from Me to provide open source API for all of us)
+**Live Data Source:**  [Worldometers](https://www.worldometers.info/coronavirus/)  
+**Data by date John Hopkins University & Pomber from github:**  [John Hopkins - Pomber](https://github.com/pomber/covid19)  
+**Bangladesh District Wise Data source:**  [dghs.gov.bd](https://dashboard.dghs.gov.bd/webportal/pages/covid19.php)  
+**Vaccine Tracker Data Source:**  [The New Work Times](https://www.nytimes.com/interactive/2020/science/coronavirus-vaccine-tracker.html)  
+**Get vaccine trial data from RAPS (Regulatory Affairs Professional Society). Specifically published by Jeff Craven:** [RAPS](https://www.raps.org/news-and-articles/news-articles/2020/3/covid-19-vaccine-tracker)  
+**Get therapeutics trial data from RAPS (Regulatory Affairs Professional Society). Specifically published by Jeff Craven:** [RAPS](https://www.raps.org/news-and-articles/news-articles/2020/3/covid-19-therapeutics-tracker)  
+**USA Data Source:** [Worldometer](https://www.worldometers.info/coronavirus/country/us/)  
+**India Data Source:** [Get COVID-19 government reported data for a specific country](https://www.mohfw.gov.in/)  
+**API for covid19:** [Corona Ninja](https://corona.lmao.ninja/)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Project Framework
+- Laravel 8
 
-## Learning Laravel
+## Server Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+This Covid19 project has a few system requirements. You should ensure that your web server has the following minimum PHP version and extensions:
+-   PHP >= 7.3
+-   BCMath PHP Extension
+-   Ctype PHP Extension
+-   Fileinfo PHP Extension
+-   JSON PHP Extension
+-   Mbstring PHP Extension
+-   OpenSSL PHP Extension
+-   PDO PHP Extension
+-   Tokenizer PHP Extension
+-   XML PHP Extension
+- fopen_url_allow = true
+- composer
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## How to install
+**clone this project**
+```
+https://github.com/mahbuburriad/covid19.git
+```
+**Go to directory**
+> app/providers/AppServiceProvider.php
 
-## Laravel Sponsors
+**Comment this code with `/* */` under boot() function**
+```
+/*
+$basic_settings = Settings::all();  
+unset($settings);  
+$settings = array();  
+foreach ($basic_settings as $bSet) {  
+  $settings[$bSet['settings_key']] = $bSet['settings_value'];  
+}  
+View::share('settings', $settings);
+*/
+```
+**Open Terminal and install the composer**
+```
+composer install
+```
+**make an .env file**
+```
+cp .env.example .env
+```
+**Open .env file and modify the database name, username and password**
+```
+DB_CONNECTION=mysql  
+DB_HOST=localhost  
+DB_PORT=3306  
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+```
+**generate Key**
+```
+php artisan key:generate
+```
+**Storage Link**
+```
+php artisan storage:link
+```
+**dump autoload the composer**
+```
+composer dump-autoload
+```
+**Database Migration**
+```
+php artisan migrate --seed
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Now Uncomment the previous commented file and function
+**Go to directory**
+> app/providers/AppServiceProvider.php
 
-### Premium Partners
+**uncomment this code under `boot()` function**
+```
+$basic_settings = Settings::all();  
+unset($settings);  
+$settings = array();  
+foreach ($basic_settings as $bSet) {  
+  $settings[$bSet['settings_key']] = $bSet['settings_value'];  
+}  
+View::share('settings', $settings);
+```
+**Now serve this project**
+```
+php artisan serve
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+**Now Grab all live data by run this url**
+> http://localhost:8000/dataGet/live
+> http://localhost:8000/dataGet/continent
+> http://localhost:8000/dataGet/therapeutics
+> http://localhost:8000/dataGet/vaccine
+> http://localhost:8000/dataGet/yesterday
+> http://localhost:8000/dataInsert
+> http://localhost:8000/stateInsert
+> http://localhost:8000/vaccineInsert
+> http://localhost:8000/dataGet/indiaData
+> http://localhost:8000/dataGet/usaData
+> http://localhost:8000/sitemap
+
+**Now Check that all data implemented**
+> http://localhost:8000/check
+
+## Recommendation
+- You need always update data so best way is use cron job for automatically scrap data time to time.
+
+## Contact Information
+For any type of problem comment here or knock me on mail
+**Mail:** mahbubur.riad@gmail.com
+**website:** https://mahbuburriac.com
+**covid19 website:** https://covid19.mahbuburriad.com
+
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Thank you for considering contributing to the Covid19 Project. You can contribute this project whatever need and update.
 
 ## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+In order to ensure that the covid19 project member is welcoming to all
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within covid19 project, please send an e-mail to Mahbubur Riad via [mahbubur.riad@gmail.com](mailto:mahbubur.riad@gmail.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
