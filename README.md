@@ -114,17 +114,17 @@ php artisan serve
 ```
 
 **Now Grab all live data by run this url**
-> http://localhost:8000/dataGet/live
-> http://localhost:8000/dataGet/continent
-> http://localhost:8000/dataGet/therapeutics
-> http://localhost:8000/dataGet/vaccine
-> http://localhost:8000/dataGet/yesterday
-> http://localhost:8000/dataInsert
-> http://localhost:8000/stateInsert
-> http://localhost:8000/vaccineInsert
-> http://localhost:8000/dataGet/indiaData
-> http://localhost:8000/dataGet/usaData
-> http://localhost:8000/sitemap
+- http://localhost:8000/dataGet/live
+- http://localhost:8000/dataGet/continent
+- http://localhost:8000/dataGet/therapeutics
+- http://localhost:8000/dataGet/vaccine
+- http://localhost:8000/dataGet/yesterday
+- http://localhost:8000/dataInsert
+- http://localhost:8000/stateInsert
+- http://localhost:8000/vaccineInsert
+- http://localhost:8000/dataGet/indiaData
+- http://localhost:8000/dataGet/usaData
+- http://localhost:8000/sitemap
 
 **Now Check that all data implemented**
 > http://localhost:8000/check
