@@ -134,9 +134,9 @@ php artisan serve
 
 ## Contact Information
 For any type of problem comment here or knock me on mail
-**Mail:** mahbubur.riad@gmail.com
-**website:** https://mahbuburriac.com
-**covid19 website:** https://covid19.mahbuburriad.com
+- **Mail:** mahbubur.riad@gmail.com
+- **website:** https://mahbuburriad.com
+- **covid19 website:** https://covid19.mahbuburriad.com
 
 
 ## Contributing
